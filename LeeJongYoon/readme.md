@@ -10,3 +10,13 @@
 0719
 - OpenVidu 학습 및 소스 분석
 - 서버 구성 논의
+
+0720
+- SpringBoot 개발 환경 설정
+- JPA 사전학습 및 분석
+
+0721
+- SpringBoot JPA 설정 및 DB 연동
+- ERD 설계
+- Swagger 연동 진행 중
+- mediapipe face landmark 소스코드 분석

@@ -1,0 +1,27 @@
+/* MainPage.css */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .game-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out;
+    margin-bottom: 1rem; /* 수정: 버튼간의 간격을 1rem(기본 폰트 사이즈의 1배)로 설정 */
+  }
+  
+  .game-button:last-child {
+    margin-bottom: 0; /* 마지막 버튼은 아래 간격 제거 */
+  }
+  
+  .game-button:hover {
+    background-color: #0056b3;
+  }
+  

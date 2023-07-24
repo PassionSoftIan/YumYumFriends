@@ -1,0 +1,62 @@
+/* Intro.css */
+
+.intro-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #fff5e4; /* 배경을 투명하게 설정 */
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+  margin: 20px;
+}
+
+/* Caution Page */
+
+.caution-page {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 15px;
+  background-color: #fff5e4; /* Light Peach */
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.1); /* Updated box-shadow */
+  max-width: 500px; /* Increased maximum width */
+  width: 80%; /* Set the width to 80% of the available width */
+}
+
+.caution-heading {
+  font-size: 40px; /* Increased font size for heading */
+  margin-bottom: 20px;
+  color: #ff5959; /* Coral Red (Updated color) */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Added text shadow */
+}
+
+.caution-text {
+  font-size: 22px; /* Increased font size for text */
+  line-height: 1.6;
+  color: #ff7b7b; /* Light Salmon Pink (Updated color) */
+}
+
+.caution-button {
+  font-size: 24px; /* Button font size */
+  padding: 10px 20px; /* Button padding */
+  background-color: #ff5959; /* Coral Red (Button background color) */
+  color: white; /* Button text color */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.1); /* Button box-shadow */
+  transition: background-color 0.3s ease; /* Smooth button color transition */
+}
+
+.caution-button:hover {
+  background-color: #ff7b7b; /* Lighter shade on hover */
+  transform: translateY(-2px); /* Add a subtle upward lift on hover */
+}

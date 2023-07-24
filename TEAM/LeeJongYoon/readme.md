@@ -20,3 +20,9 @@
 - ERD 설계
 - Swagger 연동 진행 중
 - mediapipe face landmark 소스코드 분석
+
+0724
+- Swagger 연동
+- 백엔드 개발 환경 설정 마무리
+- REST API 명세서 작성
+- 백엔드 개발 시작

@@ -1,6 +1,5 @@
 package com.ssafy.api.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -16,9 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.api.model.Friendship;
 import com.ssafy.api.model.User;
 import com.ssafy.api.service.FriendshipRepository;
+import com.ssafy.api.service.MyBadgeRepository;
+import com.ssafy.api.service.MyTrophyRepository;
 import com.ssafy.api.service.MyYumRepository;
 import com.ssafy.api.service.UserRepository;
 
@@ -40,6 +40,12 @@ public class UserController {
 	
 	@Autowired
 	MyYumRepository myYumRepo;
+	
+	@Autowired
+	MyTrophyRepository myTrophyRepo;
+	
+	@Autowired
+	MyBadgeRepository myBadgeRepo;
 	
 	
 	@GetMapping("/{id}")
@@ -109,6 +115,8 @@ public class UserController {
 			friendRepo.deleteByFriend1ID(userID);
 			friendRepo.deleteByFriend2ID(userID);
 			myYumRepo.deleteByUserID(userID);
+			myTrophyRepo.deleteByUserID(userID);
+			myBadgeRepo.deleteByUserID(userID);
 			
 			userRepo.deleteById(id);
 			return ResponseEntity.status(HttpStatus.OK).body(null);

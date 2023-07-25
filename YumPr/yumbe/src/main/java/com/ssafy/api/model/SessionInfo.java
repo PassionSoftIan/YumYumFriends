@@ -15,16 +15,19 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@Table(name = "MYTROPHY")
+@Table(name = "ENTERINFO")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString
-public class MyBadge {
+public class SessionInfo {
 	@Id
+	@Column(name = "SESSION_ID")
+	private String sessionID;
+
 	@Column(name = "USER_ID")
 	private int userID;
 
-	@Column(name = "BADGE_ID")
-	private int badgeID;
+	@Column(name = "ROLE")
+	private String role;
 }

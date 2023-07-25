@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/DexPage.css";
-import yums, { Yum } from "../data/yums";
+import yums, { Yum } from "../data/yums ";
 
 const DexPage: React.FC = () => {
   return (

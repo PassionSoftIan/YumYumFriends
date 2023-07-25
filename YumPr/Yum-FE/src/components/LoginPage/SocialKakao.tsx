@@ -1,6 +1,5 @@
 import React from "react";
 import KakaoLogin from "react-kakao-login";
-import logo from "../assets/gametitle.png";
 import { useNavigate } from "react-router-dom";
 
 interface SocialKakaoProps {

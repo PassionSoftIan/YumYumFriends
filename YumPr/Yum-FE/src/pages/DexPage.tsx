@@ -1,11 +1,11 @@
 import React from "react";
 import "./styles/DexPage.css";
-import yums, { Yum } from "../data/yums";
+// import yums, { Yum } from "../data/yums";
 
 const DexPage: React.FC = () => {
   return (
     <div className="dex-container">
-      <h1 className="dex-title">YumDex</h1>
+      {/* <h1 className="dex-title">YumDex</h1>
       <div className="yum-list">
         {yums.map((yum: Yum) => (
           <div key={yum.id} className="yum-card">
@@ -19,7 +19,7 @@ const DexPage: React.FC = () => {
             />
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -52,8 +52,14 @@ ERD 임시 작성
 
 ## 0724
 
-
-
 - openvidu - react 환경에서 체크
 
 - 얼굴인식 face-api 적용예정
+
+## 0725
+
+- openvidu 웹앱에 적용
+
+- openvidu 공식문서 보고 좀 더 분석필요
+
+- 컴포넌트화 할 필요

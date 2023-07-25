@@ -1,16 +1,13 @@
-<<<<<<< HEAD
-export {};
-=======
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles/MainPage.css"; // 새로운 CSS 파일을 생성하여 여기에 스타일을 작성합니다.
+import "./styles/MainPage.css";
 
 const MainPage: React.FC = () => {
-  const navigate = useNavigate(); // useNavigate를 가져옴
+  const navigate = useNavigate();
 
   const handleSinglePlayerGame = () => {
     console.log("단일 플레이어 게임 시작");
-    navigate("/single"); // useNavigate로 페이지 이동 처리
+    navigate("/single");
   };
 
   const handleMultiPlayerGame = () => {
@@ -20,6 +17,7 @@ const MainPage: React.FC = () => {
 
   const handleCoopGame = () => {
     console.log("협동 플레이 게임 시작");
+    navigate("/coop");
   };
 
   return (
@@ -40,4 +38,3 @@ const MainPage: React.FC = () => {
 };
 
 export default MainPage;
->>>>>>> 95bb8b7f77b03e9c1f99ecf9ac2bd81eae5d9751

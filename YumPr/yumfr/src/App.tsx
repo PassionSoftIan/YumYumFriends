@@ -5,11 +5,14 @@ import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import SinglePlayPage from './pages/SinglePlayPage';
 import MultiPlayPage from './pages/MultiPlayPage';
+import DexPage from './pages/DexPage';
+import AnyComponent from './pages/any';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <AnyComponent />
       <header className="App-header">
         <Router>
           <Routes>
@@ -18,6 +21,7 @@ function App() {
             <Route path="/main" element={<MainPage />} />
             <Route path="/single" element={<SinglePlayPage />} />
             <Route path="/multi" element={<MultiPlayPage />} />
+            <Route path="/dex" element={<DexPage />} />
           </Routes>
         </Router>
       </header>

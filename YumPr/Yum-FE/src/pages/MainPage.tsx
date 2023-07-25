@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-export {};
-=======
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/MainPage.css"; // 새로운 CSS 파일을 생성하여 여기에 스타일을 작성합니다.
@@ -40,4 +37,3 @@ const MainPage: React.FC = () => {
 };
 
 export default MainPage;
->>>>>>> 95bb8b7f77b03e9c1f99ecf9ac2bd81eae5d9751

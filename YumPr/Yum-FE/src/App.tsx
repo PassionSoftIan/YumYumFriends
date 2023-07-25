@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import SinglePlayPage from './pages/SinglePlayPage';
 import MultiPlayPage from './pages/MultiPlayPage';
+// import OpenViduComponent from './OpenVidu';
 import './App.css';
 
 function App() {

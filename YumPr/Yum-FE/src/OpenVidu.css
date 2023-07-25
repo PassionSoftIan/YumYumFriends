@@ -1,0 +1,134 @@
+/* OpenVidu.css */
+
+/* Styling for the container div */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Styling for the join dialog */
+#join-dialog {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+/* Styling for the buttons */
+.btn {
+  margin: 5px;
+}
+
+/* Styling for the video session */
+#session {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#session-header {
+  display: flex;
+  align-items: center;
+}
+
+#session-title {
+  flex-grow: 1;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Styling for the video containers */
+#main-video,
+#video-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stream-container {
+  position: relative;
+  width: 33%;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.stream-container span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Styling for the UserVideoComponent */
+#user-video {
+  width: 100%;
+  height: auto;
+}
+
+/* Styling for the join button */
+#join .btn-success {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Styling for the leave button */
+#buttonLeaveSession {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Styling for the switch camera button */
+#buttonSwitchCamera {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+/* Styling for the next subscriber button */
+#buttonNextSubscriber {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+/* Additional styling for the game-like appearance */
+#img-div img {
+  max-width: 100%;
+  height: auto;
+}
+
+#session-header {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#main-video {
+  border: 5px solid #17a2b8;
+  border-radius: 10px;
+}
+
+#video-container {
+  margin-top: 10px;
+  padding: 10px;
+  border: 5px solid #007bff;
+  border-radius: 10px;
+}
+
+#buttonLeaveSession,
+#buttonSwitchCamera,
+#buttonNextSubscriber {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Custom style for UserVideoComponent */
+#user-video {
+  border-radius: 10px;
+}

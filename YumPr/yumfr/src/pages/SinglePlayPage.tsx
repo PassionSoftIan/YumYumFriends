@@ -24,7 +24,7 @@ const WebcamCapture: React.FC = () => {
 
   return (
     <div>
-      <h1>Webcam Capture</h1>
+      <h1>Single play mode</h1>
       <video ref={videoRef} autoPlay />
     </div>
   );

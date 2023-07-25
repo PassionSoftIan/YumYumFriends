@@ -15,16 +15,26 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@Table(name = "MYTROPHY")
+@Table(name = "SESSION")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString
-public class MyBadge {
+public class Session {
 	@Id
-	@Column(name = "USER_ID")
-	private int userID;
+	@Column(name = "ID")
+	private String sessionID;
 
-	@Column(name = "BADGE_ID")
-	private int badgeID;
+	@Column(name = "PASSWORD")
+	private String password;
+
+	@Column(name = "MAX")
+	private int max;
+
+	@Column(name = "CURRENT")
+	private int current;
+
+	@Column(name = "MODE")
+	private String mode;
+	
 }

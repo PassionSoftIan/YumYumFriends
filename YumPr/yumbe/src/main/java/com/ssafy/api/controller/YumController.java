@@ -64,24 +64,4 @@ public class YumController {
 		return ResponseEntity.status(HttpStatus.OK).body(yums);
 	}
 
-	@PostMapping("/{user_id}&{yum_id}")
-	@ApiOperation(value = "수집한 냠냠 등록", notes = "<strong>사용자 ID와 냠냠 ID</strong>를 통해 사용자가 잡은 냠냠 정보를 등록한다.") 
-    @ApiResponses({
-        @ApiResponse(code = 201, message = "등록 성공"),
-        @ApiResponse(code = 404, message = "사용자 없음"),
-        @ApiResponse(code = 500, message = "서버 오류")
-    })
-	public ResponseEntity<Void> captureYum(@PathVariable("user_id") int userID, @PathVariable("yum_id") int yumID) {
-		Optional<User> user = userRepo.findById(userID);
-		if(user.isPresent()) {
-			MyYum myYum = new MyYum();
-			myYum.setUserID(userID);
-			myYum.setYumID(yumID);
-			myYumRepo.save(myYum);
-			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(null);
-		}
-		else
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-	}
-
 }

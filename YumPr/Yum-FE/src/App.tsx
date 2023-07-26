@@ -1,4 +1,4 @@
-// App.js
+// App.tsx
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -10,7 +10,7 @@ import MultiPlayPage from './pages/MultiPlayPage';
 import DexPage from './pages/DexPage';
 import ProfilePage from './pages/ProfilePage';
 import DexDetailPage from './pages/DexDetailPage';
-import BottomNavBar from './components/BottomNavBar/BottomNavBar';
+import NavBar from './components/NavBar/NavBar';
 import './App.css';
 
 function App() {
@@ -18,6 +18,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Router>
+          <div className="navbar-container"> {/* 이 부분에 navbar-container 클래스 추가 */}
+            <NavBar />
+          </div>
           <Routes>
             <Route path="/" element={<IntroPage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -28,9 +31,6 @@ function App() {
             <Route path="/dexdetail/:id" element={<DexDetailPage />} />
             <Route path="/profile" element={<ProfilePage />} />
           </Routes>
-          <div>
-            <BottomNavBar />
-          </div>
         </Router>
       </header>
     </div>

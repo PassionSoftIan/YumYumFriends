@@ -288,6 +288,7 @@ class OpenViduComponent extends Component {
 
                         {this.state.mainStreamManager !== undefined ? (
                             <div id="main-video" className="col-md-6">
+                                c
                                 <UserVideoComponent streamManager={this.state.mainStreamManager} />
 
                             </div>

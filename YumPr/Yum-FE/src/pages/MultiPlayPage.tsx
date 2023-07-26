@@ -1,40 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import OpenViduComponent from "../OpenVidu";
 
 const MultiPlayPage: React.FC = () => {
-  const [isConnected, setIsConnected] = useState(false);
-  const localVideoRef = useRef<HTMLVideoElement>(null);
-  const remoteVideoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const setupWebRTC = async () => {
-      // ...
-
-      // 웹캠 비디오 표시
-      navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-        .then((stream) => {
-          if (localVideoRef.current) {
-            localVideoRef.current.srcObject = stream;
-          }
-        })
-        .catch((error) => {
-          console.error("Error accessing webcam:", error);
-        });
-
-      setIsConnected(true);
-    };
-
-    setupWebRTC();
-  }, []);
-
   return (
-    <div>
-      <h1>다중 플레이어 페이지</h1>
+    <div className="multi-play-page">
       <div className="video-container">
-        {/* 로컬 웹캠 비디오 */}
-        <video ref={localVideoRef} autoPlay muted className="local-video" />
-
-        {/* 원격 웹캠 비디오 */}
-        {isConnected && <video ref={remoteVideoRef} autoPlay className="remote-video" />}
+        <OpenViduComponent />
+      </div>
+      <div className="game-container">
+        {/* 여기에 게임 컨텐츠를 추가하세요 */}
+        {/* 예를 들어 게임 컴포넌트와 게임 로직을 추가할 수 있습니다 */}
+        {/* 이 주석을 실제 게임 컨텐츠로 대체하세요 */}
       </div>
     </div>
   );

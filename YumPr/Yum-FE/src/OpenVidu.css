@@ -1,0 +1,158 @@
+/* OpenViduComponent.css */
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+/* Game screen */
+.game-screen {
+  width: 100%;
+  height: 300px; /* Adjust the height as needed */
+  background-color: #333; /* Change the color or add game elements here */
+  margin-bottom: 20px;
+}
+
+/* Sub screens (Carousel) */
+.sub-screens {
+  width: 100%;
+  max-width: 800px; /* Adjust the width as needed */
+}
+
+.sub-screens .slick-slide {
+  padding: 0 10px;
+  opacity: 0.8; /* Adjust the opacity as desired */
+  transition: opacity 0.3s ease;
+}
+
+.sub-screens .slick-slide.slick-active {
+  opacity: 1;
+}
+
+.sub-screens .slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Adjust the button background color */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.sub-screens .slick-prev {
+  left: 10px;
+}
+
+.sub-screens .slick-next {
+  right: 10px;
+}
+
+/* User video component (adjust as needed) */
+.user-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Session header */
+#session-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+#session-title {
+  margin: 0;
+  margin-right: 20px;
+}
+
+/* Join dialog */
+#join {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#join-dialog {
+  width: 300px;
+  max-width: 90%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+#img-div img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+#join-dialog h1 {
+  margin: 0;
+}
+
+#join-dialog .form-group {
+  margin-bottom: 10px;
+}
+
+/* Join buttons */
+.btn-success {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+}
+/* OpenViduComponent.css */
+
+/* ... (Previous CSS styles) ... */
+
+/* Join buttons */
+.btn-success,
+.btn-danger,
+.btn-primary {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-success:hover,
+.btn-danger:hover,
+.btn-primary:hover {
+  background-color: #45a049;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ... (Rest of the CSS styles) ... */

@@ -89,3 +89,11 @@
 - dexpage 구축
 - 캐릭터 이미지 적용
 - 각 페이지 연결
+
+### 📅 07.26
+
+- DexPage 기본 구현
+- DetailPage 기본 구현
+- DexPage 와 DetailPage 연결
+- 뒤로가기 버튼 생성
+- Profile 화면 구축

@@ -20,6 +20,11 @@ const MainPage: React.FC = () => {
     navigate("/coop");
   };
 
+  const handleProfile = () => {
+    console.log("프로필");
+    navigate("/profile");
+  };
+
   return (
     <div>
       <div className="button-container">
@@ -31,6 +36,9 @@ const MainPage: React.FC = () => {
         </button>
         <button onClick={handleCoopGame} className="game-button">
           협동 플레이 게임
+        </button>
+        <button onClick={handleProfile} className="game-button">
+          프로필
         </button>
       </div>
     </div>

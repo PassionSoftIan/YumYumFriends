@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const SinglePlayPage: React.FC = () => {
-  // 여기에 싱글 플레이 페이지의 컨텐츠를 추가하세요
-  // 예를 들어 게임 컴포넌트와 게임 로직을 추가할 수 있습니다
-  // 이 주석을 실제 게임 컨텐츠로 대체하세요
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // 웹캠 비디오 스트림 가져오기
+    const getVideoStream = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (error) {
+        console.error("Error accessing webcam:", error);
+      }
+    };
+
+    getVideoStream();
+
+    // 언마운트 시 비디오 스트림 정리
+    return () => {
+      if (videoRef.current && videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject as MediaStream;
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, []);
 
   return (
     <div className="single-play-page">
       <div className="game-container">
-        {/* 게임 컨텐츠를 구성하는 컴포넌트들을 추가하세요 */}
+        {/* 웹캠 비디오 표시 */}
+        <video ref={videoRef} className="webcam-video" autoPlay playsInline />
       </div>
     </div>
   );

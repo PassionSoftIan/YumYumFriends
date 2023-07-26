@@ -1,55 +1,76 @@
 /* DexPage.css */
 
 .dex-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .dex-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.dex-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.yum-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Single column for mobile */
+  grid-gap: 20px;
+}
+
+.yum-card {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px; /* Slightly increased padding for better spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 150px; /* Maximum width for mobile */
+}
+
+.yum-id {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+.yum-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px; /* Adjusted margin for mobile */
+  text-align: center; /* Center the text for mobile */
+}
+
+.yum-type {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #666;
+  text-align: center; /* Center the text for mobile */
+}
+
+.yum-image {
+  width: 80px; /* Adjusted image size for mobile */
+  height: 80px; /* Adjusted image size for mobile */
+  margin-top: 10px; /* Adjusted margin for mobile */
+}
+
+/* Add the following styles to remove default hyperlink styles */
+.yum-link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use the parent element's color */
+}
+
+.yum-link:hover {
+  /* Add any custom hover styles if needed */
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
   .yum-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+    grid-gap: 10px; /* Reduced grid gap for mobile */
   }
-  
-  .yum-card {
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .yum-id {
-    font-size: 16px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .yum-name {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  .yum-type {
-    font-size: 14px;
-    margin-top: 5px;
-    color: #666;
-  }
-  
-  .yum-image {
-    width: 120px;
-    height: 120px;
-    margin-top: 20px;
-  }
-  
+}
+/* DexPage.css */

@@ -13,8 +13,8 @@ class OpenViduComponent extends Component {
 
         // These properties are in the state's component in order to re-render the HTML whenever their values change
         this.state = {
-            mySessionId: 'E201Team',
-            myUserName: 'user1',
+            mySessionId: 'SessionA',
+            myUserName: 'Participant' + Math.floor(Math.random() * 100),
             session: undefined,
             mainStreamManager: undefined,  // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
             publisher: undefined,
@@ -31,8 +31,7 @@ class OpenViduComponent extends Component {
     }
 
     componentDidMount() {
-        this.joinSession();
-        // window.addEventListener('beforeunload', this.onbeforeunload);
+        window.addEventListener('beforeunload', this.onbeforeunload);
     }
 
     componentWillUnmount() {
@@ -137,7 +136,7 @@ class OpenViduComponent extends Component {
                                 resolution: '640x480', // The resolution of your video
                                 frameRate: 30, // The frame rate of your video
                                 insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
-                                mirror: true, // Whether to mirror your local video or not
+                                mirror: false, // Whether to mirror your local video or not
                             });
 
                             // --- 6) Publish your stream ---
@@ -268,7 +267,7 @@ class OpenViduComponent extends Component {
 
                 {this.state.session !== undefined ? (
                     <div id="session">
-                        {/* <div id="session-header">
+                        <div id="session-header">
                             <h1 id="session-title">{mySessionId}</h1>
                             <input
                                 className="btn btn-large btn-danger"
@@ -284,17 +283,15 @@ class OpenViduComponent extends Component {
                                 onClick={this.switchCamera}
                                 value="Switch Camera"
                             />
-                        </div> */}
+                        </div>
 
                         {this.state.mainStreamManager !== undefined ? (
                             <div id="main-video" className="col-md-6">
-                                c
                                 <UserVideoComponent streamManager={this.state.mainStreamManager} />
 
                             </div>
                         ) : null}
-
-                        {/* <div id="video-container" className="col-md-6">
+                        <div id="video-container" className="col-md-6">
                             {this.state.publisher !== undefined ? (
                                 <div className="stream-container col-md-6 col-xs-6" onClick={() => this.handleMainVideoStream(this.state.publisher)}>
                                     <UserVideoComponent
@@ -307,7 +304,7 @@ class OpenViduComponent extends Component {
                                     <UserVideoComponent streamManager={sub} />
                                 </div>
                             ))}
-                        </div> */}
+                        </div>
                     </div>
                 ) : null}
             </div>

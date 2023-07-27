@@ -69,3 +69,8 @@
   height: 80px;
   object-fit: cover; /* 미니 도감 이미지 비율 유지 및 크롭 */
 }
+
+/* 싱글 페이지 화면 고정 */
+.single-play-page {
+  overflow: hidden;
+}

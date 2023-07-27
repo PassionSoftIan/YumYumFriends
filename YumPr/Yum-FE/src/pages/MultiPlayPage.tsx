@@ -1,11 +1,10 @@
 import React from "react";
-import OpenViduComponent from "../OpenVidu";
 
 const MultiPlayPage: React.FC = () => {
   return (
     <div className="multi-play-page">
       <div className="video-container">
-        <OpenViduComponent />
+        {/* <OpenViduComponent /> */}
       </div>
       <div className="game-container">
         {/* 여기에 게임 컨텐츠를 추가하세요 */}

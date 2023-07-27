@@ -285,10 +285,6 @@ class OpenViduComponent extends Component {
 
         {this.state.session !== undefined ? (
           <div id="session">
-            <div id="session-header">
-              <h1 id="session-title">{mySessionId}아 하이</h1>
-            </div>
-
             {this.state.mainStreamManager !== undefined ? (
               <div id="main-video">
                 <UserVideoComponent

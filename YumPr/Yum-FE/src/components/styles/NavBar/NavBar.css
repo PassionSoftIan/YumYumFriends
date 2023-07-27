@@ -15,9 +15,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: transparent; /* 배경색을 투명하게 설정합니다. */
+  /* background-color: transparent; 배경색을 투명하게 설정합니다. */
   padding: 10px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 
 .back-button {

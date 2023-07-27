@@ -1,12 +1,13 @@
 import React from "react";
-import OpenViduComponent from "../OpenVidu";
+import "./styles/SinglePlayPage.css";
 
-const WebcamCapture: React.FC = () => {
+const SinglePlayPage: React.FC = () => {
   return (
-    <div>
-      <OpenViduComponent/>      
+    <div className="single-play-page">
+      <h1>Single Play Page</h1>
+      {/* 여기에 내용 추가 */}
     </div>
   );
 };
 
-export default WebcamCapture;
+export default SinglePlayPage;

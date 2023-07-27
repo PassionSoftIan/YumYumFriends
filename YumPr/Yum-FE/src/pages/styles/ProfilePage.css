@@ -1,0 +1,123 @@
+/* BottomNavBar.css */
+
+/* ... (이전 스타일 내용) ... */
+
+/* ProfilePage.css */
+
+.profile-page {
+  position: relative;
+  width: 360px;
+  height: 800px;
+  background: #fff5e4;
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-header h1 {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000000;
+  margin-right: 10px;
+}
+
+.profile-header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.profile-details p {
+  font-family: "Gaegu";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.profile-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-buttons button {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  background: #ff9494;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-buttons button:hover {
+  background-color: #fff5e4;
+}
+
+/* ProfilePage.css */
+
+/* ... (기존 스타일) ... */
+
+/* 모달 스타일 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  max-width: 90%; /* 모달 창의 최대 너비 (90% 화면 너비) */
+  max-height: 90%; /* 모달 창의 최대 높이 (90% 화면 높이) */
+  overflow: auto; /* 너비와 높이를 벗어나면 스크롤 생성 */
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.yum-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.yum-item {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.yum-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.yum-item.selected {
+  border: 2px solid #007bff;
+}

@@ -12,7 +12,7 @@ STS에서 프로젝트 import
 
 Gradle의 Import Gradle Project 선택
 
-프로젝트 경로는 yumpr/yumbe 경로 선택
+프로젝트 경로는 backend 폴더 경로 선택
 
 Next 후 Finish
 

@@ -2,21 +2,20 @@
 
 /* 가면 이미지를 캔버스 내에 가운데로 정렬하도록 설정 */
 .canvas-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* 가면 이미지의 크기를 캔버스 크기와 동일하게 설정 */
-  .mask-image {
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* 비디오 요소의 크기를 캔버스 크기와 동일하게 설정 */
-  .video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 가면 이미지의 크기를 캔버스 크기와 동일하게 설정 */
+.mask-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 비디오 요소의 크기를 캔버스 크기와 동일하게 설정 */
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -29,8 +29,8 @@ export default class OpenViduVideoComponent extends Component {
       const jsConfetti = new JSConfetti();
       jsConfetti.addConfetti({
         emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
-      emojiSize: 80,
-      confettiNumber: 50,
+        emojiSize: 80,
+        confettiNumber: 50,
       });
     }
 
@@ -148,7 +148,14 @@ export default class OpenViduVideoComponent extends Component {
           ref={this.canvasRef}
           style={{ position: "absolute", top: 0, left: 0 }}
         />
-        <div style={{ position: "absolute", top: 0, left: 0,  backgroundColor: "transparent" }}>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            backgroundColor: "transparent",
+          }}
+        >
           <button onClick={this.handleButtonClick}>
             Click to Eat ({eating} / {this.props.maxEating})
           </button>

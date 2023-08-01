@@ -6,12 +6,13 @@ import GetYum from "../components/SinglePage/GetYum";
 
 const SinglePlayPage: React.FC = () => {
   // 여기서 랜덤으로 수집할 냠냠이를 정해줘야함
+  // API요청 보내서 설정하자
   const targetYum = {
     name: "eggplant",
     type: "가지맨",
   };
 
-  const [clear, setClear] = useState(true);
+  const [clear, setClear] = useState(false);
 
   return (
     <div className="single-play-page">
@@ -25,9 +26,6 @@ const SinglePlayPage: React.FC = () => {
           <img src={BackImg} alt="" className="overlay-image" />
         </div>
       )}
-      <div>
-        {/* <img src={BackImg} alt="" className="silge-play-footer-back" /> */}
-      </div>
     </div>
   );
 };

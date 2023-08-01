@@ -10,11 +10,15 @@ export default class UserVideoComponent extends Component {
   }
 
   render() {
+    const maxEating = 10;
     return (
       <div>
         {this.props.streamManager !== undefined ? (
           <div className="streamcomponent">
-            <OpenViduVideoComponent streamManager={this.props.streamManager} />
+            <OpenViduVideoComponent
+              streamManager={this.props.streamManager}
+              maxEating={maxEating}
+            />
           </div>
         ) : null}
       </div>

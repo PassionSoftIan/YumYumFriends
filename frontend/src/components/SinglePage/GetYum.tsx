@@ -17,7 +17,7 @@ const GetYum: React.FC<Props> = ({ yum }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowStanding(true);
-    }, 5000);
+    }, 4500);
 
     return () => clearTimeout(timer);
   }, []);

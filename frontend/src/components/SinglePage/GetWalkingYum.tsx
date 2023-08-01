@@ -1,15 +1,15 @@
 import React from "react";
 
 interface Yum {
-    name: string;
-    type: string;
-  }
-  
-  interface Props {
-    yum: Yum;
-  }
+  name: string;
+  type: string;
+}
 
-  const GetWalkingYum: React.FC<Props> = ({ yum }) => {
+interface Props {
+  yum: Yum;
+}
+
+const GetWalkingYum: React.FC<Props> = ({ yum }) => {
   return (
     <React.Fragment>
       <p>새 친구를 찾았어요!</p>

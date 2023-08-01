@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 import maskImage from "../../assets/Hats/tofu-hat-02.png";
+import JSConfetti from "js-confetti";
 
 export default class OpenViduVideoComponent extends Component {
   constructor(props) {
@@ -25,6 +26,12 @@ export default class OpenViduVideoComponent extends Component {
 
     if (newEating === maxEating) {
       console.log("Session terminated with success!");
+      const jsConfetti = new JSConfetti();
+      jsConfetti.addConfetti({
+        emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
+      emojiSize: 80,
+      confettiNumber: 50,
+      });
     }
 
     this.setState({ eating: newEating });

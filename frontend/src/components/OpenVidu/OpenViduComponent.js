@@ -239,7 +239,7 @@ class OpenViduComponent extends Component {
   render() {
     const mySessionId = this.state.mySessionId;
     const myUserName = this.state.myUserName;
-  
+
     return (
       <div className="container">
         {this.state.session === undefined ? (
@@ -292,9 +292,6 @@ class OpenViduComponent extends Component {
       </div>
     );
   }
-  
-  
-  
 
   /**
    * --------------------------------------------

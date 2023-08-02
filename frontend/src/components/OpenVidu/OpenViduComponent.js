@@ -287,7 +287,6 @@ class OpenViduComponent extends Component {
                 streamManager={this.state.mainStreamManager}
               />
             </div>
-            {/* <img src={BackImg} alt="" className="silge-play-footer-back" /> */}
           </div>
         )}
       </div>

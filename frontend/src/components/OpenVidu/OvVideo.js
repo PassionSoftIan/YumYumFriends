@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
-import maskImage from "../../assets/Hats/tofu-hat-02.png";
+// 가면 이미지를 불러옵니다.
+import maskImage from "../../assets/Sticker/tofu-hat.png";
 import GameStage from "./GameStage";
+
 
 
 export default class OpenViduVideoComponent extends Component {
@@ -82,19 +84,38 @@ export default class OpenViduVideoComponent extends Component {
 
   render() {
     return (
-      <div style={{ position: "relative" }}>
+      <div
+        style={{
+          position: "relative",
+          width: "100vw",
+          height: "100vh",
+          overflow: "hidden",
+          padding: "0",
+          margin: "0",
+        }}
+      >
         <video
           autoPlay={true}
           ref={this.videoRef}
           style={{
-            width: "100%",
-            height: "100%",
+            width: "inherit",
+            height: "inherit",
             objectFit: "cover",
+            // visibility: "hidden",
           }}
         />
         <canvas
           ref={this.canvasRef}
-          style={{ position: "absolute", top: 0, left: 0 }}
+          style={{
+            width: "inherit",
+            height: "inherit",
+            position: "absolute",
+            objectFit: "cover",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+          }}
         />
         <div
           style={{

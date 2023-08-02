@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 import maskImage from "../../assets/Hats/tofu-hat-02.png";
-import JSConfetti from "js-confetti";
+import GameStage from "./GameStage";
 
 export default class OpenViduVideoComponent extends Component {
   constructor(props) {
@@ -18,24 +18,6 @@ export default class OpenViduVideoComponent extends Component {
       eating: 0,
     };
   }
-
-  handleButtonClick = () => {
-    const { eating } = this.state;
-    const { maxEating } = this.props;
-    const newEating = eating + 1;
-
-    if (newEating === maxEating) {
-      console.log("Session terminated with success!");
-      const jsConfetti = new JSConfetti();
-      jsConfetti.addConfetti({
-        emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
-        emojiSize: 80,
-        confettiNumber: 50,
-      });
-    }
-
-    this.setState({ eating: newEating });
-  };
 
   async componentDidMount() {
     if (this.props && !!this.videoRef) {
@@ -131,8 +113,6 @@ export default class OpenViduVideoComponent extends Component {
   };
 
   render() {
-    const { eating } = this.state;
-
     return (
       <div style={{ position: "relative" }}>
         <video
@@ -156,9 +136,7 @@ export default class OpenViduVideoComponent extends Component {
             backgroundColor: "transparent",
           }}
         >
-          <button onClick={this.handleButtonClick}>
-            Click to Eat ({eating} / {this.props.maxEating})
-          </button>
+          <GameStage />
         </div>
       </div>
     );

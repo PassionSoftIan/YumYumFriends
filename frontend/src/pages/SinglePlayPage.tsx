@@ -12,11 +12,11 @@ const SinglePlayPage: React.FC = () => {
     type: "가지맨",
   };
 
-  const [clear, setClear] = useState(false);
+  const [isClear, setIsClear] = useState(false);
 
   return (
     <div className="single-play-page">
-      {clear ? (
+      {isClear ? (
         <div>
           <GetYum yum={targetYum} />
         </div>

@@ -14,7 +14,7 @@ const GameStage: React.FC = () => {
     if (nowEating) {
       const timeout = setTimeout(() => {
         setNowEating(false);
-      }, 5000);
+      }, 2000);
 
       return () => clearTimeout(timeout);
     }
@@ -25,7 +25,7 @@ const GameStage: React.FC = () => {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-      }, 3000);
+      }, 1000);
       return;
     }
 

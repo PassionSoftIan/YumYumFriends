@@ -4,113 +4,81 @@ import * as facemesh from "@tensorflow-models/facemesh";
 import maskImage from "../../assets/Hats/tofu-hat-02.png";
 import GameStage from "./GameStage";
 
+
 export default class OpenViduVideoComponent extends Component {
   constructor(props) {
     super(props);
     this.videoRef = React.createRef();
     this.canvasRef = React.createRef();
-    this.maskImg = new Image();
-    this.maskImg.src = maskImage;
-    this.maskImg.onload = () => {
-      this.maskLoaded = true; // 이미지가 로드되면 maskLoaded를 true로 설정합니다.
-    };
-    this.state = {
-      eating: 0,
-    };
   }
 
   async componentDidMount() {
     if (this.props && !!this.videoRef) {
       this.props.streamManager.addVideoElement(this.videoRef.current);
-      this.model = await facemesh.load();
+      this.model = await facemesh.load({ maxFaces: 4, minConfidence: 0.75 });
+      this.mask = await this.loadMask();
       this.detectFace();
     }
   }
 
-  drawGrid = (face) => {
-    const video = this.videoRef.current;
-    const canvas = this.canvasRef.current;
-    const ctx = canvas.getContext("2d");
-
-    // 비디오와 동일한 크기로 캔버스 크기를 설정합니다
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-
-    // 이전 그리드를 지웁니다
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // 수평 방향으로 좌우 대칭
-    ctx.translate(canvas.width, 0);
-    ctx.scale(-1, 1);
-
-    // 특징점들을 연결하여 그리드를 그립니다
-    ctx.strokeStyle = "rgba(255, 0, 0, 0)";
-    ctx.beginPath();
-    face.forEach((point, index) => {
-      ctx.lineTo(point[0], point[1]);
-      if (index % 10 === 0 && index !== 0) {
-        ctx.stroke();
-        ctx.beginPath();
-      }
+  loadMask = async () => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = maskImage;
+      img.onload = () => resolve(img);
     });
-    ctx.stroke();
-
-    // 이미지를 그립니다
-    const { minX, maxX, minY, maxY } = this.getMinMaxPoints(face);
-    const faceWidth = maxX - minX;
-    const faceHeight = maxY - minY;
-    const scaleFactor = 1.5; // 크기를 조정할 비율을 설정합니다. 원하는 크기로 조정해보세요.
-    const maskWidth = faceWidth * scaleFactor;
-    const maskHeight = faceHeight * scaleFactor;
-
-    // 이마 부분을 나타내는 중심점을 계산합니다
-    const foreheadX = (minX + maxX) / 2;
-    const foreheadY = minY;
-
-    // 이마 부분에 맞춰서 이미지를 그립니다
-    const dx = foreheadX - maskWidth / 2;
-    const dy = foreheadY - maskHeight / 2; // 이미지 중심을 이마 중심에 맞춥니다.
-
-    ctx.drawImage(this.maskImg, dx, dy, maskWidth, maskHeight);
   };
 
-  getMinMaxPoints = (face) => {
-    if (!face || face.length === 0) {
-      // Return default values when no face is detected
-      return {
-        minX: 0,
-        maxX: 0,
-        minY: 0,
-        maxY: 0,
-      };
-    }
+  drawMask = (predictions) => {
+    const canvas = this.canvasRef.current;
+    const context = canvas.getContext("2d");
+    canvas.width = this.videoRef.current.videoWidth;
+    canvas.height = this.videoRef.current.videoHeight;
+    // 캔버스를 좌우 반전합니다.
+    context.translate(canvas.width, 0);
+    context.scale(-1, 1);
 
-    let minX = face[0][0];
-    let maxX = face[0][0];
-    let minY = face[0][1];
-    let maxY = face[0][1];
-    for (const point of face) {
-      const x = point[0];
-      const y = point[1];
-      if (x < minX) minX = x;
-      if (x > maxX) maxX = x;
-      if (y < minY) minY = y;
-      if (y > maxY) maxY = y;
-    }
-    return { minX, maxX, minY, maxY };
+    context.drawImage(this.videoRef.current, 0, 0, canvas.width, canvas.height);
+
+    predictions.forEach((prediction) => {
+      const landmarks = prediction.scaledMesh;
+
+      // 두 눈썹 중앙 점과 코 점을 가져옵니다.
+      const leftEyebrowMidpoint = landmarks[107];
+      const rightEyebrowMidpoint = landmarks[336];
+      const noseTip = landmarks[1];
+
+      const offsetX = (leftEyebrowMidpoint[0] + rightEyebrowMidpoint[0]) / 2;
+      const offsetY = (leftEyebrowMidpoint[1] + rightEyebrowMidpoint[1]) / 2;
+
+      // 모자 크기 조정을 위한 값을 계산합니다.
+      const scaleFactor = 2.5;
+      const faceWidth = Math.hypot(noseTip[0] - offsetX, noseTip[1] - offsetY);
+      const maskWidth = faceWidth * scaleFactor;
+      const maskHeight = (this.mask.height * maskWidth) / this.mask.width;
+
+      context.drawImage(
+        this.mask,
+        offsetX - maskWidth / 2,
+        offsetY - maskHeight * 0.8 - 40,
+        maskWidth,
+        maskHeight
+      );
+    });
   };
 
   detectFace = async () => {
-    const video = this.videoRef.current;
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-      const predictions = await this.model.estimateFaces(video);
-      if (predictions.length > 0 && this.maskLoaded) {
-        // 이미지가 로드되었는지 확인합니다.
-        this.drawGrid(predictions[0].scaledMesh);
-      }
+    if (!this.model || !this.mask || !this.videoRef.current) {
+      requestAnimationFrame(this.detectFace);
+      return;
     }
+
+    const predictions = await this.model.estimateFaces(this.videoRef.current);
+    console.log(predictions[0]);
+    this.drawMask(predictions);
     requestAnimationFrame(this.detectFace);
   };
+
 
   render() {
     return (

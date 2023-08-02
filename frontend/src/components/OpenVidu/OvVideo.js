@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
-
 // 가면 이미지를 불러옵니다.
 import maskImage from "../../assets/Sticker/tofu-hat.png";
+import GameStage from "./GameStage";
+
+
 
 export default class OpenViduVideoComponent extends Component {
   constructor(props) {
@@ -79,6 +81,7 @@ export default class OpenViduVideoComponent extends Component {
     requestAnimationFrame(this.detectFace);
   };
 
+
   render() {
     return (
       <div
@@ -114,6 +117,16 @@ export default class OpenViduVideoComponent extends Component {
             right: 0,
           }}
         />
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            backgroundColor: "transparent",
+          }}
+        >
+          <GameStage />
+        </div>
       </div>
     );
   }

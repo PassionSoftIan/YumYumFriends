@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/MainPage.css";
 
+import MainAni from '../components/Animation/MainAni';
+
 const MainPage: React.FC = () => {
   const navigate = useNavigate();
 
@@ -18,14 +20,6 @@ const MainPage: React.FC = () => {
     animateButton(e);
     setTimeout(() => {
       navigate("/multi");
-    }, 1000); // 1초 뒤에 페이지 전환 실행
-  };
-
-  const handleCoopGame = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("협동 플레이 게임 시작");
-    animateButton(e);
-    setTimeout(() => {
-      navigate("/coop");
     }, 1000); // 1초 뒤에 페이지 전환 실행
   };
 
@@ -104,36 +98,32 @@ const MainPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className="button-container">
-        <button
-          onClick={handleSinglePlayerGame}
-          data-type="circle"
-          className="game-button button-second"
-        >
-          <span>Single</span>
-        </button>
-        <button
-          onClick={handleMultiPlayerGame}
-          data-type="square"
-          className="game-button button-second"
-        >
-          <span>Multi</span>
-        </button>
-        <button
-          onClick={handleCoopGame}
-          data-type="circle"
-          className="game-button button-second"
-        >
-          <span>협동 플레이 게임</span>
-        </button>
-        <button
-          onClick={handleProfile}
-          data-type="square"
-          className="game-button button-second"
-        >
-          <span>프로필</span>
-        </button>
+    <div className="main-container">
+      <div className="center">
+        <div className="button-container">
+          <MainAni />
+          <button
+            onClick={handleSinglePlayerGame}
+            data-type="circle"
+            className="game-button button-second btn"
+          >
+            <span>Single</span>
+          </button>
+          <button
+            onClick={handleMultiPlayerGame}
+            data-type="square"
+            className="game-button button-second btn"
+          >
+            <span>Multi</span>
+          </button>
+          <button
+            onClick={handleProfile}
+            data-type="circle"
+            className="game-button button-second btn"
+          >
+            <span>프로필</span>
+          </button>
+        </div>
       </div>
     </div>
   );

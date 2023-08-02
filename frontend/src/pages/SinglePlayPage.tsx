@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
-import BackImg from "../assets/background_kitchen.png";
 
 const SinglePlayPage: React.FC = () => {
   return (

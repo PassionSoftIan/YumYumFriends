@@ -28,7 +28,6 @@ const SinglePlayPage: React.FC = () => {
           <img src={BackImg} alt="" className="overlay-image" />
         </div>
       )}
-
     </div>
   );
 };

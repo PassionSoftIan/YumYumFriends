@@ -22,3 +22,5 @@ Next 후 Finish
 Run As - 5 Spring Boot App 선택
 
 서버가 실행되면 [localhost:5000/swagger-ui.html](http://localhost:5000/swagger-ui.html)에서 API 문서 확인
+
+EC2 상에서 서버 설정 진행중 - Openvidu 관련 인증서 문제 해결 중...()

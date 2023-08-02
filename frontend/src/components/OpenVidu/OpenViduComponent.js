@@ -1,5 +1,4 @@
 import { OpenVidu } from "openvidu-browser";
-
 import axios from "axios";
 import React, { Component } from "react";
 // import "./App.css";
@@ -281,19 +280,15 @@ class OpenViduComponent extends Component {
               </form>
             </div>
           </div>
-        ) : null}
-
-        {this.state.session !== undefined ? (
+        ) : (
           <div id="session">
-            {this.state.mainStreamManager !== undefined ? (
-              <div id="main-video">
-                <UserVideoComponent
-                  streamManager={this.state.mainStreamManager}
-                />
-              </div>
-            ) : null}
+            <div id="main-video">
+              <UserVideoComponent
+                streamManager={this.state.mainStreamManager}
+              />
+            </div>
           </div>
-        ) : null}
+        )}
       </div>
     );
   }

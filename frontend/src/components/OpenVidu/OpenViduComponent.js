@@ -1,5 +1,4 @@
 import { OpenVidu } from "openvidu-browser";
-import BackImg from "../../assets/background_kitchen.png";
 import axios from "axios";
 import React, { Component } from "react";
 // import "./App.css";
@@ -240,7 +239,7 @@ class OpenViduComponent extends Component {
   render() {
     const mySessionId = this.state.mySessionId;
     const myUserName = this.state.myUserName;
-  
+
     return (
       <div className="container">
         {this.state.session === undefined ? (
@@ -288,15 +287,12 @@ class OpenViduComponent extends Component {
                 streamManager={this.state.mainStreamManager}
               />
             </div>
-            <img src={BackImg} alt="" className="silge-play-footer-back" />
+            {/* <img src={BackImg} alt="" className="silge-play-footer-back" /> */}
           </div>
         )}
       </div>
     );
   }
-  
-  
-  
 
   /**
    * --------------------------------------------

@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
+// hooks/Animations/useDynamicImport.ts
+import { useState, useEffect } from 'react';
 
-const useDynamicImport = (directory: any) => {
+const useDynamicImport = (context: __WebpackModuleApi.RequireContext) => {
   const [importedFiles, setImportedFiles] = useState<string[]>([]);
 
   useEffect(() => {
-    const keys = directory.keys();
-    const importedFiles = keys.map((key: string) => directory(key).default);
-    console.log(importedFiles);
-    setImportedFiles(importedFiles);
-  }, [directory]);
+    const files = context.keys().map((key: string) => context(key));
+    setImportedFiles(files);
+  }, [context]);
 
   return importedFiles;
 };

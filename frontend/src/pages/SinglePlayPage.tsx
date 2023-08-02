@@ -12,7 +12,7 @@ const SinglePlayPage: React.FC = () => {
     type: "가지맨",
   };
 
-  const [isClear, setIsClear] = useState(false);
+  const [isClear, setIsClear] = useState(true);
 
   return (
     <div className="single-play-page">
@@ -26,6 +26,7 @@ const SinglePlayPage: React.FC = () => {
           <img src={BackImg} alt="" className="overlay-image" />
         </div>
       )}
+
     </div>
   );
 };

@@ -1,0 +1,23 @@
+.cloud {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+    animation: floatCloud 6s infinite;
+    background-image: url("../../../assets//Common/cloud.png");
+    z-index: 1; /* Move the clouds above other elements */
+  }
+  
+  @keyframes floatCloud {
+    0% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-45%) translateY(-5px);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  

@@ -3,6 +3,7 @@ import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import BackImg from "../assets/background_kitchen.png";
 import GetYum from "../components/SinglePage/GetYum";
+import SelectYum from "../components/SinglePage/SelectYum";
 
 const SinglePlayPage: React.FC = () => {
   // 여기서 랜덤으로 수집할 냠냠이를 정해줘야함
@@ -12,13 +13,14 @@ const SinglePlayPage: React.FC = () => {
     type: "가지맨",
   };
 
-  const [isClear, setIsClear] = useState(false);
+  const [isClear, setIsClear] = useState(true);
 
   return (
     <div className="single-play-page">
       {isClear ? (
         <div>
           <GetYum yum={targetYum} />
+          {/* <SelectYum /> */}
         </div>
       ) : (
         <div>

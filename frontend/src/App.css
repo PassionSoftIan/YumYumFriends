@@ -122,3 +122,15 @@
     overflow: hidden; /* 모바일에서 스크롤 없애기 */
   }
 }
+
+.sun-image {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  animation: spin 10s linear infinite; /* Adding the animation to the image */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

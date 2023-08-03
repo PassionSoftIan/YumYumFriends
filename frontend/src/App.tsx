@@ -10,13 +10,19 @@ import MultiPlayPage from './pages/MultiPlayPage';
 import DexPage from './pages/DexPage';
 import ProfilePage from './pages/ProfilePage';
 import DexDetailPage from './pages/DexDetailPage';
+import GameClearPage from './pages/GameClearPage';
 import NavBar from './components/NavBar/NavBar';
+
+import Sun from "./assets/Common/sun_smile.png"
+import Cloud from "./components/Animation/Cloud";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Cloud />
       <header className="App-header">
+      <img className="sun-image" src={Sun} alt="" />
         <Router>
           <div className="navbar-container"> {/* 이 부분에 navbar-container 클래스 추가 */}
             <NavBar />
@@ -30,6 +36,7 @@ function App() {
             <Route path="/dex" element={<DexPage />} />
             <Route path="/dexdetail/:id" element={<DexDetailPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/gameclear" element={<GameClearPage />}/>
           </Routes>
         </Router>
       </header>

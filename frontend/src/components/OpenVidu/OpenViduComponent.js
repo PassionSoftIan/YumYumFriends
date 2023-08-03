@@ -1,9 +1,9 @@
 import { OpenVidu } from "openvidu-browser";
-
 import axios from "axios";
 import React, { Component } from "react";
 // import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
+import { div } from "@tensorflow/tfjs";
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://demos.openvidu.io/";
@@ -24,10 +24,8 @@ class OpenViduComponent extends Component {
 
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
-    this.switchCamera = this.switchCamera.bind(this);
     this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
-    this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
     this.onbeforeunload = this.onbeforeunload.bind(this);
   }
 
@@ -57,15 +55,6 @@ class OpenViduComponent extends Component {
       myUserName: e.target.value,
     });
   }
-
-  handleMainVideoStream(stream) {
-    if (this.state.mainStreamManager !== stream) {
-      this.setState({
-        mainStreamManager: stream,
-      });
-    }
-  }
-
   deleteSubscriber(streamManager) {
     let subscribers = this.state.subscribers;
     let index = subscribers.indexOf(streamManager, 0);
@@ -199,48 +188,13 @@ class OpenViduComponent extends Component {
     });
   }
 
-  async switchCamera() {
-    try {
-      const devices = await this.OV.getDevices();
-      var videoDevices = devices.filter(
-        (device) => device.kind === "videoinput"
-      );
-
-      if (videoDevices && videoDevices.length > 1) {
-        var newVideoDevice = videoDevices.filter(
-          (device) => device.deviceId !== this.state.currentVideoDevice.deviceId
-        );
-
-        if (newVideoDevice.length > 0) {
-          // Creating a new publisher with specific videoSource
-          // In mobile devices the default and first camera is the front one
-          var newPublisher = this.OV.initPublisher(undefined, {
-            videoSource: newVideoDevice[0].deviceId,
-            publishAudio: true,
-            publishVideo: true,
-            mirror: true,
-          });
-
-          //newPublisher.once("accessAllowed", () => {
-          await this.state.session.unpublish(this.state.mainStreamManager);
-
-          await this.state.session.publish(newPublisher);
-          this.setState({
-            currentVideoDevice: newVideoDevice[0],
-            mainStreamManager: newPublisher,
-            publisher: newPublisher,
-          });
-        }
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
   render() {
     const mySessionId = this.state.mySessionId;
     const myUserName = this.state.myUserName;
 
+    //
+    const SingleMulti = 1;
+    //
     return (
       <div className="container">
         {this.state.session === undefined ? (
@@ -281,19 +235,25 @@ class OpenViduComponent extends Component {
               </form>
             </div>
           </div>
-        ) : null}
-
-        {this.state.session !== undefined ? (
+        ) : SingleMulti === 1 ? (
+          // 싱글 모드
           <div id="session">
-            {this.state.mainStreamManager !== undefined ? (
-              <div id="main-video">
-                <UserVideoComponent
-                  streamManager={this.state.mainStreamManager}
-                />
-              </div>
-            ) : null}
+            <div id="main-video">
+              <UserVideoComponent
+                streamManager={this.state.mainStreamManager}
+              />
+            </div>
           </div>
-        ) : null}
+        ) : (
+          // 멀티모드
+          <div id="mulit-session">
+            <div id="main-video">
+              <UserVideoComponent
+                streamManager={this.state.mainStreamManager}
+              />
+            </div>
+          </div>
+        )}
       </div>
     );
   }

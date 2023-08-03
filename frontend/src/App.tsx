@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import DexDetailPage from './pages/DexDetailPage';
 import NavBar from './components/NavBar/NavBar';
 
+import Sun from "./assets/Common/sun_smile.png"
 import Cloud from "./components/Animation/Cloud";
 import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
     <div className="App">
       <Cloud />
       <header className="App-header">
+      <img className="sun-image" src={Sun} alt="" />
         <Router>
           <div className="navbar-container"> {/* 이 부분에 navbar-container 클래스 추가 */}
             <NavBar />

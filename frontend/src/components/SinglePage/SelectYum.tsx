@@ -1,4 +1,5 @@
 import React from "react";
+import Carousel from "../Common/Carousel";
 
 import yums, { Yum } from "../../data/yums ";
 
@@ -9,7 +10,13 @@ const SelectYum: React.FC = () => {
     <React.Fragment>
       <h3>함께 할 친구를 골라봐</h3>
       {/* 여기에 캐릭터 선택 캐러셀 넣을거임 */}
-      <h3>왜 안나옴?</h3>
+      <Carousel carouselList={[
+        "1_tofu",
+        "2_mandarin",
+        "3_hamburger",
+        "4_icecream",
+        "5_radish"
+      ]} />
     </React.Fragment>
   );
 };

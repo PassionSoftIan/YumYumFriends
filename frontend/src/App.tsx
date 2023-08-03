@@ -11,11 +11,14 @@ import DexPage from './pages/DexPage';
 import ProfilePage from './pages/ProfilePage';
 import DexDetailPage from './pages/DexDetailPage';
 import NavBar from './components/NavBar/NavBar';
+
+import Cloud from "./components/Animation/Cloud";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Cloud />
       <header className="App-header">
         <Router>
           <div className="navbar-container"> {/* 이 부분에 navbar-container 클래스 추가 */}

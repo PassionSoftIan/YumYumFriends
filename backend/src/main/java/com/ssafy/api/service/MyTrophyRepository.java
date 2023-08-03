@@ -10,8 +10,8 @@ import com.ssafy.api.model.MyTrophy;
 @Repository
 public interface MyTrophyRepository extends JpaRepository<MyTrophy, Integer> {
 	
-	void deleteByUserID(int userID);
+	void deleteByUserID(long userID);
 
-	List<MyTrophy> findAllByUserID(int userID);
+	List<MyTrophy> findAllByUserID(long userID);
 
 }

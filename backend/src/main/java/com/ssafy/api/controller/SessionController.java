@@ -142,7 +142,7 @@ public class SessionController {
         @ApiResponse(code = 404, message = "사용자 혹은 세션 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> exitSession(@PathVariable("user_id") int userID) {
+	public ResponseEntity<Void> exitSession(@PathVariable("user_id") long userID) {
 		//사용자가 존재하는지 확인
 		Optional<User> user = userRepo.findById(userID);
 		if(!user.isPresent())

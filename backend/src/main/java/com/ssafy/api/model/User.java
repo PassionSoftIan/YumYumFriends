@@ -27,24 +27,14 @@ import lombok.ToString;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private int ID;
-
-	@Column(name = "NAME")
-	private String name;
+	private long ID;
 
 	@Column(name = "EMAIL")
 	private String email;
 
-	@Column(name = "PASSWORD")
-	private String password;
-
 	@Column(name = "NICKNAME")
 	private String nickname;
-
-	@Column(name = "PROFILE_IMG")
-	private String profileImg;
 
 	@Column(name = "MEAL_REMAIN")
 	private int mealRemain;

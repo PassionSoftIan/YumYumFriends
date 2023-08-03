@@ -55,7 +55,7 @@ public class UserController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
+	public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
 		Optional<User> user = userRepo.findById(id);
 		if(user.isPresent())
 			return ResponseEntity.status(HttpStatus.OK).body(user.get());
@@ -71,7 +71,7 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<Void> registerUser(User target) {
-		if(target.getEmail() == null || target.getPassword() == null || target.getName() == null || target.getNickname() == null)
+		if(target.getEmail() == null || target.getNickname() == null)
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		
 		Optional<User> user = userRepo.findByEmail(target.getEmail());
@@ -108,10 +108,10 @@ public class UserController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> deleteUserById(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteUserById(@PathVariable("id") long id) {
 		Optional<User> user = userRepo.findById(id);
 		if(user.isPresent()) {
-			int userID = user.get().getID();
+			long userID = user.get().getID();
 			friendRepo.deleteByFriend1ID(userID);
 			friendRepo.deleteByFriend2ID(userID);
 			myYumRepo.deleteByUserID(userID);
@@ -135,10 +135,10 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> loginUser(User target) {
-		if(target.getEmail() == null || target.getPassword() == null)
+		if(target.getEmail() == null)
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		
-		Optional<User> user = userRepo.findByEmailAndPassword(target.getEmail(), target.getPassword());
+		Optional<User> user = userRepo.findByEmail(target.getEmail());
 		if(user.isPresent())
 			return ResponseEntity.status(HttpStatus.OK).body(user.get());
 		else

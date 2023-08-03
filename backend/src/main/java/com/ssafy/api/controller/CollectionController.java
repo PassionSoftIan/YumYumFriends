@@ -61,7 +61,7 @@ public class CollectionController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> registerMyYum(@PathVariable("user_id") int userID, @PathVariable("yum_id") int yumID) {
+	public ResponseEntity<Void> registerMyYum(@PathVariable("user_id") long userID, @PathVariable("yum_id") int yumID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			MyYum myYum = new MyYum();
@@ -81,7 +81,7 @@ public class CollectionController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<List<Yum>> getMyYum(@PathVariable("user_id") int userID) {
+	public ResponseEntity<List<Yum>> getMyYum(@PathVariable("user_id") long userID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			List<MyYum> myYumlist = myYumRepo.findAllByUserID(userID);
@@ -101,7 +101,7 @@ public class CollectionController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> registerMyBadge(@PathVariable("user_id") int userID, @PathVariable("badge_id") int badgeID) {
+	public ResponseEntity<Void> registerMyBadge(@PathVariable("user_id") long userID, @PathVariable("badge_id") int badgeID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			MyBadge myBadge = new MyBadge();
@@ -121,7 +121,7 @@ public class CollectionController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<List<Badge>> getMyBadge(@PathVariable("user_id") int userID) {
+	public ResponseEntity<List<Badge>> getMyBadge(@PathVariable("user_id") long userID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			List<MyBadge> myBadgelist = myBadgeRepo.findAllByUserID(userID);
@@ -141,7 +141,7 @@ public class CollectionController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> registerMyTrophy(@PathVariable("user_id") int userID, @PathVariable("trophy_id") int trophyID) {
+	public ResponseEntity<Void> registerMyTrophy(@PathVariable("user_id") long userID, @PathVariable("trophy_id") int trophyID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			MyTrophy myTrophy = new MyTrophy();
@@ -161,7 +161,7 @@ public class CollectionController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<List<Trophy>> getMyTrophy(@PathVariable("user_id") int userID) {
+	public ResponseEntity<List<Trophy>> getMyTrophy(@PathVariable("user_id") long userID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			List<MyTrophy> myTrophylist = myTrophyRepo.findAllByUserID(userID);

@@ -7,26 +7,29 @@ interface SocialKakaoProps {
 }
 
 const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
-  const kakaoClientId = '32fb0d038e3668baf93731bff12acf54';
+  const kakaoClientId = 'db4a66f215fd566fd6a8b24f9cfb4ef7'; // 카카오 개발자 사이트에서 발급받은 클라이언트 아이디로 변경
+  // const redirectUri = 'https://yumyumfriends.site/api/v1/kakao/login'; // 카카오 개발자 사이트에서 설정한 리다이렉트 URI로 변경
   const navigate = useNavigate();
 
-  const kakaoOnSuccess = (data: any) => {
-    console.log(data);
-    const idToken = data.response.access_token; // 엑세스 토큰 백엔드로 전달
+  const kakaoOnSuccess = (response: any) => {
+    console.log(response);
+    // const code = response.response.code; // 카카오로부터 받은 인가 코드
+    // 백엔드로 인가 코드를 전달하고, 인가 코드를 사용하여 토큰을 발급받는 로직 구현
+    // 토큰 발급이 성공하면 아래의 onSuccess 함수 호출
     onSuccess(); // 카카오 로그인이 성공했을 때, 전달받은 onSuccess 함수를 호출
     navigate("/main"); // 페이지 이동
   };
 
-  const kakaoOnFailure = (error: any) => {
+  const kakaoOnFail = (error: any) => {
     console.log(error);
   };
 
   return (
     <>
       <KakaoLogin
-        token={kakaoClientId}
+        token={kakaoClientId} // 클라이언트 아이디 -> 토큰으로 변경
         onSuccess={kakaoOnSuccess}
-        onFail={kakaoOnFailure}
+        onFail={kakaoOnFail} // onFailure -> onFail로 변경
       />
     </>
   );

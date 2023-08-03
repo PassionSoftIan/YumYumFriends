@@ -1,13 +1,17 @@
 import React from "react";
 import Cloud from "../components/Animation/Cloud";
+import all from "../assets/Common/all_with.png"
+import useConfetti from '../hooks/Animations/useConfetti';
 import { useNavigate } from "react-router-dom";
 import "./styles/MainPage.css";
 
 const MainPage: React.FC = () => {
   const navigate = useNavigate();
+  const { triggerConfetti } = useConfetti(["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣"], 80, 150);
 
   const handleSinglePlayerGame = () => {
     console.log("단일 플레이어 게임 시작");
+    triggerConfetti();
     navigate("/single");
   };
 

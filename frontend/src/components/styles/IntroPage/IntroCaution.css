@@ -10,7 +10,37 @@
     padding: 30px;
     max-width: 60%;
     margin: 0 auto; /* Center the container horizontally */
-}
+    perspective: 1000px; /* Set the perspective for the 3D effect */
+    transform-style: preserve-3d; /* Ensure child elements are also transformed */
+    transform: rotateX(20deg);
+    position: relative; /* Add relative positioning to the container */
+  }
+  
+  /* Pseudo-element to create a shadow on the bottom */
+  .intro-caution::before {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Adjust the distance of the shadow from the bottom */
+    left: 0;
+    width: 100%;
+    height: 10px; /* Adjust the height of the shadow */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+    border-radius: 10px;
+  }
+  
+  /* Pseudo-element to create a shadow on the right */
+  .intro-caution::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10px; /* Adjust the distance of the shadow from the right */
+    height: 100%;
+    width: 10px; /* Adjust the width of the shadow */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent);
+    border-radius: 10px;
+  }
+
+
 
 .caution-heading {
     font-size: 32px;

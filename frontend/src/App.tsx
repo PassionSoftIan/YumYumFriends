@@ -10,6 +10,7 @@ import MultiPlayPage from './pages/MultiPlayPage';
 import DexPage from './pages/DexPage';
 import ProfilePage from './pages/ProfilePage';
 import DexDetailPage from './pages/DexDetailPage';
+import GameClearPage from './pages/GameClearPage';
 import NavBar from './components/NavBar/NavBar';
 import './App.css';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/dex" element={<DexPage />} />
             <Route path="/dexdetail/:id" element={<DexDetailPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/gameclear" element={<GameClearPage />}/>
           </Routes>
         </Router>
       </header>

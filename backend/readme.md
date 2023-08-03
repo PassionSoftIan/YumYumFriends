@@ -12,7 +12,7 @@ STS에서 프로젝트 import
 
 Gradle의 Import Gradle Project 선택
 
-프로젝트 경로는 yumpr/yumbe 경로 선택
+프로젝트 경로는 backend 폴더 경로 선택
 
 Next 후 Finish
 
@@ -22,3 +22,5 @@ Next 후 Finish
 Run As - 5 Spring Boot App 선택
 
 서버가 실행되면 [localhost:5000/swagger-ui.html](http://localhost:5000/swagger-ui.html)에서 API 문서 확인
+
+EC2 상에서 서버 설정 진행중 - Openvidu 관련 인증서 문제 해결 중...()

@@ -23,7 +23,7 @@ import lombok.ToString;
 public class MyYum {
 	@Id
 	@Column(name = "USER_ID")
-	private int userID;
+	private long userID;
 
 	@Column(name = "YUM_ID")
 	private int yumID;

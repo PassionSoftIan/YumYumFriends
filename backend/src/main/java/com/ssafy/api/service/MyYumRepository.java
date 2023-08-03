@@ -10,8 +10,8 @@ import com.ssafy.api.model.MyYum;
 @Repository
 public interface MyYumRepository extends JpaRepository<MyYum, Integer>{
 
-	void deleteByUserID(int userID);
+	void deleteByUserID(long userID);
 
-	List<MyYum> findAllByUserID(int userID);
+	List<MyYum> findAllByUserID(long userID);
 
 }

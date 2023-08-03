@@ -10,8 +10,8 @@ import com.ssafy.api.model.MyBadge;
 @Repository
 public interface MyBadgeRepository extends JpaRepository<MyBadge, Integer> {
 	
-	void deleteByUserID(int userID);
+	void deleteByUserID(long userID);
 
-	List<MyBadge> findAllByUserID(int userID);
+	List<MyBadge> findAllByUserID(long userID);
 
 }

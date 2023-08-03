@@ -29,9 +29,9 @@ public class Friendship {
 	private int ID;
 
 	@Column(name = "FRIEND1_ID")
-	private int friend1ID;
+	private long friend1ID;
 
 	@Column(name = "FRIEND2_ID")
-	private int friend2ID;
+	private long friend2ID;
 
 }

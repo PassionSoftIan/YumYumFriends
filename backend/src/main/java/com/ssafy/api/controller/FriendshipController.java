@@ -44,7 +44,7 @@ public class FriendshipController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<List<User>> registerUser(@PathVariable("user_id") int userID) {
+	public ResponseEntity<List<User>> registerUser(@PathVariable("user_id") long userID) {
 		
 		List<User> friends = new ArrayList<>();
 		
@@ -74,9 +74,9 @@ public class FriendshipController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> registerUser(@PathVariable("user1_id") int user1ID, @PathVariable("user2_id") int user2ID) {
-		int u1ID = Math.min(user1ID, user2ID);
-		int u2ID = Math.max(user1ID, user2ID);
+	public ResponseEntity<Void> registerUser(@PathVariable("user1_id") long user1ID, @PathVariable("user2_id") int user2ID) {
+		long u1ID = Math.min(user1ID, user2ID);
+		long u2ID = Math.max(user1ID, user2ID);
 
 		Optional<User> user1 = userRepo.findById(u1ID);
 		Optional<User> user2 = userRepo.findById(u2ID);
@@ -102,9 +102,9 @@ public class FriendshipController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> DeleteUser(@PathVariable("user1_id") int user1ID, @PathVariable("user2_id") int user2ID) {
-		int u1ID = Math.min(user1ID, user2ID);
-		int u2ID = Math.max(user1ID, user2ID);
+	public ResponseEntity<Void> DeleteUser(@PathVariable("user1_id") long user1ID, @PathVariable("user2_id") long user2ID) {
+		long u1ID = Math.min(user1ID, user2ID);
+		long u2ID = Math.max(user1ID, user2ID);
 
 		Optional<User> user1 = userRepo.findById(u1ID);
 		Optional<User> user2 = userRepo.findById(u2ID);

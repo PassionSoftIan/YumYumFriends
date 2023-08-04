@@ -1,23 +1,55 @@
 .cloud {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    width: 100px; /* Adjust the width as needed */
-    height: auto;
-    animation: floatCloud 6s infinite;
-    background-image: url("../../../assets//Common/cloud.png");
-    z-index: 1; /* Move the clouds above other elements */
+  position: absolute;
+  top: 20%;
+  left: -100px;
+  width: 150px;
+  height: auto;
+  animation: floatCloud 15s linear infinite;
+  z-index: 0.2;
+}
+.cloud_2 {
+  position: absolute;
+  top: 40%; /* Update the top value to place it slightly below the first cloud */
+  right: -100px; /* Start the second cloud from the right side */
+  width: 150px;
+  height: auto;
+  animation: floatCloud_2 16s linear infinite;
+  z-index: 0.2;
+}
+
+@keyframes floatCloud {
+  0% {
+    transform: translateX(-50%) translateY(0);
   }
-  
-  @keyframes floatCloud {
-    0% {
-      transform: translateX(-50%) translateY(0);
-    }
-    50% {
-      transform: translateX(-45%) translateY(-5px);
-    }
-    100% {
-      transform: translateX(-50%) translateY(0);
-    }
+  50% {
+    transform: translateX(calc(400% + 100px)) translateY(-10px); /* 위로 약간 흔들리는 효과 추가 */
   }
-  
+  100% {
+    transform: translateX(calc(800% + 100px)) translateY(0);
+  }
+}
+@keyframes floatCloud_2 {
+  0% {
+    transform: translateX(100%) translateY(0); /* Move from right to left */
+  }
+  50% {
+    transform: translateX(calc(-400% - 100px)) translateY(-10px); /* Slight shaking effect */
+  }
+  100% {
+    transform: translateX(calc(-800% - 100px)) translateY(0); /* Move to the left beyond the screen */
+  }
+}
+
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 768px) {
+  .cloud {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cloud {
+    width: 60px;
+  }
+}

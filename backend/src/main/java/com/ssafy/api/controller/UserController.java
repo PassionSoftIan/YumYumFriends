@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.api.model.User;
@@ -48,14 +49,14 @@ public class UserController {
 	MyBadgeRepository myBadgeRepo;
 	
 	
-	@GetMapping("/{id}")
+	@GetMapping("")
 	@ApiOperation(value = "사용자 조회", notes = "<strong>사용자 ID</strong>를 통해 사용자 정보를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공", response = User.class),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
+	public ResponseEntity<User> getUserById(@RequestParam("id") long id) {
 		Optional<User> user = userRepo.findById(id);
 		if(user.isPresent())
 			return ResponseEntity.status(HttpStatus.OK).body(user.get());
@@ -63,7 +64,7 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	
-	@PostMapping("/")
+	@PostMapping("")
 	@ApiOperation(value = "사용자 등록", notes = "<strong>사용자 객체</strong>를 통해 사용자 정보를 등록한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "가입 성공"),
@@ -101,14 +102,14 @@ public class UserController {
 	}
 	
 	@Transactional
-	@DeleteMapping("/{id}")
+	@DeleteMapping("")
 	@ApiOperation(value = "사용자 삭제", notes = "<strong>사용자 ID</strong>를 통해 사용자 정보를 삭제한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> deleteUserById(@PathVariable("id") long id) {
+	public ResponseEntity<Void> deleteUserById(@RequestParam("id") long id) {
 		Optional<User> user = userRepo.findById(id);
 		if(user.isPresent()) {
 			long userID = user.get().getID();

@@ -26,5 +26,5 @@ public class MyYum {
 	private long userID;
 
 	@Column(name = "YUM_ID")
-	private int yumID;
+	private long yumID;
 }

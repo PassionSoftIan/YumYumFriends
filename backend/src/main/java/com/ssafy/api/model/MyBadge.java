@@ -26,5 +26,5 @@ public class MyBadge {
 	private long userID;
 
 	@Column(name = "BADGE_ID")
-	private int badgeID;
+	private long badgeID;
 }

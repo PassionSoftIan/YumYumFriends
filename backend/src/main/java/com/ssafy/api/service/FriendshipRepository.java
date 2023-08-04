@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ssafy.api.model.Friendship;
 
 @Repository
-public interface FriendshipRepository extends JpaRepository<Friendship, Integer>{
+public interface FriendshipRepository extends JpaRepository<Friendship, Long>{
 
 	Optional<Friendship> findByFriend1IDAndFriend2ID(long user1id, long user2id);
 

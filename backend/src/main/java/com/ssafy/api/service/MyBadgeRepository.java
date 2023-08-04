@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.ssafy.api.model.MyBadge;
 
 @Repository
-public interface MyBadgeRepository extends JpaRepository<MyBadge, Integer> {
+public interface MyBadgeRepository extends JpaRepository<MyBadge, Long> {
 	
 	void deleteByUserID(long userID);
 

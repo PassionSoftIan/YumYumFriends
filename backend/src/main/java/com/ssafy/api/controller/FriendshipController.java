@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.api.model.Friendship;
@@ -37,14 +38,14 @@ public class FriendshipController {
 	@Autowired
 	UserRepository userRepo;
 	
-	@GetMapping("/{user_id}")
+	@GetMapping("")
 	@ApiOperation(value = "친구 조회", notes = "<strong>사용자 ID</strong>를 통해 사용자의 친구 목록을 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "등록 성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<List<User>> registerUser(@PathVariable("user_id") long userID) {
+	public ResponseEntity<List<User>> registerUser(@RequestParam("user") long userID) {
 		
 		List<User> friends = new ArrayList<>();
 		
@@ -66,7 +67,7 @@ public class FriendshipController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	
-	@PostMapping("/{user1_id}&{user2_id}")
+	@PostMapping("")
 	@ApiOperation(value = "친구 등록", notes = "<strong>사용자 ID</strong>를 통해 두 사용자를 친구로 등록한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "등록 성공"),
@@ -74,7 +75,7 @@ public class FriendshipController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> registerUser(@PathVariable("user1_id") long user1ID, @PathVariable("user2_id") int user2ID) {
+	public ResponseEntity<Void> registerUser(@RequestParam("user1") long user1ID, @RequestParam("user2") long user2ID) {
 		long u1ID = Math.min(user1ID, user2ID);
 		long u2ID = Math.max(user1ID, user2ID);
 
@@ -95,14 +96,14 @@ public class FriendshipController {
 	}
 	
 	@Transactional
-	@DeleteMapping("/{user1_id}&{user2_id}")
+	@DeleteMapping("")
 	@ApiOperation(value = "친구 삭제", notes = "<strong>사용자 ID</strong>를 통해 두 사용자의 친구 관계로 삭제한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "삭제 성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> DeleteUser(@PathVariable("user1_id") long user1ID, @PathVariable("user2_id") long user2ID) {
+	public ResponseEntity<Void> DeleteUser(@RequestParam("user1") long user1ID, @RequestParam("user2") long user2ID) {
 		long u1ID = Math.min(user1ID, user2ID);
 		long u2ID = Math.max(user1ID, user2ID);
 

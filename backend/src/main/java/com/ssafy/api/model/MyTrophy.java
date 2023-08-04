@@ -26,5 +26,5 @@ public class MyTrophy {
 	private long userID;
 
 	@Column(name = "TROPHY_ID")
-	private int trophyID;
+	private long trophyID;
 }

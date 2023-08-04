@@ -6,7 +6,7 @@ import UserVideoComponent from "./UserVideoComponent";
 import { div } from "@tensorflow/tfjs";
 
 const APPLICATION_SERVER_URL =
-  process.env.NODE_ENV === "production" ? "" : "https://demos.openvidu.io/";
+  process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
 
 class OpenViduComponent extends Component {
   constructor(props) {

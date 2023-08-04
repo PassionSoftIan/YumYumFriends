@@ -26,7 +26,7 @@ public class SessionInfo {
 	private String sessionID;
 
 	@Column(name = "USER_ID")
-	private int userID;
+	private long userID;
 
 	@Column(name = "ROLE")
 	private String role;

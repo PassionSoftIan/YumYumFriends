@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { Component } from "react";
 // import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
-import { div } from "@tensorflow/tfjs";
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
@@ -192,9 +191,6 @@ class OpenViduComponent extends Component {
     const mySessionId = this.state.mySessionId;
     const myUserName = this.state.myUserName;
 
-    //
-    const SingleMulti = 1;
-    //
     return (
       <div className="container">
         {this.state.session === undefined ? (
@@ -235,18 +231,9 @@ class OpenViduComponent extends Component {
               </form>
             </div>
           </div>
-        ) : SingleMulti === 1 ? (
+        ) : (
           // 싱글 모드
           <div id="session">
-            <div id="main-video">
-              <UserVideoComponent
-                streamManager={this.state.mainStreamManager}
-              />
-            </div>
-          </div>
-        ) : (
-          // 멀티모드
-          <div id="mulit-session">
             <div id="main-video">
               <UserVideoComponent
                 streamManager={this.state.mainStreamManager}

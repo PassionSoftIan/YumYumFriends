@@ -19,7 +19,7 @@ export default class OpenViduVideoComponent extends Component {
     const canvas = this.canvasRef.current;
     const circleCenterX = canvas.width / 2;
     const circleCenterY = canvas.height * 0.33;
-    const circleRadius = circleCenterX * 0.4; // 원의 크기 조정
+    const circleRadius = circleCenterX * 0.6; // 원의 크기 조정
 
     predictions.forEach((prediction) => {
       const landmarks = prediction.scaledMesh;
@@ -41,10 +41,13 @@ export default class OpenViduVideoComponent extends Component {
   async componentDidMount() {
     if (this.props && !!this.videoRef) {
       this.props.streamManager.addVideoElement(this.videoRef.current);
+    }
+
+    this.videoRef.current.addEventListener("loadeddata", async () => {
       this.model = await facemesh.load({ maxFaces: 4, minConfidence: 0.75 });
       this.mask = await this.loadMask();
       this.detectFace();
-    }
+    });
   }
 
   loadMask = async () => {
@@ -61,7 +64,7 @@ export default class OpenViduVideoComponent extends Component {
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height * 0.33;
-    const circleRadius = centerX * 0.4;
+    const circleRadius = centerX * 0.6;
 
     canvas.width = this.videoRef.current.videoWidth;
     canvas.height = this.videoRef.current.videoHeight;
@@ -116,7 +119,10 @@ export default class OpenViduVideoComponent extends Component {
       return;
     }
 
-    const predictions = await this.model.estimateFaces(this.videoRef.current);
+    // const predictions = await this.model.estimateFaces(this.videoRef.current);
+    const frame = tf.browser.fromPixels(this.videoRef.current);
+    const predictions = await this.model.estimateFaces(frame);
+    frame.dispose();
     // console.log(predictions[0]);
     this.drawMask(predictions);
     this.checkFacePosition(predictions);

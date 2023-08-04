@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.api.model.Trophy;
@@ -27,14 +28,14 @@ public class TrophyController {
 	@Autowired
 	TrophyRepository trophyRepo;
 	
-	@GetMapping("/{id}")
+	@GetMapping("")
 	@ApiOperation(value = "뱃지 조회", notes = "<strong>뱃지 ID</strong>를 통해 뱃지 정보를 조회한다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공", response = Trophy.class),
 		@ApiResponse(code = 404, message = "결과 없음"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Trophy> getTrophyById(@PathVariable("id") int id) {
+	public ResponseEntity<Trophy> getTrophyById(@RequestParam("id") long id) {
 		Optional<Trophy> trophy = trophyRepo.findById(id);
 		if (trophy.isPresent())
 			return ResponseEntity.status(HttpStatus.OK).body(trophy.get());
@@ -42,7 +43,7 @@ public class TrophyController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 
-	@GetMapping("")
+	@GetMapping("/all")
 	@ApiOperation(value = "모든 뱃지 조회", notes = "모든 뱃지 정보를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공", response = List.class),

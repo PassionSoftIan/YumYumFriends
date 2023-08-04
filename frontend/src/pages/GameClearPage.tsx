@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
 import GetYum from "../components/SinglePage/GetYum";
-import SelectYum from "../components/SinglePage/SelectYum";
 import "./styles/GameClearPage.css";
 
 const GameClearPage: React.FC = () => {
@@ -11,11 +10,9 @@ const GameClearPage: React.FC = () => {
     type: "가지맨",
   };
 
-  const [isClear, setIsClear] = useState(true);
-
   return (
     <div className="game-clear-page">
-      {isClear ? <GetYum yum={targetYum} /> : <SelectYum />}
+      <GetYum yum={targetYum} />
     </div>
   );
 };

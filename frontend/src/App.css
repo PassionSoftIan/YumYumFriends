@@ -16,19 +16,13 @@
 
 .App-header {
   background-color: #ffb3bc;
-  height: 100vh; /* Set the height to full viewport height */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
-<<<<<<< HEAD
-  background-image: url("./assets/picnic_back.png");
-  background-repeat: no-repeat;
-  background-position: center;
-=======
->>>>>>> 44101825826deb36868b8bf35433125e4e8eaeaa
   background-size: cover;
   background-size: 100% 100%;
   background-image: repeating-linear-gradient(
@@ -45,10 +39,11 @@
       transparent 3px,
       transparent 30px
     );
+  background-size: 100% 60vh; /* 변경된 속성: 너비 100%, 높이 60vh (화면 높이의 60%) */
   background-position: center;
   z-index: 0.1;
-  /* overflow: hidden; 스크롤 없애기 */
 }
+
 
 .App-link {
   color: #61dafb;
@@ -139,4 +134,26 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
 }

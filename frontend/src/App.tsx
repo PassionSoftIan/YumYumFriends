@@ -11,6 +11,8 @@ import DexPage from './pages/DexPage';
 import ProfilePage from './pages/ProfilePage';
 import DexDetailPage from './pages/DexDetailPage';
 import GameClearPage from './pages/GameClearPage';
+import SettingsPage from './pages/SettingsPage';
+import SelectPage from './pages/SelectPage';
 import NavBar from './components/NavBar/NavBar';
 
 import Sun from "./assets/Common/sun_smile.png"
@@ -37,6 +39,8 @@ function App() {
             <Route path="/dexdetail/:id" element={<DexDetailPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/gameclear" element={<GameClearPage />}/>
+            <Route path="/settings" element={<SettingsPage />}/>
+            <Route path="/select" element={<SelectPage />}/>
           </Routes>
         </Router>
       </header>

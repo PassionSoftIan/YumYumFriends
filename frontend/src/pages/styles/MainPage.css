@@ -1,27 +1,103 @@
-/* MainPage.css */
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 스크롤 없애기 */
+}
+/* .cloud-container{
+  width: 80%;
+} */
+
 .button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: absolute;
+  left: 50%; /* 수정: 왼쪽 여백을 30%로 조정 */
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff00; /* Updated background color */
+  width: 40%; /* 수정: 폭을 화면의 40%로 조정 */
+  padding: 30px; /* Added padding to give more space */
+  border-radius: 10px; /* Added border-radius for rounded corners */
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  color: #382b22;
+  text-transform: uppercase;
+  padding: 1.25em 2em;
+  background: #FFEEC8; /* Updated button color theme */
+  border: 2px solid #b18597;
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+  margin: 30px 0; /* Adjusted margin to reduce spacing between buttons */
+}
+
+.btn::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.btn:hover {
+  background: #FFEBAA; /* Updated hover color theme */
+  transform: translate(0, 0.25em);
+}
+
+.btn:hover::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.5em, -1em);
+}
+
+.btn:active {
+  background: #FFEBAA; /* Updated active color theme */
+  transform: translate(0em, 0.75em);
+}
+
+.btn:active::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+  transform: translate3d(0, 0, -1em);
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+  .button-container {
+    width: 80%; /* 수정: 작은 화면에서는 폭을 화면의 80%로 조정 */
+    padding: 15px; /* Adjusted padding for smaller screens */
+    left: 50%; /* 수정: 왼쪽 여백을 가운데 정렬로 조정 */
   }
-  
-  .game-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.2s ease-in-out;
-    margin-bottom: 1rem; /* 수정: 버튼간의 간격을 1rem(기본 폰트 사이즈의 1배)로 설정 */
+
+  .btn {
+    width: 100%; /* Adjusted width for smaller screens */
+    margin: 20px 0; /* Adjusted margin for smaller screens */
   }
-  
-  .game-button:last-child {
-    margin-bottom: 0; /* 마지막 버튼은 아래 간격 제거 */
-  }
-  
-  .game-button:hover {
-    background-color: #0056b3;
-  }
-  
+}
+

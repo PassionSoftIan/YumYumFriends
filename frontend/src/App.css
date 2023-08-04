@@ -1,3 +1,4 @@
+/* 기본 스타일 */
 .App {
   text-align: center;
 }
@@ -14,19 +15,33 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #ffb3bc;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
-  background-image: url("./assets/picnic\ back.png");
-  background-repeat: no-repeat;
+  background-image: repeating-linear-gradient(
+      0deg,
+      #dc9aa2,
+      #dc9aa2 3px,
+      transparent 3px,
+      transparent 30px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #dc9aa2,
+      #dc9aa2 3px,
+      transparent 3px,
+      transparent 30px
+    );
+  background-size: 100% 60vh; /* 변경된 속성: 너비 100%, 높이 60vh (화면 높이의 60%) */
   background-position: center;
-  background-size: cover;
+  z-index: 0.1;
 }
+
 
 .App-link {
   color: #61dafb;
@@ -40,14 +55,14 @@
     transform: rotate(360deg);
   }
 }
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh; /* Set the minimum height to full viewport height */
 }
-/* App.css */
 
 /* 아래 부분을 추가합니다. */
 .navbar-container {
@@ -78,4 +93,65 @@
   color: #333;
 }
 
-/* 나머지 App.css 파일의 스타일들은 유지합니다. */
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .App-logo {
+    height: 20vmin;
+  }
+
+  .App-header {
+    background-image: repeating-linear-gradient(
+        0deg,
+        #dc9aa2,
+        #dc9aa2 2px,
+        transparent 2px,
+        transparent 20px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        #dc9aa2,
+        #dc9aa2 2px,
+        transparent 2px,
+        transparent 20px
+      );
+  }
+
+  .navbar-container,
+  .navbar {
+    overflow: hidden; /* 모바일에서 스크롤 없애기 */
+  }
+}
+
+.sun-image {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  animation: spin 10s linear infinite; /* Adding the animation to the image */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}

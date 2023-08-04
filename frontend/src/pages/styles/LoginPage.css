@@ -1,5 +1,5 @@
 .gamelogo {
-  max-width: 92%;
+  max-width: 80%;
   height: auto;
 }
 
@@ -22,7 +22,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 50%; /* 로고와 버튼 사이에 큰 간격을 추가합니다 */
+  margin-top: 12%; /* 로고와 버튼 사이에 큰 간격을 추가합니다 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 버튼에 그림자 효과를 추가합니다 */
 }
 

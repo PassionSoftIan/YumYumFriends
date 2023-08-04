@@ -1,34 +1,57 @@
-import React, { FC, useEffect } from 'react';
+import React from "react";
+import KakaoLogin from "react-kakao-login";
+import { useNavigate } from "react-router-dom";
 
 interface SocialKakaoProps {
-    onSuccess: () => void;  // Success handler prop
+  onSuccess: () => void;
 }
 
-const SocialKakao: FC<SocialKakaoProps> = ({ onSuccess }) => {
+const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
+  const kakaoClientId = 'b7122629a0a31ceda48e9b68c1655d8d';
+  const navigate = useNavigate();
 
-    const KAKAO_OAUTH_URL = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=db4a66f215fd566fd6a8b24f9cfb4ef7&redirect_uri=https://yumyumfriends.site/api/v1/kakao/login';
+  const kakaoOnSuccess = (data: any) => {
+    console.log("Kakao login success:", data); // 사용자 정보 출력
+    const { idToken, profile } = data.response; // 엑세스 토큰과 사용자 프로필 정보 가져오기
 
-    const handleLogin = () => {
-        const loginWindow = window.open(
-            KAKAO_OAUTH_URL,
-            "KakaoLogin",
-            "width=500,height=500"
-        );
+    // 프로필 정보가 있을 경우에만 사용자 ID, 이메일, 닉네임 정보를 가져옵니다.
+    if (data.profile) {
+      const { id, kakao_account } = data.profile; // 사용자 ID, 이메일, 닉네임 정보 가져오기
 
-        const checkLogin = setInterval(() => {
-            // Check if the loginWindow is not null and closed
-            if (loginWindow && loginWindow.closed) {
-                clearInterval(checkLogin);
-                onSuccess();  // Call the success handler after the login window is closed
-            }
-        }, 500);
-    };
+      // API 요청을 보낼 URL을 생성합니다.
+      const apiUrl = `https://yumyumfriends.site/api/v1/kakao/login?id=${id}&email=${kakao_account.email}&nickname=${kakao_account.profile.nickname}`;
 
-    return (
-        <button onClick={handleLogin}>
-            Login with Kakao
-        </button>
-    );
+      // fetch 함수를 사용하여 API 요청을 보냅니다.
+      fetch(apiUrl)
+        .then((response) => {
+          if (response.ok) {
+            // 요청이 성공적으로 완료되었을 때 원하는 동작을 수행합니다.
+            console.log('Token and user info sent successfully to the server');
+            onSuccess(); // 카카오 로그인이 성공했을 때, 전달받은 onSuccess 함수를 호출
+            navigate("/main"); // 페이지 이동
+          } else {
+            console.error('Failed to send token and user info to the server');
+          }
+        })
+        .catch((error) => {
+          console.error('Error sending token and user info to the server', error);
+        });
+    } 
+  };
+
+  const kakaoOnFailure = (error: any) => {
+    console.log("Kakao login failed:", error); // 에러 정보 출력
+  };
+
+  return (
+    <>
+      <KakaoLogin
+        token={kakaoClientId}
+        onSuccess={kakaoOnSuccess}
+        onFail={kakaoOnFailure}
+      />
+    </>
+  );
 };
 
 export default SocialKakao;

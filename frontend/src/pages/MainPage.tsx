@@ -3,6 +3,7 @@ import Cloud from "../components/Animation/Cloud";
 import all from "../assets/Common/all_with.png";
 import useConfetti from "../hooks/Animations/useConfetti";
 import { useNavigate } from "react-router-dom";
+import RainFall from "../components/Animation/RainFall";
 import "./styles/MainPage.css";
 
 const MainPage: React.FC = () => {
@@ -32,6 +33,7 @@ const MainPage: React.FC = () => {
   return (
     <div className="main-container">
         <Cloud />
+        <RainFall />
         <div className="center">
           <div className="button-container">
             <button

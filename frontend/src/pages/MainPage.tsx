@@ -40,7 +40,6 @@ const MainPage: React.FC = () => {
   return (
     <div className="main-container">
         <Cloud />
-        <RainFall />
         <div className="center">
           <div className="button-container">
             <button
@@ -66,6 +65,7 @@ const MainPage: React.FC = () => {
           <Button onClick={handleSettings}>설정</Button>
           <Button onClick={handleSelect}>대표냠</Button>
         </div>
+      </div>
       </div>
   );
 };

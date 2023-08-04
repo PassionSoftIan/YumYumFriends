@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ssafy.api.model.Badge;
 
 @Repository
-public interface BadgeRepository extends JpaRepository<Badge, Integer>{
+public interface BadgeRepository extends JpaRepository<Badge, Long>{
 
 }

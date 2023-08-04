@@ -1,6 +1,5 @@
 import React from "react";
 import Cloud from "../components/Animation/Cloud";
-import all from "../assets/Common/all_with.png";
 import useConfetti from "../hooks/Animations/useConfetti";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
@@ -64,7 +63,7 @@ const MainPage: React.FC = () => {
             <span>프로필</span>
           </button>
           <Button onClick={handleSettings}>설정</Button>
-          <Button onClick={handleSelect}>대표냠 설정</Button>
+          <Button onClick={handleSelect}>대표냠</Button>
         </div>
       </div>
     </div>

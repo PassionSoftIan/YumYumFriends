@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.ssafy.api.model.MyTrophy;
 
 @Repository
-public interface MyTrophyRepository extends JpaRepository<MyTrophy, Integer> {
+public interface MyTrophyRepository extends JpaRepository<MyTrophy, Long> {
 	
-	void deleteByUserID(int userID);
+	void deleteByUserID(long userID);
 
-	List<MyTrophy> findAllByUserID(int userID);
+	List<MyTrophy> findAllByUserID(long userID);
 
 }

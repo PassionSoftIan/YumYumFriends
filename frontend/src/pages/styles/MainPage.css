@@ -1,24 +1,22 @@
 @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
 
-body {
-  margin: 0;
+html, body {
   height: 100%;
-  background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 스크롤 없애기 */
 }
 
 .button-container {
   position: absolute;
-  left: 50%;
+  left: 50%; /* 수정: 왼쪽 여백을 30%로 조정 */
   top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #ffffff00; /* Updated background color */
-  width: 400px; /* Adjusted width */
+  width: 40%; /* 수정: 폭을 화면의 40%로 조정 */
   padding: 30px; /* Added padding to give more space */
   border-radius: 10px; /* Added border-radius for rounded corners */
 }
@@ -91,12 +89,13 @@ body {
 /* Media queries for responsiveness */
 @media (max-width: 600px) {
   .button-container {
-    width: 100%; /* Adjusted width for smaller screens */
+    width: 80%; /* 수정: 작은 화면에서는 폭을 화면의 80%로 조정 */
     padding: 15px; /* Adjusted padding for smaller screens */
+    left: 50%; /* 수정: 왼쪽 여백을 가운데 정렬로 조정 */
   }
 
   .btn {
     width: 100%; /* Adjusted width for smaller screens */
-    margin: 10px 0; /* Adjusted margin for smaller screens */
+    margin: 20px 0; /* Adjusted margin for smaller screens */
   }
 }

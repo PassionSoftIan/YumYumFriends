@@ -1,9 +1,8 @@
 import React from "react";
 import Cloud from "../components/Animation/Cloud";
-import all from "../assets/Common/all_with.png";
 import useConfetti from "../hooks/Animations/useConfetti";
 import { useNavigate } from "react-router-dom";
-import RainFall from "../components/Animation/RainFall";
+import Button from "../components/Common/Button";
 import "./styles/MainPage.css";
 
 const MainPage: React.FC = () => {
@@ -30,6 +29,14 @@ const MainPage: React.FC = () => {
     navigate("/profile");
   };
 
+  const handleSettings = () => {
+    navigate("/settings");
+  };
+
+  const handleSelect = () => {
+    navigate("/select");
+  };
+
   return (
     <div className="main-container">
         <Cloud />
@@ -43,19 +50,21 @@ const MainPage: React.FC = () => {
               <span>Single</span>
             </button>
 
-            <button
-              onClick={handleMultiPlayerGame}
-              className="game-button button-second btn"
-            >
-              <span>Multi</span>
-            </button>
-            <button
-              onClick={handleProfile}
-              className="game-button button-second btn"
-            >
-              <span>프로필</span>
-            </button>
-          </div>
+          <button
+            onClick={handleMultiPlayerGame}
+            className="game-button button-second btn"
+          >
+            <span>Multi</span>
+          </button>
+
+          <button
+            onClick={handleProfile}
+            className="game-button button-second btn"
+          >
+            <span>프로필</span>
+          </button>
+          <Button onClick={handleSettings}>설정</Button>
+          <Button onClick={handleSelect}>대표냠</Button>
         </div>
       </div>
   );

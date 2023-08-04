@@ -42,4 +42,7 @@ public class User {
 	@Column(name = "MEAL_LAST")
 	private Date mealLast;
 	
+	@Column(name = "CURRENT_YUM")
+	private long currentYum;
+	
 }

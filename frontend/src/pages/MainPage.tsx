@@ -39,15 +39,16 @@ const MainPage: React.FC = () => {
 
   return (
     <div className="main-container">
-      <Cloud />
-      <div className="center">
-        <div className="button-container">
-          <button
-            onClick={handleSinglePlayerGame}
-            className="game-button button-second btn"
-          >
-            <span>Single</span>
-          </button>
+        <Cloud />
+        <RainFall />
+        <div className="center">
+          <div className="button-container">
+            <button
+              onClick={handleSinglePlayerGame}
+              className="game-button button-second btn"
+            >
+              <span>Single</span>
+            </button>
 
           <button
             onClick={handleMultiPlayerGame}
@@ -66,7 +67,6 @@ const MainPage: React.FC = () => {
           <Button onClick={handleSelect}>대표냠</Button>
         </div>
       </div>
-    </div>
   );
 };
 

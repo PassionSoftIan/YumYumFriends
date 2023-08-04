@@ -29,6 +29,14 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
             console.log('Token and user info sent successfully to the server');
             onSuccess(); // 카카오 로그인이 성공했을 때, 전달받은 onSuccess 함수를 호출
             navigate("/main"); // 페이지 이동
+
+            // 데이터를 로컬에 저장합니다.
+            const userData = {
+              id: id,
+              email: kakao_account.email,
+              nickname: kakao_account.profile.nickname
+            };
+            localStorage.setItem("userData", JSON.stringify(userData));
           } else {
             console.error('Failed to send token and user info to the server');
           }

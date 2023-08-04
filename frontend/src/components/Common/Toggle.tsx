@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "../styles/Common/Toggle.module.css";
 
 interface ToggleProps {
   label: string;
@@ -15,9 +16,10 @@ const Toggle: React.FC<ToggleProps> = (props) => {
   };
 
   return (
-    <label>
-      <input type="checkbox" defaultChecked={isToggled} onClick={callback} />
-      {props.label}
+    <label className={styles.labelContainer}>
+      <input type="checkbox" defaultChecked={isToggled} onClick={callback} className={styles.input} />
+      <span className={`${styles.span} ${isToggled ? styles.checked : ""}`} />
+      <strong className={styles.strong}>{props.label}</strong>
     </label>
   );
 };

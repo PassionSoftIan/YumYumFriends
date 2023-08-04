@@ -11,7 +11,7 @@ const GameClearPage: React.FC = () => {
     type: "가지맨",
   };
 
-  const [isClear, setIsClear] = useState(false);
+  const [isClear, setIsClear] = useState(true);
 
   return (
     <div className="game-clear-page">

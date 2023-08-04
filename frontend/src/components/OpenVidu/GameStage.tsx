@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import Button from "../Common/Button";
 import Banner from "../Common/Banner";
 import JSConfetti from "js-confetti";
+import { useNavigate } from "react-router-dom";
+import { div } from "@tensorflow/tfjs";
 
 const GameStage: React.FC = () => {
   const [eating, setEating] = useState(0);
   const [nowEating, setNowEating] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const maxEating: number = 5;
+  const maxEating: number = 3;
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 숟갈 유예기간
@@ -37,6 +40,7 @@ const GameStage: React.FC = () => {
         emojiSize: 80,
         confettiNumber: 50,
       });
+      navigate("/gameclear");
     }
 
     setEating(eating + 1);
@@ -44,12 +48,14 @@ const GameStage: React.FC = () => {
   };
 
   return (
+    <div>
     <React.Fragment>
       {showModal && <Banner content="천천히 꼭꼭 씹어먹자" />}
       <Button onClick={handleButtonClick}>
         Click to Eat {eating}/{maxEating}
       </Button>
     </React.Fragment>
+    </div>
   );
 };
 

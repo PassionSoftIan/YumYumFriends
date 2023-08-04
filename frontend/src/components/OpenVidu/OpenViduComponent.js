@@ -3,10 +3,6 @@ import axios from "axios";
 import React, { Component } from "react";
 // import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e5fab9d42a13db6ff8eac6030a41fc5c4d4bb00
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";

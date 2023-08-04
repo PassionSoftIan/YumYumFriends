@@ -23,8 +23,8 @@ import lombok.ToString;
 public class MyBadge {
 	@Id
 	@Column(name = "USER_ID")
-	private int userID;
+	private long userID;
 
 	@Column(name = "BADGE_ID")
-	private int badgeID;
+	private long badgeID;
 }

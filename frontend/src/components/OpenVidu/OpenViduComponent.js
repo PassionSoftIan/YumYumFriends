@@ -9,7 +9,7 @@ import UserVideoComponent from "./UserVideoComponent";
 >>>>>>> 0e5fab9d42a13db6ff8eac6030a41fc5c4d4bb00
 
 const APPLICATION_SERVER_URL =
-  process.env.NODE_ENV === "production" ? "" : "https://demos.openvidu.io/";
+  process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
 
 class OpenViduComponent extends Component {
   constructor(props) {

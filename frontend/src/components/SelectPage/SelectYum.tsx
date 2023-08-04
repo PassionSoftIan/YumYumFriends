@@ -1,10 +1,15 @@
 import React from "react";
 import Carousel from "../Common/Carousel";
+import Button from "../Common/Button";
 
-import yums, { Yum } from "../../data/yums ";
+// import yums, { Yum } from "../../data/yums ";
 
 const SelectYum: React.FC = () => {
-  const acquiredYumIds = [1, 2, 4]; // Example array of acquired Yum IDs
+  const acquiredYumIds = [1, 2, 4]; 
+
+  const handleSelectedYum = () => {
+    console.log('유저의 대표냠 설정 요청 보내기')
+  }
 
   return (
     <React.Fragment>
@@ -17,6 +22,7 @@ const SelectYum: React.FC = () => {
         "4_icecream",
         "5_radish"
       ]} />
+      <Button onClick={handleSelectedYum}>설정하기</Button>
     </React.Fragment>
   );
 };

@@ -6,6 +6,9 @@ html, body {
   padding: 0;
   overflow: hidden; /* 스크롤 없애기 */
 }
+/* .cloud-container{
+  width: 80%;
+} */
 
 .button-container {
   position: absolute;
@@ -97,3 +100,4 @@ html, body {
     margin: 20px 0; /* Adjusted margin for smaller screens */
   }
 }
+

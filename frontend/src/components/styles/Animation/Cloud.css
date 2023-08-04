@@ -1,7 +1,7 @@
 .cloud {
   position: absolute;
   top: 20%;
-  left: -100px;
+  left: 10px;
   width: 150px;
   height: auto;
   animation: floatCloud 15s linear infinite;
@@ -10,7 +10,7 @@
 .cloud_2 {
   position: absolute;
   top: 40%; /* Update the top value to place it slightly below the first cloud */
-  right: 0px; /* Start the second cloud from the right side */
+  right: 10px; /* Start the second cloud from the right side */
   width: 150px;
   height: auto;
   animation: floatCloud_2 16s linear infinite;
@@ -21,17 +21,39 @@
   overflow: hidden;
 }
 
-@keyframes floatCloud {
+/* 기본 애니메이션 설정 */
+/* @keyframes floatCloud {
   0% {
-    transform: translateX(50%) translateY(0);
-  }
-  50% {
-    transform: translateX(calc(400%)) translateY(0);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(calc(800%)) translateY(0);
+    transform: translateX(100%);
   }
 }
+
+@media (max-width: 768px) {
+  @keyframes floatCloud {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  @keyframes floatCloud {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+} */
+
+
 
 
 

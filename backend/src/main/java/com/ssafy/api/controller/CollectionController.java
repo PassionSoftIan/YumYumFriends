@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.api.model.Badge;
@@ -54,14 +55,14 @@ public class CollectionController {
 	TrophyRepository trophyRepo;
 	
 
-	@PostMapping("/myyum/{user_id}&{yum_id}")
+	@PostMapping("/myyum")
 	@ApiOperation(value = "수집한 냠냠 등록", notes = "<strong>사용자 ID와 냠냠 ID</strong>를 통해 사용자가 잡은 냠냠 정보를 등록한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "등록 성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> registerMyYum(@PathVariable("user_id") long userID, @PathVariable("yum_id") int yumID) {
+	public ResponseEntity<Void> registerMyYum(@RequestParam("user") long userID, @RequestParam("yum") long yumID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			MyYum myYum = new MyYum();
@@ -74,14 +75,14 @@ public class CollectionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	
-	@GetMapping("/myyum/{user_id}")
+	@GetMapping("/myyum")
 	@ApiOperation(value = "수집한 냠냠 목록", notes = "<strong>사용자 ID</strong>를 통해 사용자가 잡은 냠냠 목록을 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<List<Yum>> getMyYum(@PathVariable("user_id") long userID) {
+	public ResponseEntity<List<Yum>> getMyYum(@RequestParam("user") long userID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			List<MyYum> myYumlist = myYumRepo.findAllByUserID(userID);
@@ -94,14 +95,14 @@ public class CollectionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 
-	@PostMapping("/mybadge/{user_id}&{badge_id}")
+	@PostMapping("/mybadge")
 	@ApiOperation(value = "수집한 뱃지 등록", notes = "<strong>사용자 ID와 뱃지 ID</strong>를 통해 사용자가 획득한 뱃지 정보를 등록한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "등록 성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> registerMyBadge(@PathVariable("user_id") long userID, @PathVariable("badge_id") int badgeID) {
+	public ResponseEntity<Void> registerMyBadge(@RequestParam("user") long userID, @RequestParam("badge") long badgeID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			MyBadge myBadge = new MyBadge();
@@ -114,14 +115,14 @@ public class CollectionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	
-	@GetMapping("/mybadge/{user_id}")
+	@GetMapping("/mybadge")
 	@ApiOperation(value = "수집한 뱃지 목록", notes = "<strong>사용자 ID</strong>를 통해 사용자가 획득한 뱃지 목록을 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<List<Badge>> getMyBadge(@PathVariable("user_id") long userID) {
+	public ResponseEntity<List<Badge>> getMyBadge(@RequestParam("user") long userID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			List<MyBadge> myBadgelist = myBadgeRepo.findAllByUserID(userID);
@@ -134,14 +135,14 @@ public class CollectionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 
-	@PostMapping("/mytrophy/{user_id}&{trophy_id}")
+	@PostMapping("/mytrophy")
 	@ApiOperation(value = "수집한 트로피 등록", notes = "<strong>사용자 ID와 트로피 ID</strong>를 통해 사용자가 획득한 트로피 정보를 등록한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "등록 성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> registerMyTrophy(@PathVariable("user_id") long userID, @PathVariable("trophy_id") int trophyID) {
+	public ResponseEntity<Void> registerMyTrophy(@RequestParam("user") long userID, @RequestParam("trophy") long trophyID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			MyTrophy myTrophy = new MyTrophy();
@@ -154,14 +155,14 @@ public class CollectionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	
-	@GetMapping("/mytrophy/{user_id}")
+	@GetMapping("/mytrophy")
 	@ApiOperation(value = "수집한 트로피 목록", notes = "<strong>사용자 ID</strong>를 통해 사용자가 획득한 트로피 목록을 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<List<Trophy>> getMyTrophy(@PathVariable("user_id") long userID) {
+	public ResponseEntity<List<Trophy>> getMyTrophy(@RequestParam("user") long userID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
 			List<MyTrophy> myTrophylist = myTrophyRepo.findAllByUserID(userID);

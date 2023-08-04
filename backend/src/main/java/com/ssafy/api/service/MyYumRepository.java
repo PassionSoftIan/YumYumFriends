@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.ssafy.api.model.MyYum;
 
 @Repository
-public interface MyYumRepository extends JpaRepository<MyYum, Integer>{
+public interface MyYumRepository extends JpaRepository<MyYum, Long>{
 
 	void deleteByUserID(long userID);
 

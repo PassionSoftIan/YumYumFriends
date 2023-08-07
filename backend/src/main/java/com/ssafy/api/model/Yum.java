@@ -31,6 +31,9 @@ public class Yum {
 
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "eng")
+	private String eng;
 
 	@Column(name = "personality")
 	private String personality;

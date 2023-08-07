@@ -10,19 +10,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.api.model.MyYum;
 import com.ssafy.api.model.User;
+import com.ssafy.api.service.MyYumRepository;
 import com.ssafy.api.service.UserRepository;
 
 import io.swagger.annotations.Api;
 
+@CrossOrigin("*")
 @Api(value = "카카오 로그인 API", tags = {"Kakao."})
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/v1/kakao")
 public class KakaoController {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	MyYumRepository myYumRepo;
 	
 //	@ResponseBody
 //	@GetMapping("/login")
@@ -68,9 +73,16 @@ public class KakaoController {
 			newUser.setEmail(email);
 			newUser.setNickname(nickname);
 			newUser.setMealRemain(3);
+			newUser.setCurrentYum(1);
 			
 			System.out.println("created new user : " + newUser);
 			userRepo.save(newUser);
+			
+			MyYum myYum = new MyYum();
+			myYum.setUserID(id);
+			myYum.setYumID(1);
+			myYumRepo.save(myYum);
+			
 			return newUser;
 		}
 	}

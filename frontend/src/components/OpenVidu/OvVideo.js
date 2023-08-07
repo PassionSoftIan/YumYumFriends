@@ -42,24 +42,29 @@ export default class OpenViduVideoComponent extends Component {
     });
   }
 
-  // postCameraScreen = () => {
-  //   if (!this.canvasRef.current) {
-  //     return false;
-  //   }
-  //   console.log("이미지 전송");
-  //   const canvas = this.canvasRef.current;
-  //   const dataUrl = canvas.toDataURL("image/jpeg");
-  //   const apiUrl = "http://218.154.242.73:51557/v1/object-detection/yolov5s";
+  postCameraScreen = () => {
+    if (!this.canvasRef.current) {
+      return false;
+    }
+    const canvas = this.canvasRef.current;
+    const dataUrl = canvas.toDataURL("image/jpeg");
+    const apiUrl = "http://218.154.242.73:51557/v1/object-detection/yolov5s";
 
-  //   axios
-  //   .post(apiUrl, { image: dataUrl }, { headers: { "Content-Type": "application/json" } })
-  //   .then((response) => {
-  //     console.log(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error sending post request:", error);
-  //   });
-  // };
+    // console.log(`이미지 전송: ${dataUrl}`);
+
+    axios
+      .post(
+        apiUrl,
+        { image: dataUrl },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending post request:", error);
+      });
+  };
 
   async componentDidMount() {
     if (this.props && !!this.videoRef) {
@@ -72,12 +77,12 @@ export default class OpenViduVideoComponent extends Component {
       this.detectFace();
     });
 
-    // this.postCameraInterval = setInterval(this.postCameraScreen, 5000);
+    this.postCameraInterval = setInterval(this.postCameraScreen, 1000);
   }
 
-  // componentWillUnmount() {
-  //   clearInterval(this.postCameraInterval);
-  // }
+  componentWillUnmount() {
+    clearInterval(this.postCameraInterval);
+  }
 
   loadMask = async () => {
     return new Promise((resolve) => {

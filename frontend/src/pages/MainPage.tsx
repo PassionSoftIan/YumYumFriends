@@ -25,8 +25,8 @@ const MainPage: React.FC = () => {
   };
 
   const handleProfile = () => {
-    console.log("프로필");
-    navigate("/profile");
+    console.log("도감");
+    navigate("/dex");
   };
 
   const handleSettings = () => {
@@ -40,28 +40,28 @@ const MainPage: React.FC = () => {
   return (
     <div className="main-container">
       <Cloud />
-      {/* <RainFall /> */}
+
       <div className="center">
         <div className="button-container">
           <button
             onClick={handleSinglePlayerGame}
             className="game-button button-second btn"
           >
-            <span>Single</span>
+            <span>밥 먹기</span>
           </button>
 
           <button
             onClick={handleMultiPlayerGame}
             className="game-button button-second btn"
           >
-            <span>Multi</span>
+            <span>같이 먹기</span>
           </button>
 
           <button
             onClick={handleProfile}
             className="game-button button-second btn"
           >
-            <span>프로필</span>
+            <span>냠냠이들</span>
           </button>
           <Button onClick={handleSettings}>설정</Button>
           <Button onClick={handleSelect}>대표냠</Button>

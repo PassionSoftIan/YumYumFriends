@@ -1,4 +1,8 @@
+// src/pages/SettingsPage.tsx
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { toggleBgm } from "../store/bgmSlice";
 
 import Card from "../components/Common/Card";
 import Toggle from "../components/Common/Toggle";
@@ -6,22 +10,25 @@ import Stepper from "../components/Common/Stepper";
 import styles from "./styles/SettingsPage.module.css";
 
 const SettingsPage: React.FC = () => {
+  const dispatch = useDispatch();
+  const bgmOn = useSelector((state: RootState) => state.bgm.bgmOn);
+
   const handleBgm = () => {
-    console.log("배경음악 on/off");
+    dispatch(toggleBgm());
   };
 
   const handleSoundEffect = () => {
     console.log("효과음 on/off");
   };
 
-  const tempValue = 5
+  const tempValue = 5;
 
   return (
     <Card>
       <ul className={styles.list}>
         <li>
           <div className={styles["toggle-container"]}>
-            <Toggle label="배경음악" toggled={true} onClick={handleBgm} />
+            <Toggle label="배경음악" toggled={bgmOn} onClick={handleBgm} />
           </div>
         </li>
         <li>
@@ -35,7 +42,7 @@ const SettingsPage: React.FC = () => {
         </li>
         <li>
           <div>
-            <Stepper label="먹는 횟수" value={tempValue} unit="회"/>
+            <Stepper label="먹는 횟수" value={tempValue} unit="회" />
           </div>
         </li>
       </ul>

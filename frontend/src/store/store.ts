@@ -1,10 +1,11 @@
-// src/store/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import bgmReducer from './bgmSlice';
+import showEffectsReducer from './showEffectsSlice';
 
 const store = configureStore({
   reducer: {
     bgm: bgmReducer,
+    showEffects: showEffectsReducer,
     // Add other reducers if needed
   },
 });

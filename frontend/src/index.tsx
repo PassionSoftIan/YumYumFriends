@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux"; // 추가: 리덕스 스토어의 프로바이더를 import
+import store from "./store/store"; // 추가: 리덕스 스토어 import
 import "./index.css";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
@@ -9,8 +11,11 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
+  // 리덕스 스토어의 프로바이더로 컴포넌트들을 감싸기
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

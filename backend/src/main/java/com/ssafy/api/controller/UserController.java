@@ -93,10 +93,29 @@ public class UserController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> getUserById(User target) {
+	public ResponseEntity<Void> updateUserById(User target) {
 		Optional<User> user = userRepo.findById(target.getID());
 		if(user.isPresent()) {
 			userRepo.save(target);
+			return ResponseEntity.status(HttpStatus.OK).body(null);
+		}
+		else
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+	}
+	
+	@PutMapping("/setyum")
+	@ApiOperation(value = "대표 냠냠 수정", notes = "<strong>사용자 객체(id와 대표 냠냠 ID)</strong>를 통해 대표 냠냠 정보를 수정한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 404, message = "사용자 없음"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<Void> updateCurrentYum(@RequestParam("user") long userID, @RequestParam("yum") long yumID) {
+		Optional<User> user = userRepo.findById(userID);
+		if(user.isPresent() && yumID != 0) {
+			User newUser = user.get();
+			newUser.setCurrentYum(yumID);
+			userRepo.save(newUser);
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
 		else
@@ -124,26 +143,6 @@ public class UserController {
 			userRepo.deleteById(id);
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
-		else
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-	}
-
-	
-	
-	@PostMapping("/login")
-	@ApiOperation(value = "로그인", notes = "<strong>사용자 객체(email, password)</strong>를 통해 사용자 정보를 조회한다.") 
-    @ApiResponses({
-        @ApiResponse(code = 200, message = "성공"),
-        @ApiResponse(code = 404, message = "사용자 없음"),
-        @ApiResponse(code = 500, message = "서버 오류")
-    })
-	public ResponseEntity<User> loginUser(User target) {
-		if(target.getEmail() == null)
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-		
-		Optional<User> user = userRepo.findByEmail(target.getEmail());
-		if(user.isPresent())
-			return ResponseEntity.status(HttpStatus.OK).body(user.get());
 		else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}

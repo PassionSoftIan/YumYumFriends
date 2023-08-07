@@ -4,6 +4,7 @@ import * as facemesh from "@tensorflow-models/facemesh";
 // 가면 이미지를 불러옵니다.
 import maskImage from "../../assets/Sticker/tofu-hat.png";
 import GameStage from "./GameStage";
+import axios from "axios";
 
 export default class OpenViduVideoComponent extends Component {
   constructor(props) {
@@ -41,6 +42,25 @@ export default class OpenViduVideoComponent extends Component {
     });
   }
 
+  // postCameraScreen = () => {
+  //   if (!this.canvasRef.current) {
+  //     return false;
+  //   }
+  //   console.log("이미지 전송");
+  //   const canvas = this.canvasRef.current;
+  //   const dataUrl = canvas.toDataURL("image/jpeg");
+  //   const apiUrl = "http://218.154.242.73:51557/v1/object-detection/yolov5s";
+
+  //   axios
+  //   .post(apiUrl, { image: dataUrl }, { headers: { "Content-Type": "application/json" } })
+  //   .then((response) => {
+  //     console.log(response.data);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error sending post request:", error);
+  //   });
+  // };
+
   async componentDidMount() {
     if (this.props && !!this.videoRef) {
       this.props.streamManager.addVideoElement(this.videoRef.current);
@@ -51,7 +71,13 @@ export default class OpenViduVideoComponent extends Component {
       this.mask = await this.loadMask();
       this.detectFace();
     });
+
+    // this.postCameraInterval = setInterval(this.postCameraScreen, 5000);
   }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.postCameraInterval);
+  // }
 
   loadMask = async () => {
     return new Promise((resolve) => {

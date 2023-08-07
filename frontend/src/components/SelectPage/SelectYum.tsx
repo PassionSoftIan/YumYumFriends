@@ -7,16 +7,24 @@ import axios from "axios";
 
 const SelectYum: React.FC = () => {
   const [yumList, setYumList] = useState([]);
+  const [allList, setAllList] = useState([]);
   const URL = "https://yumyumfriends.site";
   const userID = localStorage.getItem("id");
 
   useEffect(() => {
     const fetchData = async () => {
-      axios
-        .get(`${URL}/api/v1/collection/myyum`, { params: { user: userID } })
-        .then((data) => {
-          const mylist = data.data;
+      Promise.all([
+        axios.get(`${URL}/api/v1/collection/myyum`, {
+          params: { user: userID },
+        }),
+        axios.get(`${URL}/api/v1/yum/all`),
+      ])
+        .then(([data1, data2]) => {
+          const mylist = data1.data;
           setYumList(mylist);
+          const allList1 = data2.data;
+          setAllList(allList1);
+
           // console.log(yumList);
         })
         .catch((err) => console.log("실패"));
@@ -32,7 +40,7 @@ const SelectYum: React.FC = () => {
     <React.Fragment>
       <h3>함께 할 친구를 골라봐</h3>
       {/* 여기에 캐릭터 선택 캐러셀 넣을거임 */}
-      <Carousel carouselList={yumList} />
+      <Carousel carouselList={yumList} allYumList={allList} />
       <Button onClick={handleSelectedYum}>설정하기</Button>
     </React.Fragment>
   );

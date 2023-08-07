@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.api.model.MyYum;
@@ -38,14 +39,14 @@ public class YumController {
 	@Autowired
 	MyYumRepository myYumRepo;
 
-	@GetMapping("/{id}")
+	@GetMapping("")
 	@ApiOperation(value = "냠냠 조회", notes = "<strong>냠냠 ID</strong>를 통해 냠냠 정보를 조회한다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공",response = User.class),
 		@ApiResponse(code = 404, message = "결과 없음"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Yum> getYumById(@PathVariable("id") int id) {
+	public ResponseEntity<Yum> getYumById(@RequestParam("id") long id) {
 		Optional<Yum> yum = yumRepo.findById(id);
 		if (yum.isPresent())
 			return ResponseEntity.status(HttpStatus.OK).body(yum.get());
@@ -53,7 +54,7 @@ public class YumController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 
-	@GetMapping("")
+	@GetMapping("/all")
 	@ApiOperation(value = "모든 냠냠 조회", notes = "모든 냠냠 정보를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공", response = List.class),

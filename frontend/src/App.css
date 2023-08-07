@@ -23,6 +23,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
+  background-size: cover;
+  background-size: 100% 100%;
   background-image: repeating-linear-gradient(
       0deg,
       #dc9aa2,

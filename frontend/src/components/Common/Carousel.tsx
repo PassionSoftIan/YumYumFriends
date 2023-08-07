@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import CarouselItem from "./CarouselItem";
 import styles from "../styles/Common/Carousel.module.css";
 
@@ -24,8 +24,9 @@ const Carousel: React.FC<Props> = (props) => {
       items: 3,
     },
   };
-  const items = props.carouselList.map((item, idx) => {
-    return <CarouselItem key={idx} yum={item.eng} />;
+  const items = props.allYumList.map((item, idx) => {
+    return <CarouselItem key={idx} yum={item} carouselList={props.carouselList}
+    allYumList={props.allYumList} />;
   });
 
   return (

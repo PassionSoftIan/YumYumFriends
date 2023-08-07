@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@CrossOrigin(origins = "*")
 @Api(value = "수집품 API", tags = {"Collection."})
 @RestController
 @RequestMapping("/api/v1/collection")
@@ -59,17 +61,20 @@ public class CollectionController {
 	@ApiOperation(value = "수집한 냠냠 등록", notes = "<strong>사용자 ID와 냠냠 ID</strong>를 통해 사용자가 잡은 냠냠 정보를 등록한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "등록 성공"),
+        @ApiResponse(code = 201, message = "중복"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<Void> registerMyYum(@RequestParam("user") long userID, @RequestParam("yum") long yumID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
+			if(myYumRepo.findByUserIDAndYumID(userID, yumID).isPresent())
+				return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(null);
 			MyYum myYum = new MyYum();
 			myYum.setUserID(userID);
 			myYum.setYumID(yumID);
 			myYumRepo.save(myYum);
-			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(null);
+			return ResponseEntity.status(HttpStatus.CREATED).body(null);
 		}
 		else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -87,8 +92,12 @@ public class CollectionController {
 		if(user.isPresent()) {
 			List<MyYum> myYumlist = myYumRepo.findAllByUserID(userID);
 			List<Yum> myYums = new ArrayList<>();
-			for(MyYum myYum : myYumlist)
+			for(MyYum myYum : myYumlist) {
+				System.out.println(myYum.getYumID());
+				Optional<Yum> yum = yumRepo.findById(myYum.getYumID());
+				System.out.println(yum.isPresent());
 				myYums.add(yumRepo.findById(myYum.getYumID()).get());
+			}
 			return ResponseEntity.status(HttpStatus.OK).body(myYums);
 		}
 		else
@@ -99,12 +108,15 @@ public class CollectionController {
 	@ApiOperation(value = "수집한 뱃지 등록", notes = "<strong>사용자 ID와 뱃지 ID</strong>를 통해 사용자가 획득한 뱃지 정보를 등록한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "등록 성공"),
+        @ApiResponse(code = 201, message = "중복"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<Void> registerMyBadge(@RequestParam("user") long userID, @RequestParam("badge") long badgeID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
+			if(myBadgeRepo.findByUserIDAndBadgeID(userID, badgeID).isPresent())
+				return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(null);
 			MyBadge myBadge = new MyBadge();
 			myBadge.setUserID(userID);
 			myBadge.setBadgeID(badgeID);
@@ -139,12 +151,15 @@ public class CollectionController {
 	@ApiOperation(value = "수집한 트로피 등록", notes = "<strong>사용자 ID와 트로피 ID</strong>를 통해 사용자가 획득한 트로피 정보를 등록한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "등록 성공"),
+        @ApiResponse(code = 201, message = "중복"),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<Void> registerMyTrophy(@RequestParam("user") long userID, @RequestParam("trophy") long trophyID) {
 		Optional<User> user = userRepo.findById(userID);
 		if(user.isPresent()) {
+			if(myTrophyRepo.findByUserIDAndTrophyID(userID, trophyID).isPresent())
+				return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(null);
 			MyTrophy myTrophy = new MyTrophy();
 			myTrophy.setUserID(userID);
 			myTrophy.setTrophyID(trophyID);

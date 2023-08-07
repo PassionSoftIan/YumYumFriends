@@ -7,7 +7,7 @@ interface SocialKakaoProps {
 }
 
 const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
-  const kakaoClientId = 'b7122629a0a31ceda48e9b68c1655d8d';
+  const kakaoClientId = "b7122629a0a31ceda48e9b68c1655d8d";
   const navigate = useNavigate();
 
   const kakaoOnSuccess = (data: any) => {
@@ -26,25 +26,27 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
         .then((response) => {
           if (response.ok) {
             // 요청이 성공적으로 완료되었을 때 원하는 동작을 수행합니다.
-            console.log('Token and user info sent successfully to the server');
+            console.log("Token and user info sent successfully to the server");
             onSuccess(); // 카카오 로그인이 성공했을 때, 전달받은 onSuccess 함수를 호출
             navigate("/main"); // 페이지 이동
 
             // 데이터를 로컬에 저장합니다.
-            const userData = {
-              id: id,
-              email: kakao_account.email,
-              nickname: kakao_account.profile.nickname
-            };
-            localStorage.setItem("userData", JSON.stringify(userData));
+            localStorage.setItem("id", JSON.stringify(id));
+            localStorage.setItem(
+              "nickname",
+              JSON.stringify(kakao_account.profile.nickname)
+            );
           } else {
-            console.error('Failed to send token and user info to the server');
+            console.error("Failed to send token and user info to the server");
           }
         })
         .catch((error) => {
-          console.error('Error sending token and user info to the server', error);
+          console.error(
+            "Error sending token and user info to the server",
+            error
+          );
         });
-    } 
+    }
   };
 
   const kakaoOnFailure = (error: any) => {

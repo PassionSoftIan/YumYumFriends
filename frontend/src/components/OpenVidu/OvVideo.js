@@ -16,6 +16,9 @@ export default class OpenViduVideoComponent extends Component {
   }
 
   checkFacePosition(predictions) {
+    if (!this.canvasRef.current) {
+      return false;
+    }
     const canvas = this.canvasRef.current;
     const circleCenterX = canvas.width / 2;
     const circleCenterY = canvas.height * 0.33;
@@ -59,6 +62,10 @@ export default class OpenViduVideoComponent extends Component {
   };
 
   drawMask = (predictions) => {
+    if (!this.canvasRef.current) {
+      return;
+    }
+
     const canvas = this.canvasRef.current;
     const context = canvas.getContext("2d");
 
@@ -114,7 +121,12 @@ export default class OpenViduVideoComponent extends Component {
   };
 
   detectFace = async () => {
-    if (!this.model || !this.mask || !this.videoRef.current) {
+    if (
+      !this.model ||
+      !this.mask ||
+      !this.videoRef.current ||
+      !this.canvasRef.current
+    ) {
       requestAnimationFrame(this.detectFace);
       return;
     }

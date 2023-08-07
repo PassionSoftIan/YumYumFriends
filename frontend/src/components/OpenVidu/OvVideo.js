@@ -3,6 +3,11 @@ import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 // 가면 이미지를 불러옵니다.
 import maskImage from "../../assets/Sticker/tofu-hat.png";
+// import maskImage from "../../assets/Sticker/avocado-hat.png";
+// import maskImage from "../../assets/Sticker/apple-hat.png";
+// import maskImage from "../../assets/Sticker/apricot-hat.png";
+// import maskImage from "../../assets/Sticker/eggplant-hat.png";
+// import maskImage from "../../assets/Sticker/radish-hat.png";
 import GameStage from "./GameStage";
 import axios from "axios";
 
@@ -50,7 +55,7 @@ export default class OpenViduVideoComponent extends Component {
     const dataUrl = canvas.toDataURL("image/jpeg");
     const apiUrl = "http://218.154.242.73:51557/v1/object-detection/yolov5s";
 
-    // console.log(`이미지 전송: ${dataUrl}`);
+    console.log(`이미지 전송: ${dataUrl}`);
 
     axios
       .post(
@@ -77,7 +82,7 @@ export default class OpenViduVideoComponent extends Component {
       this.detectFace();
     });
 
-    this.postCameraInterval = setInterval(this.postCameraScreen, 1000);
+    // this.postCameraInterval = setInterval(this.postCameraScreen, 1000);
   }
 
   componentWillUnmount() {

@@ -15,6 +15,7 @@ interface CarouselItemType {
 
 interface Props {
   carouselList: CarouselItemType[];
+  allYumList: CarouselItemType[];
 }
 
 const Carousel: React.FC<Props> = (props) => {

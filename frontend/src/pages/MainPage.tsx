@@ -40,7 +40,7 @@ const MainPage: React.FC = () => {
   return (
     <div className="main-container">
       <Cloud />
-      {/* <RainFall /> */}
+
       <div className="center">
         <div className="button-container">
           <button

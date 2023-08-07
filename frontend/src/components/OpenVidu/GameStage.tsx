@@ -3,7 +3,6 @@ import Button from "../Common/Button";
 import Banner from "../Common/Banner";
 import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
-import { div } from "@tensorflow/tfjs";
 
 const GameStage: React.FC = () => {
   const [eating, setEating] = useState(0);
@@ -49,12 +48,12 @@ const GameStage: React.FC = () => {
 
   return (
     <div>
-    <React.Fragment>
-      {showModal && <Banner content="천천히 꼭꼭 씹어먹자" />}
-      <Button onClick={handleButtonClick}>
-        Click to Eat {eating}/{maxEating}
-      </Button>
-    </React.Fragment>
+      <React.Fragment>
+        {showModal && <Banner content="천천히 꼭꼭" />}
+        <Button onClick={handleButtonClick}>
+          Click to Eat {eating}/{maxEating}
+        </Button>
+      </React.Fragment>
     </div>
   );
 };

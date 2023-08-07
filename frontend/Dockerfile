@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-COPY --from=build ./build /usr/share/nginx/html
+COPY ./build /usr/share/nginx/html
 
 EXPOSE 3000
 

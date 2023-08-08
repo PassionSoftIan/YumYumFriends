@@ -39,7 +39,8 @@ const SettingsPage: React.FC = () => {
         </li>
         <li>
           <div>
-            <Stepper label="먹는 횟수" unit="회" />
+            {/* <Stepper label="먹는 횟수" unit="회" /> */}
+            <Stepper label="먹는 횟수" />
           </div>
         </li>
       </ul>

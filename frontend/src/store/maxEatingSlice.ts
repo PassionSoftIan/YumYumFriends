@@ -5,7 +5,7 @@ interface MaxEatingState {
 }
 
 const initialState: MaxEatingState = {
-  value: 3,
+  value: 5,
 };
 
 const maxEatingSlice = createSlice({

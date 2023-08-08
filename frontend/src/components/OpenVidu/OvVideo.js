@@ -92,7 +92,6 @@ export default class OpenViduVideoComponent extends Component {
       this.mask = await this.loadMask();
       this.detectFace();
     });
-
     this.postCameraInterval = setInterval(this.postCameraScreen, 200);
   }
 

@@ -13,7 +13,7 @@ const GameStage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
 
-  const maxEating: number = 3;
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
   const navigate = useNavigate();
 
   // showEffects 상태를 가져오기 위해 useSelector 사용

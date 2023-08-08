@@ -11,6 +11,7 @@ import maskImage from "../../assets/Sticker/tofu-hat.png";
 import GameStage from "./GameStage";
 import axios from "axios";
 
+
 export default class OpenViduVideoComponent extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +73,10 @@ export default class OpenViduVideoComponent extends Component {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("Image successfully uploaded:", response.data);
+      console.log("Image successfully uploaded:", response.data.eat);
+      if (response.data.eat === 1) {
+        console.log("밥먹음")
+      }
     } catch (error) {
       console.error("Error uploading image:", error);
     }

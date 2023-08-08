@@ -45,7 +45,7 @@ const GameStage: React.FC = () => {
     if (showEffects) {
       const effectsTimeout = setTimeout(() => {
         dispatch(setShowEffects(false));
-      }, 2000);
+      }, 1500);
 
       return () => clearTimeout(effectsTimeout);
     }

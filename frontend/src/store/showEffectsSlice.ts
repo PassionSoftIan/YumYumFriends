@@ -1,5 +1,6 @@
 // src/store/showEffectsSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from './store'; // Make sure to import RootState from the correct location
 
 interface ShowEffectsState {
   value: boolean;
@@ -20,4 +21,6 @@ const showEffectsSlice = createSlice({
 });
 
 export const { setShowEffects } = showEffectsSlice.actions;
+export const selectShowEffects = (state: RootState) => state.showEffects.value;
+
 export default showEffectsSlice.reducer;

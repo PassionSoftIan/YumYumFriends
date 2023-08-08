@@ -7,18 +7,19 @@ import { useNavigate } from "react-router-dom";
 import { setShowEffects } from "../../store/showEffectsSlice";
 import { RootState } from "../../store/store";
 
-
 const GameStage: React.FC = () => {
   const [eating, setEating] = useState(0);
   const [nowEating, setNowEating] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
 
-  const maxEating: number = 3;
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
   const navigate = useNavigate();
 
   // showEffects 상태를 가져오기 위해 useSelector 사용
-  const showEffects = useSelector((state: RootState) => state.showEffects.value);
+  const showEffects = useSelector(
+    (state: RootState) => state.showEffects.value
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,6 +52,7 @@ const GameStage: React.FC = () => {
     }
   }, [showEffects, dispatch]);
 
+
   const handleButtonClick = () => {
     if (nowEating) {
       setShowModal(true);
@@ -80,7 +82,10 @@ const GameStage: React.FC = () => {
   return (
     <div>
       {showModal && <Banner content="천천히 꼭꼭" />}
-      <Button onClick={handleButtonClick} className={showAnimation ? "animated-button" : ""}>
+      <Button
+        onClick={handleButtonClick}
+        className={showAnimation ? "animated-button" : ""}
+      >
         Click to Eat {eating}/{maxEating}
       </Button>
       {showEffects && <div>이펙트가 보여집니다!</div>}

@@ -1,4 +1,3 @@
-// src/pages/SettingsPage.tsx
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -21,8 +20,6 @@ const SettingsPage: React.FC = () => {
     console.log("효과음 on/off");
   };
 
-  const tempValue = 5;
-
   return (
     <Card>
       <ul className={styles.list}>
@@ -42,7 +39,7 @@ const SettingsPage: React.FC = () => {
         </li>
         <li>
           <div>
-            <Stepper label="먹는 횟수" value={tempValue} unit="회" />
+            <Stepper label="먹는 횟수" unit="회" />
           </div>
         </li>
       </ul>

@@ -4,8 +4,8 @@ import JSConfetti from "js-confetti";
 import MessageModal from "../Common/MessageModal";
 
 interface Yum {
-  name: string;
-  type: string;
+  name: string | undefined;
+  type: string | undefined;
 }
 
 interface Props {
@@ -15,7 +15,6 @@ interface Props {
 const GetStandingYum: React.FC<Props> = ({ yum }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
-  const userID = localStorage.getItem("nickname");
   const navigate = useNavigate();
 
   useEffect(() => {

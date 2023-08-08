@@ -69,17 +69,18 @@
   right: 0;
   width: 20%;
   height: 20%;
+  
 }
-
 .effects-image {
   z-index: 3;
-  position: fixed;
-  bottom: 0;
+  position: absolute; /* position을 absolute로 수정 */
+  bottom: 20px; /* 적절한 값으로 수정해주세요 */
   left: 0;
   width: 20%;
   height: 20%;
   animation: moveEffectBetweenImages 1.5s ease-in-out infinite;
 }
+
 
 @keyframes moveEffectBetweenImages {
   0% {

@@ -1,6 +1,7 @@
 import React from "react";
 import KakaoLogin from "react-kakao-login";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 interface SocialKakaoProps {
   onSuccess: () => void;
@@ -12,11 +13,12 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
 
   const kakaoOnSuccess = (data: any) => {
     console.log("Kakao login success:", data); // 사용자 정보 출력
-    const { idToken, profile } = data.response; // 엑세스 토큰과 사용자 프로필 정보 가져오기
 
     // 프로필 정보가 있을 경우에만 사용자 ID, 이메일, 닉네임 정보를 가져옵니다.
     if (data.profile) {
       const { id, kakao_account } = data.profile; // 사용자 ID, 이메일, 닉네임 정보 가져오기
+      const nickname = kakao_account.profile.nickname;
+      console.log(data.profile.properties.nickname);
 
       // API 요청을 보낼 URL을 생성합니다.
       const apiUrl = `https://yumyumfriends.site/api/v1/kakao/login?id=${id}&email=${kakao_account.email}&nickname=${kakao_account.profile.nickname}`;
@@ -32,10 +34,7 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
 
             // 데이터를 로컬에 저장합니다.
             localStorage.setItem("id", JSON.stringify(id));
-            localStorage.setItem(
-              "nickname",
-              JSON.stringify(kakao_account.profile.nickname)
-            );
+            localStorage.setItem("nickname", JSON.stringify(nickname));
           } else {
             console.error("Failed to send token and user info to the server");
           }
@@ -46,6 +45,9 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
             error
           );
         });
+
+      // Render the NavBar component and pass the nickname as a prop
+      return <NavBar nickname={nickname} />;
     }
   };
 

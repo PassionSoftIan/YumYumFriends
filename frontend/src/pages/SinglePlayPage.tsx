@@ -54,7 +54,7 @@ const SinglePlayPage: React.FC = () => {
           <img src={Others} alt="" className={`others-image ${showImages ? "" : "hidden"}`} id="othersImage" />
         </>
       )}
-      {showEffects && <div className="effects-animation" />} {/* showEffects 상태가 true일 때 이펙트 애니메이션 보여줌 */}
+      {showEffects && <div className="effects-image" />} {/* showEffects 상태가 true일 때 이펙트 애니메이션 보여줌 */}
     </div>
   );
 };

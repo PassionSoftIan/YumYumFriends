@@ -39,6 +39,9 @@
 
   .effects-image {
     animation-duration: 3s; /* 모바일 화면에서의 애니메이션 속도 조정 */
+    width: 20%;
+    height: auto;
+    bottom: 10px; /* 모바일 화면에서 이미지 위치 조정 */
   }
 }
 
@@ -49,7 +52,8 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: 30%;
+  height: auto; /* 이미지 비율 유지를 위해 height를 auto로 설정 */
+  max-height: 30%; /* 최대 높이를 30%로 제한 */
 }
 
 .ours-image {
@@ -58,8 +62,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 20%;
-  height: 20%;
+  width: 30%;
+  height: auto; /* 이미지 비율 유지를 위해 height를 auto로 설정 */
+  max-height: 20%; /* 최대 높이를 20%로 제한 */
 }
 
 .others-image {
@@ -67,17 +72,19 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 20%;
-  height: 20%;
+  width: 30%;
+  height: auto; /* 이미지 비율 유지를 위해 height를 auto로 설정 */
+  max-height: 20%; /* 최대 높이를 20%로 제한 */
   
 }
 .effects-image {
   z-index: 3;
   position: absolute; /* position을 absolute로 수정 */
-  bottom: 20px; /* 적절한 값으로 수정해주세요 */
+  bottom: 3%; /* 적절한 값으로 수정해주세요 */
   left: 0;
-  width: 20%;
-  height: 20%;
+  width: 30%;
+  height: auto; /* 이미지 비율 유지를 위해 height를 auto로 설정 */
+  max-height: 20%; /* 최대 높이를 20%로 제한 */
   animation: moveEffectBetweenImages 1.5s ease-in-out infinite;
 }
 

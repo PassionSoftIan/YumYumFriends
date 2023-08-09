@@ -21,6 +21,7 @@ import SelectPage from "./pages/SelectPage";
 import NavBar from "./components/NavBar/NavBar";
 import AudioPlayer from "./components/Audio/AudioPlayer"; // Use "AudioPlayer" with an uppercase "P"
 
+
 import Sun from "./assets/Common/sun_smile.png";
 import Cloud from "./components/Animation/Cloud";
 import "./App.css";
@@ -28,7 +29,7 @@ import "./App.css";
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <div className="App">
+      <div className="App" >
         <Cloud />
         <header className="App-header">
           <img className="sun-image" src={Sun} alt="" />

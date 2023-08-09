@@ -34,10 +34,11 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
           onSuccess();
           navigate("/main");
           const currentYum = response.data.currentYum
+
           localStorage.setItem("id", JSON.stringify(id));
           localStorage.setItem("nickname", JSON.stringify(nickname));
           localStorage.setItem("currentYum", JSON.stringify(currentYum));
-          // console.log("대표냠: " ,response.data.currentYum);
+
           dispatch(setUserInfo({ id, nickname, currentYum }));
         } else {
           console.error("Failed to send token and user info to the server");

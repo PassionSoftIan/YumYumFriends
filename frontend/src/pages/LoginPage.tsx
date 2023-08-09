@@ -1,5 +1,3 @@
-// LoginPage 컴포넌트 업데이트
-
 import React from "react";
 import logo from "../assets/gametitle.png";
 import { useNavigate } from "react-router-dom";

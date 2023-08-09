@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "../Common/Button";
 import Banner from "../Common/Banner";
 import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
-import { div } from "@tensorflow/tfjs";
+import { setShowEffects } from "../../store/showEffectsSlice";
+import { RootState } from "../../store/store";
 
 const GameStage: React.FC = () => {
   const [eating, setEating] = useState(0);
   const [nowEating, setNowEating] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const maxEating: number = 3;
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
   const navigate = useNavigate();
 
+  // showEffects 상태를 가져오기 위해 useSelector 사용
+  const showEffects = useSelector(
+    (state: RootState) => state.showEffects.value
+  );
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    // 숟갈 유예기간
     if (nowEating) {
       const timeout = setTimeout(() => {
         setNowEating(false);
@@ -22,6 +31,27 @@ const GameStage: React.FC = () => {
       return () => clearTimeout(timeout);
     }
   }, [nowEating]);
+
+  useEffect(() => {
+    if (showAnimation) {
+      const animationTimeout = setTimeout(() => {
+        setShowAnimation(false);
+      }, 2000);
+
+      return () => clearTimeout(animationTimeout);
+    }
+  }, [showAnimation]);
+
+  useEffect(() => {
+    if (showEffects) {
+      const effectsTimeout = setTimeout(() => {
+        dispatch(setShowEffects(false));
+      }, 1500);
+
+      return () => clearTimeout(effectsTimeout);
+    }
+  }, [showEffects, dispatch]);
+
 
   const handleButtonClick = () => {
     if (nowEating) {
@@ -45,16 +75,20 @@ const GameStage: React.FC = () => {
 
     setEating(eating + 1);
     setNowEating(true);
+    setShowAnimation(true);
+    dispatch(setShowEffects(!showEffects));
   };
 
   return (
     <div>
-    <React.Fragment>
-      {showModal && <Banner content="천천히 꼭꼭 씹어먹자" />}
-      <Button onClick={handleButtonClick}>
+      {showModal && <Banner content="천천히 꼭꼭" />}
+      <Button
+        onClick={handleButtonClick}
+        className={showAnimation ? "animated-button" : ""}
+      >
         Click to Eat {eating}/{maxEating}
       </Button>
-    </React.Fragment>
+      {showEffects && <div>이펙트가 보여집니다!</div>}
     </div>
   );
 };

@@ -3,19 +3,30 @@ import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 // 가면 이미지를 불러옵니다.
 import maskImage from "../../assets/Sticker/tofu-hat.png";
+// import maskImage from "../../assets/Sticker/avocado-hat.png";
+// import maskImage from "../../assets/Sticker/apple-hat.png";
+// import maskImage from "../../assets/Sticker/apricot-hat.png";
+// import maskImage from "../../assets/Sticker/eggplant-hat.png";
+// import maskImage from "../../assets/Sticker/radish-hat.png";
 import GameStage from "./GameStage";
+import axios from "axios";
+
 
 export default class OpenViduVideoComponent extends Component {
   constructor(props) {
     super(props);
     this.videoRef = React.createRef();
     this.canvasRef = React.createRef();
+    this.imageRef = React.createRef();
     this.state = {
       showWarning: false,
     };
   }
 
   checkFacePosition(predictions) {
+    if (!this.canvasRef.current) {
+      return false;
+    }
     const canvas = this.canvasRef.current;
     const circleCenterX = canvas.width / 2;
     const circleCenterY = canvas.height * 0.33;
@@ -38,6 +49,39 @@ export default class OpenViduVideoComponent extends Component {
     });
   }
 
+  postCameraScreen = async () => {
+    if (!this.imageRef.current) {
+      return false;
+    }
+    const image = this.imageRef.current;
+    image.width = this.videoRef.current.videoWidth;
+    image.height = this.videoRef.current.videoHeight;
+    const context = image.getContext("2d");
+
+    context.drawImage(this.videoRef.current, 0, 0, image.width, image.height);
+
+    const dataUrl = image.toDataURL("image/jpeg");
+    const apiUrl = "http://218.154.242.73:51557/v1/object-detection/yolov5s";
+
+    try {
+      const formData = new FormData();
+      const blob = await fetch(dataUrl).then((res) => res.blob());
+      formData.append("image", blob, "capture.jpg");
+
+      const response = await axios.post(apiUrl, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("Image successfully uploaded:", response.data.eat);
+      if (response.data.eat === 1) {
+        console.log("밥먹음")
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
   async componentDidMount() {
     if (this.props && !!this.videoRef) {
       this.props.streamManager.addVideoElement(this.videoRef.current);
@@ -48,6 +92,11 @@ export default class OpenViduVideoComponent extends Component {
       this.mask = await this.loadMask();
       this.detectFace();
     });
+    this.postCameraInterval = setInterval(this.postCameraScreen, 200);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.postCameraInterval);
   }
 
   loadMask = async () => {
@@ -59,6 +108,10 @@ export default class OpenViduVideoComponent extends Component {
   };
 
   drawMask = (predictions) => {
+    if (!this.canvasRef.current) {
+      return;
+    }
+
     const canvas = this.canvasRef.current;
     const context = canvas.getContext("2d");
 
@@ -114,7 +167,12 @@ export default class OpenViduVideoComponent extends Component {
   };
 
   detectFace = async () => {
-    if (!this.model || !this.mask || !this.videoRef.current) {
+    if (
+      !this.model ||
+      !this.mask ||
+      !this.videoRef.current ||
+      !this.canvasRef.current
+    ) {
       requestAnimationFrame(this.detectFace);
       return;
     }
@@ -162,6 +220,20 @@ export default class OpenViduVideoComponent extends Component {
             left: 0,
             bottom: 0,
             right: 0,
+          }}
+        />
+        <canvas
+          ref={this.imageRef}
+          style={{
+            width: "inherit",
+            height: "inherit",
+            position: "absolute",
+            objectFit: "cover",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            display: 'none',
           }}
         />
         {this.state.showWarning && ( // 추가된 부분

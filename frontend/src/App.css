@@ -24,23 +24,9 @@
   font-size: calc(10px + 2vmin);
   color: black;
   background-size: cover;
-  background-size: 100% 100%;
-  background-image: repeating-linear-gradient(
-      0deg,
-      #dc9aa2,
-      #dc9aa2 3px,
-      transparent 3px,
-      transparent 30px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      #dc9aa2,
-      #dc9aa2 3px,
-      transparent 3px,
-      transparent 30px
-    );
-  background-size: 100% 60vh; /* 변경된 속성: 너비 100%, 높이 60vh (화면 높이의 60%) */
+  background-image: url("./assets/background_house.svg"); /* 이미지 URL 적용 */
   background-position: center;
+  background-repeat: no-repeat; /* 이미지 반복 없음 */
   z-index: 0.1;
 }
 
@@ -99,23 +85,6 @@
 @media (max-width: 768px) {
   .App-logo {
     height: 20vmin;
-  }
-
-  .App-header {
-    background-image: repeating-linear-gradient(
-        0deg,
-        #dc9aa2,
-        #dc9aa2 2px,
-        transparent 2px,
-        transparent 20px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        #dc9aa2,
-        #dc9aa2 2px,
-        transparent 2px,
-        transparent 20px
-      );
   }
 
   .navbar-container,

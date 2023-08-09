@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import GetYum from "../components/SinglePage/GetYum";
 import "./styles/GameClearPage.css";
 import axios from "axios";
@@ -14,41 +14,31 @@ interface Yum {
 const GameClearPage: React.FC = () => {
   // 여기서 랜덤으로 수집할 냠냠이를 정해줘야함
   // API요청 보내서 설정하자
-  const [randomYum, setrandomYum] = useState<Yum | null>(null);
+  const [randomYum, setrandomYum] = useState<Yum[]>([]);
   const URL = "https://yumyumfriends.site";
-  const numbers = [1, 2, 7, 10, 12, 13];
-  const randomIndex = Math.floor(Math.random() * numbers.length);
-  const randomID = numbers[randomIndex];
-  const userID = localStorage.getItem("id");
 
   useEffect(() => {
-    const RandomGetYum = async () => {
-      try {
-        const response1 = await axios.get(`${URL}/api/v1/yum`, {
-          params: { id: randomID },
-        });
-
-        await axios.post(
-          `${URL}/api/v1/collection/myyum?user=${userID}&yum=${randomID}`
-        );
-
-        setrandomYum(response1.data);
-      } catch (err) {
-        console.log(err);
-      }
+    const RandomGetYum = () => {
+      axios
+        .get(`${URL}/api/v1/yum/all`)
+        .then((data) => {
+          const randomY = Math.floor(Math.random() * data.data.length);
+          setrandomYum(data.data[randomY]);
+        })
+        .catch((err) => console.log(err));
     };
-
     RandomGetYum();
   }, []);
 
   const targetYum = {
-    name: randomYum?.eng,
-    type: randomYum?.name,
+    name: "eggplant",
+    type: "가지맨",
   };
+  console.log(randomYum);
 
   return (
     <div className="game-clear-page">
-      {randomYum && <GetYum yum={targetYum} />}
+      <GetYum yum={targetYum} />
     </div>
   );
 };

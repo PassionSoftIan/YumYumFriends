@@ -52,13 +52,13 @@ const GetStandingYum: React.FC<Props> = ({ yum }) => {
       <h3>안녕!</h3>
       <h3>반가워 친구야</h3>
       <img
-        src={require(`../../assets/StandingYums/${yum.name}.gif`)}
+        src={require(`../../assets/GetYums/${yum.name}_get.gif`)}
         alt="yum image"
         onClick={openModal}
       />
       {isModalOpen && (
         <MessageModal
-          message="냠냠 도감에도 가지맨이 생겼어요!"
+          message={`냠냠 도감에도 ${yum.type}이 생겼어요!`}
           buttonMessage="좋아요"
           onConfirm={closeModal}
         />

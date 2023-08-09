@@ -34,7 +34,7 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
           onSuccess();
           navigate("/main");
           const currentYum = response.data.currentYum
-          console.log("대표냠: ", currentYum);
+
           localStorage.setItem("id", JSON.stringify(id));
           localStorage.setItem("nickname", JSON.stringify(nickname));
           localStorage.setItem("currentYum", JSON.stringify(currentYum));

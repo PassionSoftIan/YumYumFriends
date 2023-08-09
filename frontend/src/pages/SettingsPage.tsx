@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store"; // RootState를 import 해야합니다.
+import { RootState } from "../store/store";
 import { toggleBgm } from "../store/bgmSlice";
 
 import Card from "../components/Common/Card";

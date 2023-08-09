@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-// import { RootState } from "../store/store";
+import { RootState } from "../store/store";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
@@ -12,43 +12,41 @@ import Effects from "../assets/effects/effect_1.png"
 
 const SinglePlayPage: React.FC = () => {
   const [showImages, setShowImages] = useState(true);
-  const showEffects = useSelector(selectShowEffects);
+  const showEffects = useSelector(selectShowEffects); // Use the corrected selector
   const dispatch = useDispatch();
 
+  // 이미지들이 닿았을 때 처리하는 함수
   const handleImageTouch = () => {
-    if (showImages) { // 이미지가 보이는 경우에만 처리
-      setShowImages(false);
-      dispatch(setShowEffects(!showEffects));
-    }
+    setShowImages(false);
+    // 버튼 클릭 시 리덕스 액션을 호출하여 showEffects 상태를 토글
+    dispatch(setShowEffects(!showEffects));
   };
 
   useEffect(() => {
-    const handleTouchMove = (event: TouchEvent) => {
-      handleImageTouch();
-    };
-
-    const oursImageElement = document.getElementById("oursImage");
-    const othersImageElement = document.getElementById("othersImage");
+    const oursImageElement = document.getElementById("oursImage") as HTMLElement | null;
+    const othersImageElement = document.getElementById("othersImage") as HTMLElement | null;
 
     if (oursImageElement && othersImageElement) {
-      oursImageElement.addEventListener("touchmove", handleTouchMove);
-      othersImageElement.addEventListener("touchmove", handleTouchMove);
+      oursImageElement.addEventListener("touchmove", handleImageTouch);
+      othersImageElement.addEventListener("touchmove", handleImageTouch);
     }
 
     return () => {
       if (oursImageElement && othersImageElement) {
-        oursImageElement.removeEventListener("touchmove", handleTouchMove);
-        othersImageElement.removeEventListener("touchmove", handleTouchMove);
+        oursImageElement.removeEventListener("touchmove", handleImageTouch);
+        othersImageElement.removeEventListener("touchmove", handleImageTouch);
       }
     };
-  }, [showImages, dispatch, showEffects]);
+  }, [showEffects, dispatch]);
 
+  // showEffects 상태가 변경될 때 애니메이션 시작
   useEffect(() => {
     if (showEffects) {
+      // 애니메이션 시간(여기서는 2초) 후에 showEffects 상태를 다시 false로 설정
       const animationTimeout = setTimeout(() => {
         dispatch(setShowEffects(false));
       }, 1500);
-
+      console.log(showEffects)
       return () => clearTimeout(animationTimeout);
     }
   }, [showEffects, dispatch]);
@@ -63,7 +61,7 @@ const SinglePlayPage: React.FC = () => {
           <img src={Others} alt="" className={`others-image ${showImages ? "" : "hidden"}`} id="othersImage" />
         </>
       )}
-      {showEffects && <img src={Effects} alt="" className="effects-image" />}
+      {showEffects && <img src={Effects} alt="" className="effects-image" />} {/* showEffects 상태가 true일 때 이펙트 애니메이션 보여줌 */}
     </div>
   );
 };

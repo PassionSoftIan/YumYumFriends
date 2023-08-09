@@ -7,7 +7,7 @@ import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import BackImg from "../assets/background_kitchen.png";
 import Ours from "../assets/before_fight/01_tofu_stand.gif";
 import Others from "../assets/before_fight/32_germ_standing.gif";
-import Effects from "../assets/effects/effect_1.png"
+import Effects from "../assets/effects/1_tofu.png"
 
 
 const SinglePlayPage: React.FC = () => {

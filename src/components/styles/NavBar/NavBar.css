@@ -1,0 +1,41 @@
+/* NavBar.css */
+
+/* 아래 부분을 추가합니다. */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999; /* NavBar가 다른 요소들 위에 렌더링되도록 z-index를 설정합니다. */
+  background-color: transparent;
+}
+
+/* NavBar 컴포넌트 스타일링 */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: transparent; 배경색을 투명하게 설정합니다. */
+  padding: 10px;
+  /* background-color: #ffffff; */
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent; /* 배경색을 투명하게 설정합니다. */
+  border: none; /* 테두리 제거 */
+}
+
+.back-button img {
+  width: 48px; /* 아이콘 크기 조절 */
+  height: 48px;
+}
+
+.back-button i {
+  font-size: 24px;
+  color: #333;
+}
+
+/* 나머지 App.css 파일의 스타일들은 유지합니다. */

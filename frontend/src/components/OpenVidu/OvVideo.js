@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 // 가면 이미지를 불러옵니다.
-import maskImage from "../../assets/Sticker/tofu-hat.png";
-// import maskImage from "../../assets/Sticker/avocado-hat.png";
-// import maskImage from "../../assets/Sticker/apple-hat.png";
-// import maskImage from "../../assets/Sticker/apricot-hat.png";
-// import maskImage from "../../assets/Sticker/eggplant-hat.png";
-// import maskImage from "../../assets/Sticker/radish-hat.png";
+import maskImage1 from "../../assets/Hats/1_tofu_hat.png";
+import maskImage2 from "../../assets/Hats/2_mandarin_hat.png";
+import maskImage7 from "../../assets/Hats/7_egg_hat.png";
+import maskImage10 from "../../assets/Hats/10_eggplant_hat.png";
+import maskImage12 from "../../assets/Hats/12_avocado_hat.png";
+import maskImage13 from "../../assets/Hats/13_apple_hat.png";
+
 import GameStage from "./GameStage";
 import axios from "axios";
-
 
 export default class OpenViduVideoComponent extends Component {
   constructor(props) {
@@ -75,7 +75,7 @@ export default class OpenViduVideoComponent extends Component {
       });
       console.log("Image successfully uploaded:", response.data.eat);
       if (response.data.eat === 1) {
-        console.log("밥먹음")
+        console.log("밥먹음");
       }
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -102,6 +102,33 @@ export default class OpenViduVideoComponent extends Component {
   loadMask = async () => {
     return new Promise((resolve) => {
       const img = new Image();
+      const id = localStorage.getItem("currentYum");
+      let maskImage;
+
+      switch (id) {
+        case "1":
+          maskImage = maskImage1;
+          break;
+        case "2":
+          maskImage = maskImage2;
+          break;
+        case "7":
+          maskImage = maskImage7;
+          break;
+        case "10":
+          maskImage = maskImage10;
+          break;
+        case "12":
+          maskImage = maskImage12;
+          break;
+        case "13":
+          maskImage = maskImage13;
+          break;
+        default:
+          console.error("Unexpected id value:", id);
+          return;
+      }
+
       img.src = maskImage;
       img.onload = () => resolve(img);
     });
@@ -233,7 +260,7 @@ export default class OpenViduVideoComponent extends Component {
             left: 0,
             bottom: 0,
             right: 0,
-            display: 'none',
+            display: "none",
           }}
         />
         {this.state.showWarning && ( // 추가된 부분

@@ -6,6 +6,7 @@ import { combineReducers } from 'redux'; // 추가
 import bgmReducer from './bgmSlice';
 import showEffectsReducer from './showEffectsSlice';
 import maxEatingReducer from './maxEatingSlice';
+import userReducer from './userSlice';
 
 const persistConfig = {
   key: 'root',
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   bgm: bgmReducer,
   showEffects: showEffectsReducer,
   maxEating: maxEatingReducer,
+  user: userReducer,
   // Add other reducers if needed
 });
 

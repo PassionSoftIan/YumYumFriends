@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux"; // 추가: 리덕스 스토어의 프로바이더를 import
-import store from "./store/store"; // 추가: 리덕스 스토어 import
+import {store} from "./store/store"; // 추가: 리덕스 스토어 import
 import "./index.css";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";

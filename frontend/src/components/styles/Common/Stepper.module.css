@@ -1,8 +1,50 @@
-.disabled {
-  background-color: #dcdcdc;
+.stepper-container {
+  display: flex;
+  align-items: center;
+}
+
+.span-disabled {
   cursor: not-allowed;
+  color: gray;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background: transparent;
+  box-shadow: none;
+  margin-top: 0;
 }
 
 .label {
   margin: 10px;
+}
+
+.button {
+  background: transparent;
+  box-shadow: none;
+  margin-top: 0;
+  padding: 5px 15px;
+}
+
+.button-span {
+  color: #483b3b;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.value-container {
+  padding: 0 20px;
+  border: 2px solid #ffd1d1;
+  border-radius: 10px;
+  margin: 0 5px;
+}
+
+.button:hover {
+  background-color: #ffd1d1;
+}
+
+.disabled:hover {
+  background-color: lightgray;
 }

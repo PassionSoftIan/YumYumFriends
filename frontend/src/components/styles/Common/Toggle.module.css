@@ -19,7 +19,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #2c3e50;
+  background: #cacaca;
   transition: 0.3s;
   border-radius: 30px;
 }
@@ -37,7 +37,7 @@
 }
 
 .checked {
-  background-color: #00c853;
+  background-color: #49a965;
 }
 
 .checked:before {

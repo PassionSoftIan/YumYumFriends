@@ -2,131 +2,157 @@
   "characters": [
     {
       "name": "두부맨",
+      "eng": "1_tofu",
       "personality": "용감하고 지혜로운 리더",
       "strengths": "힘과 지혜를 갖추어 팀을 이끄는 능력, 신뢰받는 존재"
     },
     {
       "name": "살구걸",
+      "eng": "2_mandarin",
       "personality": "활기차고 쾌활한 탐험가",
       "strengths": "민첩한 움직임, 기민한 상황 대처 능력"
     },
     {
       "name": "햄버거맨",
+      "eng": "3_hamburger",
       "personality": "힘과 건강을 상징하는 캐릭터",
       "strengths": "강력한 근육과 끈질긴 인내력, 어려운 장애물을 넘어갈 수 있는 힘"
     },
     {
       "name": "아이스크림걸",
+      "eng": "4_icecream",
       "personality": "밝고 유쾌한 성격, 사랑과 즐거움을 전하는 역할",
       "strengths": "마법 같은 아이스크림 기술, 어려운 상황을 해결하는 데 도움"
     },
     {
       "name": "무맨",
+      "eng": "5_radish",
       "personality": "무자비한 전투력과 용감한 마음을 가진 전사",
       "strengths": "강력한 주먹으로 적을 제압하는 능력"
     },
     {
       "name": "열무걸",
+      "eng": "6_Korean_radish",
       "personality": "활기찬 성격과 춤, 음악을 통해 상황을 해결하는 역할",
       "strengths": "춤과 음악을 활용하여 팀을 지원하고 상황을 변화시키는 능력"
     },
     {
       "name": "에그걸",
+      "eng": "7_egg",
       "personality": "에너지와 창의성을 상징하는 캐릭터",
       "strengths": "창조적인 아이디어와 창조력으로 팀원들을 지원하는 능력"
     },
     {
       "name": "에그보이",
+      "eng": "8_sunrise",
       "personality": "에너지와 희망을 상징하는 역할",
       "strengths": "희망의 메시지, 상황을 밝게 변화시키는 능력"
     },
     {
       "name": "토마토맨",
+      "eng": "9_tomato",
       "personality": "건강과 영양을 상징하는 캐릭터",
       "strengths": "파워풀한 에너지, 필요한 영양소 제공"
     },
     {
       "name": "가지맨",
+      "eng": "10_eggplant",
       "personality": "창의성과 유연성을 상징하는 캐릭터",
       "strengths": "유연한 몸놀림, 창의적인 해결책 제시"
     },
     {
       "name": "양파걸",
+      "eng": "11_Green_onion",
       "personality": "친절하고 따뜻한 성격을 가지고 있는 캐릭터",
       "strengths": "감정의 변화에 따라 상황을 해결하는 능력"
     },
     {
       "name": "아보카도맨",
+      "eng": "12_avocado",
       "personality": "영양과 건강을 상징하는 캐릭터",
       "strengths": "아보카도를 활용한 다양한 능력, 팀원들의 보호와 지원"
     },
     {
       "name": "사과걸",
+      "eng": "13_apple",
       "personality": "지혜롭고 지식을 상징하는 캐릭터",
       "strengths": "지식과 분석력을 활용하여 어려운 문제를 해결하는 능력"
     },
     {
       "name": "바나나맨",
+      "eng": "14_banana",
       "personality": "활기찬 성격과 유머를 상징하는 캐릭터",
       "strengths": "유쾌한 에너지와 유머, 웃음과 재미로 상황을 해결하는 능력"
     },
     {
       "name": "호박걸",
+      "eng": "15_pumpkin",
       "personality": "신비함과 힐링을 상징하는 캐릭터",
       "strengths": "마법과 신비한 능력을 활용하여 팀원들을 지원하고 어려운 상황을 극복하는 능력"
     },
     {
       "name": "감튀맨",
+      "eng": "16_friedpo",
       "personality": "장난과 유쾌함을 상징하는 캐릭터",
       "strengths": "감튀를 사용하여 상황을 재미있게 바꾸는 능력"
     },
     {
       "name": "피자걸",
+      "eng": "17_pizza",
       "personality": "다양한 맛과 치즈를 상징하는 캐릭터",
       "strengths": "다양한 마법과 요리 능력으로 팀원들을 보호하고 지원하는 능력"
     },
     {
       "name": "파인애플맨",
+      "eng": "18_pineapple",
       "personality": "상쾌함과 활력을 상징하는 캐릭터",
       "strengths": "상큼한 에너지와 특기로 팀원들의 체력을 회복시키고 활력을 불어넣는 능력"
     },
     {
       "name": "파프리카맨",
+      "eng": "19_paprica",
       "personality": "다양한 색상과 매운맛을 상징하는 캐릭터",
       "strengths": "화려한 색상과 특기로 상황을 화려하게 바꾸고 적들을 혼란에 빠뜨리는 능력"
     },
     {
       "name": "당근맨",
+      "eng": "20_carrot",
       "personality": "건강과 성장을 상징하는 캐릭터",
       "strengths": "당근의 힘과 영양으로 팀원들의 체력을 회복시키고 건강을 보호하는 능력"
     },
     {
       "name": "브로콜리걸",
+      "eng": "21_broccoli",
       "personality": "영양과 건강을 상징하는 캐릭터",
       "strengths": "영양과 지식을 활용하여 팀원들의 체력과 지능을 향상시키는 능력"
     },
     {
       "name": "수박맨",
+      "eng": "22_watermelon",
       "personality": "상쾌함과 청량감을 상징하는 캐릭터",
       "strengths": "수박의 힘과 수분으로 팀원들을 상쾌하게 하고 갈증을 해소해주는 능력"
     },
     {
       "name": "옥수수맨",
+      "eng": "23_corn",
       "personality": "영양과 힘을 상징하는 캐릭터",
       "strengths": "옥수수의 힘과 영양으로 팀원들을 보호하고 힘을 보충하는 능력"
     },
     {
       "name": "버섯걸",
+      "eng": "24_mushroom",
       "personality": "신비함과 힐링을 상징하는 캐릭터",
       "strengths": "마법과 치유 능력을 활용하여 팀원들을 치유하고 상처를 치료하는 능력"
     },
     {
       "name": "주먹밥맨",
+      "eng": "25_rice",
       "personality": "따뜻한 가족의 정을 상징하는 캐릭터",
       "strengths": "주먹밥을 사용하여 팀원들을 힐링시키고 가족같은 분위기를 조성하는 능력"
     },
     {
       "name": "감자맨",
+      "eng": "26_potato",
       "personality": "영양과 온기를 상징하는 캐릭터",
       "strengths": "감자의 힘과 영양으로 팀원들을 보호하고 힘을 보충하는 능력"
     }

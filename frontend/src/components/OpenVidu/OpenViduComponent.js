@@ -4,17 +4,21 @@ import React, { Component } from "react";
 // import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
 
+import "./OpenViduComponent.css";
+
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
 
 class OpenViduComponent extends Component {
   constructor(props) {
     super(props);
+    const UserID = localStorage.getItem("id");
+    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     // These properties are in the state's component in order to re-render the HTML whenever their values change
     this.state = {
-      mySessionId: "E201",
-      myUserName: "Participant" + Math.floor(Math.random() * 100),
+      mySessionId: UserID,
+      myUserName: UserName,
       session: undefined,
       mainStreamManager: undefined, // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
       publisher: undefined,
@@ -23,36 +27,28 @@ class OpenViduComponent extends Component {
 
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
+    this.onbeforeunload = this.onbeforeunload.bind(this);
+
+    ///임시삭제할거
     this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
-    this.onbeforeunload = this.onbeforeunload.bind(this);
+    ///
   }
 
   componentDidMount() {
     // 입장
     // this.joinSession();
-
     window.addEventListener("beforeunload", this.onbeforeunload);
+    // this.joinSession();
   }
 
   componentWillUnmount() {
+    this.leaveSession();
     window.removeEventListener("beforeunload", this.onbeforeunload);
   }
 
   onbeforeunload(event) {
     this.leaveSession();
-  }
-
-  handleChangeSessionId(e) {
-    this.setState({
-      mySessionId: e.target.value,
-    });
-  }
-
-  handleChangeUserName(e) {
-    this.setState({
-      myUserName: e.target.value,
-    });
   }
   deleteSubscriber(streamManager) {
     let subscribers = this.state.subscribers;
@@ -64,6 +60,21 @@ class OpenViduComponent extends Component {
       });
     }
   }
+
+  ///임시 삭제할꺼
+  handleChangeSessionId(e) {
+    this.setState({
+      mySessionId: e.target.value,
+    });
+  }
+
+  handleChangeUserName(e) {
+    this.setState({
+      myUserName: e.target.value,
+    });
+  }
+
+  ///
 
   joinSession() {
     // --- 1) Get an OpenVidu object ---
@@ -78,6 +89,9 @@ class OpenViduComponent extends Component {
       },
       () => {
         var mySession = this.state.session;
+        console.log('--------------------------------')
+        console.log(mySession)
+        this.props.onObjectCreated(mySession);
 
         // --- 3) Specify the actions when events take place in the session ---
 
@@ -170,6 +184,8 @@ class OpenViduComponent extends Component {
     // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
     const mySession = this.state.session;
+    const UserID = localStorage.getItem("id");
+    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     if (mySession) {
       mySession.disconnect();
@@ -180,8 +196,8 @@ class OpenViduComponent extends Component {
     this.setState({
       session: undefined,
       subscribers: [],
-      mySessionId: "SessionA",
-      myUserName: "Participant" + Math.floor(Math.random() * 100),
+      mySessionId: UserID,
+      myUserName: UserName,
       mainStreamManager: undefined,
       publisher: undefined,
     });

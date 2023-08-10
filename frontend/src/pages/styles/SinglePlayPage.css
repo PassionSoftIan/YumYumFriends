@@ -60,10 +60,10 @@
 .effects-image {
   z-index: 3;
   position: absolute;
-  bottom: 0; /* 적절한 값으로 수정해주세요 */
+  bottom: 20%; /* 적절한 값으로 수정해주세요 */
   left: 0;
-  width: 40%;
-  height: auto;
+  width: 30%;
+  height: auto; 
   animation: moveEffectBetweenImages 1.5s ease-in-out infinite;
 }
 
@@ -85,4 +85,8 @@
 .others-image.hidden {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+}
+.small-image {
+  width: 100px;
+  height: auto; 
 }

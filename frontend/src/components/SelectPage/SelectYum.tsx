@@ -56,7 +56,7 @@ const SelectYum: React.FC = () => {
         })
         .catch((err) => console.log(err));
     } else {
-      alert("마 니가 있는 캐릭터 써라이새이야 자물쇠안보이나");
+      alert("마 니가 있는 캐릭터만 써라 자물쇠안보이나");
     }
   };
 

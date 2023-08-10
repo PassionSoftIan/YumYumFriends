@@ -43,6 +43,7 @@ class OpenViduComponent extends Component {
   }
 
   componentWillUnmount() {
+    this.leaveSession();
     window.removeEventListener("beforeunload", this.onbeforeunload);
   }
 
@@ -180,6 +181,8 @@ class OpenViduComponent extends Component {
     // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
     const mySession = this.state.session;
+    const UserID = localStorage.getItem("id");
+    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     if (mySession) {
       mySession.disconnect();
@@ -190,8 +193,8 @@ class OpenViduComponent extends Component {
     this.setState({
       session: undefined,
       subscribers: [],
-      mySessionId: "SessionA",
-      myUserName: "Participant" + Math.floor(Math.random() * 100),
+      mySessionId: UserID,
+      myUserName: UserName,
       mainStreamManager: undefined,
       publisher: undefined,
     });

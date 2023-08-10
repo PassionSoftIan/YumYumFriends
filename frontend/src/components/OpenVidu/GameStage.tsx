@@ -55,33 +55,46 @@ const GameStage: React.FC = () => {
     }
   }, [showEffects, dispatch]);
 
+  const [isCooldown, setIsCooldown] = useState(false); // 초기 값은 false로 설정
+
   useEffect(() => {
-    if (detection && !prevDetection.current) {
+    if (detection && !prevDetection.current && !isCooldown) {
+      setShowAnimation(true);
+      dispatch(setShowEffects(!showEffects));
+  
       if (nowEating) {
         setShowModal(true);
         setTimeout(() => {
           setShowModal(false);
-        }, 1000);
+        }, 5000);
         return;
       }
-
+  
       if (eating === maxEating - 1) {
-        console.log("Session terminated with success!");
-        const jsConfetti = new JSConfetti();
-        jsConfetti.addConfetti({
-          emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
-          emojiSize: 80,
-          confettiNumber: 50,
-        });
-        navigate("/gameclear");
+        setTimeout(() => {
+          console.log("Session terminated with success!");
+          const jsConfetti = new JSConfetti();
+          jsConfetti.addConfetti({
+            emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
+            emojiSize: 80,
+            confettiNumber: 50,
+          });
+          navigate("/gameclear");
+        }, 4000); // 4초 뒤에 작동하도록 설정
       }
-
+  
       setEating((prevEating) => prevEating + 1);
       setNowEating(true);
       setShowAnimation(true);
       dispatch(setShowEffects(!showEffects));
+  
+      setIsCooldown(true); // 실행 후 차단 상태로 변경
+  
+      setTimeout(() => {
+        setIsCooldown(false); // 3초 후 차단 해제
+      }, 10000); // 10초 뒤에 차단 해제
     }
-
+  
     prevDetection.current = detection;
   }, [detection]);
 
@@ -95,14 +108,16 @@ const GameStage: React.FC = () => {
     }
 
     if (eating === maxEating - 1) {
-      console.log("Session terminated with success!");
-      const jsConfetti = new JSConfetti();
-      jsConfetti.addConfetti({
-        emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
-        emojiSize: 80,
-        confettiNumber: 50,
-      });
-      navigate("/gameclear");
+      setTimeout(() => {
+        console.log("Session terminated with success!");
+        const jsConfetti = new JSConfetti();
+        jsConfetti.addConfetti({
+          emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
+          emojiSize: 80,
+          confettiNumber: 50,
+        });
+        navigate("/gameclear");
+      }, 4000); // 4초 뒤에 작동하도록 설정
     }
 
     setEating(eating + 1);

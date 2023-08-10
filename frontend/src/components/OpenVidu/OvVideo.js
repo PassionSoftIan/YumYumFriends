@@ -90,7 +90,10 @@ class OpenViduVideoComponent extends Component {
           this.detectionTimer = setTimeout(() => {
             this.props.setDetection(false);
           }, 1000);
-        } 
+        }
+        //  else {
+        //   this.props.setDetection(false);
+        // }
       }
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -313,4 +316,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(OpenViduVideoComponent);
-

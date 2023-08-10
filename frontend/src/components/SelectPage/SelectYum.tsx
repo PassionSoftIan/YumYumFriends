@@ -8,8 +8,30 @@ const SelectYum: React.FC = () => {
   const acquiredYumIds = [1, 2, 4]; 
 
   const handleSelectedYum = () => {
+<<<<<<< HEAD
     console.log('유저의 대표냠 설정 요청 보내기')
   }
+=======
+    const idx = centerIndex.current;
+    const checkMyYum = yumList.some((item) => item.id === allList[idx].id);
+    if (checkMyYum) {
+      axios
+        .put(`${URL}/api/v1/user/setyum?user=${userID}&yum=${allList[idx].id}`)
+        .then((data) => {
+          console.log(data);
+          localStorage.setItem("currentYum", `${allList[idx].id}`);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      alert("마 니가 있는 캐릭터만 써라 자물쇠안보이나");
+    }
+  };
+
+  const handleCenterIndexChange = (index: any) => {
+    centerIndex.current = index;
+    // console.log(centerIndex.current);
+  };
+>>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
 
   return (
     <React.Fragment>

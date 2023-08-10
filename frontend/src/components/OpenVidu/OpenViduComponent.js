@@ -4,8 +4,7 @@ import React, { Component } from "react";
 // import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
 
-import "./OpenViduComponent.css"
-
+import "./OpenViduComponent.css";
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
@@ -13,11 +12,13 @@ const APPLICATION_SERVER_URL =
 class OpenViduComponent extends Component {
   constructor(props) {
     super(props);
+    const UserID = localStorage.getItem("id");
+    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     // These properties are in the state's component in order to re-render the HTML whenever their values change
     this.state = {
-      mySessionId: "E201",
-      myUserName: "Participant" + Math.floor(Math.random() * 100),
+      mySessionId: UserID,
+      myUserName: UserName,
       session: undefined,
       mainStreamManager: undefined, // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
       publisher: undefined,
@@ -26,16 +27,14 @@ class OpenViduComponent extends Component {
 
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
-    this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
-    this.handleChangeUserName = this.handleChangeUserName.bind(this);
     this.onbeforeunload = this.onbeforeunload.bind(this);
   }
 
   componentDidMount() {
     // 입장
     // this.joinSession();
-
     window.addEventListener("beforeunload", this.onbeforeunload);
+    this.joinSession();
   }
 
   componentWillUnmount() {
@@ -44,18 +43,6 @@ class OpenViduComponent extends Component {
 
   onbeforeunload(event) {
     this.leaveSession();
-  }
-
-  handleChangeSessionId(e) {
-    this.setState({
-      mySessionId: e.target.value,
-    });
-  }
-
-  handleChangeUserName(e) {
-    this.setState({
-      myUserName: e.target.value,
-    });
   }
   deleteSubscriber(streamManager) {
     let subscribers = this.state.subscribers;
@@ -191,48 +178,11 @@ class OpenViduComponent extends Component {
   }
 
   render() {
-    const mySessionId = this.state.mySessionId;
-    const myUserName = this.state.myUserName;
-
     return (
       <div className="container">
         {this.state.session === undefined ? (
           <div id="join">
-            <div id="join-dialog" className="jumbotron vertical-center">
-              <h1>캐릭터 선택, 입장</h1>
-              <form className="form-group" onSubmit={this.joinSession}>
-                <p>
-                  <label>Participant: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="userName"
-                    value={myUserName}
-                    onChange={this.handleChangeUserName}
-                    required
-                  />
-                </p>
-                <p>
-                  <label> Session: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="sessionId"
-                    value={mySessionId}
-                    onChange={this.handleChangeSessionId}
-                    required
-                  />
-                </p>
-                <p className="text-center">
-                  <input
-                    className="btn btn-lg btn-success"
-                    name="commit"
-                    type="submit"
-                    value="JOIN"
-                  />
-                </p>
-              </form>
-            </div>
+            <h1>입장대기중</h1>
           </div>
         ) : (
           // 싱글 모드

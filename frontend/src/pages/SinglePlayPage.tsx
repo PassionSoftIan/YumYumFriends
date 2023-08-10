@@ -7,10 +7,10 @@ import useImageEffect from "../hooks/useImage/useImageEffect";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
+import BackImg from "../assets/playback.png";
 import Ours from "../assets/before_fight/01_tofu_stand.gif";
 import OursAttack from "../assets/AttackingYums/01_tofu_attack.gif";
 import Others from "../assets/before_fight/32_germ_standing.gif";
-import Effects from "../assets/effects/1_tofu.png";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
 
 const SinglePlayPage: React.FC = () => {
@@ -20,6 +20,8 @@ const SinglePlayPage: React.FC = () => {
   const ourImageSrc = useImageSrc();
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
+  const [mySession, setMySession] = useState(null);
+  const handleMySession = (obj:any) => { setMySession(obj); };
 
   // 이미지들이 닿았을 때 처리하는 함수
   const handleImageTouch = () => {
@@ -27,8 +29,6 @@ const SinglePlayPage: React.FC = () => {
     // 버튼 클릭 시 리덕스 액션을 호출하여 showEffects 상태를 토글
     dispatch(setShowEffects(!showEffects));
   };
-
-
 
   useEffect(() => {
     const oursImageElement = document.getElementById(
@@ -65,10 +65,11 @@ const SinglePlayPage: React.FC = () => {
 
   return (
     <div className="single-play-page">
-      <OpenViduComponent />
+      <OpenViduComponent onObjectCreated= {handleMySession} />
       <div className="images-container">
         {showImages && (
           <div className="images">
+            <img src={BackImg} alt="" className="overlay-image" />
             <img
               src={showEffects ? ourImageAttack : ourImageSrc}
               alt=""
@@ -86,7 +87,9 @@ const SinglePlayPage: React.FC = () => {
             />
           </div>
         )}
-        {showEffects && <img src={ourImageEffect} alt="" className="effects-image" />}
+        {showEffects && (
+          <img src={ourImageEffect} alt="" className="effects-image" />
+        )}
       </div>
     </div>
   );

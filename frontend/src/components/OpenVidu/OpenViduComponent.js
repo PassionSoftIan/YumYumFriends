@@ -89,6 +89,9 @@ class OpenViduComponent extends Component {
       },
       () => {
         var mySession = this.state.session;
+        console.log('--------------------------------')
+        console.log(mySession)
+        this.props.onObjectCreated(mySession);
 
         // --- 3) Specify the actions when events take place in the session ---
 

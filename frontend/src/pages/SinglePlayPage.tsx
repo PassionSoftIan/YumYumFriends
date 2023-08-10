@@ -7,17 +7,24 @@ import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import BackImg from "../assets/background_kitchen.png";
 import Ours from "../assets/before_fight/01_tofu_stand.gif";
 import Others from "../assets/before_fight/32_germ_standing.gif";
+
 import Effects from "../assets/effects/effect_1.png"
+import ProgressBar from "../components/Common/ProgressBar";
 
 
 const SinglePlayPage: React.FC = () => {
   const [showImages, setShowImages] = useState(true);
   const showEffects = useSelector(selectShowEffects); // Use the corrected selector
   const dispatch = useDispatch();
+
   const [mySession, setMySession] = useState<any>(null);
   const handleMySession= (obj:any) => {
     setMySession(obj);
   };
+  const eating = useSelector((state: RootState) => state.eating.value);
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
+  const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
+
 
   // 이미지들이 닿았을 때 처리하는 함수
   const handleImageTouch = () => {
@@ -92,6 +99,7 @@ const SinglePlayPage: React.FC = () => {
         <>
           <img src={BackImg} alt="" className="overlay-image" />
           <img src={Ours} alt="" className={`ours-image ${showImages ? "" : "hidden"}`} id="oursImage" />
+          <ProgressBar className="progress-bar" completed={hitPoints}/>
           <img src={Others} alt="" className={`others-image ${showImages ? "" : "hidden"}`} id="othersImage" />
         </>
       )}

@@ -4,7 +4,6 @@ interface UserState {
   id: string | null;
   nickname: string;
   currentYum: string;
-
 }
 
 const initialState: UserState = {

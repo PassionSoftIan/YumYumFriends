@@ -6,6 +6,7 @@ import { combineReducers } from 'redux';
 import bgmReducer from './bgmSlice';
 import showEffectsReducer from './showEffectsSlice';
 import maxEatingReducer from './maxEatingSlice';
+import eatingReducer from './eatingSlice';
 import userReducer from './userSlice';
 import detectionReducer from './detectionSlice';
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   maxEating: maxEatingReducer,
   user: userReducer,
   detection: detectionReducer,
+  eating: eatingReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

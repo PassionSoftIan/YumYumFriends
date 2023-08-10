@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../Common/Button";
 import Banner from "../Common/Banner";
@@ -15,6 +15,9 @@ const GameStage: React.FC = () => {
 
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
   const navigate = useNavigate();
+
+  const detection = useSelector((state: RootState) => state.detection.value);
+  const prevDetection = useRef(detection);
 
   // showEffects 상태를 가져오기 위해 useSelector 사용
   const showEffects = useSelector(
@@ -52,6 +55,35 @@ const GameStage: React.FC = () => {
     }
   }, [showEffects, dispatch]);
 
+  useEffect(() => {
+    if (detection && !prevDetection.current) {
+      if (nowEating) {
+        setShowModal(true);
+        setTimeout(() => {
+          setShowModal(false);
+        }, 1000);
+        return;
+      }
+
+      if (eating === maxEating - 1) {
+        console.log("Session terminated with success!");
+        const jsConfetti = new JSConfetti();
+        jsConfetti.addConfetti({
+          emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
+          emojiSize: 80,
+          confettiNumber: 50,
+        });
+        navigate("/gameclear");
+      }
+
+      setEating((prevEating) => prevEating + 1);
+      setNowEating(true);
+      setShowAnimation(true);
+      dispatch(setShowEffects(!showEffects));
+    }
+
+    prevDetection.current = detection;
+  }, [detection]);
 
   const handleButtonClick = () => {
     if (nowEating) {

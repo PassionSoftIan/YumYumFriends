@@ -1,78 +1,74 @@
-/* BottomNavBar.css */
-
-/* ... (이전 스타일 내용) ... */
-
 /* ProfilePage.css */
+
+.profile-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 .profile-page {
   position: relative;
-  width: 360px;
-  height: 800px;
+  max-width: 360px;
+  height: auto;
   background: #fff5e4;
   padding: 20px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.profile-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+.background-image {
+  background-image: url("../../assets/background_cafe.png");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  border-radius: 10px;
 }
 
-.profile-header h1 {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 28px;
-  color: #000000;
-  margin-right: 10px;
-}
-
-.profile-header img {
-  width: 60px;
-  height: 60px;
+.profile-picture {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
+  overflow: hidden;
+  margin-top: -60px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.profile-details p {
-  font-family: "Gaegu";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  color: #000000;
-  margin-bottom: 5px;
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.profile-buttons {
+.profile-info {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
-.profile-buttons button {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  color: #000000;
-  background: #ff9494;
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.info-item {
+  text-align: center;
 }
 
-.profile-buttons button:hover {
-  background-color: #fff5e4;
+.info-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
 }
 
-/* ProfilePage.css */
+.info-count {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
 
-/* ... (기존 스타일) ... */
-
-/* 모달 스타일 */
 .modal {
   position: fixed;
   top: 0;
@@ -86,16 +82,18 @@
 }
 
 .modal-content {
-  max-width: 90%; /* 모달 창의 최대 너비 (90% 화면 너비) */
-  max-height: 90%; /* 모달 창의 최대 높이 (90% 화면 높이) */
-  overflow: auto; /* 너비와 높이를 벗어나면 스크롤 생성 */
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
   padding: 16px;
   background-color: #fff;
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal h2 {
   margin-top: 0;
+  color: #ff6b6b; /* Fun and playful color for the modal header */
 }
 
 .yum-list {
@@ -110,6 +108,7 @@
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .yum-item img {
@@ -119,5 +118,37 @@
 }
 
 .yum-item.selected {
-  border: 2px solid #007bff;
+  border: 2px solid #ff6b6b; /* Use a fun and playful color for the selected yum */
+}
+
+/* Media Queries for Mobile Devices */
+@media only screen and (max-width: 480px) {
+  .profile-page {
+    max-width: 100%; /* Change to max-width instead of fixed width */
+  }
+
+  .background-image {
+    height: 150px;
+    border-radius: 0;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+  }
+
+  .info-item {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .info-count {
+    font-size: 16px;
+  }
+
+  .yum-item {
+    width: 36px;
+    height: 36px;
+  }
 }

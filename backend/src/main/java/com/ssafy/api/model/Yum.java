@@ -27,7 +27,7 @@ public class Yum {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private int ID;
+	private long ID;
 
 	@Column(name = "name")
 	private String name;

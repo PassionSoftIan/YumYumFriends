@@ -6,7 +6,6 @@ import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
 import { setShowEffects } from "../../store/showEffectsSlice";
 import { RootState } from "../../store/store";
-import styles from "./GameStage.module.css";
 
 const GameStage: React.FC = () => {
   const [eating, setEating] = useState(0);
@@ -114,7 +113,7 @@ const GameStage: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className={styles.container}>
+      <div>
         {showModal && <Banner content="천천히 꼭꼭" />}
         <Button
           onClick={handleButtonClick}

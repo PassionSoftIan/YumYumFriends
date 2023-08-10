@@ -20,7 +20,7 @@ const SinglePlayPage: React.FC = () => {
   const ourImageSrc = useImageSrc();
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
-  const [mySession, setMySession] = useState(null);
+  const [mySession, setMySession] = useState<any>(null);
   const handleMySession = (obj:any) => { setMySession(obj); };
 
   // 이미지들이 닿았을 때 처리하는 함수
@@ -54,14 +54,44 @@ const SinglePlayPage: React.FC = () => {
   // showEffects 상태가 변경될 때 애니메이션 시작
   useEffect(() => {
     if (showEffects) {
+      
+      // 관전자들에게 공격 여부를 전송, showEffects(아마 true/false) 값을 전달
+      if(mySession != null){
+        mySession.signal({
+          data: true,  // Any string (optional)
+          to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+          type: 'attack-state'             // The type of message (optional)
+        }).then(() => {
+          console.log('Message successfully sent');
+        }).catch((error:any) => {
+          console.error(error);
+        });
+      }
+
       // 애니메이션 시간(여기서는 2초) 후에 showEffects 상태를 다시 false로 설정
       const animationTimeout = setTimeout(() => {
         dispatch(setShowEffects(false));
+        if(mySession != null){
+          mySession.signal({
+            data: false,  // Any string (optional)
+            to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+            type: 'attack-state'             // The type of message (optional)
+          }).then(() => {
+            console.log('Message successfully sent');
+          }).catch((error:any) => {
+            console.error(error);
+          });
+        }
       }, 1500);
-      console.log(showEffects);
+      console.log(showEffects)
+
       return () => clearTimeout(animationTimeout);
     }
   }, [showEffects, dispatch]);
+
+  useEffect(() => {
+    console.log(mySession);
+  }, [mySession]);
 
   return (
     <div className="single-play-page">

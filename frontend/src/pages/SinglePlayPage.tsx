@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import useImageSrc from "../hooks/useImage/useImageSrc";
 import useImageAttack from "../hooks/useImage/useImageAttack";
+import useImageEffect from "../hooks/useImage/useImageEffect";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
@@ -18,6 +19,7 @@ const SinglePlayPage: React.FC = () => {
   const dispatch = useDispatch();
   const ourImageSrc = useImageSrc();
   const ourImageAttack = useImageAttack();
+  const ourImageEffect = useImageEffect();
 
   // 이미지들이 닿았을 때 처리하는 함수
   const handleImageTouch = () => {
@@ -84,7 +86,7 @@ const SinglePlayPage: React.FC = () => {
             />
           </div>
         )}
-        {showEffects && <img src={Effects} alt="" className="effects-image" />}
+        {showEffects && <img src={ourImageEffect} alt="" className="effects-image" />}
       </div>
     </div>
   );

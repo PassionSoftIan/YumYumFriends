@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import BackImg from "../assets/background_kitchen.png";
 import Ours from "../assets/before_fight/01_tofu_stand.gif";
+import OursAttack from "../assets/AttackingYums/01_tofu_attack.gif";
 import Others from "../assets/before_fight/32_germ_standing.gif";
-import Effects from "../assets/effects/1_tofu.png"
-
+import Effects from "../assets/effects/1_tofu.png";
+import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
 
 const SinglePlayPage: React.FC = () => {
   const [showImages, setShowImages] = useState(true);
@@ -23,8 +24,12 @@ const SinglePlayPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const oursImageElement = document.getElementById("oursImage") as HTMLElement | null;
-    const othersImageElement = document.getElementById("othersImage") as HTMLElement | null;
+    const oursImageElement = document.getElementById(
+      "oursImage"
+    ) as HTMLElement | null;
+    const othersImageElement = document.getElementById(
+      "othersImage"
+    ) as HTMLElement | null;
 
     if (oursImageElement && othersImageElement) {
       oursImageElement.addEventListener("touchmove", handleImageTouch);
@@ -46,7 +51,7 @@ const SinglePlayPage: React.FC = () => {
       const animationTimeout = setTimeout(() => {
         dispatch(setShowEffects(false));
       }, 1500);
-      console.log(showEffects)
+      console.log(showEffects);
       return () => clearTimeout(animationTimeout);
     }
   }, [showEffects, dispatch]);
@@ -54,14 +59,28 @@ const SinglePlayPage: React.FC = () => {
   return (
     <div className="single-play-page">
       <OpenViduComponent />
-      {showImages && (
-        <>
-          <img src={BackImg} alt="" className="overlay-image" />
-          <img src={Ours} alt="" className={`ours-image ${showImages ? "" : "hidden"}`} id="oursImage" />
-          <img src={Others} alt="" className={`others-image ${showImages ? "" : "hidden"}`} id="othersImage" />
-        </>
-      )}
-      {showEffects && <img src={Effects} alt="" className="effects-image" />} {/* showEffects 상태가 true일 때 이펙트 애니메이션 보여줌 */}
+      <div className="images-container">
+        {showImages && (
+          <div className="images">
+            <img src={BackImg} alt="" className="overlay-image" />
+            <img
+              src={showEffects ? OursAttack : Ours}
+              alt=""
+              className={`ours-image ${showImages ? "" : "hidden"}`}
+              id="oursImage"
+            />
+            <img
+              src={
+                showEffects ? OthersAfterAttack : Others
+              } /* 애니메이션이 종료되면 OthersAfterAttack 이미지로 바꿔줌 */
+              alt=""
+              className={`others-image ${showImages ? "" : "hidden"}`}
+              id="othersImage"
+            />
+          </div>
+        )}
+        {showEffects && <img src={Effects} alt="" className="effects-image" />}
+      </div>
     </div>
   );
 };

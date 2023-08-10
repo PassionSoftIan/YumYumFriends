@@ -4,21 +4,17 @@ import React, { Component } from "react";
 // import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
 
-import "./OpenViduComponent.css";
-
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
 
 class OpenViduComponent extends Component {
   constructor(props) {
     super(props);
-    const UserID = localStorage.getItem("id");
-    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     // These properties are in the state's component in order to re-render the HTML whenever their values change
     this.state = {
-      mySessionId: UserID,
-      myUserName: UserName,
+      mySessionId: "E201",
+      myUserName: "Participant" + Math.floor(Math.random() * 100),
       session: undefined,
       mainStreamManager: undefined, // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
       publisher: undefined,
@@ -27,41 +23,26 @@ class OpenViduComponent extends Component {
 
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
-    this.onbeforeunload = this.onbeforeunload.bind(this);
-
-    ///임시삭제할거
     this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
-    ///
+    this.onbeforeunload = this.onbeforeunload.bind(this);
   }
 
   componentDidMount() {
     // 입장
     // this.joinSession();
+
     window.addEventListener("beforeunload", this.onbeforeunload);
-    // this.joinSession();
   }
 
   componentWillUnmount() {
-    this.leaveSession();
     window.removeEventListener("beforeunload", this.onbeforeunload);
   }
 
   onbeforeunload(event) {
     this.leaveSession();
   }
-  deleteSubscriber(streamManager) {
-    let subscribers = this.state.subscribers;
-    let index = subscribers.indexOf(streamManager, 0);
-    if (index > -1) {
-      subscribers.splice(index, 1);
-      this.setState({
-        subscribers: subscribers,
-      });
-    }
-  }
 
-  ///임시 삭제할꺼
   handleChangeSessionId(e) {
     this.setState({
       mySessionId: e.target.value,
@@ -73,8 +54,16 @@ class OpenViduComponent extends Component {
       myUserName: e.target.value,
     });
   }
-
-  ///
+  deleteSubscriber(streamManager) {
+    let subscribers = this.state.subscribers;
+    let index = subscribers.indexOf(streamManager, 0);
+    if (index > -1) {
+      subscribers.splice(index, 1);
+      this.setState({
+        subscribers: subscribers,
+      });
+    }
+  }
 
   joinSession() {
     // --- 1) Get an OpenVidu object ---
@@ -89,9 +78,9 @@ class OpenViduComponent extends Component {
       },
       () => {
         var mySession = this.state.session;
-        console.log('--------------------------------')
-        console.log(mySession)
         this.props.onObjectCreated(mySession);
+        console.log('--------------체크')
+        console.log(typeof(mySession.signal))
 
         // --- 3) Specify the actions when events take place in the session ---
 
@@ -118,6 +107,12 @@ class OpenViduComponent extends Component {
         // On every asynchronous exception...
         mySession.on("exception", (exception) => {
           console.warn(exception);
+        });
+
+        mySession.on('signal:observer', (event) => {
+          console.log(event.data); // Message
+          // 관전자 입장 / 퇴장 메시지 수신
+          // 프론트에서 수신 받은 메시지를 화면에 출력
         });
 
         // --- 4) Connect to the session with a valid user token ---
@@ -184,8 +179,6 @@ class OpenViduComponent extends Component {
     // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
     const mySession = this.state.session;
-    const UserID = localStorage.getItem("id");
-    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     if (mySession) {
       mySession.disconnect();
@@ -196,8 +189,8 @@ class OpenViduComponent extends Component {
     this.setState({
       session: undefined,
       subscribers: [],
-      mySessionId: UserID,
-      myUserName: UserName,
+      mySessionId: "SessionA",
+      myUserName: "Participant" + Math.floor(Math.random() * 100),
       mainStreamManager: undefined,
       publisher: undefined,
     });

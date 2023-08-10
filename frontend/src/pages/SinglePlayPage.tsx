@@ -7,10 +7,7 @@ import useImageEffect from "../hooks/useImage/useImageEffect";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
-import Ours from "../assets/before_fight/01_tofu_stand.gif";
-import OursAttack from "../assets/AttackingYums/01_tofu_attack.gif";
 import Others from "../assets/before_fight/32_germ_standing.gif";
-import Effects from "../assets/effects/1_tofu.png";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
 
 const SinglePlayPage: React.FC = () => {

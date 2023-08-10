@@ -1,12 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { combineReducers } from 'redux'; // 추가
+import { combineReducers } from 'redux';
 
 import bgmReducer from './bgmSlice';
 import showEffectsReducer from './showEffectsSlice';
 import maxEatingReducer from './maxEatingSlice';
 import userReducer from './userSlice';
+import detectionReducer from './detectionSlice';
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +19,7 @@ const rootReducer = combineReducers({
   showEffects: showEffectsReducer,
   maxEating: maxEatingReducer,
   user: userReducer,
-  // Add other reducers if needed
+  detection: detectionReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

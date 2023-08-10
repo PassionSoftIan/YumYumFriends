@@ -2,22 +2,25 @@ import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 // 가면 이미지를 불러옵니다.
-import maskImage from "../../assets/Sticker/tofu-hat.png";
-// import maskImage from "../../assets/Sticker/avocado-hat.png";
-// import maskImage from "../../assets/Sticker/apple-hat.png";
-// import maskImage from "../../assets/Sticker/apricot-hat.png";
-// import maskImage from "../../assets/Sticker/eggplant-hat.png";
-// import maskImage from "../../assets/Sticker/radish-hat.png";
+import maskImage1 from "../../assets/Hats/1_tofu_hat.png";
+import maskImage2 from "../../assets/Hats/2_mandarin_hat.png";
+import maskImage7 from "../../assets/Hats/7_egg_hat.png";
+import maskImage10 from "../../assets/Hats/10_eggplant_hat.png";
+import maskImage12 from "../../assets/Hats/12_avocado_hat.png";
+import maskImage13 from "../../assets/Hats/13_apple_hat.png";
+
+import { connect } from "react-redux";
+import { setDetection } from "../../store/detectionSlice";
 import GameStage from "./GameStage";
 import axios from "axios";
 
-
-export default class OpenViduVideoComponent extends Component {
+class OpenViduVideoComponent extends Component {
   constructor(props) {
     super(props);
     this.videoRef = React.createRef();
     this.canvasRef = React.createRef();
     this.imageRef = React.createRef();
+    this.prevEatValue = 0;
     this.state = {
       showWarning: false,
     };
@@ -73,9 +76,21 @@ export default class OpenViduVideoComponent extends Component {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("Image successfully uploaded:", response.data.eat);
-      if (response.data.eat === 1) {
-        console.log("밥먹음")
+      console.log("eat:", response.data.eat);
+
+      if (response.data.eat !== this.prevEatValue) {
+        this.prevEatValue = response.data.eat;
+
+        if (this.detectionTimer) {
+          clearTimeout(this.detectionTimer);
+        }
+
+        if (response.data.eat === 1) {
+          this.props.setDetection(true);
+          this.detectionTimer = setTimeout(() => {
+            this.props.setDetection(false);
+          }, 1000);
+        } 
       }
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -102,6 +117,33 @@ export default class OpenViduVideoComponent extends Component {
   loadMask = async () => {
     return new Promise((resolve) => {
       const img = new Image();
+      const id = localStorage.getItem("currentYum");
+      let maskImage;
+
+      switch (id) {
+        case "1":
+          maskImage = maskImage1;
+          break;
+        case "2":
+          maskImage = maskImage2;
+          break;
+        case "7":
+          maskImage = maskImage7;
+          break;
+        case "10":
+          maskImage = maskImage10;
+          break;
+        case "12":
+          maskImage = maskImage12;
+          break;
+        case "13":
+          maskImage = maskImage13;
+          break;
+        default:
+          console.error("Unexpected id value:", id);
+          return;
+      }
+
       img.src = maskImage;
       img.onload = () => resolve(img);
     });
@@ -233,7 +275,7 @@ export default class OpenViduVideoComponent extends Component {
             left: 0,
             bottom: 0,
             right: 0,
-            display: 'none',
+            display: "none",
           }}
         />
         {this.state.showWarning && ( // 추가된 부분
@@ -265,3 +307,10 @@ export default class OpenViduVideoComponent extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  setDetection,
+};
+
+export default connect(null, mapDispatchToProps)(OpenViduVideoComponent);
+

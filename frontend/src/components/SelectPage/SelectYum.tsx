@@ -46,17 +46,17 @@ const SelectYum: React.FC = () => {
 
   const handleSelectedYum = () => {
     const idx = centerIndex.current;
-    // console.log(yumList.some((item) => item.id === allList[idx].id));
     const checkMyYum = yumList.some((item) => item.id === allList[idx].id);
-    // console.log(allList[idx].id);
-    // console.log(userID);
     if (checkMyYum) {
       axios
         .put(`${URL}/api/v1/user/setyum?user=${userID}&yum=${allList[idx].id}`)
-        .then((data) => console.log(data))
+        .then((data) => {
+          console.log(data);
+          localStorage.setItem("currentYum", `${allList[idx].id}`);
+        })
         .catch((err) => console.log(err));
     } else {
-      alert("마 니가 있는 캐릭터 써라이새이야 자물쇠안보이나");
+      alert("마 니가 있는 캐릭터만 써라 자물쇠안보이나");
     }
   };
 

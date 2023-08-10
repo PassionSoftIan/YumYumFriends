@@ -1,21 +1,24 @@
 import { OpenVidu } from "openvidu-browser";
-
 import axios from "axios";
 import React, { Component } from "react";
 // import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
 
+import "./OpenViduComponent.css";
+
 const APPLICATION_SERVER_URL =
-  process.env.NODE_ENV === "production" ? "" : "https://demos.openvidu.io/";
+  process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
 
 class OpenViduComponent extends Component {
   constructor(props) {
     super(props);
+    const UserID = localStorage.getItem("id");
+    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     // These properties are in the state's component in order to re-render the HTML whenever their values change
     this.state = {
-      mySessionId: "E201",
-      myUserName: "Participant" + Math.floor(Math.random() * 100),
+      mySessionId: UserID,
+      myUserName: UserName,
       session: undefined,
       mainStreamManager: undefined, // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
       publisher: undefined,
@@ -24,28 +27,41 @@ class OpenViduComponent extends Component {
 
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
-    this.switchCamera = this.switchCamera.bind(this);
+    this.onbeforeunload = this.onbeforeunload.bind(this);
+
+    ///임시삭제할거
     this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
-    this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
-    this.onbeforeunload = this.onbeforeunload.bind(this);
+    ///
   }
 
   componentDidMount() {
     // 입장
     // this.joinSession();
-
     window.addEventListener("beforeunload", this.onbeforeunload);
+    // this.joinSession();
   }
 
   componentWillUnmount() {
+    this.leaveSession();
     window.removeEventListener("beforeunload", this.onbeforeunload);
   }
 
   onbeforeunload(event) {
     this.leaveSession();
   }
+  deleteSubscriber(streamManager) {
+    let subscribers = this.state.subscribers;
+    let index = subscribers.indexOf(streamManager, 0);
+    if (index > -1) {
+      subscribers.splice(index, 1);
+      this.setState({
+        subscribers: subscribers,
+      });
+    }
+  }
 
+  ///임시 삭제할꺼
   handleChangeSessionId(e) {
     this.setState({
       mySessionId: e.target.value,
@@ -58,24 +74,7 @@ class OpenViduComponent extends Component {
     });
   }
 
-  handleMainVideoStream(stream) {
-    if (this.state.mainStreamManager !== stream) {
-      this.setState({
-        mainStreamManager: stream,
-      });
-    }
-  }
-
-  deleteSubscriber(streamManager) {
-    let subscribers = this.state.subscribers;
-    let index = subscribers.indexOf(streamManager, 0);
-    if (index > -1) {
-      subscribers.splice(index, 1);
-      this.setState({
-        subscribers: subscribers,
-      });
-    }
-  }
+  ///
 
   joinSession() {
     // --- 1) Get an OpenVidu object ---
@@ -90,6 +89,9 @@ class OpenViduComponent extends Component {
       },
       () => {
         var mySession = this.state.session;
+        console.log('--------------------------------')
+        console.log(mySession)
+        this.props.onObjectCreated(mySession);
 
         // --- 3) Specify the actions when events take place in the session ---
 
@@ -182,6 +184,8 @@ class OpenViduComponent extends Component {
     // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
     const mySession = this.state.session;
+    const UserID = localStorage.getItem("id");
+    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     if (mySession) {
       mySession.disconnect();
@@ -192,49 +196,11 @@ class OpenViduComponent extends Component {
     this.setState({
       session: undefined,
       subscribers: [],
-      mySessionId: "SessionA",
-      myUserName: "Participant" + Math.floor(Math.random() * 100),
+      mySessionId: UserID,
+      myUserName: UserName,
       mainStreamManager: undefined,
       publisher: undefined,
     });
-  }
-
-  async switchCamera() {
-    try {
-      const devices = await this.OV.getDevices();
-      var videoDevices = devices.filter(
-        (device) => device.kind === "videoinput"
-      );
-
-      if (videoDevices && videoDevices.length > 1) {
-        var newVideoDevice = videoDevices.filter(
-          (device) => device.deviceId !== this.state.currentVideoDevice.deviceId
-        );
-
-        if (newVideoDevice.length > 0) {
-          // Creating a new publisher with specific videoSource
-          // In mobile devices the default and first camera is the front one
-          var newPublisher = this.OV.initPublisher(undefined, {
-            videoSource: newVideoDevice[0].deviceId,
-            publishAudio: true,
-            publishVideo: true,
-            mirror: true,
-          });
-
-          //newPublisher.once("accessAllowed", () => {
-          await this.state.session.unpublish(this.state.mainStreamManager);
-
-          await this.state.session.publish(newPublisher);
-          this.setState({
-            currentVideoDevice: newVideoDevice[0],
-            mainStreamManager: newPublisher,
-            publisher: newPublisher,
-          });
-        }
-      }
-    } catch (e) {
-      console.error(e);
-    }
   }
 
   render() {
@@ -281,19 +247,16 @@ class OpenViduComponent extends Component {
               </form>
             </div>
           </div>
-        ) : null}
-
-        {this.state.session !== undefined ? (
+        ) : (
+          // 싱글 모드
           <div id="session">
-            {this.state.mainStreamManager !== undefined ? (
-              <div id="main-video">
-                <UserVideoComponent
-                  streamManager={this.state.mainStreamManager}
-                />
-              </div>
-            ) : null}
+            <div id="main-video">
+              <UserVideoComponent
+                streamManager={this.state.mainStreamManager}
+              />
+            </div>
           </div>
-        ) : null}
+        )}
       </div>
     );
   }

@@ -12,6 +12,7 @@ import Ours from "../assets/before_fight/01_tofu_stand.gif";
 import OursAttack from "../assets/AttackingYums/01_tofu_attack.gif";
 import Others from "../assets/before_fight/32_germ_standing.gif";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
+import ProgressBar from "../components/Common/ProgressBar";
 
 const SinglePlayPage: React.FC = () => {
   const [showImages, setShowImages] = useState(true);
@@ -21,7 +22,12 @@ const SinglePlayPage: React.FC = () => {
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
   const [mySession, setMySession] = useState(null);
-  const handleMySession = (obj:any) => { setMySession(obj); };
+  const handleMySession = (obj: any) => {
+    setMySession(obj);
+  };
+  const eating = useSelector((state: RootState) => state.eating.value);
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
+  const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
 
   // 이미지들이 닿았을 때 처리하는 함수
   const handleImageTouch = () => {
@@ -65,7 +71,7 @@ const SinglePlayPage: React.FC = () => {
 
   return (
     <div className="single-play-page">
-      <OpenViduComponent onObjectCreated= {handleMySession} />
+      <OpenViduComponent onObjectCreated={handleMySession} />
       <div className="images-container">
         {showImages && (
           <div className="images">
@@ -76,15 +82,18 @@ const SinglePlayPage: React.FC = () => {
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
-
-            <img
-              src={
-                showEffects ? OthersAfterAttack : Others
-              } /* 애니메이션이 종료되면 OthersAfterAttack 이미지로 바꿔줌 */
-              alt=""
-              className={`others-image ${showImages ? "" : "hidden"}`}
-              id="othersImage"
-            />
+            <div>
+              {/* <ProgressBar completed={hitPoints}/> */}
+              <ProgressBar className="progress-bar" completed={hitPoints}/>
+              <img
+                src={
+                  showEffects ? OthersAfterAttack : Others
+                } /* 애니메이션이 종료되면 OthersAfterAttack 이미지로 바꿔줌 */
+                alt=""
+                className={`others-image ${showImages ? "" : "hidden"}`}
+                id="othersImage"
+              />
+            </div>
           </div>
         )}
         {showEffects && (

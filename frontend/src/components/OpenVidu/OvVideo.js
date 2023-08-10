@@ -77,6 +77,9 @@ class OpenViduVideoComponent extends Component {
         },
       });
       console.log("eat:", response.data.eat);
+      if (this.props.onObjectCreated) {
+        this.props.onObjectCreated({ eatValue: response.data.eat });
+      }
 
       if (response.data.eat !== this.prevEatValue) {
         this.prevEatValue = response.data.eat;
@@ -87,13 +90,10 @@ class OpenViduVideoComponent extends Component {
 
         if (response.data.eat === 1) {
           this.props.setDetection(true);
-          this.detectionTimer = setTimeout(() => {
-            this.props.setDetection(false);
-          }, 1000);
+        } else {
+          this.props.setDetection(false);
         }
-        //  else {
-        //   this.props.setDetection(false);
-        // }
+        
       }
     } catch (error) {
       console.error("Error uploading image:", error);

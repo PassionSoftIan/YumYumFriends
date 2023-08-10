@@ -70,7 +70,7 @@ const Carousel: React.FC<Props> = (props) => {
           className={styles.prevButton}
           style={{ position: "absolute", left: 0 }}
         >
-          <Button type="primary" shape="circle" icon={<LeftOutlined />} />
+          <Button type="dashed" shape="circle" icon={<LeftOutlined />} />
         </div>
       )}
       renderNextButton={() => (
@@ -78,7 +78,7 @@ const Carousel: React.FC<Props> = (props) => {
           className={styles.nextButton}
           style={{ position: "absolute", right: 0 }}
         >
-          <Button type="primary" shape="circle" icon={<RightOutlined />} />
+          <Button type="dashed" shape="circle" icon={<RightOutlined />} />
         </div>
       )}
     />

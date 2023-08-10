@@ -14,11 +14,9 @@ class O_OpenViduComponent extends Component {
 
         // These properties are in the state's component in order to re-render the HTML whenever their values change
         this.state = {
-            sessionID: props.sessionID,
+            mySessionId: props.sessionID,
             hostInfo: props.hostInfo,
             gameType: props.gameType,
-            mySessionId: 'SessionA',
-            myUserName: 'test',
             session: undefined,
             mainStreamManager: undefined,  // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
             publisher: undefined,
@@ -88,7 +86,7 @@ class O_OpenViduComponent extends Component {
                     subscribers.push(subscriber);
                     var nickname = JSON.parse(subscriber.stream.connection.data).clientData;
 
-                    if(nickname == 'jongyoon')
+                    if(nickname == this.state.hostInfo)
                         this.handleMainVideoStream(subscriber);
 
                     // Update the state with the new subscribers
@@ -109,6 +107,12 @@ class O_OpenViduComponent extends Component {
                     console.warn(exception);
                 });
 
+                mySession.on('signal:attack-state', (event) => {
+                  console.log(event.data); // Message
+                  // 싱글플레이어의 공격 여부 수신
+                  // 공격 여부에 따라 관전자의 애니메이션 변경
+                });
+
                 // --- 4) Connect to the session with a valid user token ---
 
                 // Get a token from the OpenVidu deployment
@@ -117,6 +121,15 @@ class O_OpenViduComponent extends Component {
                     // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
                     mySession.connect(token, { clientData: this.state.myUserName })
                         .then(async () => {
+                            mySession.signal({
+                                data: "관전자가 입장하였습니다.",  // Any string (optional)
+                                to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+                                type: 'observer'             // The type of message (optional)
+                            }).then(() => {
+                                console.log('Message successfully sent');
+                            }).catch(error => {
+                                console.error(error);
+                            });
                         })
                         .catch((error) => {
                             console.log('There was an error connecting to the session:', error.code, error.message);
@@ -133,6 +146,15 @@ class O_OpenViduComponent extends Component {
         const mySession = this.state.session;
 
         if (mySession) {
+            mySession.signal({
+                data: "관전자가 퇴장하였습니다.",  // Any string (optional)
+                to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+                type: 'observer'             // The type of message (optional)
+            }).then(() => {
+                console.log('Message successfully sent');
+            }).catch(error => {
+                console.error(error);
+            });
             mySession.disconnect();
         }
 

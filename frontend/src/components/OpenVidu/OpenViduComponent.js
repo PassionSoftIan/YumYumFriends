@@ -28,16 +28,22 @@ class OpenViduComponent extends Component {
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
     this.onbeforeunload = this.onbeforeunload.bind(this);
+
+    ///임시삭제할거
+    this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
+    this.handleChangeUserName = this.handleChangeUserName.bind(this);
+    ///
   }
 
   componentDidMount() {
     // 입장
     // this.joinSession();
     window.addEventListener("beforeunload", this.onbeforeunload);
-    this.joinSession();
+    // this.joinSession();
   }
 
   componentWillUnmount() {
+    this.leaveSession();
     window.removeEventListener("beforeunload", this.onbeforeunload);
   }
 
@@ -54,6 +60,21 @@ class OpenViduComponent extends Component {
       });
     }
   }
+
+  ///임시 삭제할꺼
+  handleChangeSessionId(e) {
+    this.setState({
+      mySessionId: e.target.value,
+    });
+  }
+
+  handleChangeUserName(e) {
+    this.setState({
+      myUserName: e.target.value,
+    });
+  }
+
+  ///
 
   joinSession() {
     // --- 1) Get an OpenVidu object ---
@@ -160,6 +181,8 @@ class OpenViduComponent extends Component {
     // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
     const mySession = this.state.session;
+    const UserID = localStorage.getItem("id");
+    const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     if (mySession) {
       mySession.disconnect();
@@ -170,19 +193,56 @@ class OpenViduComponent extends Component {
     this.setState({
       session: undefined,
       subscribers: [],
-      mySessionId: "SessionA",
-      myUserName: "Participant" + Math.floor(Math.random() * 100),
+      mySessionId: UserID,
+      myUserName: UserName,
       mainStreamManager: undefined,
       publisher: undefined,
     });
   }
 
   render() {
+    const mySessionId = this.state.mySessionId;
+    const myUserName = this.state.myUserName;
+
     return (
       <div className="container">
         {this.state.session === undefined ? (
           <div id="join">
-            <h1>입장대기중</h1>
+            <div id="join-dialog" className="jumbotron vertical-center">
+              <h1>캐릭터 선택, 입장</h1>
+              <form className="form-group" onSubmit={this.joinSession}>
+                <p>
+                  <label>Participant: </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    id="userName"
+                    value={myUserName}
+                    onChange={this.handleChangeUserName}
+                    required
+                  />
+                </p>
+                <p>
+                  <label> Session: </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    id="sessionId"
+                    value={mySessionId}
+                    onChange={this.handleChangeSessionId}
+                    required
+                  />
+                </p>
+                <p className="text-center">
+                  <input
+                    className="btn btn-lg btn-success"
+                    name="commit"
+                    type="submit"
+                    value="JOIN"
+                  />
+                </p>
+              </form>
+            </div>
           </div>
         ) : (
           // 싱글 모드

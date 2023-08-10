@@ -5,9 +5,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden; /* 스크롤 없애기 */
+  overflow: hidden;
+  height: 100vh; /* 화면 높이 전체로 설정 */
+  position: relative; /* 추가 */
 }
-
+.images-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.images {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
 /* 모바일 화면에 대한 미디어 쿼리 */
 @media screen and (max-width: 768px) {
   .effects-image {
@@ -46,11 +59,11 @@
 }
 .effects-image {
   z-index: 3;
-  position: absolute; /* position을 absolute로 수정 */
-  bottom: 10%; /* 적절한 값으로 수정해주세요 */
+  position: absolute;
+  bottom: 20%; /* 적절한 값으로 수정해주세요 */
   left: 0;
-  width: 10%;
-  height: auto;
+  width: 30%;
+  height: auto; 
   animation: moveEffectBetweenImages 1.5s ease-in-out infinite;
 }
 
@@ -72,4 +85,8 @@
 .others-image.hidden {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+}
+.small-image {
+  width: 100px;
+  height: auto; 
 }

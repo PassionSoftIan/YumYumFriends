@@ -59,7 +59,7 @@
 .effects-image {
   z-index: 99;
   position: absolute;
-  bottom: 20%; /* 적절한 값으로 수정해주세요 */
+  bottom: 20%;
   left: 0;
   width: 30%;
   height: auto;
@@ -68,12 +68,13 @@
 
 @keyframes moveEffectBetweenImages {
   0% {
-    transform: translateX(0);
+    transform: translateX(40%);
   }
   100% {
-    transform: translateX(calc(100%)); /* 모바일 화면에서의 이동 거리 조정 */
+    transform: translateX(calc(100vw - 100%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
   }
 }
+
 
 .ours-image.hidden {
   opacity: 0;
@@ -82,7 +83,7 @@
 
 .others-image.hidden {
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 1.5s ease-in-out;
 }
 .small-image {
   width: 100px;

@@ -11,7 +11,6 @@ import BackImg from "../assets/playback.png";
 import Ours from "../assets/before_fight/01_tofu_stand.gif";
 import OursAttack from "../assets/AttackingYums/01_tofu_attack.gif";
 import Others from "../assets/before_fight/32_germ_standing.gif";
-import Effects from "../assets/effects/1_tofu.png";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
 
 const SinglePlayPage: React.FC = () => {
@@ -21,6 +20,8 @@ const SinglePlayPage: React.FC = () => {
   const ourImageSrc = useImageSrc();
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
+  const [mySession, setMySession] = useState(null);
+  const handleMySession = (obj:any) => { setMySession(obj); };
 
   // 이미지들이 닿았을 때 처리하는 함수
   const handleImageTouch = () => {
@@ -64,7 +65,7 @@ const SinglePlayPage: React.FC = () => {
 
   return (
     <div className="single-play-page">
-      <OpenViduComponent />
+      <OpenViduComponent onObjectCreated= {handleMySession} />
       <div className="images-container">
         {showImages && (
           <div className="images">

@@ -14,7 +14,6 @@ import { setDetection } from "../../store/detectionSlice";
 import GameStage from "./GameStage";
 import axios from "axios";
 
-// export default class OpenViduVideoComponent extends Component {
 class OpenViduVideoComponent extends Component {
   constructor(props) {
     super(props);
@@ -87,11 +86,9 @@ class OpenViduVideoComponent extends Component {
         }
 
         if (response.data.eat === 1) {
-          // console.log("밥먹음");
-          // console.log("detection: ", this.props.detection);
           this.props.setDetection(true);
           this.detectionTimer = setTimeout(() => {
-            this.props.setDetection(false); // 1초 후에 다시 false로 설정
+            this.props.setDetection(false);
           }, 1000);
         } 
       }
@@ -315,11 +312,5 @@ const mapDispatchToProps = {
   setDetection,
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     detection: state.detection,
-//   };
-// };
-
 export default connect(null, mapDispatchToProps)(OpenViduVideoComponent);
-// export default connect(mapStateToProps, mapDispatchToProps)(OpenViduVideoComponent);
+

@@ -20,6 +20,8 @@ const SinglePlayPage: React.FC = () => {
   const ourImageSrc = useImageSrc();
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
+  const [mySession, setMySession] = useState(null);
+  const handleMySession = (obj:any) => { setMySession(obj); };
 
   // 이미지들이 닿았을 때 처리하는 함수
   const handleImageTouch = () => {
@@ -28,7 +30,10 @@ const SinglePlayPage: React.FC = () => {
     dispatch(setShowEffects(!showEffects));
   };
 
-
+  useEffect(() => {
+    console.log('-----체크');
+    console.log(mySession);
+  }, [mySession])
 
   useEffect(() => {
     const oursImageElement = document.getElementById(
@@ -65,7 +70,7 @@ const SinglePlayPage: React.FC = () => {
 
   return (
     <div className="single-play-page">
-      <OpenViduComponent />
+      <OpenViduComponent onObjectCreated= {handleMySession} />
       <div className="images-container">
         {showImages && (
           <div className="images">

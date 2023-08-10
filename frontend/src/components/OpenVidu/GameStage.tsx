@@ -127,16 +127,18 @@ const GameStage: React.FC = () => {
   };
 
   return (
-    <div>
-      {showModal && <Banner content="천천히 꼭꼭" />}
-      <Button
-        onClick={handleButtonClick}
-        className={showAnimation ? "animated-button" : ""}
-      >
-        Click to Eat {eating}/{maxEating}
-      </Button>
-      {showEffects && <div>이펙트가 보여집니다!</div>}
-    </div>
+    <React.Fragment>
+      <div>
+        {showModal && <Banner content="천천히 꼭꼭" />}
+        <Button
+          onClick={handleButtonClick}
+          className={showAnimation ? "animated-button" : ""}
+        >
+          Click to Eat {eating}/{maxEating}
+        </Button>
+        {showEffects && <div>이펙트가 보여집니다!</div>}
+      </div>
+    </React.Fragment>
   );
 };
 

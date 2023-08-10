@@ -89,9 +89,9 @@ class OpenViduComponent extends Component {
       },
       () => {
         var mySession = this.state.session;
-        console.log('--------------------------------')
-        console.log(mySession)
         this.props.onObjectCreated(mySession);
+        console.log('--------------체크')
+        console.log(typeof(mySession.signal))
 
         // --- 3) Specify the actions when events take place in the session ---
 
@@ -118,6 +118,12 @@ class OpenViduComponent extends Component {
         // On every asynchronous exception...
         mySession.on("exception", (exception) => {
           console.warn(exception);
+        });
+
+        mySession.on('signal:observer', (event) => {
+          console.log(event.data); // Message
+          // 관전자 입장 / 퇴장 메시지 수신
+          // 프론트에서 수신 받은 메시지를 화면에 출력
         });
 
         // --- 4) Connect to the session with a valid user token ---

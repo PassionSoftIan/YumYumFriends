@@ -60,14 +60,46 @@ const SinglePlayPage: React.FC = () => {
   }, [showEffectsTemp, dispatch]);
 
   useEffect(() => {
-    if (showEffectsTemp) {
+    if (showEffects) {
+      
+      // 관전자들에게 공격 여부를 전송, showEffects(아마 true/false) 값을 전달
+      if(mySession != null){
+        mySession.signal({
+          data: true,  // Any string (optional)
+          to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+          type: 'attack-state'             // The type of message (optional)
+        }).then(() => {
+          console.log('Message successfully sent');
+        }).catch((error:any) => {
+          console.error(error);
+        });
+      }
+
+      // 애니메이션 시간(여기서는 2초) 후에 showEffects 상태를 다시 false로 설정
       const animationTimeout = setTimeout(() => {
-        setShowEffectsTemp(false); // 애니메이션이 끝나면 showEffectsTemp를 false로 설정
+        dispatch(setShowEffects(false));
+        if(mySession != null){
+          mySession.signal({
+            data: false,  // Any string (optional)
+            to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+            type: 'attack-state'             // The type of message (optional)
+          }).then(() => {
+            console.log('Message successfully sent');
+          }).catch((error:any) => {
+            console.error(error);
+          });
+        }
       }, 1500);
+      console.log(showEffects)
+
       return () => clearTimeout(animationTimeout);
     }
   }, [showEffectsTemp]);
 
+
+  useEffect(() => {
+    console.log(mySession);
+  }, [mySession]);
 
   return (
     <div className="single-play-page">

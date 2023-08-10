@@ -9,6 +9,7 @@ import maxEatingReducer from './maxEatingSlice';
 import eatingReducer from './eatingSlice';
 import userReducer from './userSlice';
 import detectionReducer from './detectionSlice';
+import soundEffectReducer from './soundEffectSlice';
 
 const persistConfig = {
   key: 'root',
@@ -17,6 +18,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   bgm: bgmReducer,
+  soundEffect: soundEffectReducer,
   showEffects: showEffectsReducer,
   maxEating: maxEatingReducer,
   user: userReducer,

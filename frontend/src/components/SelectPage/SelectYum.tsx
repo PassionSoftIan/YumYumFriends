@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Carousel from "../Common/Carousel";
 import Button from "../Common/Button";
 import axios from "axios";
-
+import "../styles/SelectPage/SelectYum.css";
 // import yums, { Yum } from "../../data/yums ";
 interface Yum {
   name: string;
@@ -67,8 +67,9 @@ const SelectYum: React.FC = () => {
 
   return (
     <React.Fragment>
-      <h3>함께 할 친구를 골라봐</h3>
-      {/* 여기에 캐릭터 선택 캐러셀 넣을거임 */}
+      <div className="ment">
+        <h3>함께 할 친구를 골라봐</h3>
+      </div>
       <Carousel
         carouselList={yumList}
         allYumList={allList}

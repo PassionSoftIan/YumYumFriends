@@ -1,7 +1,12 @@
 import React from "react";
 import Carousel from "../Common/Carousel";
 import Button from "../Common/Button";
+<<<<<<< HEAD
 
+=======
+import axios from "axios";
+import "../styles/SelectPage/SelectYum.css";
+>>>>>>> b18abe14fae29705ef0ff6d4c6d6be8b87d5e0e5
 // import yums, { Yum } from "../../data/yums ";
 
 const SelectYum: React.FC = () => {
@@ -35,6 +40,7 @@ const SelectYum: React.FC = () => {
 
   return (
     <React.Fragment>
+<<<<<<< HEAD
       <h3>함께 할 친구를 골라봐</h3>
       {/* 여기에 캐릭터 선택 캐러셀 넣을거임 */}
       <Carousel carouselList={[
@@ -44,6 +50,17 @@ const SelectYum: React.FC = () => {
         "4_icecream",
         "5_radish"
       ]} />
+=======
+      <div className="ment">
+        <h3>함께 할 친구를 골라봐</h3>
+      </div>
+      <Carousel
+        carouselList={yumList}
+        allYumList={allList}
+        myCurrentYum={myCurrentYum}
+        onCenterIndexChange={handleCenterIndexChange}
+      />
+>>>>>>> b18abe14fae29705ef0ff6d4c6d6be8b87d5e0e5
       <Button onClick={handleSelectedYum}>설정하기</Button>
     </React.Fragment>
   );

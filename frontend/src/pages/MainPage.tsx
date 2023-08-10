@@ -1,16 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 import Cloud from "../components/Animation/Cloud";
 import useConfetti from "../hooks/Animations/useConfetti";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
-import Action0 from "../assets/Action/02_mandarin_acquired.gif"
-import Action1 from "../assets/Action/13_apple_acquired.gif"
-import Action2 from "../assets/AttackingYums/01_tofu_attack.gif"
-import Action3 from "../assets/Attacked/31_bacteria_attacked.gif"
+import Action0 from "../assets/Action/02_mandarin_acquired.gif";
+import Action1 from "../assets/Action/13_apple_acquired.gif";
+import Action2 from "../assets/AttackingYums/01_tofu_attack.gif";
+import Action3 from "../assets/Attacked/31_bacteria_attacked.gif";
 // import Action4 from "../assets/Attacked/31_bacteria_attacked.gif"
+import useSoundEffect from "../hooks/useEffectSound";
 import "./styles/MainPage.css";
 
 const MainPage: React.FC = () => {
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
+  const hoverSoundSource = require("../assets/sound/interface.mp3");
+  const clickSoundSource = require("../assets/sound/announcement.mp3");
+  const hoverSound = useSoundEffect(hoverSoundSource, 0.3);
+  const clickSound = useSoundEffect(clickSoundSource, 0.5);
+
   const navigate = useNavigate();
   const { triggerConfetti } = useConfetti(
     ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣"],
@@ -21,6 +32,9 @@ const MainPage: React.FC = () => {
   // 각 핸들러 함수를 생성
   const handleAction = (action: () => void, message: string) => {
     console.log(message);
+    if (soundEffectOn) {
+      clickSound.play();
+    }
     triggerConfetti();
 <<<<<<< HEAD
     navigate("/single");
@@ -47,6 +61,12 @@ const MainPage: React.FC = () => {
 >>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
   };
 
+  const handleHover = () => {
+    if (soundEffectOn) {
+      hoverSound.play();
+    }
+  };
+
   return (
     <div className="main-container">
 <<<<<<< HEAD
@@ -66,7 +86,10 @@ const MainPage: React.FC = () => {
         <div className="button-container">
           {/* 핸들러 함수를 호출하여 버튼에 연결 */}
           <button
-            onClick={() => handleAction(() => navigate("/single"), "단일 플레이어 게임 시작")}
+            onClick={() =>
+              handleAction(() => navigate("/single"), "단일 플레이어 게임 시작")
+            }
+            onMouseOver={handleHover}
             className="game-button button-second btn"
           >
             <span>밥 먹기</span>
@@ -74,7 +97,9 @@ const MainPage: React.FC = () => {
 >>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
 
           <button
-            onClick={() => handleAction(() => navigate("/multi"), "다중 플레이어 게임 시작")}
+            onClick={() =>
+              handleAction(() => navigate("/multi"), "다중 플레이어 게임 시작")
+            }
             className="game-button button-second btn"
           >
             <span>Multi</span>
@@ -96,16 +121,23 @@ const MainPage: React.FC = () => {
             <span>냠냠이들</span>
           </button> */}
           <div className="sub-buttons">
-    {/* 대표냠 버튼 */}
-    <Button onClick={() => handleAction(() => navigate("/select"), "대표냠")} className="game-button button-second btn">
-      대표냠
-    </Button>
+            {/* 대표냠 버튼 */}
+            <Button
+              onClick={() => handleAction(() => navigate("/select"), "대표냠")}
+              className="game-button button-second btn"
+            >
+              대표냠
+            </Button>
 
-    {/* 설정 버튼 */}
-    <Button onClick={() => handleAction(() => navigate("/settings"), "설정")} className="game-button button-second btn">
-      설정
-    </Button>
-  </div></div>
+            {/* 설정 버튼 */}
+            <Button
+              onClick={() => handleAction(() => navigate("/settings"), "설정")}
+              className="game-button button-second btn"
+            >
+              설정
+            </Button>
+          </div>
+        </div>
       </div>
       <img src={Action0} alt="" className="action-image" />
       <img src={Action1} alt="" className="action-image1" />

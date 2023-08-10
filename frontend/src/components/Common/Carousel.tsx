@@ -45,7 +45,7 @@ const Carousel = ({ carouselList }: Props) => {
           className={styles.prevButton}
           style={{ position: "absolute", left: 0 }}
         >
-          <Button type="primary" shape="circle" icon={<LeftOutlined />} />
+          <Button type="dashed" shape="circle" icon={<LeftOutlined />} />
         </div>
       )}
       renderNextButton={() => (
@@ -53,7 +53,7 @@ const Carousel = ({ carouselList }: Props) => {
           className={styles.nextButton}
           style={{ position: "absolute", right: 0 }}
         >
-          <Button type="primary" shape="circle" icon={<RightOutlined />} />
+          <Button type="dashed" shape="circle" icon={<RightOutlined />} />
         </div>
       )}
     />

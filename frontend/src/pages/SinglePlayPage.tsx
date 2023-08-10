@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
+import useImageSrc from "../hooks/useImage/useImageSrc";
+import useImageAttack from "../hooks/useImage/useImageAttack";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
-import BackImg from "../assets/background_kitchen.png";
 import Ours from "../assets/before_fight/01_tofu_stand.gif";
 import OursAttack from "../assets/AttackingYums/01_tofu_attack.gif";
 import Others from "../assets/before_fight/32_germ_standing.gif";
@@ -15,6 +16,8 @@ const SinglePlayPage: React.FC = () => {
   const [showImages, setShowImages] = useState(true);
   const showEffects = useSelector(selectShowEffects); // Use the corrected selector
   const dispatch = useDispatch();
+  const ourImageSrc = useImageSrc();
+  const ourImageAttack = useImageAttack();
 
   // 이미지들이 닿았을 때 처리하는 함수
   const handleImageTouch = () => {
@@ -22,6 +25,8 @@ const SinglePlayPage: React.FC = () => {
     // 버튼 클릭 시 리덕스 액션을 호출하여 showEffects 상태를 토글
     dispatch(setShowEffects(!showEffects));
   };
+
+
 
   useEffect(() => {
     const oursImageElement = document.getElementById(
@@ -62,13 +67,13 @@ const SinglePlayPage: React.FC = () => {
       <div className="images-container">
         {showImages && (
           <div className="images">
-            <img src={BackImg} alt="" className="overlay-image" />
             <img
-              src={showEffects ? OursAttack : Ours}
+              src={showEffects ? ourImageAttack : ourImageSrc}
               alt=""
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
+
             <img
               src={
                 showEffects ? OthersAfterAttack : Others

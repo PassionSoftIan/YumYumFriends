@@ -16,7 +16,7 @@ const GameStage: React.FC = () => {
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
   const navigate = useNavigate();
 
-  const detection = useSelector((state: RootState) => state.detection);
+  const detection = useSelector((state: RootState) => state.detection.value);
   const prevDetection = useRef(detection);
 
   // showEffects 상태를 가져오기 위해 useSelector 사용

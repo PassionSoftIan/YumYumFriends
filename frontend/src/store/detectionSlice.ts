@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface DetectionState {
+  value: boolean;
+}
+
+const initialState: DetectionState = {
   value: false,
 };
 
@@ -8,7 +12,7 @@ const detectionSlice = createSlice({
   name: "detection",
   initialState,
   reducers: {
-    setDetection: (state, action) => {
+    setDetection: (state, action: PayloadAction<boolean>) => {
       state.value = action.payload;
     },
   },

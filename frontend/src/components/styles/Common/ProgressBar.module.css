@@ -1,11 +1,10 @@
 .container {
   height: 20px;
-  width: 80%;
+  width: 100%;
   background-color: #cacaca;
   border-radius: 50px;
   margin: 50px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border: 2px dashed red;
 }
 
 .filler {
@@ -13,10 +12,11 @@
   background-color: #62199E;
   border-radius: inherit;
   text-align: right;
-  transition: 0.3s ease-in-out;
+  transition: 1s ease-in-out;
 }
 
 .label {
   padding: 5px;
   color: white;
+  font-size: medium;
 }

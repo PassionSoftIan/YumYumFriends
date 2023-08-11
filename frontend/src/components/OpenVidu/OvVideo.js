@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
-import * as facemesh from "@tensorflow-models/facemesh";
+import * as blazeface from "@tensorflow-models/blazeface";
 // 가면 이미지를 불러옵니다.
 import maskImage1 from "../../assets/Hats/1_tofu_hat.png";
 import maskImage2 from "../../assets/Hats/2_mandarin_hat.png";
@@ -36,8 +36,12 @@ class OpenViduVideoComponent extends Component {
     const circleRadius = circleCenterX * 0.6; // 원의 크기 조정
 
     predictions.forEach((prediction) => {
-      const landmarks = prediction.scaledMesh;
-      const noseTip = landmarks[1];
+      const noseTip = prediction.landmarks[4]; // 코끝 좌표
+
+      if (!noseTip) {
+        console.log("코끝 좌표를 찾지 못했습니다.");
+        return;
+      }
 
       const distanceToCenter = Math.sqrt(
         Math.pow(noseTip[0] - circleCenterX, 2) +
@@ -52,7 +56,7 @@ class OpenViduVideoComponent extends Component {
     });
   }
 
-  postCameraScreen = async () => {
+  postCameraScreen = async () => { // 이미지 크기 조절해서 경량화 가능
     if (!this.imageRef.current) {
       return false;
     }
@@ -106,11 +110,11 @@ class OpenViduVideoComponent extends Component {
     }
 
     this.videoRef.current.addEventListener("loadeddata", async () => {
-      this.model = await facemesh.load({ maxFaces: 4, minConfidence: 0.75 });
+      this.model = await blazeface.load({ maxFaces: 4, scoreThreshold: 0.75 });
       this.mask = await this.loadMask();
       this.detectFace();
     });
-    this.postCameraInterval = setInterval(this.postCameraScreen, 200);
+    this.postCameraInterval = setInterval(this.postCameraScreen, 200); // 데이터 전송 속도 조절 200ms가 마지노선 일듯
   }
 
   componentWillUnmount() {
@@ -187,24 +191,25 @@ class OpenViduVideoComponent extends Component {
     predictions.forEach((prediction) => {
       const landmarks = prediction.scaledMesh;
 
-      // 두 눈썹 중앙 점과 코 점을 가져옵니다.
-      const leftEyebrowMidpoint = landmarks[107];
-      const rightEyebrowMidpoint = landmarks[336];
-      const noseTip = landmarks[1];
+      const leftEye = prediction.landmarks[1]; // 왼쪽 눈 좌표
+      const rightEye = prediction.landmarks[3]; // 오른쪽 눈 좌표
+      const noseTip = prediction.landmarks[4]; // 코 좌표
 
-      const offsetX = (leftEyebrowMidpoint[0] + rightEyebrowMidpoint[0]) / 2;
-      const offsetY = (leftEyebrowMidpoint[1] + rightEyebrowMidpoint[1]) / 2;
+      const offsetX = leftEye[0] + (rightEye[0] - leftEye[0]) / 2;
+      const offsetY = leftEye[1] + (rightEye[1] - leftEye[1]) / 2;
 
       // 모자 크기 조정을 위한 값을 계산합니다.
       const scaleFactor = 2.5;
-      const faceWidth = Math.hypot(noseTip[0] - offsetX, noseTip[1] - offsetY);
+      // const faceWidth = Math.hypot(noseTip[0] - offsetX, noseTip[1] - offsetY);
+      const faceWidth = Math.hypot(rightEye[0] - leftEye[0], rightEye[1] - leftEye[1]); //눈 사이의 거리를 사용하여 faceWidth 계산
       const maskWidth = faceWidth * scaleFactor;
       const maskHeight = (this.mask.height * maskWidth) / this.mask.width;
 
       context.drawImage(
         this.mask,
-        offsetX - maskWidth / 2,
-        offsetY - maskHeight * 0.8 - 40,
+        offsetX - maskWidth / 2 - 20,
+        // offsetY - maskHeight * 0.8 - 40,
+        offsetY - maskHeight * 1.4 - 40,
         maskWidth,
         maskHeight
       );

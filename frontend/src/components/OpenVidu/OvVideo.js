@@ -37,7 +37,7 @@ class OpenViduVideoComponent extends Component {
 
     predictions.forEach((prediction) => {
       const noseTip = prediction.landmarks[4]; // 코끝 좌표
-
+      
       if (!noseTip) {
         console.log("코끝 좌표를 찾지 못했습니다.");
         return;
@@ -110,7 +110,7 @@ class OpenViduVideoComponent extends Component {
     }
 
     this.videoRef.current.addEventListener("loadeddata", async () => {
-      this.model = await blazeface.load({ maxFaces: 4, scoreThreshold: 0.75 });
+      this.model = await blazeface.load({ maxFaces: 2, scoreThreshold: 0.75 });
       this.mask = await this.loadMask();
       this.detectFace();
     });
@@ -164,9 +164,9 @@ class OpenViduVideoComponent extends Component {
     const canvas = this.canvasRef.current;
     const context = canvas.getContext("2d");
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height * 0.33;
-    const circleRadius = centerX * 0.6;
+    // const centerX = canvas.width / 2;
+    // const centerY = canvas.height * 0.33;
+    // const circleRadius = centerX * 0.6;
 
     canvas.width = this.videoRef.current.videoWidth;
     canvas.height = this.videoRef.current.videoHeight;
@@ -177,23 +177,23 @@ class OpenViduVideoComponent extends Component {
     context.drawImage(this.videoRef.current, 0, 0, canvas.width, canvas.height);
 
     // 원을 그리고 원 밖부분을 어둡게 만듭니다.
-    if (this.state.showWarning) {
-      context.fillStyle = "rgba(0, 0, 0, 0.7)";
-      context.fillRect(0, 0, canvas.width, canvas.height);
+    // if (this.state.showWarning) {
+    //   context.fillStyle = "rgba(0, 0, 0, 0.7)";
+    //   context.fillRect(0, 0, canvas.width, canvas.height);
 
-      context.globalCompositeOperation = "destination-out";
-      context.beginPath();
-      context.arc(centerX, centerY, circleRadius, 0, Math.PI * 2, true);
-      context.fill();
+    //   context.globalCompositeOperation = "destination-out";
+    //   context.beginPath();
+    //   context.arc(centerX, centerY, circleRadius, 0, Math.PI * 2, true);
+    //   context.fill();
 
-      context.globalCompositeOperation = "source-over";
-    }
+    //   context.globalCompositeOperation = "source-over";
+    // }
     predictions.forEach((prediction) => {
-      const landmarks = prediction.scaledMesh;
+      // const landmarks = prediction.scaledMesh;
 
       const leftEye = prediction.landmarks[1]; // 왼쪽 눈 좌표
       const rightEye = prediction.landmarks[3]; // 오른쪽 눈 좌표
-      const noseTip = prediction.landmarks[4]; // 코 좌표
+      // const noseTip = prediction.landmarks[4]; // 코 좌표
 
       const offsetX = leftEye[0] + (rightEye[0] - leftEye[0]) / 2;
       const offsetY = leftEye[1] + (rightEye[1] - leftEye[1]) / 2;
@@ -298,7 +298,8 @@ class OpenViduVideoComponent extends Component {
               padding: "10px",
             }}
           >
-            원 안에 얼굴을 넣으세요
+            어디 갔어! <br/>
+            밥먹어야지!
           </div>
         )}
         <div

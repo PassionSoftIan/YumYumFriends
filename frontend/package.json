@@ -20,6 +20,7 @@
     "antd": "^5.8.2",
     "axios": "^1.4.0",
     "face-api.js": "^0.22.2",
+    "framer-motion": "^10.15.1",
     "howler": "^2.2.3",
     "js-confetti": "^0.11.0",
     "lottie-web": "^5.12.2",

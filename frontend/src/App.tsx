@@ -25,8 +25,11 @@ import { PersistGate } from "redux-persist/integration/react";
 import Sun from "./assets/Common/sun_smile.png";
 import Cloud from "./components/Animation/Cloud";
 import "./App.css";
+import { AnimatePresence } from "framer-motion";
 
 const App: React.FC = () => {
+  // const location = useLocation();
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -38,20 +41,23 @@ const App: React.FC = () => {
               <div className="navbar-container">
                 <NavBar />
               </div>
-              <Routes>
-                <Route path="/" element={<IntroPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/main" element={<MainPage />} />
-                <Route path="/single" element={<SinglePlayPage />} />
-                <Route path="/multi" element={<MultiPlayPage />} />
-                <Route path="/dex" element={<DexPage />} />
-                <Route path="/dexdetail/:id" element={<DexDetailPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/gameclear" element={<GameClearPage />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/select" element={<SelectPage />} />
-                <Route path="/observation" element={<ObservationPage />} />
-              </Routes>
+              {/* <Routes location={location} key={location.pathname}> */}
+              <AnimatePresence>
+                <Routes>
+                  <Route path="/" element={<IntroPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/main" element={<MainPage />} />
+                  <Route path="/single" element={<SinglePlayPage />} />
+                  <Route path="/multi" element={<MultiPlayPage />} />
+                  <Route path="/dex" element={<DexPage />} />
+                  <Route path="/dexdetail/:id" element={<DexDetailPage />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/gameclear" element={<GameClearPage />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="/select" element={<SelectPage />} />
+                  <Route path="/observation" element={<ObservationPage />} />
+                </Routes>
+              </AnimatePresence>
               <AudioPlayer /> {/* 추가: AudioPlayer 컴포넌트를 렌더링합니다. */}
             </Router>
           </header>

@@ -20,7 +20,7 @@ import SettingsPage from "./pages/SettingsPage";
 import SelectPage from "./pages/SelectPage";
 import NavBar from "./components/NavBar/NavBar";
 import AudioPlayer from "./components/Audio/AudioPlayer"; // Use "AudioPlayer" with an uppercase "P"
-import { PersistGate } from 'redux-persist/integration/react';
+import { PersistGate } from "redux-persist/integration/react";
 import Sun from "./assets/Common/sun_smile.png";
 import Cloud from "./components/Animation/Cloud";
 import "./App.css";

@@ -68,36 +68,34 @@ const SinglePlayPage: React.FC = () => {
     };
   }, [showEffectsTemp, dispatch]);
 
+  const sendMessage = (msgdata : string, msgtype : string) => {
+    if(mySession != null){
+      mySession.signal({
+        data: msgdata,  // Any string (optional)
+        to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+        type: msgtype             // The type of message (optional)
+      }).then(() => {
+        console.log('Message successfully sent');
+      }).catch((error:any) => {
+        console.error(error);
+      });
+    }
+    else{
+      console.log('No session');
+    }
+  }
+  
   useEffect(() => {
     if (showEffects) {
       
-      // 관전자들에게 공격 여부를 전송, showEffects(아마 true/false) 값을 전달
-      if(mySession != null){
-        mySession.signal({
-          data: true,  // Any string (optional)
-          to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
-          type: 'attack-state'             // The type of message (optional)
-        }).then(() => {
-          console.log('Message successfully sent');
-        }).catch((error:any) => {
-          console.error(error);
-        });
-      }
+      // 관전자들에게 공격 여부 메시지를 전송
+      sendMessage('true', 'attack-state');
 
       // 애니메이션 시간(여기서는 2초) 후에 showEffects 상태를 다시 false로 설정
       const animationTimeout = setTimeout(() => {
         dispatch(setShowEffects(false));
-        if(mySession != null){
-          mySession.signal({
-            data: false,  // Any string (optional)
-            to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
-            type: 'attack-state'             // The type of message (optional)
-          }).then(() => {
-            console.log('Message successfully sent');
-          }).catch((error:any) => {
-            console.error(error);
-          });
-        }
+        // 공격 종료 메시지 전송
+        sendMessage('false', 'attack-state');
       }, 1500);
       console.log(showEffects)
 

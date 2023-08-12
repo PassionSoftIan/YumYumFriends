@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import IntroLogo from '../components/IntroPage/IntroLogo';
 import IntroCaution from '../components/IntroPage/IntroCaution';
+import './styles/IntroPage.css'; // IntroPage에 대한 스타일을 정의한 CSS 파일을 import
 
 const IntroPage = () => {
   const [showLogo, setShowLogo] = useState(true);
@@ -21,7 +22,7 @@ const IntroPage = () => {
   };
 
   return (
-    <div>
+    <div className="IntroBack">
       {showLogo ? (
         <IntroLogo />
       ) : (

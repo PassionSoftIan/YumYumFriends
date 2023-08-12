@@ -14,7 +14,8 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <img src={logo} alt="Title Logo" className="gamelogo" />
-      <SocialKakao onSuccess={handleLoginSuccess} /> {/* onSuccess 프로퍼티 전달 */}
+      <SocialKakao onSuccess={handleLoginSuccess} />{" "}
+      {/* onSuccess 프로퍼티 전달 */}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+
+// MainPage.js
 import React from "react";
 import Cloud from "../components/Animation/Cloud";
 import useConfetti from "../hooks/Animations/useConfetti";
@@ -7,7 +9,7 @@ import Action0 from "../assets/Action/02_mandarin_acquired.gif";
 import Action1 from "../assets/Action/13_apple_acquired.gif";
 import Action2 from "../assets/AttackingYums/01_tofu_attack.gif";
 import Action3 from "../assets/Attacked/31_bacteria_attacked.gif";
-// import Action4 from "../assets/Attacked/31_bacteria_attacked.gif"
+
 import "./styles/MainPage.css";
 
 const MainPage: React.FC = () => {
@@ -24,7 +26,7 @@ const MainPage: React.FC = () => {
   };
 
   return (
-    <div className="main-container">
+    <div className="main-container" style={{ backgroundImage: "url('your-background-image.jpg')" }}>
       <Cloud />
 
       <div className="center">
@@ -59,11 +61,10 @@ const MainPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <img src={Action0} alt="" className="action-image" />
-      <img src={Action1} alt="" className="action-image1" />
+      <img src={Action0} alt="" className="action-image action-image-game" />
+      <img src={Action1} alt="" className="action-image1 action-image-game" />
       <img src={Action2} alt="" className="action-image2" />
       <img src={Action3} alt="" className="action-image3" />
-      {/* <img src={Action4} alt="" className="action-image4" /> */}
     </div>
   );
 };

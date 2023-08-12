@@ -132,4 +132,17 @@
   width: 100px;
   height: auto;
 }
+<<<<<<< HEAD
 >>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
+=======
+
+.progress-bar {
+  z-index: 99;
+  position: fixed;
+  bottom: 8%;
+  /* left: 0; */
+  right: 0;
+  width: 30% !important;
+  height: auto;
+}
+>>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714

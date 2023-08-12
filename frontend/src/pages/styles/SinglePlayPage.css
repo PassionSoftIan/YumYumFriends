@@ -1,6 +1,16 @@
 /* ./styles/SinglePlayPage.css */
 
 /* 전체 프로필 페이지 컨테이너 */
+.overlay-image {
+  z-index: 5;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  transform: translateZ(0);
+  animation: none; /* 애니메이션을 제거합니다 */
+}
 .single-play-page {
   display: flex;
   flex-direction: column;
@@ -28,15 +38,7 @@
   }
 }
 
-.overlay-image {
-  z-index: 5;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 30%;
-}
+
 
 .ours-image {
   z-index: 99;
@@ -60,10 +62,10 @@
 
 .effects-image {
   z-index: 99;
-  position: absolute;
-  bottom: 23%;
+  position: fixed;
+  bottom: 3%;
   left: 0;
-  width: 25%;
+  width: 30%;
   height: auto;
   animation: moveEffectBetweenImages 1.5s 1 ; /* forwards 추가 */
 }
@@ -71,7 +73,7 @@
 
 @keyframes moveEffectBetweenImages {
   0% {
-    transform: translateX(40%);
+    transform: translateX(35%);
   }
   100% {
     transform: translateX(calc(100vw - 150%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
@@ -96,11 +98,33 @@
 .progress-bar {
   z-index: 99;
   position: fixed;
-  bottom: 30%;
   right: 0;
   width: 30% !important;
   height: auto;
+  bottom: 30%;
 }
+
+/* 웹 화면에 대한 미디어 쿼리 */
+
+
+/* 모바일 화면에 대한 미디어 쿼리 */
+/* 모바일 화면 크기가 320px 미만인 경우 */
+@media screen and (max-width: 319px) {
+  .progress-bar {
+    bottom: 15%;
+    width: 90%;
+  }
+}
+
+/* 모바일 화면 크기가 321px에서 768px 사이인 경우 */
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .progress-bar {
+    bottom: 25%;
+    width: 70%;
+  }
+}
+
+
 .hidden{
   display: none;
 }

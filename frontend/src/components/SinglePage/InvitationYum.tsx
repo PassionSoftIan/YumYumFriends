@@ -10,7 +10,7 @@ const InvitationYum: React.FC = () => {
 
     const UserID = localStorage.getItem("id");
     const storedNickname = localStorage.getItem("nickname");
-    const UserName = storedNickname ? storedNickname.replace(/['"]+/g, "") : "";
+    const UserName = storedNickname ? storedNickname.replace(/['"]+/g, "") : "null";
 
 
     // 배포한 자신의 사이트

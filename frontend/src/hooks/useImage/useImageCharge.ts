@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import A from "../../assets/Charging/1.gif"
-import B from "../../assets/myCharAttack/2.gif"
-import G from "../../assets/myCharAttack/7.gif"
-import J from "../../assets/myCharAttack/10.gif"
-import L from "../../assets/myCharAttack/12.gif"
-import M from "../../assets/myCharAttack/13.gif"
+import B from "../../assets/Charging/2.gif"
+import G from "../../assets/Charging/7.gif"
+import J from "../../assets/Charging/10.gif"
+import L from "../../assets/Charging/12.gif"
+import M from "../../assets/Charging/13.gif"
 
 
 const useImageAttack = () => {

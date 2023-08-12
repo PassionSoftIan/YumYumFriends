@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as blazeface from "@tensorflow-models/blazeface";
 // 가면 이미지를 불러옵니다.
-<<<<<<< HEAD
-import maskImage from "../../assets/Sticker/tofu-hat.png";
-import GameStage from "./GameStage";
-
-export default class OpenViduVideoComponent extends Component {
-=======
 import maskImage1 from "../../assets/Hats/1_tofu_hat.png";
 import maskImage2 from "../../assets/Hats/2_mandarin_hat.png";
 import maskImage7 from "../../assets/Hats/7_egg_hat.png";
@@ -21,22 +15,21 @@ import GameStage from "./GameStage";
 import axios from "axios";
 
 class OpenViduVideoComponent extends Component {
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
   constructor(props) {
     super(props);
     this.videoRef = React.createRef();
     this.canvasRef = React.createRef();
-<<<<<<< HEAD
-=======
     this.imageRef = React.createRef();
     this.prevEatValue = 0;
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
     this.state = {
       showWarning: false,
     };
   }
 
   checkFacePosition(predictions) {
+    if (!this.canvasRef.current) {
+      return false;
+    }
     const canvas = this.canvasRef.current;
     const circleCenterX = canvas.width / 2;
     const circleCenterY = canvas.height * 0.33;
@@ -44,7 +37,11 @@ class OpenViduVideoComponent extends Component {
 
     predictions.forEach((prediction) => {
       const noseTip = prediction.landmarks[4]; // 코끝 좌표
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
       if (!noseTip) {
         console.log("코끝 좌표를 찾지 못했습니다.");
         return;
@@ -65,11 +62,15 @@ class OpenViduVideoComponent extends Component {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   postCameraScreen = async () => {
 =======
   postCameraScreen = async () => { // 이미지 크기 조절해서 경량화 가능
 >>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
+=======
+  postCameraScreen = async () => { // 이미지 크기 조절해서 경량화 가능
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
     if (!this.imageRef.current) {
       return false;
     }
@@ -117,25 +118,34 @@ class OpenViduVideoComponent extends Component {
     }
   };
 
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
   async componentDidMount() {
     if (this.props && !!this.videoRef) {
       this.props.streamManager.addVideoElement(this.videoRef.current);
     }
 
     this.videoRef.current.addEventListener("loadeddata", async () => {
+<<<<<<< HEAD
       this.model = await blazeface.load({ maxFaces: 2, scoreThreshold: 0.75 });
       this.mask = await this.loadMask();
       this.detectFace();
     });
 <<<<<<< HEAD
 =======
+=======
+      this.model = await blazeface.load({ maxFaces: 4, scoreThreshold: 0.75 });
+      this.mask = await this.loadMask();
+      this.detectFace();
+    });
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
     this.postCameraInterval = setInterval(this.postCameraScreen, 200); // 데이터 전송 속도 조절 200ms가 마지노선 일듯
   }
 
   componentWillUnmount() {
     clearInterval(this.postCameraInterval);
+<<<<<<< HEAD
 >>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
+=======
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
   }
 
   loadMask = async () => {
@@ -174,6 +184,10 @@ class OpenViduVideoComponent extends Component {
   };
 
   drawMask = (predictions) => {
+    if (!this.canvasRef.current) {
+      return;
+    }
+
     const canvas = this.canvasRef.current;
     const context = canvas.getContext("2d");
 
@@ -206,7 +220,11 @@ class OpenViduVideoComponent extends Component {
 
       const leftEye = prediction.landmarks[1]; // 왼쪽 눈 좌표
       const rightEye = prediction.landmarks[3]; // 오른쪽 눈 좌표
+<<<<<<< HEAD
       // const noseTip = prediction.landmarks[4]; // 코 좌표
+=======
+      const noseTip = prediction.landmarks[4]; // 코 좌표
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
 
       const offsetX = leftEye[0] + (rightEye[0] - leftEye[0]) / 2;
       const offsetY = leftEye[1] + (rightEye[1] - leftEye[1]) / 2;
@@ -230,7 +248,12 @@ class OpenViduVideoComponent extends Component {
   };
 
   detectFace = async () => {
-    if (!this.model || !this.mask || !this.videoRef.current) {
+    if (
+      !this.model ||
+      !this.mask ||
+      !this.videoRef.current ||
+      !this.canvasRef.current
+    ) {
       requestAnimationFrame(this.detectFace);
       return;
     }
@@ -280,8 +303,6 @@ class OpenViduVideoComponent extends Component {
             right: 0,
           }}
         />
-<<<<<<< HEAD
-=======
         <canvas
           ref={this.imageRef}
           style={{
@@ -296,7 +317,6 @@ class OpenViduVideoComponent extends Component {
             display: "none",
           }}
         />
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
         {this.state.showWarning && ( // 추가된 부분
           <div
             style={{

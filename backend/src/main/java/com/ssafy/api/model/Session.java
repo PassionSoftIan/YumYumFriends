@@ -2,6 +2,8 @@ package com.ssafy.api.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,18 +25,9 @@ import lombok.ToString;
 public class Session {
 	@Id
 	@Column(name = "ID")
-	private String sessionID;
+	private long sessionID;
 
-	@Column(name = "PASSWORD")
-	private String password;
-
-	@Column(name = "MAX")
-	private int max;
-
-	@Column(name = "CURRENT")
-	private int current;
-
-	@Column(name = "MODE")
-	private String mode;
+	@Column(name = "PUBLISHER")
+	private String publisher;
 	
 }

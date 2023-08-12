@@ -1,22 +1,50 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Carousel from "../Common/Carousel";
 import Button from "../Common/Button";
-<<<<<<< HEAD
-
-=======
 import axios from "axios";
 import "../styles/SelectPage/SelectYum.css";
->>>>>>> b18abe14fae29705ef0ff6d4c6d6be8b87d5e0e5
 // import yums, { Yum } from "../../data/yums ";
+interface Yum {
+  name: string;
+  eng: string;
+  personality: string;
+  strengths: string;
+  id: number;
+}
 
 const SelectYum: React.FC = () => {
-  const acquiredYumIds = [1, 2, 4]; 
+  const [yumList, setYumList] = useState<Yum[]>([]);
+  const [allList, setAllList] = useState<Yum[]>([]);
+  const [myCurrentYum, setMyCurrentYum] = useState<number | null>(null);
+  const URL = "https://yumyumfriends.site";
+  const userID = localStorage.getItem("id");
+  const centerIndex = useRef(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      Promise.all([
+        axios.get(`${URL}/api/v1/collection/myyum`, {
+          params: { user: userID },
+        }),
+        axios.get(`${URL}/api/v1/yum/all`),
+        axios.get(`${URL}/api/v1/user`, {
+          params: { id: userID },
+        }),
+      ])
+        .then(([data1, data2, data3]) => {
+          const mylist = data1.data;
+          setYumList(mylist);
+          const allList1 = data2.data;
+          setAllList(allList1);
+          const myCurrenYum = data3.data.currentYum;
+          setMyCurrentYum(myCurrenYum);
+        })
+        .catch((err) => console.log(err));
+    };
+    fetchData();
+  }, [userID]);
 
   const handleSelectedYum = () => {
-<<<<<<< HEAD
-    console.log('유저의 대표냠 설정 요청 보내기')
-  }
-=======
     const idx = centerIndex.current;
     const checkMyYum = yumList.some((item) => item.id === allList[idx].id);
     if (checkMyYum) {
@@ -36,21 +64,9 @@ const SelectYum: React.FC = () => {
     centerIndex.current = index;
     // console.log(centerIndex.current);
   };
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
 
   return (
     <React.Fragment>
-<<<<<<< HEAD
-      <h3>함께 할 친구를 골라봐</h3>
-      {/* 여기에 캐릭터 선택 캐러셀 넣을거임 */}
-      <Carousel carouselList={[
-        "1_tofu",
-        "2_mandarin",
-        "3_hamburger",
-        "4_icecream",
-        "5_radish"
-      ]} />
-=======
       <div className="ment">
         <h3>함께 할 친구를 골라봐</h3>
       </div>
@@ -60,7 +76,6 @@ const SelectYum: React.FC = () => {
         myCurrentYum={myCurrentYum}
         onCenterIndexChange={handleCenterIndexChange}
       />
->>>>>>> b18abe14fae29705ef0ff6d4c6d6be8b87d5e0e5
       <Button onClick={handleSelectedYum}>설정하기</Button>
     </React.Fragment>
   );

@@ -20,44 +20,15 @@ const MainPage: React.FC = () => {
 
   const handleAction = (action: () => void) => {
     triggerConfetti();
-<<<<<<< HEAD
-    navigate("/single");
-  };
-
-  const handleMultiPlayerGame = () => {
-    console.log("다중 플레이어 게임 시작");
-    navigate("/multi");
-  };
-
-  const handleProfile = () => {
-    console.log("프로필");
-    navigate("/profile");
-  };
-
-  const handleSettings = () => {
-    navigate("/settings");
-  };
-
-  const handleSelect = () => {
-    navigate("/select");
-=======
     action();
+<<<<<<< HEAD
 >>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
+=======
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
   };
 
   return (
     <div className="main-container">
-<<<<<<< HEAD
-        <Cloud />
-        <div className="center">
-          <div className="button-container">
-            <button
-              onClick={handleSinglePlayerGame}
-              className="game-button button-second btn"
-            >
-              <span>Single</span>
-            </button>
-=======
       <Cloud />
 
       <div className="center">
@@ -68,16 +39,21 @@ const MainPage: React.FC = () => {
           >
             <span>밥 먹기</span>
 <<<<<<< HEAD
+<<<<<<< HEAD
           </button>
 >>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
 =======
           </Button>
 >>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
+=======
+          </Button>
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
 
           <Button
             onClick={() => handleAction(() => navigate("/multi"))}
             className="game-button button-second"
           >
+<<<<<<< HEAD
 <<<<<<< HEAD
             <span>Multi</span>
           </button>
@@ -102,6 +78,11 @@ const MainPage: React.FC = () => {
           </Button>
 
 >>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
+=======
+            <span>같이 먹기</span>
+          </Button>
+
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
           <div className="sub-buttons">
             <Button
               onClick={() => handleAction(() => navigate("/select"))}
@@ -124,7 +105,6 @@ const MainPage: React.FC = () => {
       <img src={Action3} alt="" className="action-image3" />
       {/* <img src={Action4} alt="" className="action-image4" /> */}
     </div>
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
   );
 };
 

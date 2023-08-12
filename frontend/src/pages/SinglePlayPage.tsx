@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import "./styles/SinglePlayPage.css";
-import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
-import BackImg from "../assets/background_kitchen.png";
-
-const SinglePlayPage: React.FC = () => {
-  return (
-    <div className="single-play-page">
-      <OpenViduComponent />
-      <img src={BackImg} alt="" className="overlay-image" />
-=======
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
@@ -146,7 +134,6 @@ const SinglePlayPage: React.FC = () => {
           <img src={ourImageEffect} alt="" className="effects-image" />
         )}
       </div>
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
     </div>
   );
 };

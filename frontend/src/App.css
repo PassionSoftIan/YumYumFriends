@@ -105,30 +105,6 @@
   100% { transform: rotate(360deg); }
 }
 
-<<<<<<< HEAD
-.page-transition-enter {
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.page-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
-}
-
-.page-transition-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.page-transition-exit-active {
-  opacity: 0;
-  transform: translateY(-50px);
-  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
-}
-=======
 #audio {
   display: none;
 }
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e

@@ -1,37 +1,23 @@
-import React, { useState } from "react";
-import Button from "../components/Common/Button";
-import CreateRoom from "../components/MultiPlayPage/CreateRoom";
-import SelectRoom from "../components/MultiPlayPage/SelectRoom";
+// 쿼리스트링 받아오기(파싱) - Session ID, Host Info ,Game Type
+// Session ID를 통해 입장
+// 내 화면이 아닌 Host Info 화면 띄우기
+
+import React, { useState, useEffect } from "react";
 
 const MultiPlayPage: React.FC = () => {
-  const [showButtons, setShowButtons] = useState(true);
-  const [showCreateRoom, setShowCreateRoom] = useState(false);
-  const [showSelectRoom, setShowSelectRoom] = useState(false);
 
-  const handleCreateRoomClick = () => {
-    setShowButtons(false);
-    setShowCreateRoom(true);
-  };
 
-  const handleSelectRoomClick = () => {
-    setShowButtons(false);
-    setShowSelectRoom(true);
-  };
+
 
   return (
-    <div className="multi-play-page">
-      {showButtons && (
+    <div>
         <div>
-          <Button onClick={handleCreateRoomClick}>
-            <span>Create Room</span>
-          </Button>
-          <Button onClick={handleSelectRoomClick}>
-            <span>Select Room</span>
-          </Button>
+            {/* 애니메이션 컴포넌트 -> 중간으로 컴포넌트 위치 배치*/}
         </div>
-      )}
-      {showCreateRoom && <CreateRoom />}
-      {showSelectRoom && <SelectRoom />}
+
+        <div>
+            {/* 멀티 화면(Publisher, Subscriber) 컴포넌트 -> 양쪽 끝 배치 */}
+        </div>
     </div>
   );
 };

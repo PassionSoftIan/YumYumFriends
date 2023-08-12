@@ -254,13 +254,19 @@ class M_OpenViduComponent extends Component {
             </div>
           </div>
         ) : (
-          // 싱글 모드
           <div id="session">
+            {/* 내 화면 */}
             <div id="main-video">
               <M_UserVideoComponent
                 streamManager={this.state.mainStreamManager}
               />
             </div>
+            {/* 친구 화면 */}
+            {this.state.subscribers}
+              <div className="stream-container col-md-6 col-xs-6">
+                  {/* sub 유효한 값으로 바꿔야 함 */}
+                  <M_UserVideoComponent streamManager={'sub'} />
+              </div>
           </div>
         )}
       </div>

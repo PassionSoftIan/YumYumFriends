@@ -8,8 +8,11 @@ import O_OpenViduComponent from "../components/ObservationVidu/O_OpenViduCompone
 const ObservationPage: React.FC = () => {
   const urlSearch = new URLSearchParams(window.location.search);
   const sessionID = urlSearch.get("SessionID");
-  const hostInfo = urlSearch.get("HostInfo");
+  const encodedHostInfo = urlSearch.get("HostInfo");
+  const hostInfo = decodeURIComponent(encodedHostInfo || "");
   const gameType = urlSearch.get("GameType");
+
+  const commonProps = { sessionID, hostInfo, gameType };
 
   // console.log(sessionID);
   // console.log(hostInfo);
@@ -17,7 +20,7 @@ const ObservationPage: React.FC = () => {
 
   return (
     <div>
-      <O_OpenViduComponent sessionID={ sessionID } hostInfo={ hostInfo } gameType={gameType} />
+      <O_OpenViduComponent {...commonProps} />
     </div>
   );
 };

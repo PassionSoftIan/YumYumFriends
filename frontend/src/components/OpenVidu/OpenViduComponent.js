@@ -91,7 +91,7 @@ class OpenViduComponent extends Component {
         var mySession = this.state.session;
         this.props.onObjectCreated(mySession);
         console.log('--------------체크')
-        console.log(typeof(mySession.signal))
+        console.log(mySession)
 
         // --- 3) Specify the actions when events take place in the session ---
 

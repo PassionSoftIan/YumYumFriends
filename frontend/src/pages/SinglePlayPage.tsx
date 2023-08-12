@@ -11,6 +11,7 @@ import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
 import Others from "../assets/before_fight/32_germ_standing.gif";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
+import ProgressBar from "../components/Common/ProgressBar";
 
 const SinglePlayPage: React.FC = () => {
   const [showImages, setShowImages] = useState(true);
@@ -24,6 +25,12 @@ const SinglePlayPage: React.FC = () => {
   const ourImageEffect = useImageEffect();
   const useImageRandom = RandomBack();
   const [mySession, setMySession] = useState<any>(null);
+
+  const eating = useSelector((state: RootState) => state.eating.value);
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
+  const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
+
+
 
   const handleMySession = (obj: { eatValue: boolean }) => {
     console.log("Received eatValue:", obj.eatValue);
@@ -114,6 +121,7 @@ const SinglePlayPage: React.FC = () => {
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
+             <ProgressBar className="progress-bar" completed={hitPoints}/>
             <img
               src={showEffects ? OthersAfterAttack : Others}
               alt=""

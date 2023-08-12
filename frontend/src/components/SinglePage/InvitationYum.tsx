@@ -34,8 +34,8 @@ const InvitationYum: React.FC = () => {
         window.Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
-                title: '00이가 밥을 먹어요!',
-                description: '00이 냠냠 보러오세요!',
+                title: `${ UserName }이가 밥을 먹어요!`,
+                description: `${ UserName }이 냠냠 보러오세요!`,
                 imageUrl:
                 'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
                 link: {
@@ -44,7 +44,7 @@ const InvitationYum: React.FC = () => {
             },
             buttons: [
                 {
-                    title: '00이 냠냠 보러가기',
+                    title: `${ UserName }이 냠냠 보러가기`,
                     link: {
                     mobileWebUrl: realUrl,
                     },

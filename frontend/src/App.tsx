@@ -19,6 +19,7 @@ import GameClearPage from "./pages/GameClearPage";
 import SettingsPage from "./pages/SettingsPage";
 import SelectPage from "./pages/SelectPage";
 import ObservationPage from "./pages/ObservationPage";
+import InvitationYum from "./components/SinglePage/InvitationYum";
 import NavBar from "./components/NavBar/NavBar";
 import AudioPlayer from "./components/Audio/AudioPlayer"; // Use "AudioPlayer" with an uppercase "P"
 import { PersistGate } from "redux-persist/integration/react";

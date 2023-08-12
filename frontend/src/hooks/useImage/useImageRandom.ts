@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const useImageRandom = () => {
   const [imageSrc, setImageSrc] = useState<string>(""); // Specify type as string
-  const totalImageCount = 7; // 전체 이미지 파일의 개수
+  const totalImageCount = 1; // 전체 이미지 파일의 개수
   const imageExtension = ".png"; // 이미지 파일의 확장자
 
   useEffect(() => {

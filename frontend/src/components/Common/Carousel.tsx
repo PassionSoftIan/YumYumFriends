@@ -1,10 +1,7 @@
-import React from "react";
-
+import React, { useState, useRef } from "react";
 import CarouselItem from "./CarouselItem";
 import styles from "../styles/Common/Carousel.module.css";
 
-<<<<<<< HEAD
-=======
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
@@ -19,20 +16,48 @@ interface CarouselItemType {
   id: number;
 }
 
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
 interface Props {
-  carouselList: string[];
+  carouselList: CarouselItemType[];
+  allYumList: CarouselItemType[];
+  onCenterIndexChange: (index: number) => void;
+  myCurrentYum: any;
 }
 
-const Carousel = ({ carouselList }: Props) => {
+interface SlideChangedEvent {
+  item: number;
+  slide: number;
+}
+
+const Carousel: React.FC<Props> = (props) => {
+  const centerIndex = useRef(0);
+
+  const responsive = {
+    0: {
+      items: 3,
+    },
+  };
+  const items = props.allYumList.map((item, idx) => {
+    return (
+      <CarouselItem
+        key={idx}
+        yum={item}
+        carouselList={props.carouselList}
+        allYumList={props.allYumList}
+      />
+    );
+  });
+
+  const handleSlideChanged = (e: SlideChangedEvent) => {
+    // Calculate the center index in the visible carousel items
+    let centerIdx = (e.item % 26) + 1;
+    if (centerIdx === 26) {
+      centerIdx = 0;
+    }
+    props.onCenterIndexChange(centerIdx);
+    // console.log(centerIndex.current);
+  };
+  console.log(props.myCurrentYum);
   return (
-<<<<<<< HEAD
-    <React.Fragment>
-      {carouselList.map((item, idx) => (
-        <CarouselItem key={idx} yum={item} />
-      ))}
-    </React.Fragment>
-=======
     <AliceCarousel
       responsive={responsive}
       disableDotsControls
@@ -57,7 +82,6 @@ const Carousel = ({ carouselList }: Props) => {
         </div>
       )}
     />
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
   );
 };
 

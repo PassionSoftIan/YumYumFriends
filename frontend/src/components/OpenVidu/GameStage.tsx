@@ -1,13 +1,10 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-=======
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
 import Button from "../Common/Button";
 import Banner from "../Common/Banner";
 import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 <<<<<<< HEAD
 import { div } from "@tensorflow/tfjs";
 =======
@@ -15,22 +12,31 @@ import { setShowEffects } from "../../store/showEffectsSlice";
 import { setEating } from "../../store/eatingSlice";
 import { RootState } from "../../store/store";
 >>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
+=======
+import { setShowEffects } from "../../store/showEffectsSlice";
+import { setEating } from "../../store/eatingSlice";
+import { RootState } from "../../store/store";
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
 
 const GameStage: React.FC = () => {
   const [nowEating, setNowEating] = useState(false);
   const [showModal, setShowModal] = useState(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
   const maxEating: number = 3;
 =======
+=======
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
   const [showAnimation, setShowAnimation] = useState(false);
 
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
   const eating = useSelector((state: RootState) => state.eating.value);
+<<<<<<< HEAD
 >>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
+=======
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
   const detection = useSelector((state: RootState) => state.detection.value);
   const prevDetection = useRef(detection);
 
@@ -41,8 +47,11 @@ const GameStage: React.FC = () => {
   const dispatch = useDispatch();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
 =======
+=======
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
 
   useEffect(() => {
     return () => {
@@ -51,9 +60,11 @@ const GameStage: React.FC = () => {
   }, []);
 
 
+<<<<<<< HEAD
 >>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
+=======
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
   useEffect(() => {
-    // 숟갈 유예기간
     if (nowEating) {
       const timeout = setTimeout(() => {
         setNowEating(false);
@@ -63,8 +74,6 @@ const GameStage: React.FC = () => {
     }
   }, [nowEating]);
 
-<<<<<<< HEAD
-=======
   useEffect(() => {
     if (showAnimation) {
       const animationTimeout = setTimeout(() => {
@@ -128,7 +137,6 @@ const GameStage: React.FC = () => {
     prevDetection.current = detection;
   }, [detection]);
 
->>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
   const handleButtonClick = () => {
     if (nowEating) {
       setShowModal(true);
@@ -153,19 +161,11 @@ const GameStage: React.FC = () => {
 
     dispatch(setEating(eating + 1));
     setNowEating(true);
+    setShowAnimation(true);
+    dispatch(setShowEffects(!showEffects));
   };
 
   return (
-<<<<<<< HEAD
-    <div>
-    <React.Fragment>
-      {showModal && <Banner content="천천히 꼭꼭 씹어먹자" />}
-      <Button onClick={handleButtonClick}>
-        Click to Eat {eating}/{maxEating}
-      </Button>
-    </React.Fragment>
-    </div>
-=======
     <React.Fragment>
       <div>
         {showModal && <Banner content="천천히 꼭꼭" />}
@@ -178,7 +178,6 @@ const GameStage: React.FC = () => {
         {showEffects && <div>이펙트가 보여집니다!</div>}
       </div>
     </React.Fragment>
->>>>>>> b18abe14fae29705ef0ff6d4c6d6be8b87d5e0e5
   );
 };
 

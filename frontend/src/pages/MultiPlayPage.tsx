@@ -1,11 +1,15 @@
 <<<<<<< HEAD
 import React from "react";
+<<<<<<< HEAD
 =======
 import React, { useState } from "react";
 import Button from "../components/Common/Button";
 import CreateRoom from "../components/MultiPlayPage/CreateRoom";
 import SelectRoom from "../components/MultiPlayPage/SelectRoom";
 >>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
+=======
+import VideoChat from "../components/MultiVidu/VideoChat";
+>>>>>>> 5fe25c1f62622c409cbce073f158a2d2d85b3b77
 
 const MultiPlayPage: React.FC = () => {
   const [showButtons, setShowButtons] = useState(true);
@@ -27,9 +31,7 @@ const MultiPlayPage: React.FC = () => {
 <<<<<<< HEAD
       <div className="video-container">{/* <OpenViduComponent /> */}</div>
       <div className="game-container">
-        {/* 여기에 게임 컨텐츠를 추가하세요 */}
-        {/* 예를 들어 게임 컴포넌트와 게임 로직을 추가할 수 있습니다 */}
-        {/* 이 주석을 실제 게임 컨텐츠로 대체하세요 */}
+      <VideoChat />
       </div>
 =======
       {showButtons && (

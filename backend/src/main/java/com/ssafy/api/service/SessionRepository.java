@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ssafy.api.model.Session;
 
-public interface SessionRepository extends JpaRepository<Session, String>{
+public interface SessionRepository extends JpaRepository<Session, Long>{
 
 }

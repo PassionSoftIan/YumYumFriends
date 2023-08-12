@@ -15,11 +15,12 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
 
   const SessionID = 'aa'
   const HostInfo = 'bb'
+  const GameType = 'Multi'
   
   return (
     <div>
         <button 
-          onClick={() => handleAction(() => navigate(`/multiplay?SessionID=${ SessionID }&HostInfo=${ HostInfo }`))}        
+          onClick={() => handleAction(() => navigate(`/multiplay?SessionID=${ SessionID }&HostInfo=${ HostInfo }&GameType=${ GameType }`))}        
           className={styles.item}
         >
           {props.name}

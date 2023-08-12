@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 interface RoomItemProps {
   name: string;
+  sessionID: string;
 }
 
 const RoomItem: React.FC<RoomItemProps> = (props) => {
@@ -13,8 +14,8 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
     action();
   };
 
-  const SessionID = 'aa'
-  const HostInfo = 'bb'
+  const SessionID = props.sessionID
+  const HostInfo = props.name
   const GameType = 'Multi'
   
   return (

@@ -11,7 +11,7 @@ import IntroPage from "./pages/IntroPage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import SinglePlayPage from "./pages/SinglePlayPage";
-import MultiPlayPage from "./pages/MultiPlayPage";
+import MultiChoicePage from "./pages/MultiChoicePage";
 import DexPage from "./pages/DexPage";
 import ProfilePage from "./pages/ProfilePage";
 import DexDetailPage from "./pages/DexDetailPage";
@@ -20,6 +20,10 @@ import SettingsPage from "./pages/SettingsPage";
 import SelectPage from "./pages/SelectPage";
 import ObservationPage from "./pages/ObservationPage";
 import InvitationYum from "./components/SinglePage/InvitationYum";
+
+import MultiPlayPage from "./pages/MultiPlayPage";
+import MultiSelectRoomPage from "./pages/MultiSelectRoomPage";
+
 import NavBar from "./components/NavBar/NavBar";
 import AudioPlayer from "./components/Audio/AudioPlayer"; // Use "AudioPlayer" with an uppercase "P"
 import { PersistGate } from "redux-persist/integration/react";
@@ -44,15 +48,21 @@ const App: React.FC = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/main" element={<MainPage />} />
                 <Route path="/single" element={<SinglePlayPage />} />
-                <Route path="/multi" element={<MultiPlayPage />} />
                 <Route path="/dex" element={<DexPage />} />
                 <Route path="/dexdetail/:id" element={<DexDetailPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/gameclear" element={<GameClearPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/select" element={<SelectPage />} />
+
                 <Route path="/observation" element={<ObservationPage />} />
                 <Route path="/invitation" element={<InvitationYum />} />
+
+                <Route path="/multichoice" element={<MultiChoicePage />} />
+                <Route path="/multiplay" element={<MultiPlayPage />} />
+                <Route path="/multiroom" element={<MultiSelectRoomPage />} />
+
+
               </Routes>
               <AudioPlayer /> {/* 추가: AudioPlayer 컴포넌트를 렌더링합니다. */}
             </Router>

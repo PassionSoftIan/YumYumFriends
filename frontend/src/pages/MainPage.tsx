@@ -37,7 +37,7 @@ const MainPage: React.FC = () => {
           </Button>
 
           <Button
-            onClick={() => handleAction(() => navigate("/multi"))}
+            onClick={() => handleAction(() => navigate("/multichoice"))}
             className="game-button button-second"
           >
             <span>같이 먹기</span>

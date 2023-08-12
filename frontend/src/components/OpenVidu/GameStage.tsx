@@ -8,13 +8,25 @@ import Button from "../Common/Button";
 import Banner from "../Common/Banner";
 import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { div } from "@tensorflow/tfjs";
+=======
+import { setShowEffects } from "../../store/showEffectsSlice";
+import { setEating } from "../../store/eatingSlice";
+import { RootState } from "../../store/store";
+>>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
 
 const GameStage: React.FC = () => {
-  const [eating, setEating] = useState(0);
   const [nowEating, setNowEating] = useState(false);
   const [showModal, setShowModal] = useState(false);
+<<<<<<< HEAD
   const maxEating: number = 3;
+=======
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
+  const eating = useSelector((state: RootState) => state.eating.value);
+>>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
   const navigate = useNavigate();
 
 <<<<<<< HEAD
@@ -28,7 +40,18 @@ const GameStage: React.FC = () => {
   );
   const dispatch = useDispatch();
 
+<<<<<<< HEAD
 >>>>>>> 9d70f7e639a6f2f6d484a65906fb0e114b91ba9e
+=======
+
+  useEffect(() => {
+    return () => {
+      dispatch(setEating(0));
+    };
+  }, []);
+
+
+>>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
   useEffect(() => {
     // 숟갈 유예기간
     if (nowEating) {
@@ -90,7 +113,7 @@ const GameStage: React.FC = () => {
         }, 4000); // 4초 뒤에 작동하도록 설정
       }
   
-      setEating((prevEating) => prevEating + 1);
+      dispatch(setEating(eating + 1));
       setNowEating(true);
       setShowAnimation(true);
       dispatch(setShowEffects(!showEffects));
@@ -128,7 +151,7 @@ const GameStage: React.FC = () => {
       }, 4000); // 4초 뒤에 작동하도록 설정
     }
 
-    setEating(eating + 1);
+    dispatch(setEating(eating + 1));
     setNowEating(true);
   };
 

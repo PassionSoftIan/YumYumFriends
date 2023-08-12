@@ -5,14 +5,9 @@
   align-items: center; /* 세로 중앙 정렬 */
   height: 100vh; /* 컨테이너의 높이를 화면 전체 높이로 설정하여 수직 중앙 정렬 */
 }
-<<<<<<< HEAD
-.IntroBack {
-  background-color: #ffffff;/* 이미지 파일 경로 설정 */
-=======
 
 .IntroBack {
   background-color: #FFFFFF; /* 이미지 파일 경로 설정 */
->>>>>>> a3cd6348c89e38d8e168f07ea6da59e1ea4648aa
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

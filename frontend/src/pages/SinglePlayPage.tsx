@@ -12,6 +12,7 @@ import RandomBack from "../hooks/useImage/useImageRandom";
 import Others from "../assets/before_fight/32_germ_standing.gif";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
 import ProgressBar from "../components/Common/ProgressBar";
+import Charge from "../assets/Charging/1_tofu.gif";
 
 import InvitationYum from "../components/SinglePage/InvitationYum";
 
@@ -123,11 +124,18 @@ const SinglePlayPage: React.FC = () => {
           <div className="images">
             <img src={useImageRandom} alt="" className="overlay-image" />
             <img
-              src={showEffects ? "attack-animation" : ourImageSrc}
+              src={
+                showEffects
+                  ? "attack-animation"
+                  : eating % 5 === 4
+                  ? Charge
+                  : ourImageSrc
+              }
               alt=""
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
+
             <ProgressBar className="progress-bar" completed={hitPoints} />
             <img
               src={showEffects ? OthersAfterAttack : Others}
@@ -137,9 +145,14 @@ const SinglePlayPage: React.FC = () => {
             />
           </div>
         )}
-        {showEffects && eating % 5 && (
-          <img src={ourImageAttack} alt="" className="effects-image" />
+        {showEffects && eating % 5 !== 0 && (
+          <img
+            src={ourImageAttack}
+            alt=""
+            className={`effects-image ${showEffects ? "" : "hidden"}`}
+          />
         )}
+
         {!(eating % 5) && eating != 0 && (
           <img
             src={ourImageEffect}

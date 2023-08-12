@@ -11,6 +11,9 @@ import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
 import Others from "../assets/before_fight/32_germ_standing.gif";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
+import ProgressBar from "../components/Common/ProgressBar";
+
+import InvitationYum from "../components/SinglePage/InvitationYum";
 
 const SinglePlayPage: React.FC = () => {
   const [showImages, setShowImages] = useState(true);
@@ -24,6 +27,10 @@ const SinglePlayPage: React.FC = () => {
   const ourImageEffect = useImageEffect();
   const useImageRandom = RandomBack();
   const [mySession, setMySession] = useState<any>(null);
+
+  const eating = useSelector((state: RootState) => state.eating.value);
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
+  const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
 
   const handleMySession = (obj: { eatValue: boolean }) => {
     console.log("Received eatValue:", obj.eatValue);
@@ -61,41 +68,45 @@ const SinglePlayPage: React.FC = () => {
 
   useEffect(() => {
     if (showEffects) {
-      
       // 관전자들에게 공격 여부를 전송, showEffects(아마 true/false) 값을 전달
-      if(mySession != null){
-        mySession.signal({
-          data: true,  // Any string (optional)
-          to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
-          type: 'attack-state'             // The type of message (optional)
-        }).then(() => {
-          console.log('Message successfully sent');
-        }).catch((error:any) => {
-          console.error(error);
-        });
+      if (mySession != null) {
+        mySession
+          .signal({
+            data: true, // Any string (optional)
+            to: [], // Array of Connection objects (optional. Broadcast to everyone if empty)
+            type: "attack-state", // The type of message (optional)
+          })
+          .then(() => {
+            console.log("Message successfully sent");
+          })
+          .catch((error: any) => {
+            console.error(error);
+          });
       }
 
       // 애니메이션 시간(여기서는 2초) 후에 showEffects 상태를 다시 false로 설정
       const animationTimeout = setTimeout(() => {
         dispatch(setShowEffects(false));
-        if(mySession != null){
-          mySession.signal({
-            data: false,  // Any string (optional)
-            to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
-            type: 'attack-state'             // The type of message (optional)
-          }).then(() => {
-            console.log('Message successfully sent');
-          }).catch((error:any) => {
-            console.error(error);
-          });
+        if (mySession != null) {
+          mySession
+            .signal({
+              data: false, // Any string (optional)
+              to: [], // Array of Connection objects (optional. Broadcast to everyone if empty)
+              type: "attack-state", // The type of message (optional)
+            })
+            .then(() => {
+              console.log("Message successfully sent");
+            })
+            .catch((error: any) => {
+              console.error(error);
+            });
         }
       }, 1500);
-      console.log(showEffects)
+      console.log(showEffects);
 
       return () => clearTimeout(animationTimeout);
     }
   }, [showEffectsTemp]);
-
 
   useEffect(() => {
     console.log(mySession);
@@ -104,16 +115,20 @@ const SinglePlayPage: React.FC = () => {
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
+      <div>
+        <InvitationYum />
+      </div>
       <div className="images-container">
         {showImages && (
           <div className="images">
             <img src={useImageRandom} alt="" className="overlay-image" />
             <img
-              src={showEffects ? ourImageAttack : ourImageSrc}
+              src={showEffects ? "attack-animation" : ourImageSrc}
               alt=""
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
+            <ProgressBar className="progress-bar" completed={hitPoints} />
             <img
               src={showEffects ? OthersAfterAttack : Others}
               alt=""
@@ -122,8 +137,15 @@ const SinglePlayPage: React.FC = () => {
             />
           </div>
         )}
-        {showEffects && (
-          <img src={ourImageEffect} alt="" className="effects-image" />
+        {showEffects && eating % 5 && (
+          <img src={ourImageAttack} alt="" className="effects-image" />
+        )}
+        {!(eating % 5) && eating != 0 && (
+          <img
+            src={ourImageEffect}
+            alt=""
+            className={`effects-image ${showImages ? "" : "hidden"}`}
+          />
         )}
       </div>
     </div>

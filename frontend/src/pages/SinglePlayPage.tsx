@@ -4,15 +4,15 @@ import { RootState } from "../store/store";
 import useImageSrc from "../hooks/useImage/useImageSrc";
 import useImageAttack from "../hooks/useImage/useImageAttack";
 import useImageEffect from "../hooks/useImage/useImageEffect";
+import useImageCharge from "../hooks/useImage/useImageCharge";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
 import Others from "../assets/before_fight/32_germ_standing.gif";
-import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
+import OthersAfterAttack from "../assets/Attacked/2.gif";
 import ProgressBar from "../components/Common/ProgressBar";
-import Charge from "../assets/Charging/1_tofu.gif";
 
 import InvitationYum from "../components/SinglePage/InvitationYum";
 
@@ -26,8 +26,11 @@ const SinglePlayPage: React.FC = () => {
   const ourImageSrc = useImageSrc();
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
+  const ourImageCharge = useImageCharge();
   const useImageRandom = RandomBack();
   const [mySession, setMySession] = useState<any>(null);
+  const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
+  const [showOthersWithDelay, setShowOthersWithDelay] = useState(false);
 
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
@@ -102,6 +105,8 @@ const SinglePlayPage: React.FC = () => {
               console.error(error);
             });
         }
+        setShowOthersWithDelay(true); // 이미지 지연 처리
+        setShowOthersAfterAttack(true);
       }, 1500);
       console.log(showEffects);
 
@@ -112,6 +117,24 @@ const SinglePlayPage: React.FC = () => {
   useEffect(() => {
     console.log(mySession);
   }, [mySession]);
+
+  useEffect(() => {
+    const imageElement = document.querySelector(".effects-image");
+
+    const handleAnimationEnd = () => {
+      setShowEffects(false);
+    };
+
+    if (imageElement) {
+      imageElement.addEventListener("animationend", handleAnimationEnd);
+    }
+
+    return () => {
+      if (imageElement) {
+        imageElement.removeEventListener("animationend", handleAnimationEnd);
+      }
+    };
+  }, []);
 
   return (
     <div className="single-play-page">
@@ -128,7 +151,7 @@ const SinglePlayPage: React.FC = () => {
                 showEffects
                   ? "attack-animation"
                   : eating % 5 === 4
-                  ? Charge
+                  ? ourImageCharge 
                   : ourImageSrc
               }
               alt=""
@@ -149,7 +172,8 @@ const SinglePlayPage: React.FC = () => {
           <img
             src={ourImageAttack}
             alt=""
-            className={`effects-image ${showEffects ? "" : "hidden"}`}
+            className={`effects-image ${showEffects ? ourImageSrc : "hidden"}`}
+            onAnimationEnd={() => setShowEffects(false)} // 애니메이션 종료 시 이미지 숨김
           />
         )}
 

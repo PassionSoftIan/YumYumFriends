@@ -18,35 +18,9 @@ const MultiChoicePage: React.FC = () => {
     action();
   };
 
-  // const handleCreateRoomClick = () => {
-  //   setShowButtons(false);
-  //   setShowCreateRoom(true);
-  // };
-
-  // const handleSelectRoomClick = () => {
-  //   setShowButtons(false);
-  //   setShowSelectRoom(true);
-  // };
 
   return (
     <div className="multi-play-page">
-      {/* {showButtons && (
-        <div>
-          <Button onClick={handleCreateRoomClick}>
-            <span>Create Room</span>
-          </Button>
-
-          <Button onClick={handleSelectRoomClick}>
-            <span>Select Room</span>
-          </Button>
-
-
-
-        </div>
-      )}
-      {showCreateRoom && <MultiPlayPage />}
-      {showSelectRoom && <MultiSelectRoomPage />} */}
-
       <Button
         onClick={(
 

@@ -13,25 +13,6 @@
   }
 }
 
-
-/* 버튼 스타일 추가 및 카카오톡 버튼 색상 및 텍스트 설정 */
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #fee500; /* 카카오톡 버튼 색상으로 설정 (#FEE500) */
-  color: white; /* 버튼 텍스트 색상을 흰색으로 설정 */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 12%; /* 로고와 버튼 사이에 큰 간격을 추가합니다 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 버튼에 그림자 효과를 추가합니다 */
-}
-
-button:hover {
-  background-color: #fdd85b; /* 버튼에 호버 효과 색상을 변경합니다 */
-}
-/* LoginPage.css 파일 수정 */
 .login-page {
   display: flex;
   flex-direction: column;

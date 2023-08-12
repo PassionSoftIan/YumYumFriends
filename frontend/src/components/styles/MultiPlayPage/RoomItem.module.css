@@ -1,0 +1,7 @@
+.item {
+    color: black;
+    background: #FFF5E4;
+    border: 2px solid #FFD1D1;
+    padding: 10px 100px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}

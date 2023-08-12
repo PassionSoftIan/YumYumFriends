@@ -5,15 +5,16 @@ import Banner from "../Common/Banner";
 import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
 import { setShowEffects } from "../../store/showEffectsSlice";
+import { setEating } from "../../store/eatingSlice";
 import { RootState } from "../../store/store";
 
 const GameStage: React.FC = () => {
-  const [eating, setEating] = useState(0);
   const [nowEating, setNowEating] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
 
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
+  const eating = useSelector((state: RootState) => state.eating.value);
   const navigate = useNavigate();
 
   const detection = useSelector((state: RootState) => state.detection.value);
@@ -24,6 +25,14 @@ const GameStage: React.FC = () => {
     (state: RootState) => state.showEffects.value
   );
   const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    return () => {
+      dispatch(setEating(0));
+    };
+  }, []);
+
 
   useEffect(() => {
     if (nowEating) {
@@ -83,7 +92,7 @@ const GameStage: React.FC = () => {
         }, 4000); // 4초 뒤에 작동하도록 설정
       }
   
-      setEating((prevEating) => prevEating + 1);
+      dispatch(setEating(eating + 1));
       setNowEating(true);
       setShowAnimation(true);
       dispatch(setShowEffects(!showEffects));
@@ -119,8 +128,13 @@ const GameStage: React.FC = () => {
         navigate("/gameclear");
       }, 4000); // 4초 뒤에 작동하도록 설정
     }
+<<<<<<< HEAD
     
     setEating(eating + 1);
+=======
+
+    dispatch(setEating(eating + 1));
+>>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
     setNowEating(true);
     setShowAnimation(true);
     dispatch(setShowEffects(!showEffects));

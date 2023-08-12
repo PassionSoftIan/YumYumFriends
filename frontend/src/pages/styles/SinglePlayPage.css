@@ -41,7 +41,7 @@
 .ours-image {
   z-index: 99;
   position: fixed;
-  bottom: 0;
+  bottom: 3%;
   left: 0;
   right: 0;
   width: 30%;
@@ -52,21 +52,20 @@
 .others-image {
   z-index: 99;
   position: fixed;
-  bottom: 0;
+  bottom: 3%;
   right: 0;
   width: 30%;
   height: auto;
-  
 }
 
 .effects-image {
   z-index: 99;
   position: absolute;
-  bottom: 20%;
+  bottom: 23%;
   left: 0;
-  width: 30%;
+  width: 25%;
   height: auto;
-  animation: moveEffectBetweenImages 1.5s 1 forwards; /* forwards 추가 */
+  animation: moveEffectBetweenImages 1.5s 1 ; /* forwards 추가 */
 }
 
 
@@ -77,6 +76,7 @@
   100% {
     transform: translateX(calc(100vw - 150%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
   }
+  
 }
 @keyframes moveEffectBetweenImages2 {
   0% {
@@ -86,22 +86,7 @@
     transform: translateX(-50vw); /* 왼쪽으로 요소 너비만큼 이동 */
   }
 }
-.ours-image.hidden {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  background-image: url("../../assets/AttackingYums//10_eggplant_attack.gif");
-  animation: attack-animation 2s ease infinite;
-}
 
-.others-image.hidden {
-  opacity: 1;
-  transition: opacity 1.5s ease-in-out;
-
-}
-.attack-animation {
-  background-image: url("../../assets/AttackingYums//10_eggplant_attack.gif");
-  animation: attack-animation 2s ease infinite;
-}
 
 .small-image {
   width: 100px;
@@ -111,9 +96,11 @@
 .progress-bar {
   z-index: 99;
   position: fixed;
-  bottom: 8%;
-  /* left: 0; */
+  bottom: 30%;
   right: 0;
   width: 30% !important;
   height: auto;
+}
+.hidden{
+  display: none;
 }

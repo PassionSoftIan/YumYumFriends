@@ -84,9 +84,6 @@ class OpenViduVideoComponent extends Component {
       if (response.data.eat !== this.prevEatValue) {
         this.prevEatValue = response.data.eat;
 
-        if (this.detectionTimer) {
-          clearTimeout(this.detectionTimer);
-        }
 
         if (response.data.eat === 1) {
           this.props.setDetection(true);

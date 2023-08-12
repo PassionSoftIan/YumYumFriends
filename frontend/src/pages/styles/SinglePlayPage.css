@@ -56,6 +56,7 @@
   width: 30%;
   height: auto;
 }
+
 .effects-image {
   z-index: 99;
   position: absolute;
@@ -63,7 +64,7 @@
   left: 0;
   width: 30%;
   height: auto;
-  animation: moveEffectBetweenImages 1.5s ease-in-out infinite;
+  animation: moveEffectBetweenImages 15s infinite; /* 애니메이션을 15초 동안 무한히 반복 */
 }
 
 @keyframes moveEffectBetweenImages {
@@ -74,7 +75,6 @@
     transform: translateX(calc(100vw - 100%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
   }
 }
-
 
 .ours-image.hidden {
   opacity: 0;

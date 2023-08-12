@@ -5,3 +5,15 @@
   align-items: center; /* 세로 중앙 정렬 */
   height: 100vh; /* 컨테이너의 높이를 화면 전체 높이로 설정하여 수직 중앙 정렬 */
 }
+.IntroBack {
+  background-color: #ffffff;/* 이미지 파일 경로 설정 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}

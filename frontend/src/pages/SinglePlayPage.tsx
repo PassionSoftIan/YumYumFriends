@@ -13,6 +13,8 @@ import Others from "../assets/before_fight/32_germ_standing.gif";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
 import ProgressBar from "../components/Common/ProgressBar";
 
+import InvitationYum from "../components/SinglePage/InvitationYum";
+
 const SinglePlayPage: React.FC = () => {
   const [showImages, setShowImages] = useState(true);
   const [showEffectsTemp, setShowEffectsTemp] = useState(false); // 추가된 상태
@@ -111,6 +113,9 @@ const SinglePlayPage: React.FC = () => {
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
+      <div>
+        <InvitationYum />
+      </div>
       <div className="images-container">
         {showImages && (
           <div className="images">

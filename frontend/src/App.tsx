@@ -19,6 +19,7 @@ import GameClearPage from "./pages/GameClearPage";
 import SettingsPage from "./pages/SettingsPage";
 import SelectPage from "./pages/SelectPage";
 import ObservationPage from "./pages/ObservationPage";
+import InvitationYum from "./components/SinglePage/InvitationYum";
 import NavBar from "./components/NavBar/NavBar";
 import AudioPlayer from "./components/Audio/AudioPlayer"; // Use "AudioPlayer" with an uppercase "P"
 import { PersistGate } from "redux-persist/integration/react";
@@ -51,6 +52,7 @@ const App: React.FC = () => {
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/select" element={<SelectPage />} />
                 <Route path="/observation" element={<ObservationPage />} />
+                <Route path="/invitation" element={<InvitationYum />} />
               </Routes>
               <AudioPlayer /> {/* 추가: AudioPlayer 컴포넌트를 렌더링합니다. */}
             </Router>

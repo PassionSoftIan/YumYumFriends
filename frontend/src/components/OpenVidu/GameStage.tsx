@@ -128,13 +128,8 @@ const GameStage: React.FC = () => {
         navigate("/gameclear");
       }, 4000); // 4초 뒤에 작동하도록 설정
     }
-<<<<<<< HEAD
-    
-    setEating(eating + 1);
-=======
 
     dispatch(setEating(eating + 1));
->>>>>>> c10fbf7dbd37d7d391fdc57850935f545f1ca714
     setNowEating(true);
     setShowAnimation(true);
     dispatch(setShowEffects(!showEffects));

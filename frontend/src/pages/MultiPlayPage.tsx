@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import M_OpenViduComponent from "../components/MultiVidu/MyMultiVidu/M_OpenViduComponent";
-import F_OpenViduComponent from "../components/MultiVidu/FriendMultiVidu/F_OpenViduComponent";
+import M_OpenViduComponent from "../components/MultiVidu/M_OpenViduComponent";
 
 // 여기부터 싱글 import
 import { useSelector, useDispatch } from "react-redux";
@@ -130,7 +129,7 @@ const MultiPlayPage: React.FC = () => {
       </div>
 
       {/* 멀티모드 애니메이션 */}
-      <div className="images-container">
+      {/* <div className="images-container">
         {showImages && (
           <div className="images">
             <img src={useImageRandom} alt="" className="overlay-image" />
@@ -152,12 +151,7 @@ const MultiPlayPage: React.FC = () => {
         {showEffects && (
           <img src={ourImageEffect} alt="" className="effects-image" />
         )}
-      </div>
-
-      {/* 멀티모드 친구화면 */}
-      <div className="Friend-play-page">
-        <F_OpenViduComponent {...commonProps} />
-      </div>
+      </div> */}
     </div>
   );
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "../../Common/Button";
-import Banner from "../../Common/Banner";
+import Button from "../Common/Button";
+import Banner from "../Common/Banner";
 import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
-import { setShowEffects } from "../../../store/showEffectsSlice";
-import { setEating } from "../../../store/eatingSlice";
-import { RootState } from "../../../store/store";
+import { setShowEffects } from "../../store/showEffectsSlice";
+import { setEating } from "../../store/eatingSlice";
+import { RootState } from "../../store/store";
 
 const M_GameStage: React.FC = () => {
   const [nowEating, setNowEating] = useState(false);

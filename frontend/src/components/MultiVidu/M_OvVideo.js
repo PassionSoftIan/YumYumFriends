@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as blazeface from "@tensorflow-models/blazeface";
 // 가면 이미지를 불러옵니다.
-import maskImage1 from "../../../assets/Hats/1_tofu_hat.png";
-import maskImage2 from "../../../assets/Hats/2_mandarin_hat.png";
-import maskImage7 from "../../../assets/Hats/7_egg_hat.png";
-import maskImage10 from "../../../assets/Hats/10_eggplant_hat.png";
-import maskImage12 from "../../../assets/Hats/12_avocado_hat.png";
-import maskImage13 from "../../../assets/Hats/13_apple_hat.png";
+import maskImage1 from "../../assets/Hats/1_tofu_hat.png";
+import maskImage2 from "../../assets/Hats/2_mandarin_hat.png";
+import maskImage7 from "../../assets/Hats/7_egg_hat.png";
+import maskImage10 from "../../assets/Hats/10_eggplant_hat.png";
+import maskImage12 from "../../assets/Hats/12_avocado_hat.png";
+import maskImage13 from "../../assets/Hats/13_apple_hat.png";
 
 import { connect } from "react-redux";
-import { setDetection } from "../../../store/detectionSlice";
+import { setDetection } from "../../store/detectionSlice";
 import M_GameStage from "./M_GameStage";
 import axios from "axios";
 

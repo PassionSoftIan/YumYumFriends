@@ -125,7 +125,7 @@ const MultiPlayPage: React.FC = () => {
 
       {/* 멀티모드에서 자기 화면 보이게 */}
       <div className="My-play-page">
-        <M_OpenViduComponent onObjectCreated={handleMySession} />
+        <M_OpenViduComponent onObjectCreated={handleMySession} {...commonProps}/>
       </div>
 
       {/* 멀티모드 애니메이션 */}

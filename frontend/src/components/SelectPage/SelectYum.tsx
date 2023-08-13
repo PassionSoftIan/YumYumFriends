@@ -67,17 +67,8 @@ const SelectYum: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className="select">
-        <div className="ment">
-          <h3>함께 할 친구를 골라봐</h3>
-        </div>
-        <Carousel
-          carouselList={yumList}
-          allYumList={allList}
-          myCurrentYum={myCurrentYum}
-          onCenterIndexChange={handleCenterIndexChange}
-        />
-        <Button onClick={handleSelectedYum}>설정하기</Button>
+      <div className="ment" style={{ zIndex: 99 }}>
+        <h3>함께 할 친구를 골라봐</h3>
       </div>
     </React.Fragment>
   );

@@ -139,11 +139,14 @@ const Carousel: React.FC<Props> = (props) => {
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          zIndex: 99,
-          marginTop: 30,
+          zIndex: 999,
+          marginTop: 40,
           padding: 20, // 안쪽 여백 추가
           fontSize: "18px", // 폰트 크기 조정
           lineHeight: "26px", // 줄 간격 조정
+          width: "100%", // 박스 너비 고정
+          height: 200, // 박스 높이 고정
+          boxSizing: "border-box",
         }}
       >
         <div ref={nameDivRef} />

@@ -9,7 +9,6 @@ import maskImage10 from "../../assets/Hats/10_eggplant_hat.png";
 import maskImage12 from "../../assets/Hats/12_avocado_hat.png";
 import maskImage13 from "../../assets/Hats/13_apple_hat.png";
 
-import Loading from "../Common/Loading";
 import { connect } from "react-redux";
 import { setDetection } from "../../store/detectionSlice";
 import GameStage from "./GameStage";
@@ -24,7 +23,6 @@ class OpenViduVideoComponent extends Component {
     this.prevEatValue = 0;
     this.state = {
       showWarning: false,
-      isLoading: true,
     };
   }
 
@@ -236,8 +234,6 @@ class OpenViduVideoComponent extends Component {
     this.drawMask(predictions);
     this.checkFacePosition(predictions);
 
-    this.setState({ isLoading: false });
-
     requestAnimationFrame(this.detectFace);
   };
 
@@ -253,7 +249,6 @@ class OpenViduVideoComponent extends Component {
           margin: "0",
         }}
       >
-        {this.state.isLoading && <Loading />}
         <video
           autoPlay={true}
           ref={this.videoRef}

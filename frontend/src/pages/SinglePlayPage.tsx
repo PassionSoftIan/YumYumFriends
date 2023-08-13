@@ -33,6 +33,7 @@ const SinglePlayPage: React.FC = () => {
   const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
   const [showOthersWithDelay, setShowOthersWithDelay] = useState(false);
   const [openViduLoaded, setOpenViduLoaded] = useState(false);
+  const [loadingPageVisible, setLoadingPageVisible] = useState(true);
 
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
@@ -138,22 +139,17 @@ const SinglePlayPage: React.FC = () => {
     };
   }, []);
 
-
-  useEffect(() => {
-    // OpenViduComponent의 로딩이 완료되었다고 가정
-    setTimeout(() => {
-      setOpenViduLoaded(true);
-    }, 3000); // 예시로 3초 후에 로딩이 완료되었다고 가정
-  }, []);
+  const handlePageClick = () => {
+    setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
+    setOpenViduLoaded(true);
+  };
 
   return (
     <div className="single-play-page">
       {openViduLoaded ? (
-        // OpenViduComponent 로딩이 완료된 경우, 해당 컴포넌트 렌더링
         <OpenViduComponent onObjectCreated={handleMySession} />
       ) : (
-        // OpenViduComponent 로딩 중인 경우, 로딩 페이지 렌더링
-        <LoadingPage />
+        <LoadingPage onClick={handlePageClick} />
       )}
       <div>
         <InvitationYum />

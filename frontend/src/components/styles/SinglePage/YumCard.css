@@ -1,0 +1,80 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 0.35rem;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+  background-color: #fbd85e;
+  transform-style: preserve-3d;
+  transition: 500ms;
+  cursor: pointer;
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0))
+    translateY(var(--translate-y, 0));
+  height: 400px;
+  width: 250px;
+  margin: 10px;
+}
+
+.card:hover {
+  --translate-y: -2px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+.card.flip {
+  --rotate-y: 180deg;
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  padding: 1rem;
+  backface-visibility: hidden;
+
+}
+
+.card .front {
+  width: 85%;
+  height: 90%;
+  border-radius: 0.35rem;
+  background: linear-gradient(to bottom, blanchedalmond 50%, #fbd85e);
+}
+
+.card-yum-image {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.shadow {
+  width: 60%;
+  position: relative;
+  bottom: 50px;
+}
+
+.card .back {
+  width: 75%;
+  height: 85%;
+  border: 2px solid #f6a61a;
+  transform: rotateY(180deg);
+}
+
+.description {
+  position: relative;
+  bottom: 40px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: larger;
+  margin-bottom: 20px;
+}
+
+.card-content {
+  line-height: 1.8;
+}
+
+.card-content span {
+  font-weight: bold;
+}

@@ -1,7 +1,8 @@
 .gamelogo {
-  max-width: 50%;
+  max-width: 70%;
   height: auto;
   animation: bounce 2s infinite; /* bounce 애니메이션을 2초마다 무한 반복 적용 */
+  margin-bottom: 20vh;
 }
 
 @keyframes bounce {

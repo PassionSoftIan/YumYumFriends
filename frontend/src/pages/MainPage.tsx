@@ -22,7 +22,20 @@ const MainPage: React.FC = () => {
 
   const handleAction = (action: () => void) => {
     triggerConfetti();
-    action();
+    const buttons = document.querySelectorAll(".game-button");
+
+    buttons.forEach((button, index) => {
+      setTimeout(() => {
+        button.classList.add("hide");
+      }, index * 150);
+    });
+
+    setTimeout(() => {
+      action();
+      buttons.forEach(button => {
+        button.classList.remove("hide");
+      });
+    }, buttons.length * 150 + 500);
   };
 
   return (

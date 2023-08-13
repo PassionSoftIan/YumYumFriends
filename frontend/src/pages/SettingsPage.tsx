@@ -12,7 +12,9 @@ import styles from "./styles/SettingsPage.module.css";
 const SettingsPage: React.FC = () => {
   const dispatch = useDispatch();
   const bgmOn = useSelector((state: RootState) => state.bgm.bgmOn);
-  const soundEffectOn = useSelector((state: RootState) => state.soundEffect.soundEffectOn);
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
 
   const handleBgm = () => {
     dispatch(toggleBgm());
@@ -23,29 +25,24 @@ const SettingsPage: React.FC = () => {
   };
 
   return (
-    <Card>
-      <ul className={styles.list}>
-        <li>
-          <div className={styles["toggle-container"]}>
-            <Toggle label="배경음악" toggled={bgmOn} onClick={handleBgm} />
-          </div>
-        </li>
-        <li>
-          <div className={styles["toggle-container"]}>
-            <Toggle
-              label="효과음"
-              toggled={soundEffectOn}
-              onClick={handleSoundEffect}
-            />
-          </div>
-        </li>
-        <li>
-          <div>
-            <Stepper label="먹는 횟수" />
-          </div>
-        </li>
-      </ul>
-    </Card>
+    <div className={styles["settings-container"]}>
+      <div className={styles["settings-banner"]}>
+        <p>설정</p>
+      </div>
+      <div className={styles["settings-items"]}>
+        <Stepper label="먹는 횟수" />
+
+        <div className={styles["toggle-container"]}>
+          <Toggle label="배경음악" toggled={bgmOn} onClick={handleBgm} />
+
+          <Toggle
+            label="효과음"
+            toggled={soundEffectOn}
+            onClick={handleSoundEffect}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

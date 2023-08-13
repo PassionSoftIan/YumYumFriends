@@ -6,11 +6,10 @@ import useImageSrc from "../../hooks/useImage/useImageSrc";
 
 interface NavBarProps {
   nickname?: string;
-  meal?: number; // meal 변수의 타입을 숫자로 지정
+  meal?: number;
 }
 
 const NavBar: React.FC<NavBarProps> = ({ nickname, meal = 3 }) => {
-  // meal 변수의 기본값을 3으로 설정
   const navigate = useNavigate();
   const location = useLocation();
   const ourImageSrc = useImageSrc();
@@ -28,9 +27,8 @@ const NavBar: React.FC<NavBarProps> = ({ nickname, meal = 3 }) => {
         <img src={backButton} alt="Back" />
       </div>
       <div className="user-profile">
-        <div className="user-icon">
-          {ourImageSrc && <img src={ourImageSrc} alt="Profile" />}
-        </div>
+
+        <div className="icon-divider"></div>
         <div className="user-nickname">
           <div className="icon-and-nickname">
             <span className="nick">{nickname}</span>

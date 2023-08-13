@@ -1,6 +1,12 @@
 .stepper-container {
   display: flex;
   align-items: center;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
 }
 
 .span-disabled {
@@ -36,13 +42,14 @@
 
 .value-container {
   padding: 0 20px;
-  border: 2px solid #ffd1d1;
   border-radius: 10px;
   margin: 0 5px;
+  font-size: xx-large;
+  font-weight: bold;
 }
 
 .button:hover {
-  background-color: #ffd1d1;
+  background-color: #D8E548;
 }
 
 .disabled:hover {

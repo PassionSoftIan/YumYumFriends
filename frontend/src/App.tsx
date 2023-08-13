@@ -29,7 +29,15 @@ import "./App.css";
 import { AnimatePresence } from "framer-motion";
 
 const App: React.FC = () => {
-  // const location = useLocation();
+  const [nickname, setNickname] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    // 로컬스토리지에서 nickname을 가져와서 상태로 설정합니다.
+    const storedNickname = localStorage.getItem("nickname");
+    if (storedNickname) {
+      setNickname(JSON.parse(storedNickname));
+    }
+  }, []);
 
   return (
     <Provider store={store}>
@@ -40,7 +48,7 @@ const App: React.FC = () => {
             <img className="sun-image" src={Sun} alt="" />
             <Router>
               <div className="navbar-container">
-                <NavBar />
+              <NavBar nickname={nickname} />
               </div>
               {/* <Routes location={location} key={location.pathname}> */}
               <AnimatePresence>

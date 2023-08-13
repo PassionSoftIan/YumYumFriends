@@ -6,6 +6,7 @@ import useImageAttack from "../hooks/useImage/useImageAttack";
 import useImageEffect from "../hooks/useImage/useImageEffect";
 import useImageCharge from "../hooks/useImage/useImageCharge";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
+import LoadingPage from "../components/LoadingPage/LoadingPage";
 
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
@@ -31,6 +32,7 @@ const SinglePlayPage: React.FC = () => {
   const [mySession, setMySession] = useState<any>(null);
   const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
   const [showOthersWithDelay, setShowOthersWithDelay] = useState(false);
+  const [openViduLoaded, setOpenViduLoaded] = useState(false);
 
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
@@ -136,9 +138,23 @@ const SinglePlayPage: React.FC = () => {
     };
   }, []);
 
+
+  useEffect(() => {
+    // OpenViduComponent의 로딩이 완료되었다고 가정
+    setTimeout(() => {
+      setOpenViduLoaded(true);
+    }, 3000); // 예시로 3초 후에 로딩이 완료되었다고 가정
+  }, []);
+
   return (
     <div className="single-play-page">
-      <OpenViduComponent onObjectCreated={handleMySession} />
+      {openViduLoaded ? (
+        // OpenViduComponent 로딩이 완료된 경우, 해당 컴포넌트 렌더링
+        <OpenViduComponent onObjectCreated={handleMySession} />
+      ) : (
+        // OpenViduComponent 로딩 중인 경우, 로딩 페이지 렌더링
+        <LoadingPage />
+      )}
       <div>
         <InvitationYum />
       </div>

@@ -1,32 +1,46 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/NavBar/NavBar.css";
-import backButton from "../../assets/Buttons/Back.png"; // 파일 경로 수정
+import backButton from "../../assets/Buttons/Back.png";
+import useImageSrc from "../../hooks/useImage/useImageSrc";
 
 interface NavBarProps {
   nickname?: string;
+  meal?: number; // meal 변수의 타입을 숫자로 지정
 }
 
-const NavBar: React.FC<NavBarProps> = ({ nickname }) => {
+const NavBar: React.FC<NavBarProps> = ({ nickname, meal = 3 }) => {
+  // meal 변수의 기본값을 3으로 설정
   const navigate = useNavigate();
   const location = useLocation();
+  const ourImageSrc = useImageSrc();
 
   const handleGoBack = () => {
     navigate(-1);
   };
 
-  // IntroPage와 LoginPage에서는 NavBar를 숨기기 위한 조건 추가
   const hideNavBarOnIntroPageOrLoginPage =
     location.pathname === "/login" || location.pathname === "/";
 
-  // 조건에 따라 NavBar를 렌더링
   return !hideNavBarOnIntroPageOrLoginPage ? (
     <div className="navbar">
       <div className="back-button" onClick={handleGoBack}>
-        <img src={backButton} alt="Back" /> {/* 이미지로 뒤로가기 아이콘 사용 */}
+        <img src={backButton} alt="Back" />
       </div>
-      <div className="user-nickname">
-        {nickname} {/* Display the user's nickname here */}
+      <div className="user-profile">
+        <div className="user-icon">
+          {ourImageSrc && <img src={ourImageSrc} alt="Profile" />}
+        </div>
+        <div className="user-nickname">
+          <div className="icon-and-nickname">
+            <span className="nick">{nickname}</span>
+            {Array.from({ length: meal }, (_, index) => (
+              <span key={index} className="icon">
+                🥄
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   ) : null;

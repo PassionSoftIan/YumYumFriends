@@ -3,13 +3,12 @@
   width: 100%;
   background-color: #cacaca;
   border-radius: 50px;
-  margin: 50px;
+  margin: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 .filler {
   height: 100%;
-  background-color: #62199E;
   border-radius: inherit;
   text-align: right;
   transition: 1s ease-in-out;

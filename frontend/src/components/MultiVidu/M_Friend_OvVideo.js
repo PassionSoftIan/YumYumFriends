@@ -41,7 +41,7 @@ export default class M_Friend_OvVideo extends Component {
                     objectFit: "cover",
                     // visibility: "hidden",
                   }}                
-                />;
+                />
             </div>
         )
     }

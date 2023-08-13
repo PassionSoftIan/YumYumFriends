@@ -47,10 +47,12 @@ class M_OpenViduComponent extends Component {
   componentWillUnmount() {
     this.leaveSession();
     window.removeEventListener("beforeunload", this.onbeforeunload);
+    console.log('componentWillUnmount');
   }
 
   onbeforeunload(event) {
     this.leaveSession();
+    console.log('onbeforeunload');
   }
 
   handleSubVideoStream(stream) {
@@ -84,6 +86,22 @@ class M_OpenViduComponent extends Component {
       myUserName: e.target.value,
     });
   }
+  sendMessage = (msgdata, msgtype) => {
+    if(this.state.Session != null){
+      this.state.Session.signal({
+        data: msgdata,  // Any string (optional)
+        to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+        type: msgtype             // The type of message (optional)
+      }).then(() => {
+        console.log('Message successfully sent');
+      }).catch((error) => {
+        console.error(error);
+      });
+    }
+    else{
+      console.log('No session');
+    }
+  }
 
   ///
 
@@ -114,26 +132,24 @@ class M_OpenViduComponent extends Component {
           console.log(this.props.hostInfo);
           console.log(this.state.myUserName);
           console.log(subscribers);
-          if(subscribers.length == 0){
-            var subscriber = mySession.subscribe(event.stream, undefined);
-            var subscribers = this.state.subscribers;
-            subscribers.push(subscriber);
-            console.log(subscriber);
-            this.handleSubVideoStream(subscriber);
+          var subscriber = mySession.subscribe(event.stream, undefined);
+          var subscribers = this.state.subscribers;
+          subscribers.push(subscriber);
+          console.log(subscriber);
+          this.handleSubVideoStream(subscriber);
 
-            // Update the state with the new subscribers
-            this.setState({
-              subscribers: subscribers,
-            });
+          // Update the state with the new subscribers
+          this.setState({
+            subscribers: subscribers,
+          });
+          // 호스트는 퇴장하지 않음
+          // 게스트 측에서 인원 초과 시 자동 퇴장
+          if(subscribers.length > 1 && this.props.hostInfo != this.state.myUserName){
+            console.log('-------------------disconnect---------------');
+            this.leaveSession();
+            // 퇴장 처리
           }
-          else{
-            // 호스트는 퇴장하지 않음
-            // 게스트 측에서 인원 초과 시 자동 퇴장
-            if(this.props.hostInfo == this.state.myUserName){
-              this.leaveSession();
-              // 퇴장 처리
-            }
-          }
+          console.log(subscribers);
         });
 
         // On every Stream destroyed...
@@ -222,6 +238,7 @@ class M_OpenViduComponent extends Component {
     const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
     if (mySession) {
+      this.leaveSessionUpdate();
       mySession.disconnect();
     }
 
@@ -233,8 +250,19 @@ class M_OpenViduComponent extends Component {
       mySessionId: UserID,
       myUserName: UserName,
       mainStreamManager: undefined,
+      subStreamManager: undefined,
       publisher: undefined,
     });
+  }
+
+  leaveSessionUpdate(){
+    const URL = "https://yumyumfriends.site";
+    axios.delete(`${URL}/api/v1/session/exit?session_id=${this.state.mySessionId}`)
+      .then((response) => {
+        console.log(response);
+        console.log('퇴장 처리 완료');
+      })
+      .catch((error) => console.log(error));
   }
 
   render() {

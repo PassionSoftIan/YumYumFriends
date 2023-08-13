@@ -4,7 +4,6 @@ import { RootState } from "../store/store";
 import { toggleBgm } from "../store/bgmSlice";
 import { toggleSoundEffect } from "../store/soundEffectSlice";
 
-import Card from "../components/Common/Card";
 import Toggle from "../components/Common/Toggle";
 import Stepper from "../components/Common/Stepper";
 import styles from "./styles/SettingsPage.module.css";

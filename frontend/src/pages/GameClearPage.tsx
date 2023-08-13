@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import GetYum from "../components/SinglePage/GetYum";
 import "./styles/GameClearPage.css";
 import axios from "axios";
@@ -44,6 +44,7 @@ const GameClearPage: React.FC = () => {
   const targetYum = {
     name: randomYum?.eng,
     type: randomYum?.name,
+    personality: randomYum?.personality,
   };
 
   return (

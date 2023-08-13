@@ -52,6 +52,18 @@ const MultiPlayPage: React.FC = () => {
       setShowEffectsTemp(true); // eatValue가 true일 때 showEffectsTemp를 true로 설정
     }
     setMySession(obj);
+    mySession.on('signal:attack-state', (event:any) => {
+      console.log(event.data);
+      // 공격 메시지 수신 시 애니메이션 변경
+      if(event.data){
+        // 공격 애니메이션 시작
+        // 해당 메소드 자체가 자식 컴포넌트에서 실행되기 때문에
+        // 부모 컴포넌트의 변수 변경이 가능한지는 확인해봐야 함
+      }
+      else{
+        // 공격 애니메이션 정지
+      }
+    });
   };
 
   const handleImageTouch = () => {

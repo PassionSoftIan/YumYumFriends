@@ -5,7 +5,6 @@ import React, { Component } from "react";
 import M_UserVideoComponent from "./M_UserVideoComponent";
 
 import "./OpenViduComponent.css";
-import { div } from "@tensorflow/tfjs";
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";

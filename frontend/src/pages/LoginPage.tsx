@@ -3,7 +3,7 @@ import logo from "../assets/gametitle.png";
 import { useNavigate } from "react-router-dom";
 import "./styles/LoginPage.css";
 import SocialKakao from "../components/LoginPage/SocialKakao";
-import transition from "../transition";
+import { ZoomIn } from "./styles/transition";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -13,11 +13,13 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-page">
-      <img src={logo} alt="Title Logo" className="gamelogo" />
-      <SocialKakao onSuccess={handleLoginSuccess} />{" "}
-    </div>
+    <ZoomIn>
+      <div className="login-page">
+        <img src={logo} alt="Title Logo" className="gamelogo" />
+        <SocialKakao onSuccess={handleLoginSuccess} />{" "}
+      </div>
+    </ZoomIn>
   );
 };
 
-export default transition(LoginPage);
+export default LoginPage;

@@ -151,7 +151,7 @@ const SinglePlayPage: React.FC = () => {
                 showEffects
                   ? "attack-animation"
                   : eating % 5 === 4
-                  ? ourImageCharge 
+                  ? ourImageCharge
                   : ourImageSrc
               }
               alt=""

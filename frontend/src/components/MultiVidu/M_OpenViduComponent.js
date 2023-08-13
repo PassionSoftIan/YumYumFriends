@@ -21,6 +21,7 @@ class M_OpenViduComponent extends Component {
       myUserName: UserName,
       session: undefined,
       mainStreamManager: undefined, // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
+      subStreamManager: undefined,
       publisher: undefined,
       subscribers: [],
     };
@@ -28,6 +29,7 @@ class M_OpenViduComponent extends Component {
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
     this.onbeforeunload = this.onbeforeunload.bind(this);
+    this.handleSubVideoStream = this.handleSubVideoStream.bind(this);
 
     ///임시삭제할거
     this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
@@ -50,6 +52,15 @@ class M_OpenViduComponent extends Component {
   onbeforeunload(event) {
     this.leaveSession();
   }
+
+  handleSubVideoStream(stream) {
+    if (this.state.subStreamManager !== stream) {
+        this.setState({
+            subStreamManager: stream
+        });
+    }
+  }
+
   deleteSubscriber(streamManager) {
     let subscribers = this.state.subscribers;
     let index = subscribers.indexOf(streamManager, 0);
@@ -99,14 +110,30 @@ class M_OpenViduComponent extends Component {
         mySession.on("streamCreated", (event) => {
           // Subscribe to the Stream to receive it. Second parameter is undefined
           // so OpenVidu doesn't create an HTML video by its own
-          var subscriber = mySession.subscribe(event.stream, undefined);
-          var subscribers = this.state.subscribers;
-          subscribers.push(subscriber);
+          console.log('-----------------------------')
+          console.log(this.props.hostInfo);
+          console.log(this.state.myUserName);
+          console.log(subscribers);
+          if(subscribers.length == 0){
+            var subscriber = mySession.subscribe(event.stream, undefined);
+            var subscribers = this.state.subscribers;
+            subscribers.push(subscriber);
+            console.log(subscriber);
+            this.handleSubVideoStream(subscriber);
 
-          // Update the state with the new subscribers
-          this.setState({
-            subscribers: subscribers,
-          });
+            // Update the state with the new subscribers
+            this.setState({
+              subscribers: subscribers,
+            });
+          }
+          else{
+            // 호스트는 퇴장하지 않음
+            // 게스트 측에서 인원 초과 시 자동 퇴장
+            if(this.props.hostInfo == this.state.myUserName){
+              this.leaveSession();
+              // 퇴장 처리
+            }
+          }
         });
 
         // On every Stream destroyed...
@@ -153,6 +180,7 @@ class M_OpenViduComponent extends Component {
               // --- 6) Publish your stream ---
 
               mySession.publish(publisher);
+              console.log(publisher);
 
               // Obtain the current video device in use
               var devices = await this.OV.getDevices();
@@ -262,10 +290,10 @@ class M_OpenViduComponent extends Component {
               />
             </div>
             {/* 친구 화면 */}
-            {this.state.subscribers}
+            {/* subStreamManager가 없으면 대기중 이미지 출력 / 있으면 컴포넌트 불러오기 */}
               <div className="stream-container col-md-6 col-xs-6">
-                  {/* sub 유효한 값으로 바꿔야 함 */}
-                  <M_UserVideoComponent streamManager={'sub'} />
+                {/* sub 유효한 값으로 바꿔야 함 */}
+                <M_UserVideoComponent streamManager={this.state.subStreamManager} />
               </div>
           </div>
         )}

@@ -5,7 +5,7 @@ import { RootState } from "../../store/store";
 import { setMaxEating } from "../../store/maxEatingSlice";
 
 interface StepperProps {
-  label: string;
+  label?: string;
   unit?: string;
 }
 
@@ -34,6 +34,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
   return (
     <div className={styles["stepper-container"]}>
       <strong className={styles.label}>{props.label}</strong>
+      <div className={styles["button-container"]}>
       <button
         onClick={handleDecrease}
         className={maxEating === 1 ? styles.disabled : styles.button}
@@ -53,6 +54,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
       <button className={styles.button} onClick={handleIncrease}>
         <span className={styles["button-span"]}>+</span>
       </button>
+      </div>
     </div>
   );
 };

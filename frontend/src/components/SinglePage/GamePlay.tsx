@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { setEating } from "../../store/eatingSlice";
 import ProgressBar from "../Common/ProgressBar";
 import styles from "../styles/SinglePage/GamePlay.module.css";
 
 const GamePlay: React.FC = () => {
-  // const eating = useSelector((state: RootState) => state.eating.value);
-  const [eating, setEating] = useState(0);
+  const eating = useSelector((state: RootState) => state.eating.value);
+  // const [eating, setEating] = useState(0);
   const [myEnergy, setMyEnergy] = useState(-1); // 기 모으기
   const [enemyEnergy, setEnemyEnergy] = useState(0); // 병균 기모으기
   const [enemyAttack, setEnemyAttack] = useState(false); // 병균 공격
@@ -18,9 +17,9 @@ const GamePlay: React.FC = () => {
   const myProgress = ((myEnergy / requiredEnergy) * 100).toFixed(0);
   const enemyProgress = ((enemyEnergy / maxEnemyEnergy) * 100).toFixed(0);
 
-  const handleEating = () => {
-    setEating(eating + 1);
-  };
+  // const handleEating = () => {
+  //   setEating(eating + 1);
+  // };
 
   useEffect(() => {
     return () => {
@@ -56,7 +55,7 @@ const GamePlay: React.FC = () => {
 
   return (
     <React.Fragment>
-      <button onClick={handleEating}>먹었다치고</button>
+      {/* <button onClick={handleEating}>먹었다치고</button> */}
       <div className={styles["game-play"]}>
         <div className={styles["interface-container"]}>
           <div className={styles["energy-container"]}>

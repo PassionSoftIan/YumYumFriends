@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import M_UserVideoComponent from "./M_UserVideoComponent";
 
 import "./OpenViduComponent.css";
+import { div } from "@tensorflow/tfjs";
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
@@ -114,26 +115,16 @@ class M_OpenViduComponent extends Component {
           console.log(this.props.hostInfo);
           console.log(this.state.myUserName);
           console.log(subscribers);
-          if(subscribers.length == 0){
-            var subscriber = mySession.subscribe(event.stream, undefined);
-            var subscribers = this.state.subscribers;
-            subscribers.push(subscriber);
-            console.log(subscriber);
-            this.handleSubVideoStream(subscriber);
+          var subscriber = mySession.subscribe(event.stream, undefined);
+          var subscribers = this.state.subscribers;
+          subscribers.push(subscriber);
+          console.log(subscriber);
+          this.handleSubVideoStream(subscriber);
 
-            // Update the state with the new subscribers
-            this.setState({
-              subscribers: subscribers,
-            });
-          }
-          else{
-            // 호스트는 퇴장하지 않음
-            // 게스트 측에서 인원 초과 시 자동 퇴장
-            if(this.props.hostInfo == this.state.myUserName){
-              this.leaveSession();
-              // 퇴장 처리
-            }
-          }
+          // Update the state with the new subscribers
+          this.setState({
+            subscribers: subscribers,
+          });
         });
 
         // On every Stream destroyed...
@@ -171,7 +162,7 @@ class M_OpenViduComponent extends Component {
                 videoSource: undefined, // The source of video. If undefined default webcam
                 publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
                 publishVideo: true, // Whether you want to start publishing with your video enabled or not
-                resolution: "640x480", // The resolution of your video
+                resolution: "1280x720", // The resolution of your video
                 frameRate: 30, // The frame rate of your video
                 insertMode: "APPEND", // How the video is inserted in the target element 'video-container'
                 mirror: true, // Whether to mirror your local video or not
@@ -282,19 +273,25 @@ class M_OpenViduComponent extends Component {
             </div>
           </div>
         ) : (
-          <div id="session">
+          <div id="session" style={{ display: "flex", flexDirection: "column", height: "100vh", width: "100vw" }} >
             {/* 내 화면 */}
-            <div id="main-video">
-              <M_UserVideoComponent
-                streamManager={this.state.mainStreamManager}
-              />
+            <div id="main-video" style={{ height: "40%", minHeight: "0" }}>
+              <M_UserVideoComponent streamManager={this.state.mainStreamManager} />
             </div>
+
+            {/* 공백 */}
+            <div style={{ height: "20%", minHeight: "0" }}></div>
+
             {/* 친구 화면 */}
-            {/* subStreamManager가 없으면 대기중 이미지 출력 / 있으면 컴포넌트 불러오기 */}
-              <div className="stream-container col-md-6 col-xs-6">
-                {/* sub 유효한 값으로 바꿔야 함 */}
+            <div className="stream-container" style={{ height: "40%", minHeight: "0" }}>
+              {this.state.subStreamManager === undefined ? (
+                <div>
+                  대기중
+                </div>
+              ) : (
                 <M_UserVideoComponent streamManager={this.state.subStreamManager} />
-              </div>
+              )}
+            </div>
           </div>
         )}
       </div>

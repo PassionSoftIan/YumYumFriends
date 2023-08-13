@@ -10,7 +10,7 @@ import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
-import Others from "../assets/before_fight/32_germ_standing.gif";
+import Others from "../assets/1313.gif";
 import OthersAfterAttack from "../assets/Attacked/2.gif";
 import ProgressBar from "../components/Common/ProgressBar";
 

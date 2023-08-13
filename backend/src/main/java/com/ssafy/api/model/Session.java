@@ -30,4 +30,10 @@ public class Session {
 	@Column(name = "PUBLISHER")
 	private String publisher;
 	
+	@Column(name = "CURRENT")
+	private int current;
+	
+	@Column(name = "PASSWORD")
+	private String password;
+	
 }

@@ -5,6 +5,8 @@ import axios from 'axios';
 interface Session {
   sessionID: string;
   publisher: string;
+  current: number;
+  password: string;
 }
 
 const RoomList: React.FC = () => {
@@ -26,7 +28,9 @@ const RoomList: React.FC = () => {
     <div>
       <h3>RoomList</h3>
       {sessionList.map((session, index) => (
+        session.current < 2 ?
         <RoomItem key={index} name={session.publisher} sessionID={session.sessionID} />
+        : null
       ))}
     </div>
   );

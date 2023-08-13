@@ -80,15 +80,15 @@ public class SessionController {
         @ApiResponse(code = 208, message = "중복"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> createSession(@RequestParam("session_id") long sessionID, @RequestParam("password") String password) {
+	public ResponseEntity<Boolean> createSession(@RequestParam("session_id") long sessionID, @RequestParam("password") String password) {
 		//사용자가 존재하는지 확인
 		Optional<User> user = userRepo.findById(sessionID);
 		if(!user.isPresent())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
 		
 		Optional<Session> session = sessionRepo.findById(sessionID);
 		if(session.isPresent())
-			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(null);
+			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(false);
 		else {
 			Session newSession = new Session();
 			newSession.setSessionID(user.get().getID());
@@ -96,7 +96,7 @@ public class SessionController {
 			newSession.setCurrent(0);
 			newSession.setPassword(password);
 			sessionRepo.save(newSession);
-			return ResponseEntity.status(HttpStatus.CREATED).body(null);
+			return ResponseEntity.status(HttpStatus.CREATED).body(true);
 		}
 	}
 

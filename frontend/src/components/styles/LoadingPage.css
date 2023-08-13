@@ -30,7 +30,7 @@
 }
 
 .text:last-child {
-  animation: fadeIn 1s forwards 2s;
+  animation: fadeIn 1s forwards 2s ;
 }
 
 @keyframes bounce {

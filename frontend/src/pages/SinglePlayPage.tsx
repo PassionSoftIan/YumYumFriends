@@ -6,6 +6,7 @@ import useImageAttack from "../hooks/useImage/useImageAttack";
 import useImageEffect from "../hooks/useImage/useImageEffect";
 import useImageCharge from "../hooks/useImage/useImageCharge";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
+import LoadingPage from "../components/LoadingPage/LoadingPage";
 
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
@@ -31,6 +32,8 @@ const SinglePlayPage: React.FC = () => {
   const [mySession, setMySession] = useState<any>(null);
   const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
   const [showOthersWithDelay, setShowOthersWithDelay] = useState(false);
+  const [openViduLoaded, setOpenViduLoaded] = useState(false);
+  const [loadingPageVisible, setLoadingPageVisible] = useState(true);
 
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
@@ -136,9 +139,18 @@ const SinglePlayPage: React.FC = () => {
     };
   }, []);
 
+  const handlePageClick = () => {
+    setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
+    setOpenViduLoaded(true);
+  };
+
   return (
     <div className="single-play-page">
-      <OpenViduComponent onObjectCreated={handleMySession} />
+      {openViduLoaded ? (
+        <OpenViduComponent onObjectCreated={handleMySession} />
+      ) : (
+        <LoadingPage onClick={handlePageClick} />
+      )}
       <div>
         <InvitationYum />
       </div>
@@ -151,7 +163,7 @@ const SinglePlayPage: React.FC = () => {
                 showEffects
                   ? "attack-animation"
                   : eating % 5 === 4
-                  ? ourImageCharge 
+                  ? ourImageCharge
                   : ourImageSrc
               }
               alt=""

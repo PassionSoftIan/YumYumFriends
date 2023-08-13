@@ -5,7 +5,6 @@ import React, { Component } from "react";
 import M_UserVideoComponent from "./M_UserVideoComponent";
 
 import "./OpenViduComponent.css";
-import { div } from "@tensorflow/tfjs";
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
@@ -13,6 +12,10 @@ const APPLICATION_SERVER_URL =
 class M_OpenViduComponent extends Component {
   constructor(props) {
     super(props);
+    
+    console.log('----')
+    console.log(props)
+    console.log('----')
     const UserID = localStorage.getItem("id");
     const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
@@ -145,7 +148,7 @@ class M_OpenViduComponent extends Component {
           });
           // 호스트는 퇴장하지 않음
           // 게스트 측에서 인원 초과 시 자동 퇴장
-          if(subscribers.length > 1 && this.props.hostInfo != this.state.myUserName){
+          if(subscribers.length > 1 && this.props.hostInfo !== this.state.myUserName){
             console.log('-------------------disconnect---------------');
             this.leaveSession();
             // 퇴장 처리
@@ -270,6 +273,10 @@ class M_OpenViduComponent extends Component {
     const mySessionId = this.state.mySessionId;
     const myUserName = this.state.myUserName;
 
+    // M_OvVideo Publisher와 Subscriber 나눌 bit 변수 지정
+    const Pub = 0
+    const Subs = 1
+
     return (
       <div className="container">
         {this.state.session === undefined ? (
@@ -314,7 +321,7 @@ class M_OpenViduComponent extends Component {
           <div id="session" style={{ display: "flex", flexDirection: "column", height: "100vh", width: "100vw" }} >
             {/* 내 화면 */}
             <div id="main-video" style={{ height: "40%", minHeight: "0" }}>
-              <M_UserVideoComponent streamManager={this.state.mainStreamManager} />
+              <M_UserVideoComponent streamManager={this.state.mainStreamManager} bit={ Pub } />
             </div>
 
             {/* 공백 */}
@@ -327,7 +334,7 @@ class M_OpenViduComponent extends Component {
                   대기중
                 </div>
               ) : (
-                <M_UserVideoComponent streamManager={this.state.subStreamManager} />
+                <M_UserVideoComponent streamManager={this.state.subStreamManager} bit={ Subs } />
               )}
             </div>
           </div>

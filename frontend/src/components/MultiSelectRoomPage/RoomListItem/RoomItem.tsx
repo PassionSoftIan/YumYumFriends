@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from '../../styles/MultiPlayPage/RoomItem.module.css'
 import axios from 'axios';
 
@@ -12,30 +12,37 @@ interface RoomItemProps {
 const RoomItem: React.FC<RoomItemProps> = (props) => {
   const navigate = useNavigate();
   const URL = "https://yumyumfriends.site";
-  const handleAction = (action: () => void) => {
-    axios.put(`${URL}/api/v1/session/enter?session_id=${props.sessionID}&password=pass`)
+
+  const [password, setPassword] = useState(""); // 비밀번호 입력값을 상태로 관리
+  
+  const handleAction = () => {
+    axios.put(`${URL}/api/v1/session/enter?session_id=${props.sessionID}&password=${password}`)
       .then((response) => {
         console.log(response.data);
-        // 입장 가능한 경우(true를 받은 경우)
-        if(response.data){
-          action();
+        if (response.data) {
+          // 비밀번호 검증 후 성공 시 페이지 이동
+          navigate(`/multiplay?SessionID=${props.sessionID}&HostInfo=${props.name}&GameType=Multi`);
         }
       })
       .catch((error) => console.log(error));
   };
-
-  const SessionID = props.sessionID
-  const HostInfo = props.name
-  const GameType = 'Multi'
   
   return (
     <div>
+      <div>
+        <input
+          type="password"
+          placeholder="비밀번호 입력"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button 
-          onClick={() => handleAction(() => navigate(`/multiplay?SessionID=${ SessionID }&HostInfo=${ HostInfo }&GameType=${ GameType }`))}        
+          onClick={handleAction}        
           className={styles.item}
         >
           {props.name}
         </button>
+      </div>
     </div>
   );
 };

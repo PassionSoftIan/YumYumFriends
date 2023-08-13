@@ -23,6 +23,7 @@ import InvitationYum from "./components/SinglePage/InvitationYum";
 
 import MultiPlayPage from "./pages/MultiPlayPage";
 import MultiSelectRoomPage from "./pages/MultiSelectRoomPage";
+import MultiCreateRoomPage from "./pages/MultiCreateRoomPage";
 
 import NavBar from "./components/NavBar/NavBar";
 import AudioPlayer from "./components/Audio/AudioPlayer"; // Use "AudioPlayer" with an uppercase "P"
@@ -61,6 +62,7 @@ const App: React.FC = () => {
                 <Route path="/multichoice" element={<MultiChoicePage />} />
                 <Route path="/multiplay" element={<MultiPlayPage />} />
                 <Route path="/multiroom" element={<MultiSelectRoomPage />} />
+                <Route path="/multicreate" element={<MultiCreateRoomPage />} />
 
 
               </Routes>

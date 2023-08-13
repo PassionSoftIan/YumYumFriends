@@ -13,7 +13,7 @@ export default class M_UserVideoComponent extends Component {
     return (
       <React.Fragment>
         {this.props.streamManager !== undefined ? (
-          <div className="streamcomponent">
+          <div className="streamcomponent" style={{width: "100%", height: "100%"}}>
             <M_OvVideo
               streamManager={this.props.streamManager}
             />

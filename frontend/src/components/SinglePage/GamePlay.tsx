@@ -2,37 +2,43 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { setEating } from "../../store/eatingSlice";
+import ProgressBar from "../Common/ProgressBar";
+import styles from "../styles/SinglePage/GamePlay.module.css";
 
 const GamePlay: React.FC = () => {
-  const eating = useSelector((state: RootState) => state.eating.value);
-  const [prevEating, setPrevEating] = useState(eating);
-  const [currentEating, setCurrentEating] = useState(0); // 기 모으기
-  const [enemyPower, setEnemyPower] = useState(0); // 병균 기모으기
+  // const eating = useSelector((state: RootState) => state.eating.value);
+  const [eating, setEating] = useState(0);
+  const [myEnergy, setMyEnergy] = useState(-1); // 기 모으기
+  const [enemyEnergy, setEnemyEnergy] = useState(0); // 병균 기모으기
   const [enemyAttack, setEnemyAttack] = useState(false); // 병균 공격
-  const maxEnemyPower = 3;
+
+  const requiredEnergy = 5; // 스킬 쓸 때 필요한 에너지
+  const maxEnemyEnergy = 3;
+
+  const myProgress = ((myEnergy / requiredEnergy) * 100).toFixed(0);
+  const enemyProgress = ((enemyEnergy / maxEnemyEnergy) * 100).toFixed(0);
+
+  const handleEating = () => {
+    setEating(eating + 1);
+  };
 
   useEffect(() => {
     return () => {
-      if (eating === prevEating + 1) {
-        setCurrentEating(currentEating + 1);
-      }
-      setPrevEating(eating);
-
-      //먹어서 공격 받으면 병균이 에너지 초기화
-      setEnemyPower(0);
+      setMyEnergy((prev) => prev + 1);
+      setEnemyEnergy(0); //먹어서 공격 받으면 병균이 에너지 초기화
     };
-  }, [eating, prevEating]);
+  }, [eating]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setEnemyPower(enemyPower + 1);
-      if (enemyPower === maxEnemyPower - 1) {
+      setEnemyEnergy(enemyEnergy + 1);
+      if (enemyEnergy === maxEnemyEnergy - 1) {
         console.log("병균이 냠냠 공격");
         setEnemyAttack(true);
 
         setTimeout(() => {
           // 공격 애니메이션 동안 대기
-          setEnemyPower(0);
+          setEnemyEnergy(0);
           setEnemyAttack(false);
         }, 5000);
       }
@@ -41,30 +47,59 @@ const GamePlay: React.FC = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [enemyPower]);
+  }, [enemyEnergy]);
 
-
-  const handlePowerAttack = () => {
+  const handleEnergyAttack = () => {
     console.log("냠냠 스킬 공격");
-    setCurrentEating(currentEating - 3);
-    setEating(eating - 3);
+    setMyEnergy(myEnergy - requiredEnergy);
   };
 
   return (
     <React.Fragment>
-      <div>
-        <p>⚡ {currentEating}</p>
-        <button onClick={handlePowerAttack} disabled={currentEating < 3}>
-          스킬 공격
-        </button>
+      <button onClick={handleEating}>먹었다치고</button>
+      <div className={styles["game-play"]}>
+        <div className={styles["interface-container"]}>
+          <div className={styles["energy-container"]}>
+            <p>⚡</p>
+            <p>{myEnergy}</p>
+            <ProgressBar completed={myProgress} fillerColor="green" />
+          </div>
+          <button
+            onClick={handleEnergyAttack}
+            disabled={myEnergy < requiredEnergy}
+            className={styles["skill-button"]}
+          >
+            <img
+              className={styles["skill-icon"]}
+              src={require(`../../assets/Common/empowerment.png`)}
+            />
+          </button>
+        </div>
+        <div className={styles["test"]}></div>
+        <div className={styles["interface-container"]}>
+          <div className={styles["energy-container"]}>
+            <p>⚡</p>
+            <p>{enemyEnergy}</p>
+            <ProgressBar completed={enemyProgress} fillerColor="black" />
+          </div>
+          <button
+            onClick={() => {}}
+            disabled={enemyEnergy < maxEnemyEnergy}
+            className={styles["skill-button"]}
+          >
+            <img
+              className={styles["skill-icon"]}
+              src={require(`../../assets/Common/empowerment.png`)}
+            />
+          </button>
+        </div>
       </div>
+
       <div>
-        <p>
-          enemy power: {enemyPower} / {maxEnemyPower}
-        </p>
-        <p>병균 공격 아이콘</p>
         <p hidden={!enemyAttack}>병균이 공격 중</p>
       </div>
+
+
     </React.Fragment>
   );
 };

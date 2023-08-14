@@ -8,15 +8,14 @@ import useImageCharge from "../hooks/useImage/useImageCharge";
 import useImageEnemy from "../hooks/useImage/useImageEnemy";
 import useImageAed from "../hooks/useImage/useImageAed";
 import useImageFail from "../hooks/useImage/useImageFail";
+import useImageShow from "../hooks/useImage/useImageShow";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
-import LoadingPage from "../components/LoadingPage/LoadingPage";
 import GameStage from "../components/OpenVidu/GameStage";
 
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
-import Others from "../assets/1313.gif";
-import OthersAfterAttack from "../assets/Attacked/2.gif";
+
 import ProgressBar from "../components/Common/ProgressBar";
 
 import InvitationYum from "../components/SinglePage/InvitationYum";
@@ -35,13 +34,15 @@ const SinglePlayPage: React.FC = () => {
   const otherImageEnemy = useImageEnemy();
   const otherImageAed = useImageAed();
   const otherImageFail = useImageFail();
+  const otherImageShow = useImageShow();
   const useImageRandom = RandomBack();
+
   const [mySession, setMySession] = useState<any>(null);
   const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
   const [showOthersWithDelay, setShowOthersWithDelay] = useState(false);
   const [openViduLoaded, setOpenViduLoaded] = useState(false);
   const [loadingPageVisible, setLoadingPageVisible] = useState(true);
-
+  const [initialImageVisible, setInitialImageVisible] = useState(true);
   const [showFailImage, setShowFailImage] = useState(false);
 
   const eating = useSelector((state: RootState) => state.eating.value);
@@ -157,6 +158,15 @@ const SinglePlayPage: React.FC = () => {
     }
   }, [eating]);
 
+  useEffect(() => {
+    // 처음 이미지가 랜더링될 때 1초 후에 initialImageVisible 상태를 false로 변경
+    const initialImageTimeout = setTimeout(() => {
+      setInitialImageVisible(false);
+    }, 1740);
+
+    return () => clearTimeout(initialImageTimeout);
+  }, []);
+
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
@@ -192,6 +202,8 @@ const SinglePlayPage: React.FC = () => {
                   ? eating === maxEating
                     ? otherImageFail
                     : otherImageAed
+                  : eating === 0 && initialImageVisible
+                  ? otherImageShow
                   : otherImageEnemy
               }
               alt=""
@@ -216,13 +228,6 @@ const SinglePlayPage: React.FC = () => {
             className={`effects-image ${showImages ? "" : "hidden"}`}
           />
         )}
-        {/* {eating === maxEating && (
-          <img
-            src={otherImageFail}
-            alt=""
-            className={`others-image ${showImages ? "" : "hidden"}`}
-          />
-        )} */}
       </div>
     </div>
   );

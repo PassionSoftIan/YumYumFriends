@@ -5,6 +5,9 @@ import useImageSrc from "../hooks/useImage/useImageSrc";
 import useImageAttack from "../hooks/useImage/useImageAttack";
 import useImageEffect from "../hooks/useImage/useImageEffect";
 import useImageCharge from "../hooks/useImage/useImageCharge";
+import useImageEnemy from "../hooks/useImage/useImageEnemy";
+import useImageAed from "../hooks/useImage/useImageAed";
+import useImageFail from "../hooks/useImage/useImageFail";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import LoadingPage from "../components/LoadingPage/LoadingPage";
 
@@ -28,12 +31,17 @@ const SinglePlayPage: React.FC = () => {
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
   const ourImageCharge = useImageCharge();
+  const otherImageEnemy = useImageEnemy();
+  const otherImageAed = useImageAed();
+  const otherImageFail = useImageFail();
   const useImageRandom = RandomBack();
   const [mySession, setMySession] = useState<any>(null);
   const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
   const [showOthersWithDelay, setShowOthersWithDelay] = useState(false);
   const [openViduLoaded, setOpenViduLoaded] = useState(false);
   const [loadingPageVisible, setLoadingPageVisible] = useState(true);
+
+  const [showFailImage, setShowFailImage] = useState(false);
 
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
@@ -136,10 +144,21 @@ const SinglePlayPage: React.FC = () => {
     setOpenViduLoaded(true);
   };
 
+  useEffect(() => {
+    if (eating === maxEating) {
+      setShowFailImage(true);
+
+      const timeout = setTimeout(() => {
+        setShowFailImage(false);
+      }, 5000); // 5 seconds in milliseconds
+
+      return () => clearTimeout(timeout);
+    }
+  }, [eating]);
+
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
-
       <div>
         <InvitationYum />
       </div>
@@ -162,7 +181,15 @@ const SinglePlayPage: React.FC = () => {
 
             <ProgressBar className="progress-bar" completed={hitPoints} />
             <img
-              src={showEffects ? OthersAfterAttack : Others}
+              src={
+                showFailImage
+                  ? otherImageFail
+                  : showEffects
+                  ? eating === maxEating
+                    ? otherImageFail
+                    : otherImageAed
+                  : otherImageEnemy
+              }
               alt=""
               className={`others-image ${showImages ? "" : "hidden"}`}
               id="othersImage"
@@ -185,6 +212,13 @@ const SinglePlayPage: React.FC = () => {
             className={`effects-image ${showImages ? "" : "hidden"}`}
           />
         )}
+        {/* {eating === maxEating && (
+          <img
+            src={otherImageFail}
+            alt=""
+            className={`others-image ${showImages ? "" : "hidden"}`}
+          />
+        )} */}
       </div>
     </div>
   );

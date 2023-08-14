@@ -9,37 +9,12 @@
   background-color: transparent;
 }
 
-.user-profile {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* 오른쪽으로 정렬 */
-  width: 28%;
-  height: auto;
-  background-color: #fff5e4;
-  border: 3px solid #fff5e4;
-  border-radius: 14px;
-}
-
-
 .user-icon {
   background-color: #ffffff00;
   border-radius: 50%;
   margin-right: 8px;
   width: 23%;
   height: 10%;
-}
-
-.user-nickname {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  background-color: #fff5e4;
-  border-radius: 16px;
-  padding: 4px 12px;
-  width: auto;
 }
 
 .nick {
@@ -96,14 +71,4 @@
     margin-right: 0;
     margin-bottom: 4px;
   }
-
-  .user-nickname {
-    font-size: 16px;
-    border-radius: 6px;
-    padding: 10px;
-    width: auto;
-    text-align: center;
-  }
 }
-
-

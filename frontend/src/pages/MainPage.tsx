@@ -1,6 +1,5 @@
-
 // MainPage.js
-import React from "react";
+import React, { useState } from "react";
 import Cloud from "../components/Animation/Cloud";
 import useConfetti from "../hooks/Animations/useConfetti";
 import { useNavigate } from "react-router-dom";
@@ -9,16 +8,26 @@ import Action0 from "../assets/Action/02_mandarin_acquired.gif";
 import Action1 from "../assets/Action/13_apple_acquired.gif";
 import Action2 from "../assets/AttackingYums/01_tofu_attack.gif";
 import Action3 from "../assets/Attacked/31_bacteria_attacked.gif";
+import RemainMeal from "../components/RemainMeal/RemainMeal";
 
 import "./styles/MainPage.css";
 
 const MainPage: React.FC = () => {
+  const [Meal, setMeal] = useState<number | null>(null);
   const navigate = useNavigate();
   const { triggerConfetti } = useConfetti(
     ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣"],
     70,
     60
   );
+
+  const handleNavigaton = (path: string) => {
+    if (Meal === 0) {
+      alert("오늘 밥을 다 먹었어요!");
+    } else {
+      handleAction(() => navigate(path));
+    }
+  };
 
   const handleAction = (action: () => void) => {
     triggerConfetti();
@@ -32,27 +41,33 @@ const MainPage: React.FC = () => {
 
     setTimeout(() => {
       action();
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         button.classList.remove("hide");
       });
     }, buttons.length * 150 + 500);
   };
 
   return (
-    <div className="main-container" style={{ backgroundImage: "url('your-background-image.jpg')" }}>
+    <div
+      className="main-container"
+      style={{ backgroundImage: "url('your-background-image.jpg')" }}
+    >
       <Cloud />
+      <div className="RemainMeal">
+        <RemainMeal Meal={Meal} setMeal={setMeal} />
+      </div>
 
       <div className="center">
         <div className="button-container">
           <Button
-            onClick={() => handleAction(() => navigate("/single"))}
+            onClick={() => handleNavigaton("/single")}
             className="game-button button-second"
           >
             <span>밥 먹기</span>
           </Button>
 
           <Button
-            onClick={() => handleAction(() => navigate("/multichoice"))}
+            onClick={() => handleNavigaton("/multichoice")}
             className="game-button button-second"
           >
             <span>같이 먹기</span>

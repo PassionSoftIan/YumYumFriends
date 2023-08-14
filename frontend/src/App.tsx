@@ -53,7 +53,7 @@ const App: React.FC = () => {
             <img className="sun-image" src={Sun} alt="" />
             <Router>
               <div className="navbar-container">
-              <NavBar nickname={nickname} />
+                <NavBar />
               </div>
               <Routes>
                 <Route path="/" element={<IntroPage />} />
@@ -74,8 +74,6 @@ const App: React.FC = () => {
                 <Route path="/multiplay" element={<MultiPlayPage />} />
                 <Route path="/multiroom" element={<MultiSelectRoomPage />} />
                 <Route path="/multicreate" element={<MultiCreateRoomPage />} />
-
-
               </Routes>
               <AudioPlayer /> {/* 추가: AudioPlayer 컴포넌트를 렌더링합니다. */}
             </Router>

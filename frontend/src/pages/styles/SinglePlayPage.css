@@ -83,8 +83,19 @@
     transform: translateX(0); /* 오른쪽 끝부터 시작 */
   }
   100% {
-    transform: translateX(-50vw); /* 왼쪽으로 요소 너비만큼 이동 */
+    transform: translateX(-70vw); /* 왼쪽으로 요소 너비만큼 이동 */
   }
+}
+
+.others-Effects{
+  z-index: 99;
+  position: fixed;
+  bottom: 5%;
+  right: 0;
+  width: 20%;
+  height: auto;
+  animation: moveEffectBetweenImages2 1.5s 1;
+
 }
 
 .small-image {

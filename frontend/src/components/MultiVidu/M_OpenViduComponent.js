@@ -4,7 +4,7 @@ import React, { Component } from "react";
 // import "./App.css";
 import M_UserVideoComponent from "./M_UserVideoComponent";
 
-import imimg from "../../assets/othersAttack/31_bacteria_attack.gif"
+import imimg from "../../assets/othersAttack/1.gif"
 
 import "./OpenViduComponent.css";
 

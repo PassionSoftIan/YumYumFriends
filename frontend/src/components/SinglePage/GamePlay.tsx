@@ -1,47 +1,48 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux"; // useDispatch 추가
 import { RootState } from "../../store/store";
 import ProgressBar from "../Common/ProgressBar";
 import styles from "../styles/SinglePage/GamePlay.module.css";
+import { setEnemyEnergy } from "../../store/enemyEnergySlice"; // setEnemyEnergy 추가
 
 const GamePlay: React.FC = () => {
   const eating = useSelector((state: RootState) => state.eating.value);
-  const [myEnergy, setMyEnergy] = useState(-1); // 기 모으기
-  const [enemyEnergy, setEnemyEnergy] = useState(0); // 병균 기모으기
-  const [enemyAttack, setEnemyAttack] = useState(false); // 병균 공격
-
-  const requiredEnergy = 5; // 스킬 쓸 때 필요한 에너지
-  const maxEnemyEnergy = 3;
+  const enemyEnergy = useSelector((state: RootState) => state.enemyEnergy.enemyEnergy); // enemyEnergy 가져오기
+  const maxEnemyEnergy = useSelector((state: RootState) => state.enemyEnergy.maxEnemyEnergy); // maxEnemyEnergy 가져오기
+  const [myEnergy, setMyEnergy] = useState(-1);
+  const [enemyAttack, setEnemyAttack] = useState(false);
+  const requiredEnergy = 5;
 
   const myProgress = ((myEnergy / requiredEnergy) * 100).toFixed(0);
   const enemyProgress = ((enemyEnergy / maxEnemyEnergy) * 100).toFixed(0);
 
+  const dispatch = useDispatch(); // useDispatch 훅 사용
+
   useEffect(() => {
     return () => {
       setMyEnergy((prev) => prev + 1);
-      setEnemyEnergy(0); //먹어서 공격 받으면 병균이 에너지 초기화
+      dispatch(setEnemyEnergy(0)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 초기화
     };
-  }, [eating]);
+  }, [eating, dispatch]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setEnemyEnergy(enemyEnergy + 1);
+      dispatch(setEnemyEnergy(enemyEnergy + 1)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 값 업데이트
       if (enemyEnergy === maxEnemyEnergy - 1) {
         console.log("병균이 냠냠 공격");
         setEnemyAttack(true);
 
         setTimeout(() => {
-          // 공격 애니메이션 동안 대기
-          setEnemyEnergy(0);
           setEnemyAttack(false);
-        }, 5000);
+          dispatch(setEnemyEnergy(0)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 초기화
+        }, 2000);
       }
-    }, 15000);
+    }, 1000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [enemyEnergy]);
+  }, [enemyEnergy, maxEnemyEnergy, dispatch]);
 
   const handleEnergyAttack = () => {
     console.log("냠냠 스킬 공격");

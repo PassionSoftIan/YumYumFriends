@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import JSConfetti from "js-confetti";
-import MessageModal from "../Common/MessageModal";
+import YumCard from "./YumCard";
+import Button from "../Common/Button";
 
 interface Yum {
   name: string | undefined;
   type: string | undefined;
+  personality: string | undefined;
 }
 
 interface Props {
@@ -13,8 +15,8 @@ interface Props {
 }
 
 const GetStandingYum: React.FC<Props> = ({ yum }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+  const [showCard, setShowCard] = useState(false);
+  const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,42 +35,37 @@ const GetStandingYum: React.FC<Props> = ({ yum }) => {
     });
   }, []);
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const handleShowCard = () => {
+    setShowCard(true);
+
+    setTimeout(() => {
+      setShowButton(true);
+    }, 5000);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setIsSecondModalOpen(true);
-  };
-
-  const closeSecondModal = () => {
-    setIsSecondModalOpen(false);
+  const handleNavigate = () => {
     navigate("/main");
   };
 
   return (
     <React.Fragment>
-      <h3>안녕!</h3>
-      <h3>반가워 친구야</h3>
-      <img
-        src={require(`../../assets/GetYums/${yum.name}_get.gif`)}
-        alt="yum image"
-        onClick={openModal}
-      />
-      {isModalOpen && (
-        <MessageModal
-          message={`냠냠 도감에도 ${yum.type}이 생겼어요!`}
-          buttonMessage="좋아요"
-          onConfirm={closeModal}
-        />
+      {!showCard && (
+        <>
+          <h3>안녕!</h3>
+          <h3>반가워 친구야</h3>
+          <img
+            src={require(`../../assets/GetYums/${yum.name}_get.gif`)}
+            alt="yum image"
+            onClick={handleShowCard}
+          />
+        </>
       )}
-      {isSecondModalOpen && (
-        <MessageModal
-          message={`참 잘했어요.\n다음에 또 만나요.\n안녕!`}
-          buttonMessage="안녕!"
-          onConfirm={closeSecondModal}
-        />
+
+      {showCard && (
+        <>
+          <YumCard yum={yum} />
+          {showButton && <Button onClick={handleNavigate}>처음으로</Button>}
+        </>
       )}
     </React.Fragment>
   );

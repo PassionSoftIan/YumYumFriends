@@ -37,7 +37,7 @@ class OpenViduVideoComponent extends Component {
 
     predictions.forEach((prediction) => {
       const noseTip = prediction.landmarks[4]; // 코끝 좌표
-      
+
       if (!noseTip) {
         console.log("코끝 좌표를 찾지 못했습니다.");
         return;
@@ -56,7 +56,8 @@ class OpenViduVideoComponent extends Component {
     });
   }
 
-  postCameraScreen = async () => { // 이미지 크기 조절해서 경량화 가능
+  postCameraScreen = async () => {
+    // 이미지 크기 조절해서 경량화 가능
     if (!this.imageRef.current) {
       return false;
     }
@@ -88,16 +89,11 @@ class OpenViduVideoComponent extends Component {
       if (response.data.eat !== this.prevEatValue) {
         this.prevEatValue = response.data.eat;
 
-        if (this.detectionTimer) {
-          clearTimeout(this.detectionTimer);
-        }
-
         if (response.data.eat === 1) {
           this.props.setDetection(true);
         } else {
           this.props.setDetection(false);
         }
-        
       }
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -201,7 +197,10 @@ class OpenViduVideoComponent extends Component {
       // 모자 크기 조정을 위한 값을 계산합니다.
       const scaleFactor = 2.5;
       // const faceWidth = Math.hypot(noseTip[0] - offsetX, noseTip[1] - offsetY);
-      const faceWidth = Math.hypot(rightEye[0] - leftEye[0], rightEye[1] - leftEye[1]); //눈 사이의 거리를 사용하여 faceWidth 계산
+      const faceWidth = Math.hypot(
+        rightEye[0] - leftEye[0],
+        rightEye[1] - leftEye[1]
+      ); //눈 사이의 거리를 사용하여 faceWidth 계산
       const maskWidth = faceWidth * scaleFactor;
       const maskHeight = (this.mask.height * maskWidth) / this.mask.width;
 
@@ -234,6 +233,7 @@ class OpenViduVideoComponent extends Component {
     // console.log(predictions[0]);
     this.drawMask(predictions);
     this.checkFacePosition(predictions);
+
     requestAnimationFrame(this.detectFace);
   };
 
@@ -298,7 +298,7 @@ class OpenViduVideoComponent extends Component {
               padding: "10px",
             }}
           >
-            어디 갔어! <br/>
+            어디 갔어! <br />
             밥먹어야지!
           </div>
         )}

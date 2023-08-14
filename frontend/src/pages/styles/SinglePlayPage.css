@@ -126,7 +126,7 @@
 
 .gamestage-container {
   position: absolute;
-  z-index: 99;
+  z-index: 98;
   top: 60%;
   left: 5%;
   width: 100%;

@@ -21,6 +21,10 @@
   background: transparent;
   box-shadow: none;
   margin-top: 0;
+  padding: 9px 19px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 .label {

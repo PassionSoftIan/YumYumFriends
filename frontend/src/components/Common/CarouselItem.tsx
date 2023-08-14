@@ -16,11 +16,13 @@ interface CarouselItemProps {
 }
 
 const CarouselItem: React.FC<CarouselItemProps> = (props) => {
-  const {yum, carouselList, allYumList} = props
-  const isItemInCarouselList = carouselList.some((item) => item.id === yum.id); 
+  const { yum, carouselList, allYumList } = props;
+  const isItemInCarouselList = carouselList.some((item) => item.id === yum.id);
   return (
     <div className={styles[isItemInCarouselList ? "carousel-item" : "locked"]}>
-      {isItemInCarouselList ? null : <div className={styles['lock-icon']}>🔒</div>}
+      {isItemInCarouselList ? null : (
+        <div className={styles["lock-icon"]}>🔒</div>
+      )}
       <img
         src={require(`../../assets/StopYums/${yum.eng}.png`)}
         alt={yum.eng}

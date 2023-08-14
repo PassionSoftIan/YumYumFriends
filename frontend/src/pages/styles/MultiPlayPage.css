@@ -1,19 +1,101 @@
-.local-video {
-  width: 200px;
-  height: 150px;
+/* ./styles/SinglePlayPage.css */
+
+/* 전체 프로필 페이지 컨테이너 */
+.multi-play-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: 100vh; /* 화면 높이 전체로 설정 */
+  position: relative; /* 추가 */
+}
+.images-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.images {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+/* 모바일 화면에 대한 미디어 쿼리 */
+@media screen and (max-width: 768px) {
+  .effects-image {
+    animation-duration: 3s; /* 모바일 화면에서의 애니메이션 속도 조정 */
+  }
 }
 
-.remote-video {
-  width: 200px;
-  height: 150px;
+.overlay-image {
+  z-index: 5;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 30%;
 }
 
-.multi-button {
-  transition: all 0.5s ease-out;
+.ours-image {
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 30%;
+  height: auto;
+}
+
+.others-image {
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+  height: auto;
+}
+.effects-image {
+  z-index: 99;
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  width: 30%;
+  height: auto;
+  animation: moveEffectBetweenImages 1.5s ease-in-out infinite;
+}
+
+@keyframes moveEffectBetweenImages {
+  0% {
+    transform: translateX(40%);
+  }
+  100% {
+    transform: translateX(calc(100vw - 100%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
+  }
+}
+
+
+.ours-image.hidden {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.others-image.hidden {
   opacity: 1;
-  transform: translateX(0);
+  transition: opacity 1.5s ease-in-out;
+}
+.small-image {
+  width: 100px;
+  height: auto;
 }
 
-.multi-button.hide {
-  transform: translateX(250%);
+.progress-bar {
+  z-index: 99;
+  position: fixed;
+  bottom: 8%;
+  /* left: 0; */
+  right: 0;
+  width: 30% !important;
+  height: auto;
 }

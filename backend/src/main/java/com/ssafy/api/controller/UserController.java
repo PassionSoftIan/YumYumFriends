@@ -99,7 +99,7 @@ public class UserController {
 				target.setCurrentYum(1);
 			target.setMealRemain(3);	        
 
-			target.setMealLast(new Date());
+			target.setMealLast(new Date(System.currentTimeMillis()));
 			userRepo.save(target);
 			return ResponseEntity.status(HttpStatus.CREATED).body(null);
 		}

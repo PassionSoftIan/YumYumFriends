@@ -20,6 +20,7 @@ const GameClearPage: React.FC = () => {
   const randomIndex = Math.floor(Math.random() * numbers.length);
   const randomID = numbers[randomIndex];
   const userID = localStorage.getItem("id");
+  const MealRemain = localStorage.getItem("RemainMeal");
 
   useEffect(() => {
     const RandomGetYum = async () => {
@@ -31,14 +32,18 @@ const GameClearPage: React.FC = () => {
         await axios.post(
           `${URL}/api/v1/collection/myyum?user=${userID}&yum=${randomID}`
         );
+        await axios.put(
+          `${URL}/api/v1/user?ID=${userID}&mealRemain=${Number(MealRemain) - 1}`
+        );
 
         setrandomYum(response1.data);
       } catch (err) {
         console.log(err);
       }
     };
-
+    // console.log(Number(MealRemain) - 1);
     RandomGetYum();
+    localStorage.setItem("RemainMeal", `${Number(MealRemain) - 1}`);
   }, []);
 
   const targetYum = {

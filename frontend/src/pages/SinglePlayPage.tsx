@@ -8,15 +8,20 @@ import useImageCharge from "../hooks/useImage/useImageCharge";
 import useImageEnemy from "../hooks/useImage/useImageEnemy";
 import useImageAed from "../hooks/useImage/useImageAed";
 import useImageFail from "../hooks/useImage/useImageFail";
+import useImageShow from "../hooks/useImage/useImageShow";
+import useImageSick from "../hooks/useImage/useImageSick";
+import useImageEnemyAttack from "../hooks/useImage/useImageEnemyAttack";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
-import LoadingPage from "../components/LoadingPage/LoadingPage";
 import GameStage from "../components/OpenVidu/GameStage";
+
+import virus from "../assets/effects/1.png";
+
+import { setEnemyEnergy, setMaxEnemyEnergy } from "../store/enemyEnergySlice";
 
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
-import Others from "../assets/1313.gif";
-import OthersAfterAttack from "../assets/Attacked/2.gif";
+
 import ProgressBar from "../components/Common/ProgressBar";
 
 import InvitationYum from "../components/SinglePage/InvitationYum";
@@ -32,16 +37,27 @@ const SinglePlayPage: React.FC = () => {
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
   const ourImageCharge = useImageCharge();
+  const ourImageSick = useImageSick();
   const otherImageEnemy = useImageEnemy();
   const otherImageAed = useImageAed();
   const otherImageFail = useImageFail();
+  const otherImageShow = useImageShow();
+  const otherImageEnemyAttack = useImageEnemyAttack();
   const useImageRandom = RandomBack();
+
+  const enemyEnergy = useSelector(
+    (state: RootState) => state.enemyEnergy.enemyEnergy
+  ); // enemyEnergy 가져오기
+  const maxEnemyEnergy = useSelector(
+    (state: RootState) => state.enemyEnergy.maxEnemyEnergy
+  ); // maxEnemyEnergy 가져오기
+
   const [mySession, setMySession] = useState<any>(null);
   const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
   const [showOthersWithDelay, setShowOthersWithDelay] = useState(false);
   const [openViduLoaded, setOpenViduLoaded] = useState(false);
   const [loadingPageVisible, setLoadingPageVisible] = useState(true);
-
+  const [initialImageVisible, setInitialImageVisible] = useState(true);
   const [showFailImage, setShowFailImage] = useState(false);
 
   const eating = useSelector((state: RootState) => state.eating.value);
@@ -157,6 +173,15 @@ const SinglePlayPage: React.FC = () => {
     }
   }, [eating]);
 
+  useEffect(() => {
+    // 처음 이미지가 랜더링될 때 1초 후에 initialImageVisible 상태를 false로 변경
+    const initialImageTimeout = setTimeout(() => {
+      setInitialImageVisible(false);
+    }, 1740);
+
+    return () => clearTimeout(initialImageTimeout);
+  }, []);
+
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
@@ -176,6 +201,8 @@ const SinglePlayPage: React.FC = () => {
                   ? "attack-animation"
                   : eating % 5 === 4
                   ? ourImageCharge
+                  : enemyEnergy > maxEnemyEnergy - 1
+                  ? ourImageSick
                   : ourImageSrc
               }
               alt=""
@@ -192,6 +219,10 @@ const SinglePlayPage: React.FC = () => {
                   ? eating === maxEating
                     ? otherImageFail
                     : otherImageAed
+                  : eating === 0 && initialImageVisible
+                  ? otherImageShow
+                  : enemyEnergy > maxEnemyEnergy - 1
+                  ? otherImageEnemyAttack
                   : otherImageEnemy
               }
               alt=""
@@ -216,13 +247,13 @@ const SinglePlayPage: React.FC = () => {
             className={`effects-image ${showImages ? "" : "hidden"}`}
           />
         )}
-        {/* {eating === maxEating && (
+        {enemyEnergy > maxEnemyEnergy - 1 && (
           <img
-            src={otherImageFail}
+            src={virus}
             alt=""
-            className={`others-image ${showImages ? "" : "hidden"}`}
+            className={`others-Effects ${showImages ? "" : "hidden"}`}
           />
-        )} */}
+        )}
       </div>
     </div>
   );

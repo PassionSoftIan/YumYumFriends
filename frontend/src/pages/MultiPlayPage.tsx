@@ -14,6 +14,7 @@ import RandomBack from "../hooks/useImage/useImageRandom";
 import Others from "../assets/before_fight/32_germ_standing.gif";
 import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
 import ProgressBar from "../components/Common/ProgressBar";
+
 // 여기까지 싱글 import
 
 const MultiPlayPage: React.FC = () => {
@@ -141,29 +142,6 @@ const MultiPlayPage: React.FC = () => {
       </div>
 
       {/* 멀티모드 애니메이션 */}
-      {/* <div className="images-container">
-        {showImages && (
-          <div className="images">
-            <img src={useImageRandom} alt="" className="overlay-image" />
-            <img
-              src={showEffects ? ourImageAttack : ourImageSrc}
-              alt=""
-              className={`ours-image ${showImages ? "" : "hidden"}`}
-              id="oursImage"
-            />
-            <ProgressBar className="progress-bar" completed={hitPoints}/>
-            <img
-              src={showEffects ? OthersAfterAttack : Others}
-              alt=""
-              className={`others-image ${showImages ? "" : "hidden"}`}
-              id="othersImage"
-            />
-          </div>
-        )}
-        {showEffects && (
-          <img src={ourImageEffect} alt="" className="effects-image" />
-        )}
-      </div> */}
     </div>
   );
 

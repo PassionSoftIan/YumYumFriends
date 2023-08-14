@@ -25,7 +25,7 @@ const RemainMeal: React.FC<RemainMealProps> = ({ Meal, setMeal }) => {
           setMeal(response.data.mealRemain);
           localStorage.setItem("RemainMeal", response.data.mealRemain);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log("err"));
     };
 
     fetchData();

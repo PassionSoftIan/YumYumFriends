@@ -69,7 +69,7 @@ class OpenViduVideoComponent extends Component {
 
     const dataUrl = image.toDataURL("image/jpeg");
     const apiUrl =
-      "http://218.154.242.73:51557/img/v1/object-detection/yolov5s";
+      "https://yumyumfriends.site/img/v1/object-detection/yolov5s";
 
     try {
       const formData = new FormData();

@@ -38,8 +38,6 @@
   }
 }
 
-
-
 .ours-image {
   z-index: 99;
   position: fixed;
@@ -67,18 +65,18 @@
   left: 0;
   width: 30%;
   height: auto;
-  animation: moveEffectBetweenImages 1.5s 1 ; /* forwards 추가 */
+  animation: moveEffectBetweenImages 1.5s 1; /* forwards 추가 */
 }
-
 
 @keyframes moveEffectBetweenImages {
   0% {
     transform: translateX(35%);
   }
   100% {
-    transform: translateX(calc(100vw - 150%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
+    transform: translateX(
+      calc(100vw - 150%)
+    ); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
   }
-  
 }
 @keyframes moveEffectBetweenImages2 {
   0% {
@@ -88,7 +86,6 @@
     transform: translateX(-50vw); /* 왼쪽으로 요소 너비만큼 이동 */
   }
 }
-
 
 .small-image {
   width: 100px;
@@ -105,7 +102,6 @@
 }
 
 /* 웹 화면에 대한 미디어 쿼리 */
-
 
 /* 모바일 화면에 대한 미디어 쿼리 */
 /* 모바일 화면 크기가 320px 미만인 경우 */
@@ -124,7 +120,14 @@
   }
 }
 
-
-.hidden{
+.hidden {
   display: none;
+}
+
+.gamestage-container {
+  position: absolute;
+  z-index: 99;
+  top: 60%;
+  left: 5%;
+  width: 100%;
 }

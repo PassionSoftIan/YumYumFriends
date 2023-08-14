@@ -5,13 +5,12 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { setUserInfo } from "../../store/userSlice";
 import axios from "axios";
-import kakao from "../../assets/Buttons/kakao_login_medium_narrow.png"
+import kakao from "../../assets/Buttons/kakao_login_medium_narrow.png";
 import "../styles/Kakao.css";
 
 interface SocialKakaoProps {
   onSuccess: (nickname: string) => void;
 }
-
 
 const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
   const kakaoClientId = "b7122629a0a31ceda48e9b68c1655d8d";
@@ -58,7 +57,7 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
         });
 
       // Render the NavBar component and pass the nickname as a prop
-      return <NavBar nickname={nickname} />;
+      return <NavBar />;
     }
   };
 

@@ -78,6 +78,7 @@ class OpenViduVideoComponent extends Component {
       const response = await axios.post(apiUrl, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          "Origin": "http://localhost:3000"
         },
       });
       console.log("eat:", response.data.eat);

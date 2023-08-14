@@ -9,8 +9,14 @@ import useImageEnemy from "../hooks/useImage/useImageEnemy";
 import useImageAed from "../hooks/useImage/useImageAed";
 import useImageFail from "../hooks/useImage/useImageFail";
 import useImageShow from "../hooks/useImage/useImageShow";
+import useImageEnemyAttack from "../hooks/useImage/useImageEnemyAttack";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import GameStage from "../components/OpenVidu/GameStage";
+
+import virus from "../assets/effects/1.png"
+
+import { setEnemyEnergy, setMaxEnemyEnergy } from "../store/enemyEnergySlice";
+
 
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
@@ -35,7 +41,13 @@ const SinglePlayPage: React.FC = () => {
   const otherImageAed = useImageAed();
   const otherImageFail = useImageFail();
   const otherImageShow = useImageShow();
+  const otherImageEnemyAttack = useImageEnemyAttack();
   const useImageRandom = RandomBack();
+
+  const enemyEnergy = useSelector((state: RootState) => state.enemyEnergy.enemyEnergy); // enemyEnergy 가져오기
+  const maxEnemyEnergy = useSelector((state: RootState) => state.enemyEnergy.maxEnemyEnergy); // maxEnemyEnergy 가져오기
+
+  
 
   const [mySession, setMySession] = useState<any>(null);
   const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
@@ -195,21 +207,23 @@ const SinglePlayPage: React.FC = () => {
 
             <ProgressBar className="progress-bar" completed={hitPoints} />
             <img
-              src={
-                showFailImage
+            src={
+              showFailImage
+                ? otherImageFail
+                : showEffects
+                ? eating === maxEating
                   ? otherImageFail
-                  : showEffects
-                  ? eating === maxEating
-                    ? otherImageFail
-                    : otherImageAed
-                  : eating === 0 && initialImageVisible
-                  ? otherImageShow
-                  : otherImageEnemy
-              }
-              alt=""
-              className={`others-image ${showImages ? "" : "hidden"}`}
-              id="othersImage"
-            />
+                  : otherImageAed
+                : eating === 0 && initialImageVisible
+                ? otherImageShow
+                : enemyEnergy > maxEnemyEnergy - 1 // 이 부분 수정
+                ? otherImageEnemyAttack
+                : otherImageEnemy
+            }
+            alt=""
+            className={`others-image ${showImages ? "" : "hidden"}`}
+            id="othersImage"
+          />
           </div>
         )}
         {showEffects && eating % 5 !== 0 && (
@@ -226,6 +240,13 @@ const SinglePlayPage: React.FC = () => {
             src={ourImageEffect}
             alt=""
             className={`effects-image ${showImages ? "" : "hidden"}`}
+          />
+        )}
+        {enemyEnergy > maxEnemyEnergy - 1 && (
+          <img
+            src={virus}
+            alt=""
+            className={`others-Effects ${showImages ? "" : "hidden"}`}
           />
         )}
       </div>

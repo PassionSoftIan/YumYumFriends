@@ -4,6 +4,8 @@ import React, { Component } from "react";
 // import "./App.css";
 import M_UserVideoComponent from "./M_UserVideoComponent";
 
+import imimg from "../../assets/othersAttack/1.gif"
+
 import "./OpenViduComponent.css";
 
 const APPLICATION_SERVER_URL =
@@ -286,8 +288,10 @@ class M_OpenViduComponent extends Component {
             </div>
 
             {/* 공백 */}
-            <div style={{ height: "20%", minHeight: "0" }}></div>
-
+            <div style={{ height: "20%", minHeight: "0" }}>
+              
+              <img src={imimg} alt="" className="iimm"/>
+            </div>
             {/* 친구 화면 */}
             <div className="stream-container" style={{ height: "40%", minHeight: "0" }}>
               {this.state.subStreamManager === undefined ? (

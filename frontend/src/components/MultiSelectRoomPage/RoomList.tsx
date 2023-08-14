@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RoomItem from "./RoomListItem/RoomItem";
 import axios from 'axios';
+import styles from "../styles/MultiPlayPage/RoomList.module.css"
 
 interface Session {
   sessionID: string;
@@ -25,13 +26,17 @@ const RoomList: React.FC = () => {
   
   
   return (
-    <div>
-      <h3>RoomList</h3>
-      {sessionList.map((session, index) => (
-        session.current < 2 ?
-        <RoomItem key={index} name={session.publisher} sessionID={session.sessionID} />
-        : null
-      ))}
+    <div className={styles['list-container']}>
+      <p className={styles['list-title']}>친구의 냠냠과 함께 놀자</p>
+      {sessionList.length === 0 ? (
+      <div>입장 가능한 방이 없어요...</div>
+    ) : (
+      sessionList.map((session, index) => (
+        session.current < 2 ? (
+          <RoomItem key={index} name={session.publisher} sessionID={session.sessionID} />
+        ) : null
+      ))
+    )}
     </div>
   );
 };

@@ -15,22 +15,32 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
   const navigate = useNavigate();
   const URL = "https://yumyumfriends.site";
 
-  const [password, setPassword] = useState(""); // 비밀번호 입력값을 상태로 관리
+  const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
 
   const handleClick = () => {
     setShowModal(true);
   };
 
   const handleAction = () => {
+    if (password.length === 0) {
+      setIsEmpty(true);
+      return;
+    }
+
     axios
       .put(
         `${URL}/api/v1/session/enter?session_id=${props.sessionID}&password=${password}`
       )
       .then((response) => {
-        console.log(response.data);
+        if (response.data === false) {
+          setShowWarning(true);
+          return;
+        }
+        // console.log("data:", response.data);
         if (response.data) {
-          // 비밀번호 검증 후 성공 시 페이지 이동
           navigate(
             `/multiplay?SessionID=${props.sessionID}&HostInfo=${props.name}&GameType=Multi`
           );
@@ -59,9 +69,15 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
             type="password"
             placeholder="비밀번호 입력"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setIsEmpty(false);
+              setShowWarning(false);
+            }}
           />
         </div>
+        {isEmpty && <p className={styles.warning}>비밀번호를 입력하세요.</p>}
+        {showWarning && <p className={styles.warning}>비밀번호를 확인하세요.</p>}
         <footer className={styles.actions}>
           <Button onClick={handleAction}>입장하기</Button>
         </footer>
@@ -72,8 +88,11 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
   return (
     <div>
       <div className={styles.item} onClick={handleClick}>
-        <p className={styles["item-yum"]}>냠냠이</p>
-        <p className={styles["item-name"]}>{props.name}</p>
+        <p className={styles["item-yum"]}>🍆</p>
+        <p className={styles["item-name"]}>
+          {props.name}
+          <span>여기 쓸거 뭐있지</span>
+        </p>
         <img
           className={styles["lock-icon"]}
           src={require(`../../../assets/Common/lock.png`)}

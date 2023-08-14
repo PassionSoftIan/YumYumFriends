@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { setShowEffects } from "../../store/showEffectsSlice";
 import { setEating } from "../../store/eatingSlice";
 import { RootState } from "../../store/store";
+import GamePlay from "../SinglePage/GamePlay";
 
 const GameStage: React.FC = () => {
   const [nowEating, setNowEating] = useState(false);
@@ -139,14 +140,15 @@ const GameStage: React.FC = () => {
     <React.Fragment>
       <div>
         {showModal && <Banner content="천천히 꼭꼭" />}
-        <Button
+        {/* <Button
           onClick={handleButtonClick}
           className={showAnimation ? "animated-button" : ""}
         >
           Click to Eat {eating}/{maxEating}
         </Button>
-        {showEffects && <div>이펙트가 보여집니다!</div>}
+        {showEffects && <div>이펙트가 보여집니다!</div>} */}
       </div>
+      <GamePlay />
     </React.Fragment>
   );
 };

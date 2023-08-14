@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-
 import Button from "../components/Common/Button";
+import styles from "./styles/MultiCreateRoomPage.module.css"
 
 const MultiCreateRoomPage: React.FC = () => {
   const UserID = localStorage.getItem("id");
@@ -10,6 +10,7 @@ const MultiCreateRoomPage: React.FC = () => {
   const UserName = storedNickname ? storedNickname.replace(/['"]+/g, "") : "null";
   const GameType = "Multi";
   const URL = "https://yumyumfriends.site";
+  const [showWarning, setShowWarning] = useState(false);
   
   const navigate = useNavigate();
   
@@ -38,22 +39,31 @@ const MultiCreateRoomPage: React.FC = () => {
       .catch((error) => console.log(error));
     };
 
+    if (password === "") {
+      setShowWarning(true);
+      return;
+    }
+
     sendPasswordToServer();
   };
   
+
   return (
-    <div>
-      <div>
-        <span>비밀번호</span>
+    <div className={styles['create-card']}>
+      <div className={styles['create-input']}>
+        <p>비밀번호 설정하기</p>
         <input
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setShowWarning(false); // 입력 중일 때 경고 문구 감추기
+          }}
         />
+        {showWarning && <p className={styles['warning-text']}>비밀번호를 입력해주세요.</p>}
       </div>
-      <Button onClick={handleCreateAction}>
-        <span>비밀번호로 방 만들기</span>
-        <hr />
+      <Button onClick={handleCreateAction} className={`${styles['create-button']} ${showWarning ? styles['disabled'] : ''}`}>
+        <span>방 만들기</span>
       </Button>
     </div>
   );

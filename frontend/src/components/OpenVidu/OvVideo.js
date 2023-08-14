@@ -11,7 +11,6 @@ import maskImage13 from "../../assets/Hats/13_apple_hat.png";
 
 import { connect } from "react-redux";
 import { setDetection } from "../../store/detectionSlice";
-import GameStage from "./GameStage";
 import axios from "axios";
 
 class OpenViduVideoComponent extends Component {
@@ -311,7 +310,6 @@ class OpenViduVideoComponent extends Component {
             backgroundColor: "transparent",
           }}
         >
-          <GameStage />
         </div>
       </div>
     );

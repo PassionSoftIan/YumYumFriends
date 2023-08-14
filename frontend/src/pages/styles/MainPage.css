@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -29,7 +30,10 @@ html, body {
     padding: 15px;
     left: 50%;
     top: 70%; /* 수정: 모바일에서 버튼 컨테이너를 조금 더 아래로 이동 */
-    transform: translate(-50%, -70%); /* 수정: 모바일에서 버튼 컨테이너를 조금 더 아래로 이동 */
+    transform: translate(
+      -50%,
+      -70%
+    ); /* 수정: 모바일에서 버튼 컨테이너를 조금 더 아래로 이동 */
   }
 }
 
@@ -38,7 +42,7 @@ html, body {
   bottom: 10%;
   right: 1%;
   width: 30%;
-  padding-top: 30%; 
+  padding-top: 30%;
   margin-right: 5px;
 }
 .action-image1 {
@@ -46,7 +50,7 @@ html, body {
   bottom: 40%;
   left: 1%;
   width: 10%;
-  padding-top: 30%; 
+  padding-top: 30%;
   margin-right: 5px;
 }
 
@@ -74,4 +78,12 @@ html, body {
 
 .game-button.hide {
   transform: translateX(250%);
+}
+
+.RemainMeal {
+  position: absolute;
+  top: 2%; /* 상단 위치 설정 */
+  right: 2%; /* 우측 위치 설정 */
+  color: #000;
+  z-index: 100; /* 다른 요소들 위에 위치시키기 위한 z-index 값 */
 }

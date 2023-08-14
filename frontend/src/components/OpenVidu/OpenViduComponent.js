@@ -4,6 +4,7 @@ import React, { Component } from "react";
 // import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
 
+import Loading from "../LoadingPage/LoadingPage";
 import "./OpenViduComponent.css";
 
 const APPLICATION_SERVER_URL =
@@ -34,7 +35,7 @@ class OpenViduComponent extends Component {
     // 입장
     // this.joinSession();
     window.addEventListener("beforeunload", this.onbeforeunload);
-    this.joinSession();
+    // this.joinSession();
   }
 
   componentWillUnmount() {
@@ -193,7 +194,7 @@ class OpenViduComponent extends Component {
       <div className="container">
         {this.state.session === undefined ? (
           <div id="join">
-            <h1>입장대기중</h1>
+            <Loading onClick={this.joinSession} />
           </div>
         ) : (
           // 싱글 모드

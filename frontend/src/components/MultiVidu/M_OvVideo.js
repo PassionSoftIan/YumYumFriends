@@ -68,7 +68,7 @@ class M_OvVideo extends Component {
     context.drawImage(this.videoRef.current, 0, 0, image.width, image.height);
 
     const dataUrl = image.toDataURL("image/jpeg");
-    const apiUrl = "http://218.154.242.73:51557/v1/object-detection/yolov5s";
+    const apiUrl = "http://218.154.242.73:51557/img/v1/object-detection/yolov5s";
 
     try {
       const formData = new FormData();

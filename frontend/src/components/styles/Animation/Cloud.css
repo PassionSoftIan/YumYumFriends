@@ -4,7 +4,7 @@
   left: 10px;
   width: 150px;
   height: auto;
-  animation: floatCloud 15s linear infinite;
+  animation: floatCloud 7s linear infinite;
   z-index: 9;
 }
 .cloud_2 {
@@ -13,7 +13,6 @@
   right: 10px; /* Start the second cloud from the right side */
   width: 150px;
   height: auto;
-  animation: floatCloud_2 16s linear infinite;
   z-index: 9;
 }
 
@@ -30,15 +29,6 @@
     transform: translateX(calc(100vw - 150%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
   }
 }
-@keyframes floatCloud_2 {
-  0% {
-    transform: translateX(0); /* 오른쪽 끝부터 시작 */
-  }
-  100% {
-    transform: translateX(-50vw); /* 왼쪽으로 요소 너비만큼 이동 */
-  }
-}
-
 @media (max-width: 768px) {
   @keyframes floatCloud {
     0% {

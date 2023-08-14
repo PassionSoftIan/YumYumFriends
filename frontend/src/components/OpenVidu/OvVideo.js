@@ -68,7 +68,7 @@ class OpenViduVideoComponent extends Component {
     context.drawImage(this.videoRef.current, 0, 0, image.width, image.height);
 
     const dataUrl = image.toDataURL("image/jpeg");
-    const apiUrl = "http://218.154.242.73:51557/v1/object-detection/yolov5s";
+    const apiUrl = "http://218.154.242.73:51557/img/v1/object-detection/yolov5s";
 
     try {
       const formData = new FormData();
@@ -78,7 +78,6 @@ class OpenViduVideoComponent extends Component {
       const response = await axios.post(apiUrl, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "Origin": "http://localhost:3000"
         },
       });
       console.log("eat:", response.data.eat);

@@ -1,13 +1,13 @@
 package com.ssafy.api.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +40,7 @@ public class User {
 	private int mealRemain;
 
 	@Column(name = "MEAL_LAST")
+	@DateTimeFormat(pattern = "YYYY-MM-DD")
 	private Date mealLast;
 	
 	@Column(name = "CURRENT_YUM")

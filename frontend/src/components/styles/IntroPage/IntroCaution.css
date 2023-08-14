@@ -3,8 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80%;
-    background-color: #f8e5bc; /* Light yellow background */
+    font-weight: 600;
+    font-size: inherit;
+    height: auto;
+    background-color: #ffffff; /* Light yellow background */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
     padding: 30px;
@@ -43,13 +45,13 @@
 
 
 .caution-heading {
-    font-size: 32px;
+    font-size: 48px;
     color: #333;
     margin-bottom: 20px;
 }
 
 .caution-text {
-    font-size: 18px;
+    font-size: 24px;
     color: #555;
     text-align: center;
     margin-bottom: 40px;
@@ -74,16 +76,13 @@
 .btn {
     position: relative;
     display: inline-block;
-    cursor: pointer;
     outline: none;
     border: 0;
     vertical-align: middle;
     text-decoration: none;
     font-size: inherit;
-    font-family: 'Amatic SC', cursive; /* Use the Google Font */
     font-weight: 600;
     color: #382b22;
-    text-transform: uppercase;
     padding: 0.8em 1.5em; /* Reduced padding to make the button smaller */
     background: #FFEEC8; /* Light yellow background */
     border: 2px solid #b18597;

@@ -1,14 +1,17 @@
 import React from "react";
 import KakaoLogin from "react-kakao-login";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { setUserInfo } from "../../store/userSlice";
 import axios from "axios";
+import kakao from "../../assets/Buttons/kakao_login_medium_narrow.png"
+import "../styles/Kakao.css";
 
 interface SocialKakaoProps {
-  onSuccess: () => void;
+  onSuccess: (nickname: string) => void;
 }
+
 
 const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
   const kakaoClientId = "b7122629a0a31ceda48e9b68c1655d8d";
@@ -27,27 +30,32 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
       // API 요청을 보낼 URL을 생성합니다.
       const apiUrl = `https://yumyumfriends.site/api/v1/kakao/login?id=${id}&email=${kakao_account.email}&nickname=${kakao_account.profile.nickname}`;
 
-      axios.get(apiUrl)
-      .then((response) => {
-        if (response.status === 200) {
-          // console.log("Token and user info sent successfully to the server");
-          onSuccess();
-          navigate("/main");
-          const currentYum = response.data.currentYum
+      axios
+        .get(apiUrl)
+        .then((response) => {
+          if (response.status === 200) {
+            // console.log("Token and user info sent successfully to the server");
+            onSuccess(nickname);
 
-          localStorage.setItem("id", JSON.stringify(id));
-          localStorage.setItem("nickname", JSON.stringify(nickname));
-          localStorage.setItem("currentYum", JSON.stringify(currentYum));
+            navigate("/main");
+            const currentYum = response.data.currentYum;
 
-          dispatch(setUserInfo({ id, nickname, currentYum }));
-        } else {
-          console.error("Failed to send token and user info to the server");
-          throw new Error("API 요청에 실패했습니다.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error sending token and user info to the server", error);
-      });
+            localStorage.setItem("id", JSON.stringify(id));
+            localStorage.setItem("nickname", JSON.stringify(nickname));
+            localStorage.setItem("currentYum", JSON.stringify(currentYum));
+
+            dispatch(setUserInfo({ id, nickname, currentYum }));
+          } else {
+            console.error("Failed to send token and user info to the server");
+            throw new Error("API 요청에 실패했습니다.");
+          }
+        })
+        .catch((error) => {
+          console.error(
+            "Error sending token and user info to the server",
+            error
+          );
+        });
 
       // Render the NavBar component and pass the nickname as a prop
       return <NavBar nickname={nickname} />;
@@ -64,7 +72,14 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
         token={kakaoClientId}
         onSuccess={kakaoOnSuccess}
         onFail={kakaoOnFailure}
-      />
+      >
+        <img
+          src={kakao}
+          alt="Kakao Login"
+          onClick={kakaoOnSuccess}
+          style={{ cursor: "pointer" }}
+        />
+      </KakaoLogin>
     </>
   );
 };

@@ -4,13 +4,15 @@ import { RootState } from "../store/store";
 import useImageSrc from "../hooks/useImage/useImageSrc";
 import useImageAttack from "../hooks/useImage/useImageAttack";
 import useImageEffect from "../hooks/useImage/useImageEffect";
+import useImageCharge from "../hooks/useImage/useImageCharge";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
+import LoadingPage from "../components/LoadingPage/LoadingPage";
 
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
-import Others from "../assets/before_fight/32_germ_standing.gif";
-import OthersAfterAttack from "../assets/Attacked/32_germ_attacked.gif";
+import Others from "../assets/1313.gif";
+import OthersAfterAttack from "../assets/Attacked/2.gif";
 import ProgressBar from "../components/Common/ProgressBar";
 
 import InvitationYum from "../components/SinglePage/InvitationYum";
@@ -25,14 +27,17 @@ const SinglePlayPage: React.FC = () => {
   const ourImageSrc = useImageSrc();
   const ourImageAttack = useImageAttack();
   const ourImageEffect = useImageEffect();
+  const ourImageCharge = useImageCharge();
   const useImageRandom = RandomBack();
   const [mySession, setMySession] = useState<any>(null);
+  const [showOthersAfterAttack, setShowOthersAfterAttack] = useState(false);
+  const [showOthersWithDelay, setShowOthersWithDelay] = useState(false);
+  const [openViduLoaded, setOpenViduLoaded] = useState(false);
+  const [loadingPageVisible, setLoadingPageVisible] = useState(true);
 
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
   const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
-
-
 
   const handleMySession = (obj: { eatValue: boolean }) => {
     console.log("Received eatValue:", obj.eatValue);
@@ -97,20 +102,46 @@ const SinglePlayPage: React.FC = () => {
         // 공격 종료 메시지 전송
         sendMessage('false', 'attack-state');
       }, 1500);
-      console.log(showEffects)
+      console.log(showEffects);
 
       return () => clearTimeout(animationTimeout);
     }
   }, [showEffectsTemp]);
 
-
   useEffect(() => {
     console.log(mySession);
   }, [mySession]);
 
+  useEffect(() => {
+    const imageElement = document.querySelector(".effects-image");
+
+    const handleAnimationEnd = () => {
+      setShowEffects(false);
+    };
+
+    if (imageElement) {
+      imageElement.addEventListener("animationend", handleAnimationEnd);
+    }
+
+    return () => {
+      if (imageElement) {
+        imageElement.removeEventListener("animationend", handleAnimationEnd);
+      }
+    };
+  }, []);
+
+  const handlePageClick = () => {
+    setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
+    setOpenViduLoaded(true);
+  };
+
   return (
     <div className="single-play-page">
-      <OpenViduComponent onObjectCreated={handleMySession} />
+      {openViduLoaded ? (
+        <OpenViduComponent onObjectCreated={handleMySession} />
+      ) : (
+        <LoadingPage onClick={handlePageClick} />
+      )}
       <div>
         <InvitationYum />
       </div>
@@ -119,12 +150,19 @@ const SinglePlayPage: React.FC = () => {
           <div className="images">
             <img src={useImageRandom} alt="" className="overlay-image" />
             <img
-              src={showEffects ? ourImageAttack : ourImageSrc}
+              src={
+                showEffects
+                  ? "attack-animation"
+                  : eating % 5 === 4
+                  ? ourImageCharge
+                  : ourImageSrc
+              }
               alt=""
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
-             <ProgressBar className="progress-bar" completed={hitPoints}/>
+
+            <ProgressBar className="progress-bar" completed={hitPoints} />
             <img
               src={showEffects ? OthersAfterAttack : Others}
               alt=""
@@ -133,8 +171,21 @@ const SinglePlayPage: React.FC = () => {
             />
           </div>
         )}
-        {showEffects && (
-          <img src={ourImageEffect} alt="" className="effects-image" />
+        {showEffects && eating % 5 !== 0 && (
+          <img
+            src={ourImageAttack}
+            alt=""
+            className={`effects-image ${showEffects ? ourImageSrc : "hidden"}`}
+            onAnimationEnd={() => setShowEffects(false)} // 애니메이션 종료 시 이미지 숨김
+          />
+        )}
+
+        {!(eating % 5) && eating != 0 && (
+          <img
+            src={ourImageEffect}
+            alt=""
+            className={`effects-image ${showImages ? "" : "hidden"}`}
+          />
         )}
       </div>
     </div>

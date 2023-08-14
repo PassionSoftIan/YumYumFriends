@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import GetStandingYum from "./GetStandingYum";
 
 interface Yum {
   name: string | undefined;
   type: string | undefined;
+  personality: string | undefined;
 }
 
 interface Props {

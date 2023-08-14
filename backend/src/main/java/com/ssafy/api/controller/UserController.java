@@ -68,7 +68,7 @@ public class UserController {
 			int month = cur.getMonth();
 			int day = cur.getDay();
 			Date mealLast = found.getMealLast();
-			if(mealLast.getDay() != day || mealLast.getMonth() != month || mealLast.getYear() != year) {
+			if(mealLast == null || mealLast.getDay() != day || mealLast.getMonth() != month || mealLast.getYear() != year) {
 				found.setMealLast(cur);
 				found.setMealRemain(3);
 				userRepo.save(found);

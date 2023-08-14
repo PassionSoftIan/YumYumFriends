@@ -1,5 +1,7 @@
 package com.ssafy.api.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -10,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,8 +61,21 @@ public class UserController {
     })
 	public ResponseEntity<User> getUserById(@RequestParam("id") long id) {
 		Optional<User> user = userRepo.findById(id);
-		if(user.isPresent())
-			return ResponseEntity.status(HttpStatus.OK).body(user.get());
+		if(user.isPresent()) {
+			User found = user.get();
+			Date cur = new Date();
+			int year = cur.getYear();
+			int month = cur.getMonth();
+			int day = cur.getDay();
+			Date mealLast = found.getMealLast();
+			if(mealLast.getDay() != day || mealLast.getMonth() != month || mealLast.getYear() != year) {
+				found.setMealLast(cur);
+				found.setMealRemain(3);
+				userRepo.save(found);
+				found = userRepo.findById(id).get();
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(found);
+		}
 		else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
@@ -74,13 +88,18 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<Void> registerUser(User target) {
-		if(target.getEmail() == null || target.getNickname() == null)
+		if(target.getNickname() == null)
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		
 		Optional<User> user = userRepo.findByEmail(target.getEmail());
 		if(user.isPresent())
 			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(null);
 		else {
+			if(target.getCurrentYum() == 0)
+				target.setCurrentYum(1);
+			target.setMealRemain(3);	        
+
+			target.setMealLast(new Date());
 			userRepo.save(target);
 			return ResponseEntity.status(HttpStatus.CREATED).body(null);
 		}
@@ -94,9 +113,21 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<Void> updateUserById(User target) {
-		Optional<User> user = userRepo.findById(target.getID());
-		if(user.isPresent()) {
-			userRepo.save(target);
+		Optional<User> optionUser = userRepo.findById(target.getID());
+		if(optionUser.isPresent()) {
+			User user = optionUser.get();
+			
+			if(target.getEmail() != null)
+				user.setEmail(target.getEmail());
+			if(target.getNickname() != null)
+				user.setNickname(target.getNickname());
+//			if(target.getMealRemain() != 0)
+			user.setMealRemain(target.getMealRemain());
+			if(target.getMealLast() != null)
+				user.setMealLast(target.getMealLast());
+			if(target.getCurrentYum() != 0)
+				user.setCurrentYum(target.getCurrentYum());
+			userRepo.save(user);
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
 		else

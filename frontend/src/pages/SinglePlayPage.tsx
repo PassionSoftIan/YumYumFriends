@@ -10,6 +10,7 @@ import useImageAed from "../hooks/useImage/useImageAed";
 import useImageFail from "../hooks/useImage/useImageFail";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import LoadingPage from "../components/LoadingPage/LoadingPage";
+import GameStage from "../components/OpenVidu/GameStage";
 
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
@@ -161,6 +162,9 @@ const SinglePlayPage: React.FC = () => {
       <OpenViduComponent onObjectCreated={handleMySession} />
       <div>
         <InvitationYum />
+      </div>
+      <div className="gamestage-container">
+        <GameStage />
       </div>
       <div className="images-container">
         {showImages && (

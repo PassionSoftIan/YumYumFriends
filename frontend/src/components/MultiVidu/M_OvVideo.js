@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 import { setDetection } from "../../store/detectionSlice";
 import axios from "axios";
 
-class OpenViduVideoComponent extends Component {
+class M_OvVideo extends Component {
   constructor(props) {
     super(props);
     this.videoRef = React.createRef();
@@ -309,7 +309,6 @@ class OpenViduVideoComponent extends Component {
             backgroundColor: "transparent",
           }}
         >
-          <M_GameStage />
         </div>
       </div>
     );

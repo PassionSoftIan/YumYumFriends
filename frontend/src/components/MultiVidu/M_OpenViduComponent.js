@@ -36,11 +36,6 @@ class M_OpenViduComponent extends Component {
     this.leaveSession = this.leaveSession.bind(this);
     this.onbeforeunload = this.onbeforeunload.bind(this);
     this.handleSubVideoStream = this.handleSubVideoStream.bind(this);
-
-    ///임시삭제할거
-    this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
-    this.handleChangeUserName = this.handleChangeUserName.bind(this);
-    ///
   }
 
   componentDidMount() {
@@ -80,18 +75,6 @@ class M_OpenViduComponent extends Component {
     }
   }
 
-  ///임시 삭제할꺼
-  handleChangeSessionId(e) {
-    this.setState({
-      mySessionId: e.target.value,
-    });
-  }
-
-  handleChangeUserName(e) {
-    this.setState({
-      myUserName: e.target.value,
-    });
-  }
   sendMessage = (msgdata, msgtype) => {
     if(this.state.Session != null){
       this.state.Session.signal({
@@ -274,9 +257,6 @@ class M_OpenViduComponent extends Component {
   }
 
   render() {
-    const mySessionId = this.state.mySessionId;
-    const myUserName = this.state.myUserName;
-
     // M_OvVideo Publisher와 Subscriber 나눌 bit 변수 지정
     const Pub = 0
     const Subs = 1

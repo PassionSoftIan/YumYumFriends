@@ -48,9 +48,9 @@ const App: React.FC = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <div className="App">
-          <Cloud />
+          {/* <Cloud /> */}
           <header className="App-header">
-            <img className="sun-image" src={Sun} alt="" />
+            {/* <img className="sun-image" src={} alt="" /> */}
             <Router>
               <div className="navbar-container">
                 <NavBar />

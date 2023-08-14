@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import A from "../../assets/myCharEnemy/1.gif";
-import B from "../../assets/myCharEnemy/2.gif";
+import A from "../../assets/fail/1.gif";
+import B from "../../assets/fail/2.gif";
 
-const useImageEnemy = () => {
+const useImageFail = () => {
   const [imageSrc, setImageSrc] = useState("");
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const useImageEnemy = () => {
   return imageSrc;
 };
 
-export default useImageEnemy;
+export default useImageFail;

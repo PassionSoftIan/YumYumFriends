@@ -21,9 +21,11 @@ class M_OpenViduComponent extends Component {
     const UserID = localStorage.getItem("id");
     const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
+    const SessionID = this.props.sessionID
+
     // These properties are in the state's component in order to re-render the HTML whenever their values change
     this.state = {
-      mySessionId: UserID,
+      mySessionId: SessionID,
       myUserName: UserName,
       session: undefined,
       mainStreamManager: undefined, // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
@@ -36,11 +38,6 @@ class M_OpenViduComponent extends Component {
     this.leaveSession = this.leaveSession.bind(this);
     this.onbeforeunload = this.onbeforeunload.bind(this);
     this.handleSubVideoStream = this.handleSubVideoStream.bind(this);
-
-    ///임시삭제할거
-    this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
-    this.handleChangeUserName = this.handleChangeUserName.bind(this);
-    ///
   }
 
   componentDidMount() {
@@ -80,18 +77,6 @@ class M_OpenViduComponent extends Component {
     }
   }
 
-  ///임시 삭제할꺼
-  handleChangeSessionId(e) {
-    this.setState({
-      mySessionId: e.target.value,
-    });
-  }
-
-  handleChangeUserName(e) {
-    this.setState({
-      myUserName: e.target.value,
-    });
-  }
   sendMessage = (msgdata, msgtype) => {
     if(this.state.Session != null){
       this.state.Session.signal({
@@ -243,6 +228,8 @@ class M_OpenViduComponent extends Component {
     const UserID = localStorage.getItem("id");
     const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
+    const SessionID = this.props.sessionID
+
     if (mySession) {
       this.leaveSessionUpdate();
       mySession.disconnect();
@@ -253,7 +240,7 @@ class M_OpenViduComponent extends Component {
     this.setState({
       session: undefined,
       subscribers: [],
-      mySessionId: UserID,
+      mySessionId: SessionID,
       myUserName: UserName,
       mainStreamManager: undefined,
       subStreamManager: undefined,
@@ -272,9 +259,6 @@ class M_OpenViduComponent extends Component {
   }
 
   render() {
-    const mySessionId = this.state.mySessionId;
-    const myUserName = this.state.myUserName;
-
     // M_OvVideo Publisher와 Subscriber 나눌 bit 변수 지정
     const Pub = 0
     const Subs = 1
@@ -284,36 +268,13 @@ class M_OpenViduComponent extends Component {
         {this.state.session === undefined ? (
           <div id="join">
             <div id="join-dialog" className="jumbotron vertical-center">
-              <h1>캐릭터 선택, 입장</h1>
               <form className="form-group" onSubmit={this.joinSession}>
-                <p>
-                  <label>Participant: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="userName"
-                    value={myUserName}
-                    onChange={this.handleChangeUserName}
-                    required
-                  />
-                </p>
-                <p>
-                  <label> Session: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="sessionId"
-                    value={mySessionId}
-                    onChange={this.handleChangeSessionId}
-                    required
-                  />
-                </p>
                 <p className="text-center">
                   <input
                     className="btn btn-lg btn-success"
                     name="commit"
                     type="submit"
-                    value="JOIN"
+                    value="친구랑 냠냠!"
                   />
                 </p>
               </form>

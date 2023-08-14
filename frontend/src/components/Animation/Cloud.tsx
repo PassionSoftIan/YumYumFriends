@@ -6,12 +6,12 @@ const Cloud: React.FC = () => {
   return (
     <div>
       <div className="cloud-container">
-        <div className="cloud">
+        {/* <div className="cloud">
           <img src={Clo} alt="" style={{ width: "150px" }} />{" "}
         </div>
         <div className="cloud_2">
           <img src={Clo} alt="" style={{ width: "150px" }} />{" "}
-        </div>
+        </div> */}
       </div>
     </div>
   );

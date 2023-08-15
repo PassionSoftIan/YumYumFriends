@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import ReactDOM from "react-dom";
+import { RootState } from "../../../store/store";
+import useSoundEffect from "../../../hooks/useSoundEffect";
 import styles from "../../styles/MultiPlayPage/RoomItem.module.css";
 import axios from "axios";
 import Button from "../../Common/Button";
@@ -20,12 +23,22 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
 
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
+
+  const alertSoundSource = require("../../../assets/sound/alert.mp3");
+  const alertSound = useSoundEffect(alertSoundSource, 0.3);
+
   const handleClick = () => {
     setShowModal(true);
   };
 
   const handleAction = () => {
     if (password.length === 0) {
+      if (soundEffectOn) {
+        alertSound.play();
+      }
       setIsEmpty(true);
       return;
     }
@@ -36,10 +49,13 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
       )
       .then((response) => {
         if (response.data === false) {
+          if (soundEffectOn) {
+            alertSound.play();
+          }
+
           setShowWarning(true);
           return;
         }
-        // console.log("data:", response.data);
         if (response.data) {
           navigate(
             `/multiplay?SessionID=${props.sessionID}&HostInfo=${props.name}&GameType=Multi`
@@ -77,7 +93,9 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
           />
         </div>
         {isEmpty && <p className={styles.warning}>비밀번호를 입력하세요.</p>}
-        {showWarning && <p className={styles.warning}>비밀번호를 확인하세요.</p>}
+        {showWarning && (
+          <p className={styles.warning}>비밀번호를 확인하세요.</p>
+        )}
         <footer className={styles.actions}>
           <Button onClick={handleAction}>입장하기</Button>
         </footer>

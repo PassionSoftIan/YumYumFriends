@@ -1,14 +1,21 @@
 import { useEffect } from 'react';
 import JSConfetti from 'js-confetti';
 
-const useConfetti = (emojis:string[], emojiSize:number, confettiNumber:number) => {
+const useColorConfetti = (confettiRadius: number, confettiNumber: number) => {
   const jsConfettiInstance = new JSConfetti();
 
   useEffect(() => {
     const handleConfetti = () => {
       jsConfettiInstance.addConfetti({
-        emojis: emojis,
-        emojiSize: emojiSize,
+        confettiColors: [
+            "#fff5e4",
+            "#ffe3e1",
+            "#ffd1d1",
+            "#ff9494",
+            "#C9CE6C",
+            "#6F9A44",
+          ],
+        confettiRadius: confettiRadius,
         confettiNumber: confettiNumber,
       });
     };
@@ -18,7 +25,7 @@ const useConfetti = (emojis:string[], emojiSize:number, confettiNumber:number) =
     return () => {
       window.removeEventListener('confetti', handleConfetti);
     };
-  }, [emojis, emojiSize, confettiNumber]);
+  }, [confettiRadius, confettiNumber]);
 
   const triggerConfetti = () => {
     const event = new Event('confetti');
@@ -28,4 +35,5 @@ const useConfetti = (emojis:string[], emojiSize:number, confettiNumber:number) =
   return { triggerConfetti };
 };
 
-export default useConfetti;
+
+export default useColorConfetti;

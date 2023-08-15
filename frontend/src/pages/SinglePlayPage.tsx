@@ -62,7 +62,7 @@ const SinglePlayPage: React.FC = () => {
 
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
-  const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
+  // const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
 
   const handleMySession = (obj: { eatValue: boolean }) => {
     console.log("Received eatValue:", obj.eatValue);
@@ -210,7 +210,7 @@ const SinglePlayPage: React.FC = () => {
               id="oursImage"
             />
 
-            <ProgressBar className="progress-bar" completed={hitPoints} />
+            {/* <ProgressBar className="progress-bar" completed={hitPoints} /> */}
             <img
               src={
                 showFailImage
@@ -240,7 +240,7 @@ const SinglePlayPage: React.FC = () => {
           />
         )}
 
-        {!(eating % 5) && eating != 0 && (
+        {!(eating % 5) && eating !== 0 && (
           <img
             src={ourImageEffect}
             alt=""

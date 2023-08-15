@@ -44,7 +44,7 @@ const GetStandingYum: React.FC<Props> = ({ yum }) => {
           <h3>반가워 친구야</h3>
           <img
             src={require(`../../assets/GetYums/${yum.name}_get.gif`)}
-            alt="yum image"
+            alt="yum"
             onClick={handleShowCard}
           />
         </>

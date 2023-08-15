@@ -1,12 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./store/store";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import IntroPage from "./pages/IntroPage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
@@ -28,10 +23,9 @@ import MultiCreateRoomPage from "./pages/MultiCreateRoomPage";
 import NavBar from "./components/NavBar/NavBar";
 import AudioPlayer from "./components/Audio/AudioPlayer"; // Use "AudioPlayer" with an uppercase "P"
 import { PersistGate } from "redux-persist/integration/react";
-import Sun from "./assets/Common/sun_smile.png";
-import Cloud from "./components/Animation/Cloud";
+// import Sun from "./assets/Common/sun_smile.png";
+// import Cloud from "./components/Animation/Cloud";
 import "./App.css";
-import { AnimatePresence } from "framer-motion";
 
 const App: React.FC = () => {
   const [nickname, setNickname] = useState<string | undefined>(undefined);

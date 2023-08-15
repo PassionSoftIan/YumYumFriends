@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { toggleBgm } from "../../store/bgmSlice";
 
 const AudioPlayer: React.FC = () => {
-  const bgmOn = useSelector((state: RootState) => state.bgm.bgmOn); // Redux 상태를 가져옵니다.
+  const bgmOn = useSelector((state: RootState) => state.bgm.bgmOn);
   const location = useLocation();
   const audioElementRef = useRef<HTMLAudioElement>(null);
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const AudioPlayer: React.FC = () => {
   useEffect(() => {
     const savedBgmOn = localStorage.getItem("bgmOn");
     if (savedBgmOn !== null) {
-      dispatch(toggleBgm()); // 배경음악 상태를 Redux 상태에 저장합니다.
+      dispatch(toggleBgm());
     }
   }, [dispatch]);
 
@@ -28,6 +28,7 @@ const AudioPlayer: React.FC = () => {
     if (bgmOn && location.pathname !== "/") {
       const audioElement = audioElementRef.current;
       if (audioElement) {
+        audioElement.volume = 0.2; // 볼륨을 0.5로 설정합니다. 필요한 볼륨 값으로 변경 가능합니다.
         const playPromise = audioElement.play();
         if (playPromise !== undefined) {
           playPromise
@@ -42,13 +43,13 @@ const AudioPlayer: React.FC = () => {
     } else {
       const audioElement = audioElementRef.current;
       if (audioElement) {
-        audioElement.pause(); // 배경음악을 정지합니다.
+        audioElement.pause();
       }
     }
   }, [bgmOn, location]);
 
   const handleToggleBgm = () => {
-    dispatch(toggleBgm()); // Redux 상태를 토글합니다.
+    dispatch(toggleBgm());
   };
 
   return (
@@ -57,7 +58,6 @@ const AudioPlayer: React.FC = () => {
         <source src="/music/Funny_And_Cute_Edit_4_-_Kudla.mp3" type="audio/mpeg" />
         Your browser does not support audio playback.
       </audio>
-
     </>
   );
 };

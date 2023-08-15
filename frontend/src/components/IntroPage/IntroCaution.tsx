@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useConfetti from '../../hooks/Animations/useConfetti';
+// import useConfetti from '../../hooks/Animations/useConfetti';
+import useColorConfetti from '../../hooks/Animations/useColorConfetti';
 import "../styles/IntroPage/IntroCaution.css"
 
 interface IntroCautionProps {
@@ -9,7 +10,8 @@ interface IntroCautionProps {
 
 const IntroCaution: React.FC<IntroCautionProps> = ({ onButtonClick }) => {
   const navigate = useNavigate();
-  const { triggerConfetti } = useConfetti(["🧡", "💗", "💙", "💚", "🖤", "💛", "🤎"], 30, 200);
+  // const { triggerConfetti } = useConfetti(["🧡", "💗", "💙", "💚", "🖤", "💛", "🤎"], 30, 200);
+  const { triggerConfetti } = useColorConfetti(5, 400);
 
   const handleButtonClick = () => {
     // 확인 버튼을 눌렀을 때 LoginPage로 이동

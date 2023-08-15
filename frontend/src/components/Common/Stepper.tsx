@@ -19,7 +19,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
   const dispatch = useDispatch();
 
   const clickSoundSource = require("../../assets/sound/stepper.ogg");
-  const clickSound = useSoundEffect(clickSoundSource, 0.5);
+  const clickSound = useSoundEffect(clickSoundSource, 1);
 
   useEffect(() => {
     if (!initialized) {

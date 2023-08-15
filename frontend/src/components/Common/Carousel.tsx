@@ -45,7 +45,7 @@ const Carousel: React.FC<Props> = (props) => {
     (state: RootState) => state.soundEffect.soundEffectOn
   );
   const swipeSoundSource = require("../../assets/sound/swipe.mp3");
-  const swipeSound = useSoundEffect(swipeSoundSource, 0.5);
+  const swipeSound = useSoundEffect(swipeSoundSource, 1);
 
   const handleClick = () => {
     if (soundEffectOn) {

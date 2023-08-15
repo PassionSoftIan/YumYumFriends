@@ -22,10 +22,10 @@ const YumCard: React.FC<Props> = ({ yum }) => {
     (state: RootState) => state.soundEffect.soundEffectOn
   );
 
-  const appearSoundSource = require("../../assets/sound/yum-card-01.mp3");
+  const appearSoundSource = require("../../assets/sound/yum-card-01.wav");
   const appearSound = useSoundEffect(appearSoundSource, 0.3);
   const flipSoundSource = require("../../assets/sound/swipe.mp3");
-  const flipSound = useSoundEffect(flipSoundSource, 0.5);
+  const flipSound = useSoundEffect(flipSoundSource, 1);
 
   useEffect(() => {
     if (soundEffectOn) {

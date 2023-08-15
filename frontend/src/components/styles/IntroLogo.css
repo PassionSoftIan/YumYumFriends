@@ -1,16 +1,67 @@
 /* Intro.css */
 
 .intro-logo-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #fff5e4; /* 배경을 투명하게 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #ffffff; /* 배경색을 흰색으로 설정 */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.titlelogo {
+  max-width: 100%;
+  width: 50%;
+  height: auto;
+  margin: 20px;
+  animation: logoAnimation1 3s ease-in forwards, logoShake 0.3s 2s ease-in alternate forwards; /* 애니메이션 총 시간을 3초로 설정 */
+}
+
+@keyframes logoAnimation1 {
+  0% {
+    transform: scale(0.2); /* 초기 크기를 축소 */
+    opacity: 0;
   }
-  
-  .logo {
-    max-width: 100%;
-    height: auto;
-    margin: 20px;
+  60% {
+    transform: scale(1); /* 크기 유지 */
+    opacity: 1; /* 서서히 사라지도록 투명도 조절 */
   }
+  100% {
+    transform: scale(1); /* 크기 유지 */
+    opacity: 1; /* 서서히 사라지도록 투명도 조절 */
+  }
+}
+
+@keyframes logoShake {
+  0% {
+    transform: rotate(0deg); /* 초기 기울기 없음 */
+  }
+  25% {
+    transform: rotate(-5deg); /* 왼쪽으로 5도 기울기 */
+  }
+  50% {
+    transform: rotate(5deg); /* 오른쪽으로 5도 기울기 */
+  }
+  75% {
+    transform: rotate(-5deg); /* 왼쪽으로 5도 기울기 */
+  }
+  100% {
+    transform: rotate(0deg); /* 다시 초기 기울기 없음 */
+  }
+}
+
+
+
+
+
+
+
+

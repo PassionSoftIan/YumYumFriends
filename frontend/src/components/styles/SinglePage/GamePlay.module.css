@@ -1,0 +1,65 @@
+.game-play {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 90%;
+  z-index: 99;
+}
+
+.interface-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: fit-content;
+}
+
+.energy-container {
+  display: flex;
+  width: 100%;
+}
+
+.skill-button {
+  background-color: transparent;
+  border: none;
+}
+
+.skill-icon {
+  width: 80%;
+  border-radius: 15%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.skill-button[disabled] .skill-icon {
+  filter: grayscale(100%);
+}
+
+.skill-button:not([disabled]) .skill-icon {
+  animation: snake 3s infinite, borderBlink 1s infinite;
+  background-color: rgba(255, 205, 235, 0.8);
+  outline: none;
+  box-shadow: 0 0 30px #ffcc00;
+}
+
+.enemy-hitpoints {
+  margin-top: 50px;
+}
+
+@keyframes snake {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10%);
+  }
+}
+
+@keyframes borderBlink {
+  0%,
+  100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #ffcc00;
+  }
+}

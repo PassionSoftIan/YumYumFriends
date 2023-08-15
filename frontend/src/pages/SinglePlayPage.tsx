@@ -156,10 +156,10 @@ const SinglePlayPage: React.FC = () => {
     };
   }, []);
 
-  const handlePageClick = () => {
-    setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
-    setOpenViduLoaded(true);
-  };
+  // const handlePageClick = () => {
+  //   setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
+  //   setOpenViduLoaded(true);
+  // };
 
   useEffect(() => {
     if (eating === maxEating) {
@@ -199,7 +199,7 @@ const SinglePlayPage: React.FC = () => {
               src={
                 showEffects
                   ? "attack-animation"
-                  : eating % 5 === 4
+                  : eating % 3 === 2
                   ? ourImageCharge
                   : enemyEnergy > maxEnemyEnergy - 1
                   ? ourImageSick
@@ -221,7 +221,7 @@ const SinglePlayPage: React.FC = () => {
                     : otherImageAed
                   : eating === 0 && initialImageVisible
                   ? otherImageShow
-                  : enemyEnergy === maxEnemyEnergy - 1
+                  : enemyEnergy === maxEnemyEnergy
                   ? otherImageEnemyAttack
                   : otherImageEnemy
               }
@@ -231,7 +231,7 @@ const SinglePlayPage: React.FC = () => {
             />
           </div>
         )}
-        {showEffects && eating % 5 !== 0 && (
+        {showEffects && eating % 3 !== 0 && (
           <img
             src={ourImageAttack}
             alt=""
@@ -240,7 +240,7 @@ const SinglePlayPage: React.FC = () => {
           />
         )}
 
-        {!(eating % 5) && eating !== 0 && (
+        {!(eating % 3) && eating !== 0 && (
           <img
             src={ourImageEffect}
             alt=""

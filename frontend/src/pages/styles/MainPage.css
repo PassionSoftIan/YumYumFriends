@@ -18,7 +18,7 @@ body {
   justify-content: center; /* 버튼들을 수직 중앙 정렬 */
   background: #ffffff00;
   width: 40%;
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   z-index: 10;
 }
@@ -27,7 +27,7 @@ body {
 @media (max-width: 600px) {
   .button-container {
     width: 80%;
-    padding: 15px;
+    padding: 10px;
     left: 50%;
     top: 70%; /* 수정: 모바일에서 버튼 컨테이너를 조금 더 아래로 이동 */
     transform: translate(
@@ -86,4 +86,8 @@ body {
   right: 2%; /* 우측 위치 설정 */
   color: #000;
   z-index: 100; /* 다른 요소들 위에 위치시키기 위한 z-index 값 */
+}
+.btnIcon{
+  width: 50%;
+  height: auto;;
 }

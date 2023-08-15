@@ -26,10 +26,10 @@ body {
 /* Media queries for responsiveness */
 @media (max-width: 600px) {
   .button-container {
-    width: 80%;
+    width: 50%;
     padding: 10px;
     left: 50%;
-    top: 70%; /* 수정: 모바일에서 버튼 컨테이너를 조금 더 아래로 이동 */
+    top: 65%; /* 수정: 모바일에서 버튼 컨테이너를 조금 더 아래로 이동 */
     transform: translate(
       -50%,
       -70%

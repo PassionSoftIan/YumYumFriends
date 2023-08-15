@@ -3,6 +3,7 @@ import logo from "../assets/gametitle.png";
 import { useNavigate } from "react-router-dom";
 import "./styles/LoginPage.css";
 import SocialKakao from "../components/LoginPage/SocialKakao";
+import { ZoomIn } from "./styles/transition";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,10 +13,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-page">
-      <img src={logo} alt="Title Logo" className="gamelogo" />
-      <SocialKakao onSuccess={handleLoginSuccess} /> {/* onSuccess 프로퍼티 전달 */}
-    </div>
+    <ZoomIn>
+      <div className="login-page">
+        <img src={logo} alt="Title Logo" className="gamelogo" />
+        <SocialKakao onSuccess={handleLoginSuccess} />{" "}
+      </div>
+    </ZoomIn>
   );
 };
 

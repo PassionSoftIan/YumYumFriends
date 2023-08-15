@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import M_OpenViduComponent from "../components/MultiVidu/M_OpenViduComponent";
-
 // 여기부터 싱글 import
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
@@ -74,7 +73,6 @@ const MultiPlayPage: React.FC = () => {
           {...commonProps}
         />
       </div>
-
       {/* 멀티모드 애니메이션 */}
     </div>
   );

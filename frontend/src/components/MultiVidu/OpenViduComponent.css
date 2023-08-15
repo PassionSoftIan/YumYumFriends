@@ -1,5 +1,6 @@
 /* Ensure parent elements have a height of 100% */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -12,4 +13,11 @@ html, body {
   justify-content: center;
   height: 30%; /* 변경된 높이 값 */
   z-index: 3;
+}
+
+.MultiBack {
+  background-image: url("../../assets/runningBackk.jpeg");
+  background-size: 100% 100%; /* contain을 100% 100%로 변경 */
+  background-position: center;
+  background-repeat: no-repeat;
 }

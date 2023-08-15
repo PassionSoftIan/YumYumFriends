@@ -5,6 +5,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 
+import energyReducer from "./energySlice";
 import bgmReducer from "./bgmSlice";
 import showEffectsReducer from "./showEffectsSlice";
 import maxEatingReducer from "./maxEatingSlice";
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   eating: eatingReducer,
   // 위에 추가할 부분
   enemyEnergy: enemyEnergyReducer,
+  energy: energyReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

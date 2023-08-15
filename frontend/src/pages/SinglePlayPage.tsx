@@ -10,6 +10,7 @@ import useImageAed from "../hooks/useImage/useImageAed";
 import useImageFail from "../hooks/useImage/useImageFail";
 import useImageShow from "../hooks/useImage/useImageShow";
 import useImageSick from "../hooks/useImage/useImageSick";
+import useImageBigEffects from "../hooks/useImage/useImageBigEffects";
 import useImageEnemyAttack from "../hooks/useImage/useImageEnemyAttack";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import GameStage from "../components/OpenVidu/GameStage";
@@ -44,6 +45,7 @@ const SinglePlayPage: React.FC = () => {
   const otherImageShow = useImageShow();
   const otherImageEnemyAttack = useImageEnemyAttack();
   const useImageRandom = RandomBack();
+  const otherImageBigEffects = useImageBigEffects();
 
   const enemyEnergy = useSelector(
     (state: RootState) => state.enemyEnergy.enemyEnergy
@@ -156,10 +158,10 @@ const SinglePlayPage: React.FC = () => {
     };
   }, []);
 
-  const handlePageClick = () => {
-    setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
-    setOpenViduLoaded(true);
-  };
+  // const handlePageClick = () => {
+  //   setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
+  //   setOpenViduLoaded(true);
+  // };
 
   useEffect(() => {
     if (eating === maxEating) {
@@ -199,7 +201,7 @@ const SinglePlayPage: React.FC = () => {
               src={
                 showEffects
                   ? "attack-animation"
-                  : eating % 5 === 4
+                  : eating % 3 === 2
                   ? ourImageCharge
                   : enemyEnergy > maxEnemyEnergy - 1
                   ? ourImageSick
@@ -209,7 +211,6 @@ const SinglePlayPage: React.FC = () => {
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
-
             {/* <ProgressBar className="progress-bar" completed={hitPoints} /> */}
             <img
               src={
@@ -218,10 +219,12 @@ const SinglePlayPage: React.FC = () => {
                   : showEffects
                   ? eating === maxEating
                     ? otherImageFail
+                    : eating % 3 === 0
+                    ? otherImageBigEffects // 3의 배수일 때 다른 이미지
                     : otherImageAed
                   : eating === 0 && initialImageVisible
                   ? otherImageShow
-                  : enemyEnergy === maxEnemyEnergy - 1
+                  : enemyEnergy === maxEnemyEnergy
                   ? otherImageEnemyAttack
                   : otherImageEnemy
               }
@@ -231,7 +234,7 @@ const SinglePlayPage: React.FC = () => {
             />
           </div>
         )}
-        {showEffects && eating % 5 !== 0 && (
+        {showEffects && eating % 3 !== 0 && (
           <img
             src={ourImageAttack}
             alt=""
@@ -240,11 +243,11 @@ const SinglePlayPage: React.FC = () => {
           />
         )}
 
-        {!(eating % 5) && eating !== 0 && (
+        {!(eating % 3) && eating !== 0 && (
           <img
             src={ourImageEffect}
             alt=""
-            className={`effects-image ${showImages ? "" : "hidden"}`}
+            className={`effects-image2 ${showImages ? "" : ""}`}
           />
         )}
         {enemyEnergy > maxEnemyEnergy - 1 && (

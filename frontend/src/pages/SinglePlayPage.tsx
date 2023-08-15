@@ -10,6 +10,7 @@ import useImageAed from "../hooks/useImage/useImageAed";
 import useImageFail from "../hooks/useImage/useImageFail";
 import useImageShow from "../hooks/useImage/useImageShow";
 import useImageSick from "../hooks/useImage/useImageSick";
+import useImageBigEffects from "../hooks/useImage/useImageBigEffects";
 import useImageEnemyAttack from "../hooks/useImage/useImageEnemyAttack";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import GameStage from "../components/OpenVidu/GameStage";
@@ -44,6 +45,7 @@ const SinglePlayPage: React.FC = () => {
   const otherImageShow = useImageShow();
   const otherImageEnemyAttack = useImageEnemyAttack();
   const useImageRandom = RandomBack();
+  const otherImageBigEffects = useImageBigEffects();
 
   const enemyEnergy = useSelector(
     (state: RootState) => state.enemyEnergy.enemyEnergy
@@ -209,7 +211,6 @@ const SinglePlayPage: React.FC = () => {
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
-
             {/* <ProgressBar className="progress-bar" completed={hitPoints} /> */}
             <img
               src={
@@ -218,6 +219,8 @@ const SinglePlayPage: React.FC = () => {
                   : showEffects
                   ? eating === maxEating
                     ? otherImageFail
+                    : eating % 3 === 0
+                    ? otherImageBigEffects // 3의 배수일 때 다른 이미지
                     : otherImageAed
                   : eating === 0 && initialImageVisible
                   ? otherImageShow
@@ -229,6 +232,9 @@ const SinglePlayPage: React.FC = () => {
               className={`others-image ${showImages ? "" : "hidden"}`}
               id="othersImage"
             />
+            이 코드에서 eating % 3 === 0 조건을 추가하여 eating 값이 3의 배수일
+            때 otherImageDifferent 이미지가 보이도록 설정할 수 있습니다.
+            조건식을 적절히 수정하여 원하는 이미지가 나오도록 조정하면 됩니다.
           </div>
         )}
         {showEffects && eating % 3 !== 0 && (

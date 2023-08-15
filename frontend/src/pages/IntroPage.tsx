@@ -24,7 +24,7 @@ const IntroPage = () => {
 
     const timer = setTimeout(() => {
       setShowLogo(false);
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -39,9 +39,8 @@ const IntroPage = () => {
   return (
     <div className="IntroBack">
       {showLogo ? (
-        <FadeOut>
           <IntroLogo />
-        </FadeOut>
+
       ) : (
         <FadeIn>
           <IntroCaution onButtonClick={handleCautionButtonClick} />

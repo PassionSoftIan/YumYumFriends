@@ -1,101 +1,33 @@
-/* ./styles/SinglePlayPage.css */
-
-/* 전체 프로필 페이지 컨테이너 */
-.multi-play-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  height: 100vh; /* 화면 높이 전체로 설정 */
-  position: relative; /* 추가 */
-}
-.images-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.images {
+/* 기본 이미지 스타일 */
+.myYum-image,
+.friendYum-image {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
+  z-index: 999;
+  width: 12%; /* 이미지 크기(너비)를 조정하려 이 값을 변경하세요. */
+  height: auto; /* 이미지 크기(높이)를 조정하려면 이 값을 변경하세요. */
+  object-fit: cover; /* 이미지를 크기와 비율에 맞게 조절합니다. */
 }
-/* 모바일 화면에 대한 미디어 쿼리 */
-@media screen and (max-width: 768px) {
-  .effects-image {
-    animation-duration: 3s; /* 모바일 화면에서의 애니메이션 속도 조정 */
+
+/* 웹에서의 위치 */
+.myYum-image {
+  top: 50%; /* 위치(상하)를 조정하려면 이 값을 변경하세요. */
+  left: 7%; /* 위치(좌우)를 조정하려면 이 값을 변경하세요. */
+}
+
+.friendYum-image {
+  top: 60%; /* 위치(상하)를 조정하려면 이 값을 변경하세요. */
+  left: 13%; /* 위치(좌우)를 조정하려면 이 값을 변경하세요. */
+}
+
+/* 모바일에서의 위치 */
+@media (max-width: 768px) {
+  .myYum-image {
+    top: 30%; /* 모바일 화면에서의 위치 조정 */
+    left: 5%; /* 모바일 화면에서의 위치 조정 */
   }
-}
 
-.overlay-image {
-  z-index: 5;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 30%;
-}
-
-.ours-image {
-  z-index: 99;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 30%;
-  height: auto;
-}
-
-.others-image {
-  z-index: 99;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 30%;
-  height: auto;
-}
-.effects-image {
-  z-index: 99;
-  position: absolute;
-  bottom: 20%;
-  left: 0;
-  width: 30%;
-  height: auto;
-  animation: moveEffectBetweenImages 1.5s ease-in-out infinite;
-}
-
-@keyframes moveEffectBetweenImages {
-  0% {
-    transform: translateX(40%);
+  .friendYum-image {
+    top: 40%; /* 모바일 화면에서의 위치 조정 */
+    left: 10%; /* 모바일 화면에서의 위치 조정 */
   }
-  100% {
-    transform: translateX(calc(100vw - 100%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
-  }
-}
-
-
-.ours-image.hidden {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.others-image.hidden {
-  opacity: 1;
-  transition: opacity 1.5s ease-in-out;
-}
-.small-image {
-  width: 100px;
-  height: auto;
-}
-
-.progress-bar {
-  z-index: 99;
-  position: fixed;
-  bottom: 8%;
-  /* left: 0; */
-  right: 0;
-  width: 30% !important;
-  height: auto;
 }

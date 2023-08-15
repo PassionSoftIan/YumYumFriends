@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import JSConfetti from "js-confetti";
+import useColorConfetti from '../../hooks/Animations/useColorConfetti';
 import YumCard from "./YumCard";
 import Button from "../Common/Button";
 
@@ -18,21 +18,10 @@ const GetStandingYum: React.FC<Props> = ({ yum }) => {
   const [showCard, setShowCard] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
+  const { triggerConfetti } = useColorConfetti(5, 400);
 
   useEffect(() => {
-    const jsConfetti = new JSConfetti();
-    jsConfetti.addConfetti({
-      confettiColors: [
-        "#fff5e4",
-        "#ffe3e1",
-        "#ffd1d1",
-        "#ff9494",
-        "#C9CE6C",
-        "#6F9A44",
-      ],
-      confettiRadius: 5,
-      confettiNumber: 400,
-    });
+    triggerConfetti();
   }, []);
 
   const handleShowCard = () => {

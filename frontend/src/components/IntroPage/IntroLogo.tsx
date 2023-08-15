@@ -12,9 +12,7 @@ const IntroLogo = () => {
   }, []);
 
   return (
-    <div className={`intro-logo ${showLogo ? 'show' : ''}`}>
-      <img src={logo} alt="Title Logo" className="logo" />
-    </div>
+    <img src={logo} alt="Title Logo" className={`titlelogo ${showLogo ? 'show' : ''}`} />
   );
 };
 

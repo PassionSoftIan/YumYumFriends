@@ -10,15 +10,20 @@ const GamePlay: React.FC = () => {
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
   const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
 
-  const enemyEnergy = useSelector((state: RootState) => state.enemyEnergy.enemyEnergy); // enemyEnergy 가져오기
-  const maxEnemyEnergy = useSelector((state: RootState) => state.enemyEnergy.maxEnemyEnergy); // maxEnemyEnergy 가져오기
+  const enemyEnergy = useSelector(
+    (state: RootState) => state.enemyEnergy.enemyEnergy
+  ); // enemyEnergy 가져오기
+  const maxEnemyEnergy = useSelector(
+    (state: RootState) => state.enemyEnergy.maxEnemyEnergy
+  ); // maxEnemyEnergy 가져오기
   const [myEnergy, setMyEnergy] = useState(-1);
-  const requiredEnergy = 5;  //스킬 사용 시 필요한 에너지 스택
+  const requiredEnergy = 5; //스킬 사용 시 필요한 에너지 스택
 
   const myProgress = ((myEnergy / requiredEnergy) * 100).toFixed(0);
   const enemyProgress = ((enemyEnergy / maxEnemyEnergy) * 100).toFixed(0);
 
   const dispatch = useDispatch(); // useDispatch 훅 사용
+
 
   useEffect(() => {
     return () => {
@@ -85,7 +90,9 @@ const GamePlay: React.FC = () => {
               alt=""
             />
           </button>
-          <div className={`${styles["energy-container"]} ${styles["enemy-hitpoints"]}`}>
+          <div
+            className={`${styles["energy-container"]} ${styles["enemy-hitpoints"]}`}
+          >
             <p>❤️</p>
             <ProgressBar completed={hitPoints} fillerColor="crimson" />
           </div>

@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import useSoundEffect from "../../hooks/useSoundEffect";
 import "../styles/SinglePage/YumCard.css";
 import { Bounce } from "../../pages/styles/transition";
 
@@ -14,6 +17,27 @@ interface Props {
 
 const YumCard: React.FC<Props> = ({ yum }) => {
   const [flip, setFlip] = useState(true);
+
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
+
+  const appearSoundSource = require("../../assets/sound/yum-card-01.mp3");
+  const appearSound = useSoundEffect(appearSoundSource, 0.3);
+  const flipSoundSource = require("../../assets/sound/swipe.mp3");
+  const flipSound = useSoundEffect(flipSoundSource, 0.5);
+
+  useEffect(() => {
+    if (soundEffectOn) {
+      appearSound.play();
+    }
+  },[]);
+
+  useEffect(() => {
+    if (soundEffectOn) {
+      flipSound.play();
+    }
+  },[flip]);
 
   return (
     <Bounce>

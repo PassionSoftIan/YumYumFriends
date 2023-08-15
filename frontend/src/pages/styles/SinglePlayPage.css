@@ -71,11 +71,13 @@
 @keyframes moveEffectBetweenImages {
   0% {
     transform: translateX(35%);
+    opacity: 1;
   }
   100% {
     transform: translateX(
       calc(100vw - 150%)
     ); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
+
   }
 }
 @keyframes moveEffectBetweenImages2 {

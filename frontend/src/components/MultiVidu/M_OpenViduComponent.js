@@ -77,9 +77,9 @@ class M_OpenViduComponent extends Component {
     }
   }
 
-  sendMessage = (msgdata, msgtype) => {
-    if (this.state.Session != null) {
-      this.state.Session.signal({
+  sendMessage = (Session, msgdata, msgtype) => {
+    if (Session != null) {
+      Session.signal({
         data: msgdata, // Any string (optional)
         to: [], // Array of Connection objects (optional. Broadcast to everyone if empty)
         type: msgtype, // The type of message (optional)
@@ -120,15 +120,13 @@ class M_OpenViduComponent extends Component {
         mySession.on("streamCreated", (event) => {
           // Subscribe to the Stream to receive it. Second parameter is undefined
           // so OpenVidu doesn't create an HTML video by its own
-          console.log("-----------------------------");
-          console.log(this.props.hostInfo);
-          console.log(this.state.myUserName);
-          console.log(subscribers);
+
           var subscriber = mySession.subscribe(event.stream, undefined);
           var subscribers = this.state.subscribers;
           subscribers.push(subscriber);
-          console.log(subscriber);
           this.handleSubVideoStream(subscriber);
+          this.sendMessage(mySession, this.props.myYum, "friendYum");
+          console.log("friendyum message send");
 
           // Update the state with the new subscribers
           this.setState({
@@ -191,6 +189,9 @@ class M_OpenViduComponent extends Component {
               // --- 6) Publish your stream ---
 
               mySession.publish(publisher);
+              this.sendMessage(mySession, this.props.myYum, "friendYum");
+              console.log(mySession);
+
               console.log(publisher);
 
               // Obtain the current video device in use

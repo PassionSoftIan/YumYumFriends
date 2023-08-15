@@ -1,7 +1,8 @@
 // MainPage.js
 import React, { useState } from "react";
 import Cloud from "../components/Animation/Cloud";
-import useConfetti from "../hooks/Animations/useConfetti";
+// import useConfetti from "../hooks/Animations/useConfetti";
+import useColorConfetti from "../hooks/Animations/useColorConfetti";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
 import Action0 from "../assets/Action/02_mandarin_acquired.gif";
@@ -15,12 +16,12 @@ import "./styles/MainPage.css";
 const MainPage: React.FC = () => {
   const [Meal, setMeal] = useState<number | null>(null);
   const navigate = useNavigate();
-  const { triggerConfetti } = useConfetti(
-    ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣"],
-    70,
-    60
-  );
-
+  const { triggerConfetti } = useColorConfetti(5, 400);
+  // const { triggerConfetti } = useConfetti(
+  //   ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣"],
+  //   70,
+  //   60
+  // );
   const handleNavigaton = (path: string) => {
     if (Meal === 0) {
       alert("오늘 밥을 다 먹었어요!");

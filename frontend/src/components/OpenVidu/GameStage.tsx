@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../Common/Button";
 import Banner from "../Common/Banner";
-import JSConfetti from "js-confetti";
+// import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
 import { setShowEffects } from "../../store/showEffectsSlice";
 import { setEating } from "../../store/eatingSlice";
@@ -83,12 +83,12 @@ const GameStage: React.FC = () => {
       if (eating === maxEating - 1) {
         setTimeout(() => {
           console.log("Session terminated with success!");
-          const jsConfetti = new JSConfetti();
-          jsConfetti.addConfetti({
-            emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
-            emojiSize: 80,
-            confettiNumber: 50,
-          });
+          // const jsConfetti = new JSConfetti();
+          // jsConfetti.addConfetti({
+          //   emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
+          //   emojiSize: 80,
+          //   confettiNumber: 50,
+          // });
           navigate("/gameclear");
         }, 4000); // 4초 뒤에 작동하도록 설정
       }
@@ -120,12 +120,12 @@ const GameStage: React.FC = () => {
     if (eating === maxEating - 1) {
       setTimeout(() => {
         console.log("Session terminated with success!");
-        const jsConfetti = new JSConfetti();
-        jsConfetti.addConfetti({
-          emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
-          emojiSize: 80,
-          confettiNumber: 50,
-        });
+        // const jsConfetti = new JSConfetti();
+        // jsConfetti.addConfetti({
+        //   emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
+        //   emojiSize: 80,
+        //   confettiNumber: 50,
+        // });
         navigate("/gameclear");
       }, 4000); // 4초 뒤에 작동하도록 설정
     }

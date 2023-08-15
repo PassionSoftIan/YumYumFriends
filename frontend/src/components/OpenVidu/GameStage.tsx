@@ -92,7 +92,7 @@ const GameStage: React.FC = () => {
           navigate("/gameclear");
         }, 4000); // 4초 뒤에 작동하도록 설정
       }
-  
+  //-------------------먹는시간설정---------------------
       dispatch(setEating(eating + 1));
       setNowEating(true);
       setShowAnimation(true);
@@ -102,9 +102,9 @@ const GameStage: React.FC = () => {
   
       setTimeout(() => {
         setIsCooldown(false); // 3초 후 차단 해제
-      }, 10000); // 10초 뒤에 차단 해제
+      }, 5000); // 10초 뒤에 차단 해제
     }
-  
+  //---------------------------------------------------
     prevDetection.current = detection;
   }, [detection]);
 

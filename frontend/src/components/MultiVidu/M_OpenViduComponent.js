@@ -191,6 +191,20 @@ class M_OpenViduComponent extends Component {
               // --- 6) Publish your stream ---
 
               mySession.publish(publisher);
+              //
+              mySession
+                .signal({
+                  data: this.props.myYum, // Any string (optional)
+                  to: [], // Array of Connection objects (optional. Broadcast to everyone if empty)
+                  type: "friendYum", // The type of message (optional)
+                })
+                .then(() => {
+                  console.log("Message successfully sent");
+                })
+                .catch((error) => {
+                  console.error(error);
+                });
+              //
               console.log(publisher);
 
               // Obtain the current video device in use

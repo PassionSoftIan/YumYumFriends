@@ -11,6 +11,7 @@ const MultiPlayPage: React.FC = () => {
   const encodedHostInfo = urlSearch.get("HostInfo");
   const hostInfo = decodeURIComponent(encodedHostInfo || "");
   const gameType = urlSearch.get("GameType");
+  const myYum = localStorage.getItem("currentYum");
 
   const commonProps = { sessionID, hostInfo, gameType };
 
@@ -29,6 +30,17 @@ const MultiPlayPage: React.FC = () => {
     obj.on("signal:detection", (event: any) => {
       if (event.from.connectionId !== obj.connection.connectionId) {
         console.log("Received detection from other:", event.data);
+        // 공격 메시지 수신 시 애니메이션 변경
+        if (event.data) {
+          // 공격 애니메이션 시작
+        } else {
+          // 공격 애니메이션 정지
+        }
+      }
+    });
+    obj.on("signal:friendYum", (event: any) => {
+      if (event.from.connectionId !== obj.connection.connectionId) {
+        console.log("FriendYum is :", event.data);
         // 공격 메시지 수신 시 애니메이션 변경
         if (event.data) {
           // 공격 애니메이션 시작
@@ -69,6 +81,7 @@ const MultiPlayPage: React.FC = () => {
       {/* 멀티모드에서 화면 보이게 */}
       <div className="My-play-page">
         <M_OpenViduComponent
+          myYum={myYum}
           onObjectCreated={handleMySession}
           {...commonProps}
         />

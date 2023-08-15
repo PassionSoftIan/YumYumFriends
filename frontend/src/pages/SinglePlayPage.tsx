@@ -244,7 +244,7 @@ const SinglePlayPage: React.FC = () => {
           <img
             src={ourImageEffect}
             alt=""
-            className={`effects-image ${showImages ? "" : "hidden"}`}
+            className={`effects-image2 ${showImages ? "" : ""}`}
           />
         )}
         {enemyEnergy > maxEnemyEnergy - 1 && (

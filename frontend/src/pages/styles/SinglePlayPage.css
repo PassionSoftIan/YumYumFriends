@@ -65,7 +65,17 @@
   left: 0;
   width: 30%;
   height: auto;
-  animation: moveEffectBetweenImages 1.5s 1; /* forwards 추가 */
+  animation: moveEffectBetweenImages 1.5s 1 forwards; /* forwards 속성 추가 */
+  animation-fill-mode: none;
+}
+.effects-image2 {
+  z-index: 99;
+  position: fixed;
+  bottom: 3%;
+  left: 0;
+  width: 30%;
+  height: auto;
+  animation: moveEffectBetweenImages3 1.5s 1 forwards;
 }
 
 @keyframes moveEffectBetweenImages {
@@ -77,7 +87,6 @@
     transform: translateX(
       calc(100vw - 150%)
     ); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
-
   }
 }
 @keyframes moveEffectBetweenImages2 {
@@ -88,8 +97,19 @@
     transform: translateX(-70vw); /* 왼쪽으로 요소 너비만큼 이동 */
   }
 }
-
-.others-Effects{
+@keyframes moveEffectBetweenImages3 {
+  0% {
+    transform: translateX(35%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(
+      calc(100vw - 150%)
+    ); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
+    opacity: 0;
+  }
+}
+.others-Effects {
   z-index: 99;
   position: fixed;
   bottom: 5%;
@@ -97,7 +117,6 @@
   width: 20%;
   height: auto;
   animation: moveEffectBetweenImages2 1.5s 1;
-
 }
 
 .small-image {

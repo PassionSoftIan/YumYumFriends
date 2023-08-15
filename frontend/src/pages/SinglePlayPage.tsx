@@ -10,6 +10,7 @@ import useImageAed from "../hooks/useImage/useImageAed";
 import useImageFail from "../hooks/useImage/useImageFail";
 import useImageShow from "../hooks/useImage/useImageShow";
 import useImageSick from "../hooks/useImage/useImageSick";
+import useImageBigEffects from "../hooks/useImage/useImageBigEffects";
 import useImageEnemyAttack from "../hooks/useImage/useImageEnemyAttack";
 import { setShowEffects, selectShowEffects } from "../store/showEffectsSlice";
 import GameStage from "../components/OpenVidu/GameStage";
@@ -44,6 +45,7 @@ const SinglePlayPage: React.FC = () => {
   const otherImageShow = useImageShow();
   const otherImageEnemyAttack = useImageEnemyAttack();
   const useImageRandom = RandomBack();
+  const otherImageBigEffects = useImageBigEffects();
 
   const enemyEnergy = useSelector(
     (state: RootState) => state.enemyEnergy.enemyEnergy
@@ -60,6 +62,8 @@ const SinglePlayPage: React.FC = () => {
   const [initialImageVisible, setInitialImageVisible] = useState(true);
   const [showFailImage, setShowFailImage] = useState(false);
 
+  // const [remainingTime, setRemainingTime] = useState(0);
+  
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
   // const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
@@ -156,11 +160,30 @@ const SinglePlayPage: React.FC = () => {
     };
   }, []);
 
-  const handlePageClick = () => {
-    setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
-    setOpenViduLoaded(true);
-  };
+  // const handlePageClick = () => {
+  //   setLoadingPageVisible(false); // 로딩 페이지를 사라지게 만들기 위한 상태 변경
+  //   setOpenViduLoaded(true);
+  // };
 
+  //---------------------타이머-------------
+  // useEffect(() => {
+  //   if (eating !== maxEating) {
+  //     // eating이 maxEating이 아닐 때만 타이머 시작
+  //     setRemainingTime(5); // 타이머 시작 시간 설정 (초 단위)
+  //     const timer = setInterval(() => {
+  //       setRemainingTime((prevTime) => prevTime - 1);
+  //     }, 1000); // 1초마다 카운트 다운
+
+  //     return () => {
+  //       clearInterval(timer); // 컴포넌트 언마운트 시 타이머 제거
+  //       setRemainingTime(0); // 타이머 종료 시 초기화
+  //     };
+  //   }
+  // }, [eating]);
+
+  //--------------------------------------------
+
+  
   useEffect(() => {
     if (eating === maxEating) {
       setShowFailImage(true);
@@ -185,6 +208,9 @@ const SinglePlayPage: React.FC = () => {
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
+      <div className="timer">
+        {/* {remainingTime > 0 && <p>남은 시간: {remainingTime}초</p>} */}
+      </div>
       <div>
         <InvitationYum />
       </div>
@@ -199,7 +225,7 @@ const SinglePlayPage: React.FC = () => {
               src={
                 showEffects
                   ? "attack-animation"
-                  : eating % 5 === 4
+                  : eating % 3 === 2
                   ? ourImageCharge
                   : enemyEnergy > maxEnemyEnergy - 1
                   ? ourImageSick
@@ -209,7 +235,6 @@ const SinglePlayPage: React.FC = () => {
               className={`ours-image ${showImages ? "" : "hidden"}`}
               id="oursImage"
             />
-
             {/* <ProgressBar className="progress-bar" completed={hitPoints} /> */}
             <img
               src={
@@ -218,10 +243,12 @@ const SinglePlayPage: React.FC = () => {
                   : showEffects
                   ? eating === maxEating
                     ? otherImageFail
+                    : eating % 3 === 0
+                    ? otherImageBigEffects // 3의 배수일 때 다른 이미지
                     : otherImageAed
                   : eating === 0 && initialImageVisible
                   ? otherImageShow
-                  : enemyEnergy === maxEnemyEnergy - 1
+                  : enemyEnergy === maxEnemyEnergy
                   ? otherImageEnemyAttack
                   : otherImageEnemy
               }
@@ -231,7 +258,7 @@ const SinglePlayPage: React.FC = () => {
             />
           </div>
         )}
-        {showEffects && eating % 5 !== 0 && (
+        {showEffects && eating % 3 !== 0 && (
           <img
             src={ourImageAttack}
             alt=""
@@ -240,11 +267,11 @@ const SinglePlayPage: React.FC = () => {
           />
         )}
 
-        {!(eating % 5) && eating !== 0 && (
+        {!(eating % 3) && eating !== 0 && (
           <img
             src={ourImageEffect}
             alt=""
-            className={`effects-image ${showImages ? "" : "hidden"}`}
+            className={`effects-image2 ${showImages ? "" : ""}`}
           />
         )}
         {enemyEnergy > maxEnemyEnergy - 1 && (

@@ -4,7 +4,7 @@ import React, { Component } from "react";
 // import "./App.css";
 import M_UserVideoComponent from "./M_UserVideoComponent";
 
-import imimg from "../../assets/othersAttack/1.gif"
+import MultiBack from "../../assets/runningBackk.jpeg";
 
 import "./OpenViduComponent.css";
 
@@ -14,14 +14,14 @@ const APPLICATION_SERVER_URL =
 class M_OpenViduComponent extends Component {
   constructor(props) {
     super(props);
-    
-    console.log('----')
-    console.log(props)
-    console.log('----')
+
+    console.log("----");
+    console.log(props);
+    console.log("----");
     const UserID = localStorage.getItem("id");
     const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
-    const SessionID = this.props.sessionID
+    const SessionID = this.props.sessionID;
 
     // These properties are in the state's component in order to re-render the HTML whenever their values change
     this.state = {
@@ -50,19 +50,19 @@ class M_OpenViduComponent extends Component {
   componentWillUnmount() {
     this.leaveSession();
     window.removeEventListener("beforeunload", this.onbeforeunload);
-    console.log('componentWillUnmount');
+    console.log("componentWillUnmount");
   }
 
   onbeforeunload(event) {
     this.leaveSession();
-    console.log('onbeforeunload');
+    console.log("onbeforeunload");
   }
 
   handleSubVideoStream(stream) {
     if (this.state.subStreamManager !== stream) {
-        this.setState({
-            subStreamManager: stream
-        });
+      this.setState({
+        subStreamManager: stream,
+      });
     }
   }
 
@@ -77,22 +77,23 @@ class M_OpenViduComponent extends Component {
     }
   }
 
-  sendMessage = (msgdata, msgtype) => {
-    if(this.state.Session != null){
-      this.state.Session.signal({
-        data: msgdata,  // Any string (optional)
-        to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
-        type: msgtype             // The type of message (optional)
-      }).then(() => {
-        console.log('Message successfully sent');
-      }).catch((error) => {
-        console.error(error);
-      });
+  sendMessage = (Session, msgdata, msgtype) => {
+    if (Session != null) {
+      Session.signal({
+        data: msgdata, // Any string (optional)
+        to: [], // Array of Connection objects (optional. Broadcast to everyone if empty)
+        type: msgtype, // The type of message (optional)
+      })
+        .then(() => {
+          console.log("Message successfully sent");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.log("No session");
     }
-    else{
-      console.log('No session');
-    }
-  }
+  };
 
   ///
 
@@ -110,8 +111,8 @@ class M_OpenViduComponent extends Component {
       () => {
         var mySession = this.state.session;
         this.props.onObjectCreated(mySession);
-        console.log('--------------체크')
-        console.log(mySession)
+        console.log("--------------체크");
+        console.log(mySession);
 
         // --- 3) Specify the actions when events take place in the session ---
 
@@ -119,15 +120,13 @@ class M_OpenViduComponent extends Component {
         mySession.on("streamCreated", (event) => {
           // Subscribe to the Stream to receive it. Second parameter is undefined
           // so OpenVidu doesn't create an HTML video by its own
-          console.log('-----------------------------')
-          console.log(this.props.hostInfo);
-          console.log(this.state.myUserName);
-          console.log(subscribers);
+
           var subscriber = mySession.subscribe(event.stream, undefined);
           var subscribers = this.state.subscribers;
           subscribers.push(subscriber);
-          console.log(subscriber);
           this.handleSubVideoStream(subscriber);
+          this.sendMessage(mySession, this.props.myYum, "friendYum");
+          console.log("friendyum message send");
 
           // Update the state with the new subscribers
           this.setState({
@@ -135,8 +134,11 @@ class M_OpenViduComponent extends Component {
           });
           // 호스트는 퇴장하지 않음
           // 게스트 측에서 인원 초과 시 자동 퇴장
-          if(subscribers.length > 1 && this.props.hostInfo !== this.state.myUserName){
-            console.log('-------------------disconnect---------------');
+          if (
+            subscribers.length > 1 &&
+            this.props.hostInfo !== this.state.myUserName
+          ) {
+            console.log("-------------------disconnect---------------");
             this.leaveSession();
             // 퇴장 처리
           }
@@ -154,7 +156,7 @@ class M_OpenViduComponent extends Component {
           console.warn(exception);
         });
 
-        mySession.on('signal:observer', (event) => {
+        mySession.on("signal:observer", (event) => {
           console.log(event.data); // Message
           // 관전자 입장 / 퇴장 메시지 수신
           // 프론트에서 수신 받은 메시지를 화면에 출력
@@ -187,6 +189,9 @@ class M_OpenViduComponent extends Component {
               // --- 6) Publish your stream ---
 
               mySession.publish(publisher);
+              this.sendMessage(mySession, this.props.myYum, "friendYum");
+              console.log(mySession);
+
               console.log(publisher);
 
               // Obtain the current video device in use
@@ -228,7 +233,7 @@ class M_OpenViduComponent extends Component {
     const UserID = localStorage.getItem("id");
     const UserName = localStorage.getItem("nickname").replace(/['"]+/g, "");
 
-    const SessionID = this.props.sessionID
+    const SessionID = this.props.sessionID;
 
     if (mySession) {
       this.leaveSessionUpdate();
@@ -248,20 +253,21 @@ class M_OpenViduComponent extends Component {
     });
   }
 
-  leaveSessionUpdate(){
+  leaveSessionUpdate() {
     const URL = "https://yumyumfriends.site";
-    axios.delete(`${URL}/api/v1/session/exit?session_id=${this.state.mySessionId}`)
+    axios
+      .delete(`${URL}/api/v1/session/exit?session_id=${this.state.mySessionId}`)
       .then((response) => {
         console.log(response);
-        console.log('퇴장 처리 완료');
+        console.log("퇴장 처리 완료");
       })
       .catch((error) => console.log(error));
   }
 
   render() {
     // M_OvVideo Publisher와 Subscriber 나눌 bit 변수 지정
-    const Pub = 0
-    const Subs = 1
+    const Pub = 0;
+    const Subs = 1;
 
     return (
       <div className="container">
@@ -281,25 +287,40 @@ class M_OpenViduComponent extends Component {
             </div>
           </div>
         ) : (
-          <div id="session" style={{ display: "flex", flexDirection: "column", height: "100vh", width: "100vw" }} >
+          <div
+            id="session"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              height: "100vh",
+              width: "100vw",
+            }}
+          >
             {/* 내 화면 */}
-            <div id="main-video" style={{ height: "40%", minHeight: "0" }}>
-              <M_UserVideoComponent streamManager={this.state.mainStreamManager} bit={ Pub } />
+            <div id="main-video" style={{ height: "30%", minHeight: "0" }}>
+              <M_UserVideoComponent
+                streamManager={this.state.mainStreamManager}
+                bit={Pub}
+              />
             </div>
 
             {/* 공백 */}
-            <div style={{ height: "20%", minHeight: "0" }}>
-              
-              <img src={imimg} alt="" className="iimm"/>
-            </div>
+            <div
+              className="MultiBack"
+              style={{ height: "40%", minHeight: "0" }}
+            ></div>
             {/* 친구 화면 */}
-            <div className="stream-container" style={{ height: "40%", minHeight: "0" }}>
+            <div
+              className="stream-container"
+              style={{ height: "30%", minHeight: "0" }}
+            >
               {this.state.subStreamManager === undefined ? (
-                <div>
-                  대기중
-                </div>
+                <div>대기중</div>
               ) : (
-                <M_UserVideoComponent streamManager={this.state.subStreamManager} bit={ Subs } />
+                <M_UserVideoComponent
+                  streamManager={this.state.subStreamManager}
+                  bit={Subs}
+                />
               )}
             </div>
           </div>

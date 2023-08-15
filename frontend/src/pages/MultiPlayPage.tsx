@@ -39,6 +39,7 @@ const MultiPlayPage: React.FC = () => {
       }
     });
     obj.on("signal:friendYum", (event: any) => {
+      console.log("test");
       if (event.from.connectionId !== obj.connection.connectionId) {
         console.log("FriendYum is :", event.data);
         // 공격 메시지 수신 시 애니메이션 변경

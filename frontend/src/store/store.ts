@@ -13,6 +13,7 @@ import eatingReducer from "./eatingSlice";
 import userReducer from "./userSlice";
 import detectionReducer from "./detectionSlice";
 import soundEffectReducer from "./soundEffectSlice";
+import friendYumReducer from "./friendYumSlice";
 // 위에 추가할 import
 import enemyEnergyReducer from "./enemyEnergySlice"; // enemyEnergyReducer의 위치와 이름을 적절하게 변경해야 할 수도 있습니다.
 
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   // 위에 추가할 부분
   enemyEnergy: enemyEnergyReducer,
   energy: energyReducer,
+  friendYum: friendYumReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -4,6 +4,7 @@ import "./styles/MultiPlayPage.css";
 // 여기부터 싱글 import
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
+import { setReduxFriendYum } from "../store/friendYumSlice";
 // 얌얌이들
 import yum1 from "../assets/RunningYums/1.gif";
 import yum2 from "../assets/RunningYums/2.gif";
@@ -34,6 +35,7 @@ const MultiPlayPage: React.FC = () => {
 
   // 여기부터 싱글 변수 및 함수
   const detection = useSelector((state: RootState) => state.detection.value);
+  const reduxFriendYum = useSelector((state: RootState) => state.friendYum);
   const dispatch = useDispatch();
   const [mySession, setMySession] = useState<any>(null);
 
@@ -56,6 +58,7 @@ const MultiPlayPage: React.FC = () => {
       if (event.from.connectionId !== obj.connection.connectionId) {
         console.log("FriendYum is :", event.data);
         setFriendYum(parseInt(event.data));
+        dispatch(setReduxFriendYum(parseInt(event.data)));
         // 공격 메시지 수신 시 애니메이션 변경
       }
     });
@@ -85,7 +88,7 @@ const MultiPlayPage: React.FC = () => {
       sendMessage(detection, "detection");
     }
   }, [detection]);
-  console.log(friendYum);
+
   return (
     <div className="Multi-play-page">
       {/* 멀티모드에서 화면 보이게 */}

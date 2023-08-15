@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "../Common/Button";
+// import Button from "../Common/Button";
 import Banner from "../Common/Banner";
 // import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
@@ -108,33 +108,33 @@ const GameStage: React.FC = () => {
     prevDetection.current = detection;
   }, [detection]);
 
-  const handleButtonClick = () => {
-    if (nowEating) {
-      setShowModal(true);
-      setTimeout(() => {
-        setShowModal(false);
-      }, 1000);
-      return;
-    }
+  // const handleButtonClick = () => {
+  //   if (nowEating) {
+  //     setShowModal(true);
+  //     setTimeout(() => {
+  //       setShowModal(false);
+  //     }, 1000);
+  //     return;
+  //   }
 
-    if (eating === maxEating - 1) {
-      setTimeout(() => {
-        console.log("Session terminated with success!");
-        // const jsConfetti = new JSConfetti();
-        // jsConfetti.addConfetti({
-        //   emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
-        //   emojiSize: 80,
-        //   confettiNumber: 50,
-        // });
-        navigate("/gameclear");
-      }, 4000); // 4초 뒤에 작동하도록 설정
-    }
+  //   if (eating === maxEating - 1) {
+  //     setTimeout(() => {
+  //       console.log("Session terminated with success!");
+  //       const jsConfetti = new JSConfetti();
+  //       jsConfetti.addConfetti({
+  //         emojis: ["🍆", "🍅", "🥕", "🥑", "🥔", "🍋"],
+  //         emojiSize: 80,
+  //         confettiNumber: 50,
+  //       });
+  //       navigate("/gameclear");
+  //     }, 4000); // 4초 뒤에 작동하도록 설정
+  //   }
 
-    dispatch(setEating(eating + 1));
-    setNowEating(true);
-    setShowAnimation(true);
-    dispatch(setShowEffects(!showEffects));
-  };
+  //   dispatch(setEating(eating + 1));
+  //   setNowEating(true);
+  //   setShowAnimation(true);
+  //   dispatch(setShowEffects(!showEffects));
+  // };
 
   return (
     <React.Fragment>

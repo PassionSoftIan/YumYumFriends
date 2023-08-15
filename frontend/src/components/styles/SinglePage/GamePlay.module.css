@@ -1,6 +1,7 @@
 .game-play {
   display: flex;
   justify-content: space-between;
+  /* align-items: center; */
   width: 90%;
   z-index: 99;
 }
@@ -39,8 +40,13 @@
   box-shadow: 0 0 30px #ffcc00;
 }
 
+.enemy-hitpoints {
+  margin-top: 50px;
+}
+
 @keyframes snake {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -49,7 +55,8 @@
 }
 
 @keyframes borderBlink {
-  0%, 100% {
+  0%,
+  100% {
     border-color: transparent;
   }
   50% {

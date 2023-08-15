@@ -12,7 +12,7 @@ const useImageFail = () => {
       let dynamicImageSrc = "";
 
       // Set image based on whether currentYumValue is odd or even
-      if (alphabetIndex % 2 === 1) {
+      if (alphabetIndex % 2 === 0) {
         dynamicImageSrc = A;
       } else {
         dynamicImageSrc = B;

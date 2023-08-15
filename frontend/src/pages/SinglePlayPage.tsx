@@ -221,7 +221,7 @@ const SinglePlayPage: React.FC = () => {
                     : otherImageAed
                   : eating === 0 && initialImageVisible
                   ? otherImageShow
-                  : enemyEnergy > maxEnemyEnergy - 1
+                  : enemyEnergy === maxEnemyEnergy - 1
                   ? otherImageEnemyAttack
                   : otherImageEnemy
               }

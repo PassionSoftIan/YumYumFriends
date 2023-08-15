@@ -12,6 +12,7 @@ import Action3 from "../assets/Attacked/31_bacteria_attacked.gif";
 import RemainMeal from "../components/RemainMeal/RemainMeal";
 import Alone from "../assets/Buttons/alone.png";
 import Together from "../assets/Buttons/together2.png";
+import Setting from "../assets/Buttons/setting.png";
 
 import "./styles/MainPage.css";
 
@@ -63,7 +64,7 @@ const MainPage: React.FC = () => {
       <div className="center">
         <div className="button-container">
           <Button
-            onClick={() => handleNavigaton("/multichoice")}
+            onClick={() => handleNavigaton("/single")}
             className="game-button"
           >
             <span
@@ -114,11 +115,25 @@ const MainPage: React.FC = () => {
               대표냠
             </Button>
             <Button
-              onClick={() => handleAction(() => navigate("/settings"))}
-              className="game-button button-second"
+            onClick={() => handleNavigaton("/settings")}
+            className="game-button"
+          >
+            <span
+              style={{
+                fontSize: "24px",
+                display: "flex",
+                alignItems: "center",
+              }}
             >
+              <img
+                src={Setting}
+                alt=""
+                className="btnIcon"
+                style={{ marginRight: "10px" }}
+              />
               설정
-            </Button>
+            </span>
+          </Button>
           </div>
         </div>
       </div>

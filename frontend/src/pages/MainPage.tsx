@@ -10,6 +10,8 @@ import Action1 from "../assets/Action/13_apple_acquired.gif";
 import Action2 from "../assets/AttackingYums/01_tofu_attack.gif";
 import Action3 from "../assets/Attacked/31_bacteria_attacked.gif";
 import RemainMeal from "../components/RemainMeal/RemainMeal";
+import Alone from "../assets/Buttons/alone.png";
+import Together from "../assets/Buttons/together2.png";
 
 import "./styles/MainPage.css";
 
@@ -61,17 +63,47 @@ const MainPage: React.FC = () => {
       <div className="center">
         <div className="button-container">
           <Button
-            onClick={() => handleNavigaton("/single")}
-            className="game-button button-second"
+            onClick={() => handleNavigaton("/multichoice")}
+            className="game-button"
           >
-            <span>밥 먹기</span>
+            <span
+              style={{
+                fontSize: "24px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={Alone}
+                alt=""
+                className="btnIcon"
+                style={{ marginRight: "10px" }}
+              />
+              밥
+              <br /> 먹기
+            </span>
           </Button>
 
           <Button
             onClick={() => handleNavigaton("/multichoice")}
-            className="game-button button-second"
+            className="game-button"
           >
-            <span>같이 먹기</span>
+            <span
+              style={{
+                fontSize: "24px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={Together}
+                alt=""
+                className="btnIcon"
+                style={{ marginRight: "10px" }}
+              />
+              같이
+              <br /> 먹기
+            </span>
           </Button>
 
           <div className="sub-buttons">

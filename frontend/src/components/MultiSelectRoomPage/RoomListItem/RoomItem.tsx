@@ -96,6 +96,7 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
         <img
           className={styles["lock-icon"]}
           src={require(`../../../assets/Common/lock.png`)}
+          alt=""
         />
       </div>
       {showModal && (

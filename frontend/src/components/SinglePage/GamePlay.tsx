@@ -7,11 +7,13 @@ import { setEnemyEnergy } from "../../store/enemyEnergySlice"; // setEnemyEnergy
 
 const GamePlay: React.FC = () => {
   const eating = useSelector((state: RootState) => state.eating.value);
+  const maxEating = useSelector((state: RootState) => state.maxEating.value);
+  const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
+
   const enemyEnergy = useSelector((state: RootState) => state.enemyEnergy.enemyEnergy); // enemyEnergy 가져오기
   const maxEnemyEnergy = useSelector((state: RootState) => state.enemyEnergy.maxEnemyEnergy); // maxEnemyEnergy 가져오기
   const [myEnergy, setMyEnergy] = useState(-1);
-  const [enemyAttack, setEnemyAttack] = useState(false);
-  const requiredEnergy = 5;
+  const requiredEnergy = 5;  //스킬 사용 시 필요한 에너지 스택
 
   const myProgress = ((myEnergy / requiredEnergy) * 100).toFixed(0);
   const enemyProgress = ((enemyEnergy / maxEnemyEnergy) * 100).toFixed(0);
@@ -30,10 +32,8 @@ const GamePlay: React.FC = () => {
       dispatch(setEnemyEnergy(enemyEnergy + 1)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 값 업데이트
       if (enemyEnergy === maxEnemyEnergy - 1) {
         console.log("병균이 냠냠 공격");
-        setEnemyAttack(true);
 
         setTimeout(() => {
-          setEnemyAttack(false);
           dispatch(setEnemyEnergy(0)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 초기화
         }, 2000);
       }
@@ -55,8 +55,7 @@ const GamePlay: React.FC = () => {
         <div className={styles["interface-container"]}>
           <div className={styles["energy-container"]}>
             <p>⚡</p>
-            {/* <p>{myEnergy}</p> */}
-            <ProgressBar completed={myProgress} fillerColor="green" />
+            <ProgressBar completed={myProgress} fillerColor="olivedrab" />
           </div>
           <button
             onClick={handleEnergyAttack}
@@ -66,15 +65,14 @@ const GamePlay: React.FC = () => {
             <img
               className={styles["skill-icon"]}
               src={require(`../../assets/Common/empowerment.png`)}
+              alt=""
             />
           </button>
         </div>
-        <div className={styles["test"]}></div>
         <div className={styles["interface-container"]}>
           <div className={styles["energy-container"]}>
             <p>⚡</p>
-            {/* <p>{enemyEnergy}</p> */}
-            <ProgressBar completed={enemyProgress} fillerColor="black" />
+            <ProgressBar completed={enemyProgress} fillerColor="indigo" />
           </div>
           <button
             onClick={() => {}}
@@ -84,16 +82,15 @@ const GamePlay: React.FC = () => {
             <img
               className={styles["skill-icon"]}
               src={require(`../../assets/Common/empowerment.png`)}
+              alt=""
             />
           </button>
+          <div className={`${styles["energy-container"]} ${styles["enemy-hitpoints"]}`}>
+            <p>❤️</p>
+            <ProgressBar completed={hitPoints} fillerColor="crimson" />
+          </div>
         </div>
       </div>
-
-      <div>
-        <p hidden={!enemyAttack}>병균이 공격 중</p>
-      </div>
-
-
     </React.Fragment>
   );
 };

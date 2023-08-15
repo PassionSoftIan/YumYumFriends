@@ -232,9 +232,6 @@ const SinglePlayPage: React.FC = () => {
               className={`others-image ${showImages ? "" : "hidden"}`}
               id="othersImage"
             />
-            이 코드에서 eating % 3 === 0 조건을 추가하여 eating 값이 3의 배수일
-            때 otherImageDifferent 이미지가 보이도록 설정할 수 있습니다.
-            조건식을 적절히 수정하여 원하는 이미지가 나오도록 조정하면 됩니다.
           </div>
         )}
         {showEffects && eating % 3 !== 0 && (

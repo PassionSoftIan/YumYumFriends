@@ -56,7 +56,7 @@ const GamePlay: React.FC = () => {
           dispatch(setEnemyEnergy(0)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 초기화
         }, 2000);
       }
-    }, 10000);
+    }, 5000);
 
     return () => {
       clearInterval(interval);

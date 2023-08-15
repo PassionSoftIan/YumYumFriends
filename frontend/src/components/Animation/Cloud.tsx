@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Animation/Cloud.css";
-import Clo from "../../assets/Common/cloud.png";
+// import Clo from "../../assets/Common/cloud.png";
 
 const Cloud: React.FC = () => {
   return (

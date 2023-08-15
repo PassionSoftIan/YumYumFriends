@@ -2,12 +2,12 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/NavBar/NavBar.css";
 import backButton from "../../assets/Buttons/Back.png";
-import useImageSrc from "../../hooks/useImage/useImageSrc";
+// import useImageSrc from "../../hooks/useImage/useImageSrc";
 
 const NavBar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const ourImageSrc = useImageSrc();
+  // const ourImageSrc = useImageSrc();
 
   const handleGoBack = () => {
     navigate(-1);

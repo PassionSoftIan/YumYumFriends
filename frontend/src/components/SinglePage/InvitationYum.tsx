@@ -65,6 +65,7 @@ const InvitationYum: React.FC = () => {
         <img
           className={styles["kakao-icon"]}
           src={require(`../../assets/Common/kakao-talk.png`)}
+          alt=""
         />
       </button>
     </div>

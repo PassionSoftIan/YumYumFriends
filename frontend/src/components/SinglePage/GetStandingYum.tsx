@@ -29,7 +29,7 @@ const GetStandingYum: React.FC<Props> = ({ yum }) => {
 
     setTimeout(() => {
       setShowButton(true);
-    }, 5000);
+    }, 3000);
   };
 
   const handleNavigate = () => {

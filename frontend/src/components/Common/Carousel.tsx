@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from '../../store/store';
 import CarouselItem from "./CarouselItem";
 import styles from "../styles/Common/Carousel.module.css";
+import useSoundEffect from "../../hooks/useSoundEffect";
 
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -38,11 +41,24 @@ const Carousel: React.FC<Props> = (props) => {
   const strengthsDivRef = useRef<HTMLDivElement>(null);
   const nameDivRef = useRef<HTMLDivElement>(null);
 
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
+  const swipeSoundSource = require("../../assets/sound/swipe.mp3");
+  const swipeSound = useSoundEffect(swipeSoundSource, 0.5);
+
+  const handleClick = () => {
+    if (soundEffectOn) {
+      swipeSound.play();
+    }
+  };
+
   const responsive = {
     0: {
       items: 3,
     },
   };
+
   const items = props.allYumList.map((item, idx) => {
     return (
       <CarouselItem
@@ -116,7 +132,7 @@ const Carousel: React.FC<Props> = (props) => {
             className={styles.prevButton}
             style={{ position: "absolute", left: 0 }}
           >
-            <Button type="dashed" shape="circle" icon={<LeftOutlined />} />
+            <Button type="dashed" shape="circle" icon={<LeftOutlined />} onClick={handleClick}/>
           </div>
         )}
         renderNextButton={() => (
@@ -124,7 +140,7 @@ const Carousel: React.FC<Props> = (props) => {
             className={styles.nextButton}
             style={{ position: "absolute", right: 0 }}
           >
-            <Button type="dashed" shape="circle" icon={<RightOutlined />} />
+            <Button type="dashed" shape="circle" icon={<RightOutlined />} onClick={handleClick}/>
           </div>
         )}
       />

@@ -1,8 +1,8 @@
-import { OpenVidu } from "openvidu-browser";
-import axios from "axios";
-import React, { Component, useState, useEffect } from "react";
-import UserVideoComponent from "./O_UserVideoComponent";
-import Button from "../Common/Button";
+import { OpenVidu } from 'openvidu-browser';
+import axios from 'axios';
+import React, { Component, useState, useEffect } from 'react';
+import O_UserVideoComponent from './O_UserVideoComponent';
+import Button from '../Common/Button'
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
@@ -11,16 +11,17 @@ class O_OpenViduComponent extends Component {
   constructor(props) {
     super(props);
 
-    // These properties are in the state's component in order to re-render the HTML whenever their values change
-    this.state = {
-      mySessionId: props.sessionID,
-      hostInfo: props.hostInfo,
-      gameType: props.gameType,
-      session: undefined,
-      mainStreamManager: undefined, // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
-      publisher: undefined,
-      subscribers: [],
-    };
+        // These properties are in the state's component in order to re-render the HTML whenever their values change
+        this.state = {
+            yumyum: props.yumyum,
+            mySessionId: props.sessionID,
+            hostInfo: props.hostInfo,
+            gameType: props.gameType,
+            session: undefined,
+            mainStreamManager: undefined,  // Main video of the page. Will be the 'publisher' or one of the 'subscribers'
+            publisher: undefined,
+            subscribers: [],
+        };
 
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
@@ -180,28 +181,29 @@ class O_OpenViduComponent extends Component {
     });
   }
 
-  render() {
-    return (
-      <div className="container">
-        {this.state.session === undefined ? (
-          <div id="join">
-            <Button onClick={this.joinSession}>
-              {this.state.hostInfo} 냠냠보기!
-            </Button>
+    render() {
+        return (
+          <div className="container">
+            {this.state.session === undefined ? (
+              <div id="join">
+                <Button  onClick={this.joinSession}>
+                        {this.state.hostInfo} 냠냠보기!
+                </Button>
+              </div>
+            ) : (
+              // 관전 모드
+              <div id="session">
+                <div id="main-video">
+                  <O_UserVideoComponent
+                    streamManager={this.state.mainStreamManager}
+                    yumyum={this.state.yumyum}
+                  />
+                </div>
+              </div>
+            )}
           </div>
-        ) : (
-          // 관전 모드
-          <div id="session">
-            <div id="main-video">
-              <UserVideoComponent
-                streamManager={this.state.mainStreamManager}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }
+        );
+      }
 
   /**
    * --------------------------------------------

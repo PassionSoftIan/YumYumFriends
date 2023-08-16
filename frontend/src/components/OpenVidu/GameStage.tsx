@@ -35,6 +35,9 @@ const GameStage: React.FC = () => {
   const hitSoundSource = require("../../assets/sound/enemy-hit-01.wav");
   const hitSound = useSoundEffect(hitSoundSource, 1);
 
+  const deadSoundSource = require("../../assets/sound/enemy-hit-03.mp3");
+  const deadSound = useSoundEffect(deadSoundSource, 1);
+
   useEffect(() => {
     return () => {
       dispatch(setEating(0));
@@ -94,6 +97,9 @@ const GameStage: React.FC = () => {
       }
 
       if (eating === maxEating - 1) {
+        setTimeout(() => {
+          deadSound.play();
+        }, 2500);
         setTimeout(() => {
           console.log("Session terminated with success!");
           // const jsConfetti = new JSConfetti();

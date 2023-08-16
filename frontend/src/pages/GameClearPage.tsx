@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import useSoundEffect from "../hooks/useSoundEffect";
-import GetYum from "../components/SinglePage/GetYum";
+import GetStandingYum from "../components/SinglePage/GetStandingYum";
+import YumCard from "../components/SinglePage/YumCard";
+import Button from "../components/Common/Button";
 import "./styles/GameClearPage.css";
 import axios from "axios";
 
@@ -15,8 +17,6 @@ interface Yum {
 }
 
 const GameClearPage: React.FC = () => {
-  // 여기서 랜덤으로 수집할 냠냠이를 정해줘야함
-  // API요청 보내서 설정하자
   const [randomYum, setrandomYum] = useState<Yum | null>(null);
   const URL = "https://yumyumfriends.site";
   const numbers = [1, 2, 7, 10, 12, 13];
@@ -25,12 +25,15 @@ const GameClearPage: React.FC = () => {
   const userID = localStorage.getItem("id");
   const MealRemain = localStorage.getItem("RemainMeal");
 
+  const [showCard, setShowCard] = useState(true);
+  const [showButton, setShowButton] = useState(false);
+
   const soundEffectOn = useSelector(
     (state: RootState) => state.soundEffect.soundEffectOn
   );
-  const endingSoundSource = require("../assets/sound/game-end.mp3");
+  const endingSoundSource = require("../assets/sound/yum-card-01.wav");
   const endingSound = useSoundEffect(endingSoundSource, 1);
-  
+
   useEffect(() => {
     if (soundEffectOn) {
       endingSound.play();
@@ -54,9 +57,11 @@ const GameClearPage: React.FC = () => {
         console.log(err);
       }
     };
-    // console.log(Number(MealRemain) - 1);
     RandomGetYum();
     localStorage.setItem("RemainMeal", `${Number(MealRemain) - 1}`);
+    setTimeout(() => {
+      setShowButton(true);
+    }, 3000);
   }, []);
 
   const targetYum = {
@@ -67,7 +72,15 @@ const GameClearPage: React.FC = () => {
 
   return (
     <div className="game-clear-page">
-      {randomYum && <GetYum yum={targetYum} />}
+      {randomYum !== null && showCard && (
+        <>
+          <YumCard yum={targetYum} />
+          {showButton && (
+            <Button onClick={() => setShowCard(false)}>좋아요!</Button>
+          )}
+        </>
+      )}
+      {!showCard && <GetStandingYum yum={targetYum} />}
     </div>
   );
 };

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
-import useColorConfetti from '../../hooks/Animations/useColorConfetti';
-import YumCard from "./YumCard";
-import Button from "../Common/Button";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import useSoundEffect from "../../hooks/useSoundEffect";
+import useColorConfetti from "../../hooks/Animations/useColorConfetti";
 
 interface Yum {
   name: string | undefined;
@@ -15,47 +16,43 @@ interface Props {
 }
 
 const GetStandingYum: React.FC<Props> = ({ yum }) => {
-  const [showCard, setShowCard] = useState(false);
-  const [showButton, setShowButton] = useState(false);
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
   const navigate = useNavigate();
   const { triggerConfetti } = useColorConfetti(5, 400);
 
+  // const endingSoundSource = require("../../assets/sound/game-end.mp3");
+  // const endingSound = useSoundEffect(endingSoundSource, 1);
+
+  const clickSoundSource = require("../../assets/sound/announcement.mp3");
+  const clickSound = useSoundEffect(clickSoundSource, 1);
+
   useEffect(() => {
+    // if (soundEffectOn) {
+    //   endingSound.play();
+    // }
+
     triggerConfetti();
   }, []);
 
-  const handleShowCard = () => {
-    setShowCard(true);
-
-    setTimeout(() => {
-      setShowButton(true);
-    }, 2000);
-  };
-
   const handleNavigate = () => {
+    if (soundEffectOn) {
+      clickSound.play();
+    }
+
     navigate("/main");
   };
 
   return (
     <React.Fragment>
-      {!showCard && (
-        <>
-          <h3>안녕!</h3>
-          <h3>반가워 친구야</h3>
-          <img
-            src={require(`../../assets/GetYums/${yum.name}_get.gif`)}
-            alt="yum"
-            onClick={handleShowCard}
-          />
-        </>
-      )}
-
-      {showCard && (
-        <>
-          <YumCard yum={yum} />
-          {showButton && <Button onClick={handleNavigate}>처음으로</Button>}
-        </>
-      )}
+      <h3>안녕!</h3>
+      <h3>반가워 친구야</h3>
+      <img
+        src={require(`../../assets/GetYums/${yum.name}_get.gif`)}
+        alt="yum"
+        onClick={handleNavigate}
+      />
     </React.Fragment>
   );
 };

@@ -5,6 +5,7 @@
   margin: 10px 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 10px;
+  padding: 10px;
 
   display: flex;
   align-items: center;
@@ -21,7 +22,8 @@
 .item-name {
   width: 55%;
   text-align: start;
-  margin: 5px;
+  /* margin: 5px; */
+  margin-left: 10%;
   font-size: larger;
   font-weight: bold;
 }
@@ -34,5 +36,5 @@
 
 .lock-icon {
   width: 30px;
-  margin: 5px 15px;
+  margin-left: 15%;
 }

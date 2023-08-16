@@ -16,10 +16,12 @@
   z-index: 100;
   overflow: hidden;
   text-align: center;
+  width: 60%;
 }
 
 .content {
   padding: 1rem;
+  white-space: pre-line;
 }
 
 .actions {

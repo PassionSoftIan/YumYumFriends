@@ -65,6 +65,7 @@ const MultiPlayPage: React.FC = () => {
   // detection 게임만들기
   const [detectionChange, setDetectionChange] = useState(false);
   const [prevDetection, setPrevDetection] = useState(false);
+  const [inTimeout, setInTimeout] = useState(false);
   const [friendChange, setFriendChange] = useState(false);
   const [totalEatCount, setTotalEatCount] = useState(0);
   const [isCountReached, setIsCountReached] = useState(false);
@@ -131,14 +132,22 @@ const MultiPlayPage: React.FC = () => {
 
   useEffect(() => {
     if (!prevDetection && detection) {
-      setDetectionChange(true);
-      sendMessage(true, "detectionChange");
+      if (!inTimeout) {
+        setDetectionChange(true);
+        sendMessage(true, "detectionChange");
 
-      // 5초 후에 다시 false로 돌아가게 합니다.
-      setTimeout(() => {
-        setDetectionChange(false);
-        sendMessage(false, "detectionChange");
-      }, 5000);
+        // inTimeout 상태를 활성화합니다.
+        setInTimeout(true);
+
+        // 5초 후에 다시 false로 돌아가게 합니다.
+        setTimeout(() => {
+          setDetectionChange(false);
+          sendMessage(false, "detectionChange");
+
+          // inTimeout 상태를 비활성화합니다.
+          setInTimeout(false);
+        }, 5000);
+      }
     }
 
     // 이전 detection 상태를 저장해 둡니다.
@@ -153,7 +162,7 @@ const MultiPlayPage: React.FC = () => {
 
   useEffect(() => {
     // totalEatCount가 20이 되면 isCountReached 상태를 true로 변경
-    if (totalEatCount >= 20) {
+    if (totalEatCount >= 6) {
       setIsCountReached(true);
       // 3초 후에 /gameclear로 이동
       const timer = setTimeout(() => {
@@ -174,7 +183,7 @@ const MultiPlayPage: React.FC = () => {
           onObjectCreated={handleMySession}
           {...commonProps}
         />
-        {mySession !== null ?
+        {mySession !== null ? (
           <div>
             <img
               className="Virus-image"
@@ -198,28 +207,34 @@ const MultiPlayPage: React.FC = () => {
               <img
                 className="friendYum-image"
                 src={
-                  friendChange ? PoweryumImages[friendYum] : yumImages[friendYum]
+                  friendChange
+                    ? PoweryumImages[friendYum]
+                    : yumImages[friendYum]
                 }
                 alt="Friend YUM"
               />
             )}
           </div>
-          : <div/> }
-        </div>
-        
+        ) : (
+          <div />
+        )}
+      </div>
+
       {/* 멀티모드 애니메이션 */}
-      
-      {mySession !== null ?
+
+      {mySession !== null ? (
         <div className="ProgressBar-image">
           <ProgressBar
-            completed={((totalEatCount / 20) * 100).toFixed(0)}
+            completed={((totalEatCount / 6) * 100).toFixed(0)}
             fillerColor={"yellow"}
           />
           <div className="foodNum">
-            <strong>횟수 : {totalEatCount}/20</strong>
+            <strong>횟수 : {totalEatCount}/6</strong>
           </div>
         </div>
-      : <div/>}
+      ) : (
+        <div />
+      )}
     </div>
   );
 };

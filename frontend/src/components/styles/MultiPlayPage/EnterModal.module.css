@@ -1,0 +1,71 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  overflow: hidden;
+  text-align: center;
+  background-color: #eef3d0;
+  border: 2px solid #d8e548;
+  border-radius: 15px;
+  width: 70%;
+  height: 40%;
+}
+
+.content {
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+.content p {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.content input {
+  height: 2rem;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  font-size: large;
+  margin: 20px auto;
+  font: inherit;
+  text-align: center;
+}
+
+.warning {
+  color: crimson;
+  font-style: italic;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translateX(-30%);
+}
+
+.actions {
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
+}
+
+.enter-button {
+  margin-top: 10%;
+  width: 50%;
+  padding: 10px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  filter: grayscale(100%);
+  margin-top: 15%;
+}

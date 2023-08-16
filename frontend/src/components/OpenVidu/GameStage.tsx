@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import Button from "../Common/Button";
 import Banner from "../Common/Banner";
-// import JSConfetti from "js-confetti";
 import { useNavigate } from "react-router-dom";
 import { setShowEffects } from "../../store/showEffectsSlice";
 import { setEating } from "../../store/eatingSlice";
 import { RootState } from "../../store/store";
 import GamePlay from "../SinglePage/GamePlay";
+import useSoundEffect from "../../hooks/useSoundEffect";
 
 const GameStage: React.FC = () => {
   const [nowEating, setNowEating] = useState(false);
@@ -27,13 +26,23 @@ const GameStage: React.FC = () => {
   );
   const dispatch = useDispatch();
 
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
+
+  const attackSoundSource = require("../../assets/sound/yum-attack-01.wav");
+  const attackSound = useSoundEffect(attackSoundSource, 1);
+  const hitSoundSource = require("../../assets/sound/enemy-hit-01.wav");
+  const hitSound = useSoundEffect(hitSoundSource, 1);
+
+  const deadSoundSource = require("../../assets/sound/enemy-hit-03.mp3");
+  const deadSound = useSoundEffect(deadSoundSource, 1);
 
   useEffect(() => {
     return () => {
       dispatch(setEating(0));
     };
   }, []);
-
 
   useEffect(() => {
     if (nowEating) {
@@ -69,9 +78,16 @@ const GameStage: React.FC = () => {
 
   useEffect(() => {
     if (detection && !prevDetection.current && !isCooldown) {
+      if (soundEffectOn) {
+        attackSound.play();
+
+        setTimeout(() => {
+          hitSound.play();
+        }, 300);
+      }
       setShowAnimation(true);
       dispatch(setShowEffects(!showEffects));
-  
+
       if (nowEating) {
         setShowModal(true);
         setTimeout(() => {
@@ -79,8 +95,11 @@ const GameStage: React.FC = () => {
         }, 5000);
         return;
       }
-  
+
       if (eating === maxEating - 1) {
+        setTimeout(() => {
+          deadSound.play();
+        }, 2500);
         setTimeout(() => {
           console.log("Session terminated with success!");
           // const jsConfetti = new JSConfetti();
@@ -92,19 +111,19 @@ const GameStage: React.FC = () => {
           navigate("/gameclear");
         }, 4000); // 4초 뒤에 작동하도록 설정
       }
-  //-------------------먹는시간설정---------------------
+      //-------------------먹는시간설정---------------------
       dispatch(setEating(eating + 1));
       setNowEating(true);
       setShowAnimation(true);
       dispatch(setShowEffects(!showEffects));
-  
+
       setIsCooldown(true); // 실행 후 차단 상태로 변경
-  
+
       setTimeout(() => {
         setIsCooldown(false); // 3초 후 차단 해제
       }, 5000); // 10초 뒤에 차단 해제
     }
-  //---------------------------------------------------
+    //---------------------------------------------------
     prevDetection.current = detection;
   }, [detection]);
 
@@ -140,13 +159,7 @@ const GameStage: React.FC = () => {
     <React.Fragment>
       <div>
         {showModal && <Banner content="천천히 꼭꼭" />}
-        {/* <Button
-          onClick={handleButtonClick}
-          className={showAnimation ? "animated-button" : ""}
-        >
-          Click to Eat {eating}/{maxEating}
-        </Button>
-        {showEffects && <div>이펙트가 보여집니다!</div>} */}
+
       </div>
       <GamePlay />
     </React.Fragment>

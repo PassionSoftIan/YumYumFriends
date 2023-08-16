@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import useSoundEffect from "../hooks/useSoundEffect";
 import GetYum from "../components/SinglePage/GetYum";
 import "./styles/GameClearPage.css";
 import axios from "axios";
@@ -22,7 +25,17 @@ const GameClearPage: React.FC = () => {
   const userID = localStorage.getItem("id");
   const MealRemain = localStorage.getItem("RemainMeal");
 
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
+  const endingSoundSource = require("../assets/sound/game-end.mp3");
+  const endingSound = useSoundEffect(endingSoundSource, 1);
+  
   useEffect(() => {
+    if (soundEffectOn) {
+      endingSound.play();
+    }
+
     const RandomGetYum = async () => {
       try {
         const response1 = await axios.get(`${URL}/api/v1/yum`, {

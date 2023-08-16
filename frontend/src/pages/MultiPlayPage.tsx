@@ -61,6 +61,7 @@ const MultiPlayPage: React.FC = () => {
   // detection 게임만들기
   const [detectionChange, setDetectionChange] = useState(false);
   const [prevDetection, setPrevDetection] = useState(false);
+  const [friendChange, setFriendChange] = useState(false);
   //
 
   const handleMySession = (obj: any) => {
@@ -70,10 +71,11 @@ const MultiPlayPage: React.FC = () => {
       if (event.from.connectionId !== obj.connection.connectionId) {
         console.log("Received detection from other:", event.data);
         // 공격 메시지 수신 시 애니메이션 변경
-        if (event.data) {
+        if (event.data == "true") {
           // 공격 애니메이션 시작
+          setFriendChange(true);
         } else {
-          // 공격 애니메이션 정지
+          setFriendChange(false);
         }
       }
     });
@@ -123,12 +125,12 @@ const MultiPlayPage: React.FC = () => {
   useEffect(() => {
     if (!prevDetection && detection) {
       setDetectionChange(true);
-      sendMessage(detectionChange, "detectionChange");
+      sendMessage(true, "detectionChange");
 
       // 5초 후에 다시 false로 돌아가게 합니다.
       setTimeout(() => {
         setDetectionChange(false);
-        sendMessage(detectionChange, "detectionChange");
+        sendMessage(false, "detectionChange");
       }, 5000);
     }
 
@@ -162,7 +164,9 @@ const MultiPlayPage: React.FC = () => {
         {friendYum !== 0 && (
           <img
             className="friendYum-image"
-            src={yumImages[friendYum]}
+            src={
+              friendChange ? PoweryumImages[friendYum] : yumImages[friendYum]
+            }
             alt="Friend YUM"
           />
         )}

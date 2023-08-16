@@ -9,8 +9,12 @@ import {
   selectShowEffects,
 } from "../../store/showEffectsSlice";
 import { setEating } from "../../store/eatingSlice";
+import useSoundEffect from "../../hooks/useSoundEffect";
 
 const GamePlay: React.FC = () => {
+  const soundEffectOn = useSelector(
+    (state: RootState) => state.soundEffect.soundEffectOn
+  );
   const showEffects = useSelector(selectShowEffects);
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
@@ -30,32 +34,46 @@ const GamePlay: React.FC = () => {
 
   const dispatch = useDispatch(); // useDispatch 훅 사용
 
+  const skillSoundSource = require("../../assets/sound/yum-attack-03.wav");
+  const skillSound = useSoundEffect(skillSoundSource, 1);
+  const chargeSoundSource = require("../../assets/sound/yum-attack-02.wav");
+  const chargeSound = useSoundEffect(chargeSoundSource, 1);
+  const hitSoundSource = require("../../assets/sound/enemy-hit-02.mp3");
+  const hitSound = useSoundEffect(hitSoundSource, 1);
+  const enemyAttackSoundSource = require("../../assets/sound/enemy-attack.wav");
+  const enemyAttackSound = useSoundEffect(enemyAttackSoundSource, 1);
+  const yumHitSoundSource = require("../../assets/sound/yum-hit.mp3");
+  const yumHitSound = useSoundEffect(yumHitSoundSource, 1);
 
   useEffect(() => {
     const delay = 500; // 원하는 딜레이 시간 (밀리초)
-    
+
     const timer = setTimeout(() => {
       console.log(eating);
+      if (eating % 3 === 2) {
+        setTimeout(() => {
+          chargeSound.play();
+        }, 1000);
+
+      }
       setMyEnergy(eating % 3);
       dispatch(setEnemyEnergy(0));
     }, delay);
-    
+
     return () => {
       clearTimeout(timer);
     };
   }, [eating, dispatch]);
-  
-  
 
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(setEnemyEnergy(enemyEnergy + 1)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 값 업데이트
       if (enemyEnergy === maxEnemyEnergy - 1) {
-        console.log("병균이 냠냠 공격");
-
+        enemyAttackSound.play();
         setTimeout(() => {
+          yumHitSound.play();
           dispatch(setEnemyEnergy(0)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 초기화
-        }, 2000);
+        }, 500);
       }
     }, 5000);
 
@@ -65,9 +83,15 @@ const GamePlay: React.FC = () => {
   }, [enemyEnergy, maxEnemyEnergy, dispatch]);
 
   const handleEnergyAttack = () => {
-    console.log("냠냠 스킬 공격");
+    if (soundEffectOn) {
+      skillSound.play();
+    
+      setTimeout(() => {
+        hitSound.play();
+      }, 800);
+    }
     setMyEnergy(myEnergy - requiredEnergy);
-    // dispatch(setShowEffects(true)); // showEffects를 true로 설정
+    dispatch(setShowEffects(true)); // showEffects를 true로 설정
     dispatch(setEating(eating + 1));
   };
 

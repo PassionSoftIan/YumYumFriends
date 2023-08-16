@@ -9,8 +9,10 @@ const LoadingPage = ({ onClick }: { onClick: () => void }) => {
     (state: RootState) => state.soundEffect.soundEffectOn
   );
 
-  const readySoundSource = require("../../assets/sound/temp.mp3");
+  const readySoundSource = require("../../assets/sound/game-ready.ogg");
   const readySound = useSoundEffect(readySoundSource, 0.3);
+  // const startSoundSource = require("../../assets/sound/game-start.ogg");
+  // const startSound = useSoundEffect(startSoundSource, 0.3);
 
   useEffect(() => {
     if (soundEffectOn) {
@@ -19,6 +21,9 @@ const LoadingPage = ({ onClick }: { onClick: () => void }) => {
   }, []);
 
   const handlePageClick = () => {
+    // if (soundEffectOn) {
+    //   startSound.play();
+    // }
     onClick(); // 클릭 이벤트를 부모 컴포넌트로 전달
   };
 

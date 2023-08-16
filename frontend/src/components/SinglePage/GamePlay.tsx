@@ -11,6 +11,8 @@ import {
 import { setEating } from "../../store/eatingSlice";
 import useSoundEffect from "../../hooks/useSoundEffect";
 
+import Timer from "../Timer/timer";
+
 const GamePlay: React.FC = () => {
   const soundEffectOn = useSelector(
     (state: RootState) => state.soundEffect.soundEffectOn
@@ -115,6 +117,9 @@ const GamePlay: React.FC = () => {
             />
           </button>
         </div>
+        <div className="timer-container">
+        <Timer initialTime={3} />
+      </div>
         <div className={styles["interface-container"]}>
           <div className={styles["energy-container"]}>
             <p>⚡</p>

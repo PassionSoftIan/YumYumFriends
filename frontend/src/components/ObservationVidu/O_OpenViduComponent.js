@@ -178,7 +178,7 @@ class O_OpenViduComponent extends Component {
             <div className="container">
                 {this.state.session === undefined ? (
                     <div id="join">
-                        <button className="btn btn-lg btn-success" onClick={this.joinSession}>접속하기</button>
+                        <button className="btn btn-lg btn-success" onClick={this.joinSession}>냠냠 보기!</button>
                     </div>
                 ) : null}
 

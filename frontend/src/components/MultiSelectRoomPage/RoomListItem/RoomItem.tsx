@@ -17,10 +17,10 @@ const RoomItem: React.FC<RoomItemProps> = (props) => {
   return (
     <div>
       <div className={styles.item} onClick={handleClick}>
-        <p className={styles["item-yum"]}>🍆</p>
+        {/* <p className={styles["item-yum"]}>🍆</p> */}
         <p className={styles["item-name"]}>
           {props.name}
-          <span>뭐 없으면 허전한가</span>
+          {/* <span>뭐 없으면 허전한가</span> */}
         </p>
         <img
           className={styles["lock-icon"]}

@@ -3,7 +3,8 @@ import Carousel from "../Common/Carousel";
 import Button from "../Common/Button";
 import axios from "axios";
 import "../styles/SelectPage/SelectYum.css";
-// import yums, { Yum } from "../../data/yums ";
+import MessageModal from "../Common/MessageModal";
+
 interface Yum {
   name: string;
   eng: string;
@@ -19,6 +20,7 @@ const SelectYum: React.FC = () => {
   const URL = "https://yumyumfriends.site";
   const userID = localStorage.getItem("id");
   const centerIndex = useRef(0);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,17 +58,23 @@ const SelectYum: React.FC = () => {
         })
         .catch((err) => console.log(err));
     } else {
-      alert("마 니가 있는 캐릭터만 써라 자물쇠안보이나");
+      setShowModal(true);
     }
   };
 
   const handleCenterIndexChange = (index: any) => {
     centerIndex.current = index;
-    // console.log(centerIndex.current);
   };
 
   return (
     <React.Fragment>
+      {showModal && (
+        <MessageModal
+          message={`아직 친구를 찾지 못했어요. \n냠냠이를 찾은 후 다시 시도해주세요.`}
+          buttonMessage="확인"
+          onConfirm={() => setShowModal(false)}
+        />
+      )}
       <div className="ment" style={{ zIndex: 99 }}>
         <h3>함께 할 친구를 골라봐</h3>
       </div>

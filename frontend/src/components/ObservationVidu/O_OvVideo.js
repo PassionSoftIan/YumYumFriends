@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 import { setDetection } from "../../store/detectionSlice";
 import axios from "axios";
 
-class OpenViduVideoComponent extends Component {
+class O_OvVideo extends Component {
   constructor(props) {
     super(props);
     this.videoRef = React.createRef();
@@ -22,6 +22,7 @@ class OpenViduVideoComponent extends Component {
     this.prevEatValue = 0;
     this.state = {
       showWarning: false,
+      yumyum: props.yumyum
     };
   }
 
@@ -75,7 +76,7 @@ class OpenViduVideoComponent extends Component {
   loadMask = async () => {
     return new Promise((resolve) => {
       const img = new Image();
-      const id = this.props.yumyum;
+      const id = this.state.yumyum;
       let maskImage;
 
       switch (id) {
@@ -245,4 +246,4 @@ const mapDispatchToProps = {
   setDetection,
 };
 
-export default connect(null, mapDispatchToProps)(OpenViduVideoComponent);
+export default connect(null, mapDispatchToProps)(O_OvVideo);

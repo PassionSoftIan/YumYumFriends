@@ -2,6 +2,7 @@ import { OpenVidu } from 'openvidu-browser';
 import axios from 'axios';
 import React, { Component, useState, useEffect } from 'react';
 import UserVideoComponent from './O_UserVideoComponent';
+import Button from '../Common/Button'
 
 const APPLICATION_SERVER_URL = process.env.NODE_ENV === 'production' ? '' : 'https://yumyumfriends.site/';
 
@@ -171,41 +172,27 @@ class O_OpenViduComponent extends Component {
     }
 
     render() {
-        const mySessionId = this.state.mySessionId;
-        const myUserName = this.state.myUserName;
-
         return (
-            <div className="container">
-                {this.state.session === undefined ? (
-                    <div id="join">
-                        <button className="btn btn-lg btn-success" onClick={this.joinSession}>냠냠 보기!</button>
-                    </div>
-                ) : null}
-
-                {this.state.session !== undefined ? (
-                    <div id="session">
-                        <div id="session-header">
-                            <h1 id="session-title">{mySessionId}</h1>
-                            <input
-                                className="btn btn-large btn-danger"
-                                type="button"
-                                id="buttonLeaveSession"
-                                onClick={this.leaveSession}
-                                value="Leave session"
-                            />
-                        </div>
-
-                        {this.state.mainStreamManager !== undefined ? (
-                            <div id="main-video" className="col-md-6">
-                                <UserVideoComponent streamManager={this.state.mainStreamManager} />
-
-                            </div>
-                        ) : null}
-                    </div>
-                ) : null}
-            </div>
+          <div className="container">
+            {this.state.session === undefined ? (
+              <div id="join">
+                <Button  onClick={this.joinSession}>
+                        {this.state.hostInfo} 냠냠보기!
+                </Button>
+              </div>
+            ) : (
+              // 관전 모드
+              <div id="session">
+                <div id="main-video">
+                  <UserVideoComponent
+                    streamManager={this.state.mainStreamManager}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
         );
-    }
+      }
 
 
     /**

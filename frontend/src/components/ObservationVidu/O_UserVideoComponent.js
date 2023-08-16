@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import O_OvVideo from './O_OvVideo';
 import './UserVideo.css';
 
-export default class UserVideoComponent extends Component {
+export default class O_UserVideoComponent extends Component {
 
     getNicknameTag() {
         // Gets the nickName of the user

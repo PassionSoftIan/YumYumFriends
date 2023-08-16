@@ -1,0 +1,31 @@
+/* timer.css */
+.timer {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #FF6B6B; /* 밝은 빨간색 톤 */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: bounce 1s ease-in-out infinite;
+}
+
+
+
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.5);
+    }
+    50% {
+      transform: scale(0.55);
+    }
+    100% {
+      transform: scale(0.5);
+    }
+  }
+  

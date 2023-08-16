@@ -10,6 +10,8 @@ import {
 } from "../../store/showEffectsSlice";
 import { setEating } from "../../store/eatingSlice";
 
+import Timer from "../Timer/timer";
+
 const GamePlay: React.FC = () => {
   const showEffects = useSelector(selectShowEffects);
   const eating = useSelector((state: RootState) => state.eating.value);
@@ -66,7 +68,7 @@ const GamePlay: React.FC = () => {
   const handleEnergyAttack = () => {
     console.log("냠냠 스킬 공격");
     setMyEnergy(myEnergy - requiredEnergy);
-    // dispatch(setShowEffects(true)); // showEffects를 true로 설정
+    dispatch(setShowEffects(true)); // showEffects를 true로 설정
     dispatch(setEating(eating + 1));
   };
 
@@ -90,6 +92,9 @@ const GamePlay: React.FC = () => {
             />
           </button>
         </div>
+        <div className="timer-container">
+        <Timer initialTime={3} />
+      </div>
         <div className={styles["interface-container"]}>
           <div className={styles["energy-container"]}>
             <p>⚡</p>

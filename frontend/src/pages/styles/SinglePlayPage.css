@@ -163,3 +163,10 @@
   left: 5%;
   width: 100%;
 }
+.timer{
+  z-index: 99;
+  font-size: 30px;
+}
+.timer-container{
+  z-index: 999;
+}

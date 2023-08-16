@@ -1,10 +1,10 @@
 // MainPage.js
 import React, { useState } from "react";
 import Cloud from "../components/Animation/Cloud";
-// import useConfetti from "../hooks/Animations/useConfetti";
 import useColorConfetti from "../hooks/Animations/useColorConfetti";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
+import MessageModal from "../components/Common/MessageModal";
 import Action0 from "../assets/Action/02_mandarin_acquired.gif";
 import Action1 from "../assets/Action/13_apple_acquired.gif";
 import Action2 from "../assets/AttackingYums/01_tofu_attack.gif";
@@ -20,14 +20,12 @@ const MainPage: React.FC = () => {
   const [Meal, setMeal] = useState<number | null>(null);
   const navigate = useNavigate();
   const { triggerConfetti } = useColorConfetti(5, 400);
-  // const { triggerConfetti } = useConfetti(
-  //   ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣"],
-  //   70,
-  //   60
-  // );
+  const [showModal, setShowModal] = useState(false);
+
   const handleNavigaton = (path: string) => {
     if (Meal === 0) {
-      alert("오늘 밥을 다 먹었어요!");
+      // alert("오늘 밥을 다 먹었어요!");
+      setShowModal(true);
     } else {
       handleAction(() => navigate(path));
     }
@@ -56,6 +54,13 @@ const MainPage: React.FC = () => {
       className="main-container"
       style={{ backgroundImage: "url('your-background-image.jpg')" }}
     >
+      {showModal && (
+        <MessageModal
+          message={`오늘 밥을 다 먹었어요. 내일 또 만나요!`}
+          buttonMessage="확인"
+          onConfirm={() => setShowModal(false)}
+        />
+      )}
       <Cloud />
       <div className="RemainMeal">
         <RemainMeal Meal={Meal} setMeal={setMeal} />
@@ -115,25 +120,25 @@ const MainPage: React.FC = () => {
               대표냠
             </Button>
             <Button
-            onClick={() => handleNavigaton("/settings")}
-            className="game-button"
-          >
-            <span
-              style={{
-                fontSize: "24px",
-                display: "flex",
-                alignItems: "center",
-              }}
+              onClick={() => handleNavigaton("/settings")}
+              className="game-button"
             >
-              <img
-                src={Setting}
-                alt=""
-                className="btnIcon"
-                style={{ marginRight: "10px" }}
-              />
-              설정
-            </span>
-          </Button>
+              <span
+                style={{
+                  fontSize: "24px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  src={Setting}
+                  alt=""
+                  className="btnIcon"
+                  style={{ marginRight: "10px" }}
+                />
+                설정
+              </span>
+            </Button>
           </div>
         </div>
       </div>

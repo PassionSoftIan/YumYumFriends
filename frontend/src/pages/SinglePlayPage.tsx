@@ -22,7 +22,7 @@ import { setEnemyEnergy, setMaxEnemyEnergy } from "../store/enemyEnergySlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
-
+import Timer from "../components/Timer/timer";
 import ProgressBar from "../components/Common/ProgressBar";
 
 import InvitationYum from "../components/SinglePage/InvitationYum";
@@ -184,12 +184,19 @@ const SinglePlayPage: React.FC = () => {
     return () => clearTimeout(initialImageTimeout);
   }, []);
 
+  const handleTimerEnd = () => {
+    // 타이머가 0초에 도달했을 때 실행되는 로직을 여기에 작성
+    console.log("타이머가 0초에 도달했습니다. Eat을 띄워주세요.");
+  };
+
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
       <div>
         <InvitationYum />
       </div>
+
+
       <div className="gamestage-container">
         <GameStage />
       </div>

@@ -208,7 +208,7 @@ class OpenViduVideoComponent extends Component {
         this.mask,
         offsetX - maskWidth / 2 - 20,
         // offsetY - maskHeight * 0.8 - 40,
-        offsetY - maskHeight * 1.4 - 40,
+        offsetY - maskHeight * 0.8 - 120,
         maskWidth,
         maskHeight
       );

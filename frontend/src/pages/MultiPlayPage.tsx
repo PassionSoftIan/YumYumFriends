@@ -12,6 +12,9 @@ import yum7 from "../assets/RunningYums/7.gif";
 import yum10 from "../assets/RunningYums/10.gif";
 import yum12 from "../assets/RunningYums/12.gif";
 import yum13 from "../assets/RunningYums/13.gif";
+// 악당
+import Virus from "../assets/RunningYums/virus.gif";
+import Virus2 from "../assets/RunningYums/virus2.gif";
 
 const MultiPlayPage: React.FC = () => {
   const urlSearch = new URLSearchParams(window.location.search);
@@ -20,6 +23,7 @@ const MultiPlayPage: React.FC = () => {
   const hostInfo = decodeURIComponent(encodedHostInfo || "");
   const gameType = urlSearch.get("GameType");
   const myYum = localStorage.getItem("currentYum");
+  const [virusImage, setVirusImage] = useState(Virus);
   const yumImages: { [key: number]: string } = {
     1: yum1,
     2: yum2,
@@ -89,6 +93,13 @@ const MultiPlayPage: React.FC = () => {
     }
   }, [detection]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVirusImage((prevImage) => (prevImage === Virus ? Virus2 : Virus));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="Multi-play-page">
       {/* 멀티모드에서 화면 보이게 */}
@@ -98,6 +109,7 @@ const MultiPlayPage: React.FC = () => {
           onObjectCreated={handleMySession}
           {...commonProps}
         />
+        <img className="Virus-image" src={virusImage} alt="VirusMan" />
         <img
           className="myYum-image"
           src={myYum ? yumImages[parseInt(myYum)] : yum1}

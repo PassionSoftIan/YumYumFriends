@@ -91,9 +91,9 @@ export const FadeInOut: React.FC<TransitionProps> = (props) => {
 export const Bounce: React.FC<TransitionProps> = (props) => {
   return (
     <motion.div
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, bounce: 0.3 }}
+      initial={{ scale: 0.05, opacity: 0, y: "-50%" }}
+      animate={{ scale: 1, opacity: 1, y: 0 }}
+      transition={{ duration: 1, bounce: 1 }}
     >
       {props.children}
     </motion.div>

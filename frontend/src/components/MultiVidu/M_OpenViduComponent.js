@@ -4,8 +4,6 @@ import React, { Component } from "react";
 // import "./App.css";
 import M_UserVideoComponent from "./M_UserVideoComponent";
 
-import MultiBack from "../../assets/runningBackk.jpeg";
-
 import "./OpenViduComponent.css";
 
 const APPLICATION_SERVER_URL =

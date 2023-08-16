@@ -71,6 +71,7 @@ const MultiPlayPage: React.FC = () => {
   //
 
   const handleMySession = (obj: any) => {
+    console.log(mySession);
     console.log("Received eatValue:", obj.eatValue);
     setMySession(obj);
     obj.on("signal:detectionChange", (event: any) => {
@@ -173,45 +174,52 @@ const MultiPlayPage: React.FC = () => {
           onObjectCreated={handleMySession}
           {...commonProps}
         />
-        <img
-          className="Virus-image"
-          src={isCountReached ? Virus3 : virusImage}
-          alt="VirusMan"
-        />
-        <img
-          className="myYum-image"
-          src={
-            detectionChange
-              ? myYum
-                ? PoweryumImages[parseInt(myYum)]
-                : powerYum1
-              : myYum
-              ? yumImages[parseInt(myYum)]
-              : yum1
-          }
-          alt="My YUM"
-        />
-        {friendYum !== 0 && (
-          <img
-            className="friendYum-image"
-            src={
-              friendChange ? PoweryumImages[friendYum] : yumImages[friendYum]
-            }
-            alt="Friend YUM"
-          />
-        )}
-      </div>
-      {/* 멀티모드 애니메이션 */}
-
-      <div className="ProgressBar-image">
-        <ProgressBar
-          completed={((totalEatCount / 20) * 100).toFixed(0)}
-          fillerColor={"yellow"}
-        />
-        <div className="foodNum">
-          <strong>횟수 : {totalEatCount}/20</strong>
+        {mySession !== null ?
+          <div>
+            <img
+              className="Virus-image"
+              src={isCountReached ? Virus3 : virusImage}
+              alt="VirusMan"
+            />
+            <img
+              className="myYum-image"
+              src={
+                detectionChange
+                  ? myYum
+                    ? PoweryumImages[parseInt(myYum)]
+                    : powerYum1
+                  : myYum
+                  ? yumImages[parseInt(myYum)]
+                  : yum1
+              }
+              alt="My YUM"
+            />
+            {friendYum !== 0 && (
+              <img
+                className="friendYum-image"
+                src={
+                  friendChange ? PoweryumImages[friendYum] : yumImages[friendYum]
+                }
+                alt="Friend YUM"
+              />
+            )}
+          </div>
+          : <div/> }
         </div>
-      </div>
+        
+      {/* 멀티모드 애니메이션 */}
+      
+      {mySession !== null ?
+        <div className="ProgressBar-image">
+          <ProgressBar
+            completed={((totalEatCount / 20) * 100).toFixed(0)}
+            fillerColor={"yellow"}
+          />
+          <div className="foodNum">
+            <strong>횟수 : {totalEatCount}/20</strong>
+          </div>
+        </div>
+      : <div/>}
     </div>
   );
 };

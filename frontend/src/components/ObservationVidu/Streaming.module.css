@@ -1,0 +1,20 @@
+.streaming-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid green;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid red;
+}
+
+.footer {
+  /* background-image: ; */
+  bottom: 0;
+  border: 2px solid purple;
+}

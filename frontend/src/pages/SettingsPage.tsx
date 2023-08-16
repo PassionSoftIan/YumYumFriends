@@ -9,6 +9,8 @@ import Toggle from "../components/Common/Toggle";
 import Stepper from "../components/Common/Stepper";
 import styles from "./styles/SettingsPage.module.css";
 
+// import Streaming from "../components/ObservationVidu/Streaming";
+
 const SettingsPage: React.FC = () => {
   const dispatch = useDispatch();
   const bgmOn = useSelector((state: RootState) => state.bgm.bgmOn);
@@ -49,6 +51,7 @@ const SettingsPage: React.FC = () => {
         </div>
       </div>
     </div>
+    // <Streaming />
   );
 };
 

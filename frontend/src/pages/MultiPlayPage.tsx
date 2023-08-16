@@ -152,7 +152,7 @@ const MultiPlayPage: React.FC = () => {
 
   useEffect(() => {
     // totalEatCount가 20이 되면 isCountReached 상태를 true로 변경
-    if (totalEatCount === 20) {
+    if (totalEatCount >= 20) {
       setIsCountReached(true);
       // 3초 후에 /gameclear로 이동
       const timer = setTimeout(() => {

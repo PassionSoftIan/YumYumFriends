@@ -12,6 +12,13 @@ import yum7 from "../assets/RunningYums/7.gif";
 import yum10 from "../assets/RunningYums/10.gif";
 import yum12 from "../assets/RunningYums/12.gif";
 import yum13 from "../assets/RunningYums/13.gif";
+//얌얌 파워 달리기
+import powerYum1 from "../assets/RunningYumsPower/1.gif";
+import powerYum2 from "../assets/RunningYumsPower/2.gif";
+import powerYum7 from "../assets/RunningYumsPower/7.gif";
+import powerYum10 from "../assets/RunningYumsPower/10.gif";
+import powerYum12 from "../assets/RunningYumsPower/12.gif";
+import powerYum13 from "../assets/RunningYumsPower/13.gif";
 // 악당
 import Virus from "../assets/RunningYums/virus.gif";
 import Virus2 from "../assets/RunningYums/virus2.gif";
@@ -32,6 +39,14 @@ const MultiPlayPage: React.FC = () => {
     12: yum12,
     13: yum13,
   };
+  const PoweryumImages: { [key: number]: string } = {
+    1: powerYum1,
+    2: powerYum2,
+    7: powerYum7,
+    10: powerYum10,
+    12: powerYum12,
+    13: powerYum13,
+  };
 
   const [friendYum, setFriendYum] = useState(0);
 
@@ -43,10 +58,15 @@ const MultiPlayPage: React.FC = () => {
   const dispatch = useDispatch();
   const [mySession, setMySession] = useState<any>(null);
 
+  // detection 게임만들기
+  const [detectionChange, setDetectionChange] = useState(false);
+  const [prevDetection, setPrevDetection] = useState(false);
+  //
+
   const handleMySession = (obj: any) => {
     console.log("Received eatValue:", obj.eatValue);
     setMySession(obj);
-    obj.on("signal:detection", (event: any) => {
+    obj.on("signal:detectionChange", (event: any) => {
       if (event.from.connectionId !== obj.connection.connectionId) {
         console.log("Received detection from other:", event.data);
         // 공격 메시지 수신 시 애니메이션 변경
@@ -87,11 +107,11 @@ const MultiPlayPage: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    if (mySession) {
-      sendMessage(detection, "detection");
-    }
-  }, [detection]);
+  // useEffect(() => {
+  //   if (mySession) {
+  //     sendMessage(detection, "detection");
+  //   }
+  // }, [detection]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -99,6 +119,22 @@ const MultiPlayPage: React.FC = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (!prevDetection && detection) {
+      setDetectionChange(true);
+      sendMessage(detectionChange, "detectionChange");
+
+      // 5초 후에 다시 false로 돌아가게 합니다.
+      setTimeout(() => {
+        setDetectionChange(false);
+        sendMessage(detectionChange, "detectionChange");
+      }, 5000);
+    }
+
+    // 이전 detection 상태를 저장해 둡니다.
+    setPrevDetection(detection);
+  }, [detection]);
 
   return (
     <div className="Multi-play-page">
@@ -112,7 +148,15 @@ const MultiPlayPage: React.FC = () => {
         <img className="Virus-image" src={virusImage} alt="VirusMan" />
         <img
           className="myYum-image"
-          src={myYum ? yumImages[parseInt(myYum)] : yum1}
+          src={
+            detectionChange
+              ? myYum
+                ? PoweryumImages[parseInt(myYum)]
+                : powerYum1
+              : myYum
+              ? yumImages[parseInt(myYum)]
+              : yum1
+          }
           alt="My YUM"
         />
         {friendYum !== 0 && (

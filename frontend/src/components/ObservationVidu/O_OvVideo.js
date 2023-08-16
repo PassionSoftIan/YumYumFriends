@@ -55,51 +55,6 @@ class OpenViduVideoComponent extends Component {
     });
   }
 
-  postCameraScreen = async () => {
-    // 이미지 크기 조절해서 경량화 가능
-    if (!this.imageRef.current) {
-      return false;
-    }
-    const image = this.imageRef.current;
-    image.width = this.videoRef.current.videoWidth;
-    image.height = this.videoRef.current.videoHeight;
-    const context = image.getContext("2d");
-
-    context.drawImage(this.videoRef.current, 0, 0, image.width, image.height);
-
-    const dataUrl = image.toDataURL("image/jpeg");
-    const apiUrl =
-      "https://yumyumfriends.site/img/v1/object-detection/yolov5s";
-
-    try {
-      const formData = new FormData();
-      const blob = await fetch(dataUrl).then((res) => res.blob());
-      formData.append("image", blob, "capture.jpg");
-
-      const response = await axios.post(apiUrl, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log("eat:", response.data.eat);
-      if (this.props.onObjectCreated) {
-        this.props.onObjectCreated({ eatValue: response.data.eat });
-      }
-
-      if (response.data.eat !== this.prevEatValue) {
-        this.prevEatValue = response.data.eat;
-
-        if (response.data.eat === 1) {
-          this.props.setDetection(true);
-        } else {
-          this.props.setDetection(false);
-        }
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
-
   async componentDidMount() {
     if (this.props && !!this.videoRef) {
       this.props.streamManager.addVideoElement(this.videoRef.current);
@@ -120,7 +75,7 @@ class OpenViduVideoComponent extends Component {
   loadMask = async () => {
     return new Promise((resolve) => {
       const img = new Image();
-      const id = localStorage.getItem("currentYum");
+      const id = this.props.yumyum;
       let maskImage;
 
       switch (id) {
@@ -270,20 +225,6 @@ class OpenViduVideoComponent extends Component {
             left: 0,
             bottom: 0,
             right: 0,
-          }}
-        />
-        <canvas
-          ref={this.imageRef}
-          style={{
-            width: "inherit",
-            height: "inherit",
-            position: "absolute",
-            objectFit: "cover",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            display: "none",
           }}
         />
         <div

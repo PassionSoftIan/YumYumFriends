@@ -5,6 +5,7 @@ import "./styles/MultiPlayPage.css";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import { setReduxFriendYum } from "../store/friendYumSlice";
+import { useNavigate } from "react-router-dom";
 // 얌얌이들
 import yum1 from "../assets/RunningYums/1.gif";
 import yum2 from "../assets/RunningYums/2.gif";
@@ -22,7 +23,9 @@ import powerYum13 from "../assets/RunningYumsPower/13.gif";
 // 악당
 import Virus from "../assets/RunningYums/virus.gif";
 import Virus2 from "../assets/RunningYums/virus2.gif";
+import Virus3 from "../assets/RunningYums/virus3.gif";
 
+import ProgressBar from "../components/Common/ProgressBar";
 const MultiPlayPage: React.FC = () => {
   const urlSearch = new URLSearchParams(window.location.search);
   const sessionID = urlSearch.get("SessionID");
@@ -31,6 +34,7 @@ const MultiPlayPage: React.FC = () => {
   const gameType = urlSearch.get("GameType");
   const myYum = localStorage.getItem("currentYum");
   const [virusImage, setVirusImage] = useState(Virus);
+  const navigate = useNavigate();
   const yumImages: { [key: number]: string } = {
     1: yum1,
     2: yum2,
@@ -62,6 +66,8 @@ const MultiPlayPage: React.FC = () => {
   const [detectionChange, setDetectionChange] = useState(false);
   const [prevDetection, setPrevDetection] = useState(false);
   const [friendChange, setFriendChange] = useState(false);
+  const [totalEatCount, setTotalEatCount] = useState(0);
+  const [isCountReached, setIsCountReached] = useState(false);
   //
 
   const handleMySession = (obj: any) => {
@@ -138,6 +144,26 @@ const MultiPlayPage: React.FC = () => {
     setPrevDetection(detection);
   }, [detection]);
 
+  useEffect(() => {
+    if (detectionChange || friendChange) {
+      setTotalEatCount((prevCount) => prevCount + 1);
+    }
+  }, [detectionChange, friendChange]);
+
+  useEffect(() => {
+    // totalEatCount가 20이 되면 isCountReached 상태를 true로 변경
+    if (totalEatCount === 20) {
+      setIsCountReached(true);
+      // 3초 후에 /gameclear로 이동
+      const timer = setTimeout(() => {
+        navigate("/gameclear");
+      }, 3000);
+
+      // 컴포넌트가 언마운트될 때 타이머 제거
+      return () => clearTimeout(timer);
+    }
+  }, [totalEatCount, navigate]);
+
   return (
     <div className="Multi-play-page">
       {/* 멀티모드에서 화면 보이게 */}
@@ -147,7 +173,11 @@ const MultiPlayPage: React.FC = () => {
           onObjectCreated={handleMySession}
           {...commonProps}
         />
-        <img className="Virus-image" src={virusImage} alt="VirusMan" />
+        <img
+          className="Virus-image"
+          src={isCountReached ? Virus3 : virusImage}
+          alt="VirusMan"
+        />
         <img
           className="myYum-image"
           src={
@@ -172,6 +202,16 @@ const MultiPlayPage: React.FC = () => {
         )}
       </div>
       {/* 멀티모드 애니메이션 */}
+
+      <div className="ProgressBar-image">
+        <ProgressBar
+          completed={((totalEatCount / 20) * 100).toFixed(0)}
+          fillerColor={"yellow"}
+        />
+        <div className="foodNum">
+          <strong>횟수 : {totalEatCount}/20</strong>
+        </div>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { toggleBgm } from "../store/bgmSlice";
 import { toggleSoundEffect } from "../store/soundEffectSlice";
+import useSoundEffect from "../hooks/useSoundEffect";
 
 import Toggle from "../components/Common/Toggle";
 import Stepper from "../components/Common/Stepper";
@@ -15,11 +16,17 @@ const SettingsPage: React.FC = () => {
     (state: RootState) => state.soundEffect.soundEffectOn
   );
 
+  const clickSoundSource = require("../assets/sound/stepper.ogg");
+  const clickSound = useSoundEffect(clickSoundSource, 0.5);
+
   const handleBgm = () => {
     dispatch(toggleBgm());
   };
 
   const handleSoundEffect = () => {
+    if (!soundEffectOn) {
+      clickSound.play();
+    }
     dispatch(toggleSoundEffect());
   };
 

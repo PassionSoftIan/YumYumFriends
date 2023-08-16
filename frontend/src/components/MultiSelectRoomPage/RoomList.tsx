@@ -15,10 +15,8 @@ const RoomList: React.FC = () => {
   const URL = "https://yumyumfriends.site";
   
   useEffect(() => {
-    console.log("test text")
     axios.get(`${URL}/api/v1/session`)
       .then((response) => {
-        console.log(response);
         setSessionList(response.data);
       })
       .catch((error) => console.log(error));

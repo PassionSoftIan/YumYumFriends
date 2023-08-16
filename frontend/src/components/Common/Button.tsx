@@ -20,8 +20,8 @@ const Button: React.FC<ButtonProps> = (props) => {
   );
   const hoverSoundSource = require("../../assets/sound/interface.mp3");
   const clickSoundSource = require("../../assets/sound/announcement.mp3");
-  const hoverSound = useSoundEffect(hoverSoundSource, 0.3);
-  const clickSound = useSoundEffect(clickSoundSource, 0.5);
+  const hoverSound = useSoundEffect(hoverSoundSource, 0.1);
+  const clickSound = useSoundEffect(clickSoundSource, 0.3);
 
   const handleHover = () => {
     if (soundEffectOn) {

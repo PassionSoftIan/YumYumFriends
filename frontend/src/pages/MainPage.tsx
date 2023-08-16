@@ -5,14 +5,20 @@ import Cloud from "../components/Animation/Cloud";
 import useColorConfetti from "../hooks/Animations/useColorConfetti";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
-import Action0 from "../assets/Action/02_mandarin_acquired.gif";
-import Action1 from "../assets/Action/13_apple_acquired.gif";
-import Action2 from "../assets/AttackingYums/01_tofu_attack.gif";
-import Action3 from "../assets/Attacked/31_bacteria_attacked.gif";
 import RemainMeal from "../components/RemainMeal/RemainMeal";
 import Alone from "../assets/Buttons/alone.png";
 import Together from "../assets/Buttons/together2.png";
 import Setting from "../assets/Buttons/setting.png";
+import asd from "../assets/RunningYums/1.gif";
+import a from "../assets/RunningYums/2.gif";
+import b from "../assets/myCharAttack/1.gif";
+import c from "../assets/myCharAttack/2.gif";
+import d from "../assets/myCharAttack/7.gif";
+import e from "../assets/10.gif";
+import f from "../assets/12.gif";
+import g from "../assets/myCharEnemy/1.gif";
+import h from "../assets/othersAttack/2.gif";
+import i from "../assets/Action/13_apple_acquired.gif";
 
 import "./styles/MainPage.css";
 
@@ -52,95 +58,57 @@ const MainPage: React.FC = () => {
   };
 
   return (
-    <div
-      className="main-container"
-      style={{ backgroundImage: "url('your-background-image.jpg')" }}
-    >
-      <Cloud />
+    <div className="main-container">
       <div className="RemainMeal">
         <RemainMeal Meal={Meal} setMeal={setMeal} />
       </div>
 
-      <div className="center">
+      <div>
         <div className="button-container">
-          <Button
-            onClick={() => handleNavigaton("/single")}
-            className="game-button"
-          >
-            <span
-              style={{
-                fontSize: "24px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <img
-                src={Alone}
-                alt=""
-                className="btnIcon"
-                style={{ marginRight: "10px" }}
-              />
-              밥
-              <br /> 먹기
-            </span>
-          </Button>
-
-          <Button
-            onClick={() => handleNavigaton("/multichoice")}
-            className="game-button"
-          >
-            <span
-              style={{
-                fontSize: "24px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <img
-                src={Together}
-                alt=""
-                className="btnIcon"
-                style={{ marginRight: "10px" }}
-              />
-              같이
-              <br /> 먹기
-            </span>
-          </Button>
-
-          <div className="sub-buttons">
+          <span className="button-wrapper">
             <Button
-              onClick={() => handleAction(() => navigate("/select"))}
-              className="game-button button-second"
+              onClick={() => handleNavigaton("/single")}
+              className="game-button"
             >
-              대표냠
+              <img src={asd} alt="" className="btnicon" />밥 먹자
             </Button>
+          </span>
+          <span className="button-wrapper">
             <Button
-            onClick={() => handleNavigaton("/settings")}
-            className="game-button"
-          >
-            <span
-              style={{
-                fontSize: "24px",
-                display: "flex",
-                alignItems: "center",
-              }}
+              onClick={() => handleNavigaton("/multichoice")}
+              className="game-button"
             >
+              <img src={asd} alt="" className="btnicon" />
+              같이 먹자
+            </Button>
+            <div className="settings-container">
               <img
                 src={Setting}
                 alt=""
-                className="btnIcon"
-                style={{ marginRight: "10px" }}
+                className="game-button btnIcon"
+                onClick={() => handleNavigaton("/settings")}
               />
-              설정
-            </span>
-          </Button>
-          </div>
+            </div>
+          </span>
+          <span className="button-wrapper">
+            <Button
+              onClick={() => handleAction(() => navigate("/select"))}
+              className="game-button"
+            >
+              <img src={asd} alt="" className="btnicon" />
+              냠냠이들
+            </Button>
+          </span>
         </div>
       </div>
-      <img src={Action0} alt="" className="action-image action-image-game" />
-      <img src={Action1} alt="" className="action-image1 action-image-game" />
-      <img src={Action2} alt="" className="action-image2" />
-      <img src={Action3} alt="" className="action-image3" />
+      <img src={b} alt="" className="btnIcon ani1" />
+      <img src={c} alt="" className="btnIcon ani2" />
+      <img src={d} alt="" className="btnIcon ani3" />
+      <img src={e} alt="" className="btnIcon ani4" />
+      <img src={f} alt="" className="btnIcon ani5" />
+      <img src={g} alt="" className="btnIcon ani6" />
+      <img src={h} alt="" className="btnIcon ani7" />
+      <img src={i} alt="" className="btnIcon ani8" />
     </div>
   );
 };

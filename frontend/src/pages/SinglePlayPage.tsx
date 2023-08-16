@@ -22,7 +22,7 @@ import { setEnemyEnergy, setMaxEnemyEnergy } from "../store/enemyEnergySlice";
 import "./styles/SinglePlayPage.css";
 import OpenViduComponent from "../components/OpenVidu/OpenViduComponent";
 import RandomBack from "../hooks/useImage/useImageRandom";
-
+import Timer from "../components/Timer/timer";
 import ProgressBar from "../components/Common/ProgressBar";
 
 import InvitationYum from "../components/SinglePage/InvitationYum";
@@ -62,8 +62,6 @@ const SinglePlayPage: React.FC = () => {
   const [initialImageVisible, setInitialImageVisible] = useState(true);
   const [showFailImage, setShowFailImage] = useState(false);
 
-  // const [remainingTime, setRemainingTime] = useState(0);
-  
   const eating = useSelector((state: RootState) => state.eating.value);
   const maxEating = useSelector((state: RootState) => state.maxEating.value);
   // const hitPoints = ((1 - eating / maxEating) * 100).toFixed(0);
@@ -165,25 +163,6 @@ const SinglePlayPage: React.FC = () => {
   //   setOpenViduLoaded(true);
   // };
 
-  //---------------------타이머-------------
-  // useEffect(() => {
-  //   if (eating !== maxEating) {
-  //     // eating이 maxEating이 아닐 때만 타이머 시작
-  //     setRemainingTime(5); // 타이머 시작 시간 설정 (초 단위)
-  //     const timer = setInterval(() => {
-  //       setRemainingTime((prevTime) => prevTime - 1);
-  //     }, 1000); // 1초마다 카운트 다운
-
-  //     return () => {
-  //       clearInterval(timer); // 컴포넌트 언마운트 시 타이머 제거
-  //       setRemainingTime(0); // 타이머 종료 시 초기화
-  //     };
-  //   }
-  // }, [eating]);
-
-  //--------------------------------------------
-
-  
   useEffect(() => {
     if (eating === maxEating) {
       setShowFailImage(true);
@@ -205,15 +184,19 @@ const SinglePlayPage: React.FC = () => {
     return () => clearTimeout(initialImageTimeout);
   }, []);
 
+  const handleTimerEnd = () => {
+    // 타이머가 0초에 도달했을 때 실행되는 로직을 여기에 작성
+    console.log("타이머가 0초에 도달했습니다. Eat을 띄워주세요.");
+  };
+
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
-      <div className="timer">
-        {/* {remainingTime > 0 && <p>남은 시간: {remainingTime}초</p>} */}
-      </div>
       <div>
         <InvitationYum />
       </div>
+
+
       <div className="gamestage-container">
         <GameStage />
       </div>

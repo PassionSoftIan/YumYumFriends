@@ -16,7 +16,7 @@ body {
 }
 
 .MultiBack {
-  background-image: url("../../assets/runningBackk.jpeg");
+  background-image: url("../../assets/runningBackk.jpg");
   background-size: 100% 100%; /* contain을 100% 100%로 변경 */
   background-position: center;
   background-repeat: no-repeat;

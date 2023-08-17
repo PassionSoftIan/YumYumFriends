@@ -1,7 +1,7 @@
 import { OpenVidu } from 'openvidu-browser';
 import axios from 'axios';
 import React, { Component, useState, useEffect } from 'react';
-import UserVideoComponent from './O_UserVideoComponent';
+import O_UserVideoComponent from './O_UserVideoComponent';
 import Button from '../Common/Button'
 
 const APPLICATION_SERVER_URL = process.env.NODE_ENV === 'production' ? '' : 'https://yumyumfriends.site/';
@@ -15,6 +15,7 @@ class O_OpenViduComponent extends Component {
 
         // These properties are in the state's component in order to re-render the HTML whenever their values change
         this.state = {
+            yumyum: props.yumyum,
             mySessionId: props.sessionID,
             hostInfo: props.hostInfo,
             gameType: props.gameType,
@@ -184,8 +185,9 @@ class O_OpenViduComponent extends Component {
               // 관전 모드
               <div id="session">
                 <div id="main-video">
-                  <UserVideoComponent
+                  <O_UserVideoComponent
                     streamManager={this.state.mainStreamManager}
+                    yumyum={this.state.yumyum}
                   />
                 </div>
               </div>

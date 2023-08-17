@@ -10,9 +10,9 @@ const ObservationPage: React.FC = () => {
   const sessionID = urlSearch.get("SessionID");
   const encodedHostInfo = urlSearch.get("HostInfo");
   const hostInfo = decodeURIComponent(encodedHostInfo || "");
-  const gameType = urlSearch.get("GameType");
+  const yumyum = urlSearch.get("yumyum");
 
-  const commonProps = { sessionID, hostInfo, gameType };
+  const commonProps = { sessionID, hostInfo, yumyum };
 
   // console.log(sessionID);
   // console.log(hostInfo);

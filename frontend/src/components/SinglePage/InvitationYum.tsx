@@ -13,9 +13,10 @@ const InvitationYum: React.FC = () => {
   const UserName = storedNickname
     ? storedNickname.replace(/['"]+/g, "")
     : "null";
+  const yumyum = localStorage.getItem("currentYum")
 
   // 배포한 자신의 사이트
-  const realUrl = `https://yumyumfriends.site/observation?SessionID=${UserID}&HostInfo=${UserName}`;
+  const realUrl = `https://yumyumfriends.site/observation?SessionID=${UserID}&HostInfo=${UserName}&yumyum=${yumyum}`;
 
   // 재랜더링시에 실행되게 해준다.
   useEffect(() => {

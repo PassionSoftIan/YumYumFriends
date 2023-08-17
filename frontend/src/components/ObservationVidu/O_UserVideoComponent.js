@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import OpenViduVideoComponent from './O_OvVideo';
+import O_OvVideo from './O_OvVideo';
 import './UserVideo.css';
 
-export default class UserVideoComponent extends Component {
+export default class O_UserVideoComponent extends Component {
 
     getNicknameTag() {
         // Gets the nickName of the user
@@ -14,7 +14,7 @@ export default class UserVideoComponent extends Component {
             <div>
                 {this.props.streamManager !== undefined ? (
                     <div className="streamcomponent">
-                        <OpenViduVideoComponent streamManager={this.props.streamManager} />
+                        <O_OvVideo streamManager={this.props.streamManager} yumyum={this.props.yumyum} />
                         <div><p>{this.getNicknameTag()}</p></div>
                     </div>
                 ) : null}

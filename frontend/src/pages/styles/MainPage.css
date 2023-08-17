@@ -5,14 +5,18 @@
   flex-direction: row;
   position: fixed;
   bottom: 1%; /* 수정: 하단과의 간격 조정 */
-  left: 50%;
+  left: 48.2%;
   transform: translateX(-50%);
   background: #ffffff00;
   width: 80%;
-  height: 30%;
-  max-width: 400px;
+  height: 35%;
   border-radius: 10px;
   z-index: 10;
+}
+
+.main-container{
+  background-size: cover;
+  background-image: url("../../assets/seaBack.jpg");
 }
 
 .button-wrapper {
@@ -29,16 +33,14 @@
 }
 
 .settings-container {
-  bottom: 10vh;
-  padding-bottom: 10vh;
-
+  margin-top: 7vh;
 }
 
 .btnIcon {
   width: 15%;
   height: auto;
   position: absolute;
-  bottom: 2vh; /* 아이콘을 아래쪽으로 조절 */
+  bottom: 5vh; /* 아이콘을 아래쪽으로 조절 */
   left: 43%; /* 아이콘을 왼쪽으로 조절 */
 }
 
@@ -56,9 +58,9 @@
 }
 
 .ani1{
-  width: 30%;
-  left: 16%;
-  bottom: 59%;
+  width: 20%;
+  left: 70%;
+  bottom: 44%;
 }
 .ani2 {
   width: 30%;
@@ -93,9 +95,10 @@
   left: 59%;
   bottom: 77%;
 }
-.ani8{
+.ani8 {
   width: 30%;
   left: 38%;
   bottom: 80%;
   transform: scaleX(-1);
+  
 }

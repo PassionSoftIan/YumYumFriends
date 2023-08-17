@@ -120,7 +120,7 @@ const MainPage: React.FC = () => {
               대표냠
             </Button>
             <Button
-              onClick={() => handleNavigaton("/settings")}
+              onClick={() => handleAction(() => navigate("/settings"))}
               className="game-button"
             >
               <span

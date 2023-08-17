@@ -44,6 +44,11 @@
   margin-top: 50px;
 }
 
+.eat {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
 @keyframes snake {
   0%,
   100% {

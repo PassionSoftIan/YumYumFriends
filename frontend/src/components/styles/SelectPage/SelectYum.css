@@ -1,6 +1,13 @@
 .alice-carousel {
   margin: 0;
 }
+
 .select{
   width: 100%;
+}
+
+.set-button {
+  width: 50%;
+  font-size: 1.5rem;
+  padding: 1.5rem 1rem;
 }

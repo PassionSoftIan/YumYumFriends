@@ -7,7 +7,7 @@
 
   border: none;
   border-radius: 20px;
-  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.4); */
 
   position: relative;
   display: inline-block;

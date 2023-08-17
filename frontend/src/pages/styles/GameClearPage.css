@@ -1,6 +1,11 @@
 .game-clear-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.like {
+  font-size: 2rem;
+  padding: 1.5rem 2rem;
+}

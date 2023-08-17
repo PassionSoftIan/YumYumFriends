@@ -155,10 +155,16 @@ const MultiPlayPage: React.FC = () => {
   }, [detection]);
 
   useEffect(() => {
-    if (detectionChange || friendChange) {
+    if (detectionChange) {
       setTotalEatCount((prevCount) => prevCount + 1);
     }
-  }, [detectionChange, friendChange]);
+  }, [detectionChange]);
+
+  useEffect(() => {
+    if (friendChange) {
+      setTotalEatCount((prevCount) => prevCount + 1);
+    }
+  }, [friendChange]);
 
   useEffect(() => {
     // totalEatCount가 20이 되면 isCountReached 상태를 true로 변경

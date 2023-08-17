@@ -1,12 +1,21 @@
+.backlogin {
+  background-size: cover;
+  background-image: url("../../assets/Bluebot.jpg");
+  height: 100%;
+  position: relative;
+}
+
 .gamelogo {
   max-width: 70%;
   height: auto;
   animation: bounce 2s infinite; /* bounce 애니메이션을 2초마다 무한 반복 적용 */
-  margin-bottom: 20vh;
+  margin-bottom: 40vh;
+  margin-top: 10vh;
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -14,10 +23,33 @@
   }
 }
 
-.login-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+
+.kbutton {
+  width: 90vw;
+  height: auto;
+  bottom: 2vh;
+  left: 5%;
+  background-size: cover;
+  /* background-image: url("../../assets/Buttons/kakao_login_medium_narrow.png"); */
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes boatShake {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* 위로 흔들림 */
+  }
+}
+
+.boat {
+  position: absolute;
+  bottom: 15%; /* 움직이길 원하는 위치로 조정 */
+  left: 2%; /* 움직이길 원하는 위치로 조정 */
+  width: 110vw;
+  animation: boatShake 2s infinite; /* 애니메이션 추가 */
+  z-index: 3;
 }

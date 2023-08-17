@@ -29,7 +29,7 @@ body {
   font-size: calc(10px + 2vmin);
   color: black;
   background-size: cover;
-  background-image: url("./assets/18086.jpg");
+  background-image: url("./assets/2020.jpg");
   background-position: bottom center; /* 이미지를 화면 상단 중앙에 배치 */
   background-repeat: no-repeat;
   z-index: 0;

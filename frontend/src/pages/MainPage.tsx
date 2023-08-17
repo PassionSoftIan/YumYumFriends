@@ -11,7 +11,7 @@ import Together from "../assets/Buttons/together2.png";
 import Setting from "../assets/Buttons/setting.png";
 import asd from "../assets/RunningYums/1.gif";
 import a from "../assets/RunningYums/2.gif";
-import b from "../assets/myCharAttack/1.gif";
+import b from "../assets/float/07_egg_swim.gif";
 import c from "../assets/myCharAttack/2.gif";
 import d from "../assets/myCharAttack/7.gif";
 import e from "../assets/10.gif";
@@ -67,19 +67,19 @@ const MainPage: React.FC = () => {
         <div className="button-container">
           <span className="button-wrapper">
             <Button
-              onClick={() => handleNavigaton("/single")}
-              className="game-button"
-            >
-              <img src={asd} alt="" className="btnicon" />밥 먹자
-            </Button>
-          </span>
-          <span className="button-wrapper">
-            <Button
               onClick={() => handleNavigaton("/multichoice")}
               className="game-button"
             >
               <img src={asd} alt="" className="btnicon" />
               같이 먹자
+            </Button>
+          </span>
+          <span className="button-wrapper">
+            <Button
+              onClick={() => handleNavigaton("/single")}
+              className="game-button"
+            >
+              <img src={e} alt="" className="btnicon" />밥 먹자
             </Button>
             <div className="settings-container">
               <img
@@ -102,13 +102,13 @@ const MainPage: React.FC = () => {
         </div>
       </div>
       <img src={b} alt="" className="btnIcon ani1" />
-      <img src={c} alt="" className="btnIcon ani2" />
+      {/* <img src={c} alt="" className="btnIcon ani2" />
       <img src={d} alt="" className="btnIcon ani3" />
       <img src={e} alt="" className="btnIcon ani4" />
       <img src={f} alt="" className="btnIcon ani5" />
       <img src={g} alt="" className="btnIcon ani6" />
       <img src={h} alt="" className="btnIcon ani7" />
-      <img src={i} alt="" className="btnIcon ani8" />
+      <img src={i} alt="" className="btnIcon ani8" /> */}
     </div>
   );
 };

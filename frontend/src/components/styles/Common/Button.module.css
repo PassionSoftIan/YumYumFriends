@@ -20,14 +20,14 @@
   /* color: #5C3F3D; */
   color: #ffffff;
   text-transform: uppercase;
-  padding: 1em 2em;
+  padding: 2rem 2rem;
   /* background: rgba(208, 233, 212, 0.9); */
   /* border: 2px solid #A2DAE1; */
   border-radius: 20px; /* 둥근 모서리의 반지름 값을 조정해주세요 */
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
     background 150ms cubic-bezier(0, 0, 0.58, 1);
   margin: 5px 0;
-  box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.4); */
 }
 
 

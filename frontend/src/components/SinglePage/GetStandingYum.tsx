@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import useSoundEffect from "../../hooks/useSoundEffect";
 import useColorConfetti from "../../hooks/Animations/useColorConfetti";
+import shadow from "../../assets/Common/circle-shadow.png";
 
 interface Yum {
   name: string | undefined;
@@ -46,13 +47,27 @@ const GetStandingYum: React.FC<Props> = ({ yum }) => {
 
   return (
     <React.Fragment>
-      <h3>안녕!</h3>
-      <h3>반가워 친구야</h3>
-      <img
-        src={require(`../../assets/GetYums/${yum.name}_get.gif`)}
-        alt="yum"
-        onClick={handleNavigate}
-      />
+      <h3 style={{ fontSize: "2.5rem", marginBottom: "0" }}>안녕!</h3>
+      <h3 style={{ fontSize: "2.5rem" }}>반가워 친구야</h3>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src={require(`../../assets/GetYums/${yum.name}_get.gif`)}
+          alt="yum"
+          onClick={handleNavigate}
+        />
+        <img
+          src={shadow}
+          alt=""
+          style={{ width: "45%", position: "relative", bottom: "18%" }}
+        />
+      </div>
     </React.Fragment>
   );
 };

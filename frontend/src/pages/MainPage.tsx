@@ -14,7 +14,9 @@ import flyBanana from "../assets/float/banana_fly.gif";
 import waterMelone from "../assets/float/watermelone_dive.gif";
 import mandarine from "../assets/float/mandarin_play.gif";
 import gazi from "../assets/float/gazi.gif";
-import e from "../assets/10.gif";
+import e from "../assets/outline_alone.gif";
+import people from "../assets/people.gif";
+import every from "../assets/every.png";
 
 import "./styles/MainPage.css";
 
@@ -73,8 +75,7 @@ const MainPage: React.FC = () => {
               onClick={() => handleNavigaton("/multichoice")}
               className="game-button"
             >
-              <img src={asd} alt="" className="btnicon" />
-              같이
+              <img src={people} alt="" className="btnicon" />
             </MainButton>
           </span>
           <span className="button-wrapper">
@@ -83,7 +84,6 @@ const MainPage: React.FC = () => {
               className="game-button"
             >
               <img src={e} alt="" className="btnicon" />
-              혼자
             </MainButton>
           </span>
           <span className="button-wrapper">
@@ -91,8 +91,7 @@ const MainPage: React.FC = () => {
               onClick={() => handleAction(() => navigate("/select"))}
               className="game-button"
             >
-              <img src={asd} alt="" className="btnicon" />
-              냠냠
+              <img src={every} alt="" className="btnicon" />
             </MainButton>
           </span>
         </div>

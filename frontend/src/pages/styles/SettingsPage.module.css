@@ -3,7 +3,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 15%;
   border: 7px solid #A2DAE1;
-  /* background-color: #D0E9D4; */
   background-color: #F7F4D2;
   z-index: 99;
   display: flex;
@@ -12,13 +11,18 @@
 }
 
 .settings-banner {
+  background-image: url('../../assets/title.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+
   border-radius: 15px;
-  background-color: #cfb988;
-  box-shadow: 0 2px 8px #b99951;
-  color:  #3a2612;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26); */
+  color:  #ffffff;
   font-weight: bold;
   font-size: larger;
-  padding: 0.5rem 2.5rem;
+  padding: 0.5rem 3rem;
   margin: 0 4rem;
   position: relative;
   top: -1.5rem; 

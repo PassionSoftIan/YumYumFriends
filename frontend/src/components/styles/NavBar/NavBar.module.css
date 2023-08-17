@@ -1,0 +1,33 @@
+.navbar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  background-color: transparent;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.back-button img {
+  width: 48px;
+  height: 48px;
+}
+
+.settings {
+  width: 40px;
+  height: 40px;
+}
+

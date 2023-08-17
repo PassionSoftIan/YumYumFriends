@@ -35,7 +35,7 @@ const SettingsPage: React.FC = () => {
   return (
     <div className={styles["settings-container"]}>
       <div className={styles["settings-banner"]}>
-        <p>설정</p>
+        <p>설 정</p>
       </div>
       <div className={styles["settings-items"]}>
         <Stepper label="먹는 횟수" />

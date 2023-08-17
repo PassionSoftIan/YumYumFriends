@@ -5,19 +5,14 @@ import useColorConfetti from "../hooks/Animations/useColorConfetti";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
 import RemainMeal from "../components/RemainMeal/RemainMeal";
-import Alone from "../assets/Buttons/alone.png";
-import Together from "../assets/Buttons/together2.png";
+
 import Setting from "../assets/Buttons/setting.png";
 import asd from "../assets/RunningYums/1.gif";
-import a from "../assets/RunningYums/2.gif";
 import b from "../assets/float/07_egg_swim.gif";
 import c from "../assets/float/01_tofu_surf.gif";
-import d from "../assets/myCharAttack/7.gif";
+import flyBanana from "../assets/float/banana_fly.gif";
 import e from "../assets/10.gif";
-import f from "../assets/12.gif";
-import g from "../assets/myCharEnemy/1.gif";
-import h from "../assets/othersAttack/2.gif";
-import i from "../assets/Action/13_apple_acquired.gif";
+import MessageModal from "../components/Common/MessageModal";
 
 import "./styles/MainPage.css";
 
@@ -111,6 +106,7 @@ const MainPage: React.FC = () => {
       </div>
       <img src={b} alt="" className="btnIcon ani1" />
       <img src={c} alt="" className="btnIcon ani2" />
+      <img src={flyBanana} alt="" className="btnIcon ani3" />
       {/* <img src={d} alt="" className="btnIcon ani3" />
       <img src={e} alt="" className="btnIcon ani4" />
       <img src={f} alt="" className="btnIcon ani5" />

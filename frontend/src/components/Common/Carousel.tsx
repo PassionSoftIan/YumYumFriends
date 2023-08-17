@@ -155,7 +155,11 @@ const Carousel: React.FC<Props> = (props) => {
         )}
       />
       <div className={styles["yum-detail"]}>
-        <div ref={nameDivRef} />
+        <div
+          ref={nameDivRef}
+          style={{ fontWeight: "bold", fontSize: "35px" }}
+        />
+        <br />
         <div ref={personalityDivRef} />
         <div ref={strengthsDivRef} />
       </div>

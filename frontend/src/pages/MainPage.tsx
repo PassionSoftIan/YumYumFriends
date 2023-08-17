@@ -1,7 +1,6 @@
 // MainPage.js
 import React, { useState } from "react";
 import Cloud from "../components/Animation/Cloud";
-// import useConfetti from "../hooks/Animations/useConfetti";
 import useColorConfetti from "../hooks/Animations/useColorConfetti";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
@@ -26,14 +25,12 @@ const MainPage: React.FC = () => {
   const [Meal, setMeal] = useState<number | null>(null);
   const navigate = useNavigate();
   const { triggerConfetti } = useColorConfetti(5, 400);
-  // const { triggerConfetti } = useConfetti(
-  //   ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣"],
-  //   70,
-  //   60
-  // );
+  const [showModal, setShowModal] = useState(false);
+
   const handleNavigaton = (path: string) => {
     if (Meal === 0) {
-      alert("오늘 밥을 다 먹었어요!");
+      // alert("오늘 밥을 다 먹었어요!");
+      setShowModal(true);
     } else {
       handleAction(() => navigate(path));
     }
@@ -58,7 +55,18 @@ const MainPage: React.FC = () => {
   };
 
   return (
-    <div className="main-container">
+    <div
+      className="main-container"
+      style={{ backgroundImage: "url('your-background-image.jpg')" }}
+    >
+      {showModal && (
+        <MessageModal
+          message={`오늘 밥을 다 먹었어요. 내일 또 만나요!`}
+          buttonMessage="확인"
+          onConfirm={() => setShowModal(false)}
+        />
+      )}
+      <Cloud />
       <div className="RemainMeal">
         <RemainMeal Meal={Meal} setMeal={setMeal} />
       </div>

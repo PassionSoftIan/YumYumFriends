@@ -5,6 +5,8 @@ import axios from "axios";
 import "../styles/SelectPage/SelectYum.css";
 import MessageModal from "../Common/MessageModal";
 
+import { useNavigate } from "react-router-dom";
+
 interface Yum {
   name: string;
   eng: string;
@@ -21,6 +23,8 @@ const SelectYum: React.FC = () => {
   const userID = localStorage.getItem("id");
   const centerIndex = useRef(0);
   const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,6 +61,9 @@ const SelectYum: React.FC = () => {
           localStorage.setItem("currentYum", `${allList[idx].id}`);
         })
         .catch((err) => console.log(err));
+      
+        navigate("/main");
+        
     } else {
       setShowModal(true);
     }

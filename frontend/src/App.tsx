@@ -7,9 +7,6 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import SinglePlayPage from "./pages/SinglePlayPage";
 import MultiChoicePage from "./pages/MultiChoicePage";
-import DexPage from "./pages/DexPage";
-import ProfilePage from "./pages/ProfilePage";
-import DexDetailPage from "./pages/DexDetailPage";
 import GameClearPage from "./pages/GameClearPage";
 import SettingsPage from "./pages/SettingsPage";
 import SelectPage from "./pages/SelectPage";
@@ -23,8 +20,6 @@ import MultiCreateRoomPage from "./pages/MultiCreateRoomPage";
 import NavBar from "./components/NavBar/NavBar";
 import AudioPlayer from "./components/Audio/AudioPlayer"; // Use "AudioPlayer" with an uppercase "P"
 import { PersistGate } from "redux-persist/integration/react";
-// import Sun from "./assets/Common/sun_smile.png";
-// import Cloud from "./components/Animation/Cloud";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -54,9 +49,6 @@ const App: React.FC = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/main" element={<MainPage />} />
                 <Route path="/single" element={<SinglePlayPage />} />
-                <Route path="/dex" element={<DexPage />} />
-                <Route path="/dexdetail/:id" element={<DexDetailPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/gameclear" element={<GameClearPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/select" element={<SelectPage />} />

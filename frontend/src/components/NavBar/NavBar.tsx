@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "../styles/NavBar/NavBar.css";
+import styles from "../styles/NavBar/NavBar.module.css";
 import backButton from "../../assets/Buttons/Back.png";
-// import useImageSrc from "../../hooks/useImage/useImageSrc";
+import settingIcon from "../../assets/Buttons/setting.png";
 
 const NavBar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // const ourImageSrc = useImageSrc();
 
   const handleGoBack = () => {
     navigate(-1);
@@ -17,9 +16,17 @@ const NavBar: React.FC = () => {
     location.pathname === "/login" || location.pathname === "/";
 
   return !hideNavBarOnIntroPageOrLoginPage ? (
-    <div className="navbar">
-      <div className="back-button" onClick={handleGoBack}>
+    <div className={styles["navbar"]}>
+      <div className={styles["back-button"]} onClick={handleGoBack}>
         <img src={backButton} alt="Back" />
+      </div>
+      <div>
+        <img
+          src={settingIcon}
+          alt=""
+          className={styles["settings"]}
+          onClick={() => navigate("/settings")}
+        />
       </div>
     </div>
   ) : null;

@@ -1,13 +1,13 @@
 .create-card {
     width: 80%;
-    height: 50%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 15%;
-    background-color: #EEF3D0;
-    border: 7px solid #D8E548;
+    background-color: #F7F4D2;
+    border: 7px solid #A2DAE1;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.26);
     z-index: 10;
   }
@@ -40,4 +40,5 @@
   
   .warning-text {
     color: crimson;
+    font-style: italic;
   }

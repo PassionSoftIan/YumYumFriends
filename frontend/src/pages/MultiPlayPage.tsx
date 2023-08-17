@@ -162,7 +162,7 @@ const MultiPlayPage: React.FC = () => {
 
   useEffect(() => {
     // totalEatCount가 20이 되면 isCountReached 상태를 true로 변경
-    if (totalEatCount >= 6) {
+    if (totalEatCount >= 10) {
       setIsCountReached(true);
       // 3초 후에 /gameclear로 이동
       const timer = setTimeout(() => {
@@ -225,11 +225,11 @@ const MultiPlayPage: React.FC = () => {
       {mySession !== null ? (
         <div className="ProgressBar-image">
           <ProgressBar
-            completed={((totalEatCount / 6) * 100).toFixed(0)}
+            completed={((totalEatCount / 10) * 100).toFixed(0)}
             fillerColor={"yellow"}
           />
           <div className="foodNum">
-            <strong>횟수 : {totalEatCount}/6</strong>
+            <strong>횟수 : {totalEatCount}/10</strong>
           </div>
         </div>
       ) : (

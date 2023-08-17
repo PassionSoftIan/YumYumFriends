@@ -20,7 +20,7 @@
 }
 
 .button-wrapper {
-  margin: 0px; /* 버튼들 간격 조절 */
+  margin: 10px; /* 버튼들 간격 조절 */
 }
 /* Media queries for responsiveness */
 

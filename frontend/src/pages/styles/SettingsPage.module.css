@@ -2,8 +2,9 @@
   width: 70%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 15%;
-  border: 7px solid #D8E548;
-  background-color: #EEF3D0;
+  border: 7px solid #A2DAE1;
+  /* background-color: #D0E9D4; */
+  background-color: #F7F4D2;
   z-index: 99;
   display: flex;
   flex-direction: column;
@@ -12,8 +13,8 @@
 
 .settings-banner {
   border-radius: 15px;
-  background-color: #F5C475;
-  box-shadow: 0 2px 8px rgba(194, 129, 60, 1);
+  background-color: #cfb988;
+  box-shadow: 0 2px 8px #b99951;
   color:  #3a2612;
   font-weight: bold;
   font-size: larger;
@@ -21,9 +22,6 @@
   margin: 0 4rem;
   position: relative;
   top: -1.5rem; 
-  /* background-image: url("../../assets/Common/wooden-ribbon.png");
-  background-size: cover;
-  background-position: center; */
 }
 
 .settings-items {

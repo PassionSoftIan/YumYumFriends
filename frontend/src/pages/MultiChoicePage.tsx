@@ -16,14 +16,14 @@ const MultiChoicePage: React.FC = () => {
         ) => handleSelectAction(() => navigate('/multicreate'))}
         className="game-button button-second"
       >
-        <span>Create Room</span>
+        <span>방 만들기</span>
       </Button>
 
       <Button
         onClick={() => handleSelectAction(() => navigate("/multiroom"))}
         className="game-button button-second"
       >
-        <span>Select Room</span>
+        <span>놀러가기</span>
       </Button>
     </div>
   );

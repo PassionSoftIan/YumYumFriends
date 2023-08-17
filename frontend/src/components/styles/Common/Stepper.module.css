@@ -37,7 +37,7 @@
   margin-top: 0;
   padding: 5px 15px;
   border-radius: 10px;
-  border: 1px solid #D8E548;
+  border: 1px solid #80c38b;
 }
 
 .button-span {
@@ -55,7 +55,7 @@
 }
 
 .button:hover {
-  background-color: #D8E548;
+  background-color: #80c38b;
 }
 
 .disabled:hover {

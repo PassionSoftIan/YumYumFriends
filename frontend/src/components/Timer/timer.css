@@ -1,31 +1,29 @@
 /* timer.css */
 .timer {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
   color: #ffffff;
-  background-color: #FF6B6B; /* 밝은 빨간색 톤 */
+  background-color: rgba(107, 185, 255, 0.9); /* 바꾸고자 하는 배경색 */
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 20vw;
+  height: 20vw;
   display: flex;
+  bottom: 30vh;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: bounce 1s ease-in-out infinite;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: pulse 1s ease-in-out infinite;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 75%, 0% 100%, 0% 0%);
 }
 
-
-
-  
-  @keyframes pulse {
-    0% {
-      transform: scale(0.5);
-    }
-    50% {
-      transform: scale(0.55);
-    }
-    100% {
-      transform: scale(0.5);
-    }
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
   }
-  
+  50% {
+    transform: scale(0.55);
+  }
+  100% {
+    transform: scale(0.5);
+  }
+}

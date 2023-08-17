@@ -13,6 +13,9 @@ import asd from "../assets/RunningYums/1.gif";
 import b from "../assets/float/07_egg_swim.gif";
 import c from "../assets/float/01_tofu_surf.gif";
 import flyBanana from "../assets/float/banana_fly.gif";
+import waterMelone from "../assets/float/watermelone_dive.gif";
+import mandarine from "../assets/float/mandarin_play.gif";
+import gazi from "../assets/float/gazi.gif";
 import e from "../assets/10.gif";
 
 import "./styles/MainPage.css";
@@ -81,7 +84,8 @@ const MainPage: React.FC = () => {
               onClick={() => handleNavigaton("/single")}
               className="game-button"
             >
-              <img src={e} alt="" className="btnicon" />혼자
+              <img src={e} alt="" className="btnicon" />
+              혼자
             </MainButton>
             {/* <div className="settings-container">
               <img
@@ -106,12 +110,9 @@ const MainPage: React.FC = () => {
       <img src={b} alt="" className="btnIcon ani1" />
       <img src={c} alt="" className="btnIcon ani2" />
       <img src={flyBanana} alt="" className="btnIcon ani3" />
-      {/* <img src={d} alt="" className="btnIcon ani3" />
-      <img src={e} alt="" className="btnIcon ani4" />
-      <img src={f} alt="" className="btnIcon ani5" />
-      <img src={g} alt="" className="btnIcon ani6" />
-      <img src={h} alt="" className="btnIcon ani7" />
-      <img src={i} alt="" className="btnIcon ani8" /> */}
+      <img src={waterMelone} alt="" className="btnIcon ani4" />
+      <img src={mandarine} alt="" className="btnIcon ani5" />
+      <img src={gazi} alt="" className="btnIcon ani6" />
     </div>
   );
 };

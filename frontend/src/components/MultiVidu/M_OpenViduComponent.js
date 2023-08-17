@@ -4,8 +4,9 @@ import React, { Component } from "react";
 // import "./App.css";
 import Button from "../Common/Button";
 import M_UserVideoComponent from "./M_UserVideoComponent";
-import styles from './MVidu.module.css'
+import styles from "./MVidu.module.css";
 import "./OpenViduComponent.css";
+import waiting from "../../assets/waiting2.gif";
 
 const APPLICATION_SERVER_URL =
   process.env.NODE_ENV === "production" ? "" : "https://yumyumfriends.site/";
@@ -283,7 +284,9 @@ class M_OpenViduComponent extends Component {
                   />
                 </p>
               </form> */}
-              <Button onClick={this.joinSession} className={styles['with']}>친구랑 냠냠!</Button>
+              <Button onClick={this.joinSession} className={styles["with"]}>
+                친구랑 냠냠!
+              </Button>
             </div>
           </div>
         ) : (
@@ -315,7 +318,14 @@ class M_OpenViduComponent extends Component {
               style={{ height: "30%", minHeight: "0" }}
             >
               {this.state.subStreamManager === undefined ? (
-                <div>대기중</div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundSize: "cover",
+                    backgroundImage: `url(${waiting})`,
+                  }}
+                ></div>
               ) : (
                 <M_UserVideoComponent
                   streamManager={this.state.subStreamManager}

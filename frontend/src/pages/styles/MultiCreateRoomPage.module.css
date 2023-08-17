@@ -1,15 +1,21 @@
 .create-card {
     width: 80%;
-    height: 40%;
+    height: 37%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 15%;
-    background-color: #F7F4D2;
-    border: 7px solid #A2DAE1;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.26);
+    /* background-color: #F7F4D2;
+    border: 7px solid #A2DAE1; */
+    /* box-shadow: 0 5px 8px rgba(0, 0, 0, 0.26); */
     z-index: 10;
+
+    background-image: url('../../assets/board.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
   }
   
   .create-input p {
@@ -27,9 +33,10 @@
   }
   
   .create-button {
-    margin-top: 30%;
+    margin-top: 20%;
     width: 50%;
     padding: 10px;
+    color: #fff2db;
   }
   
   .disabled {

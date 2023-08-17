@@ -16,11 +16,17 @@
   z-index: 100;
   overflow: hidden;
   text-align: center;
-  background-color: #eef3d0;
-  border: 2px solid #d8e548;
-  border-radius: 15px;
-  width: 70%;
-  height: 40%;
+  /* background-color: #eef3d0;
+  border: 2px solid #d8e548; */
+  /* border-radius: 15px; */
+  width: 65%;
+  height: 30%;
+
+  background-image: url('../../../assets/board.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
 }
 
 .content {
@@ -39,7 +45,7 @@
   border: none;
   border-radius: 15px;
   font-size: large;
-  margin: 20px auto;
+  margin: 10px auto;
   font: inherit;
   text-align: center;
 }
@@ -55,13 +61,14 @@
 
 .actions {
   padding: 0.5rem 1rem;
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
 }
 
 .enter-button {
-  margin-top: 10%;
+  /* margin-top: 10%; */
   width: 50%;
   padding: 10px;
+  color: #fff2db;
 }
 
 .disabled {

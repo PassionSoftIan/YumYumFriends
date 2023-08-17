@@ -76,7 +76,7 @@ const GameClearPage: React.FC = () => {
         <>
           <YumCard yum={targetYum} />
           {showButton && (
-            <Button onClick={() => setShowCard(false)}>좋아요!</Button>
+            <Button className="like" onClick={() => setShowCard(false)}>좋아요!</Button>
           )}
         </>
       )}

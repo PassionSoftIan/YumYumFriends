@@ -61,9 +61,8 @@ const SelectYum: React.FC = () => {
           localStorage.setItem("currentYum", `${allList[idx].id}`);
         })
         .catch((err) => console.log(err));
-      
-        navigate("/main");
-        
+
+      navigate("/main");
     } else {
       setShowModal(true);
     }
@@ -83,7 +82,7 @@ const SelectYum: React.FC = () => {
         />
       )}
       <div className="ment" style={{ zIndex: 99 }}>
-        <h3 style={{fontSize: "2.5rem"}}>함께 할 친구를 골라봐</h3>
+        <h3 style={{ fontSize: "2.5rem" }}>함께 할 친구를 골라봐</h3>
       </div>
       <Carousel
         carouselList={yumList}
@@ -91,7 +90,9 @@ const SelectYum: React.FC = () => {
         myCurrentYum={myCurrentYum}
         onCenterIndexChange={handleCenterIndexChange}
       />
-      <Button onClick={handleSelectedYum} className="set-button">설정하기</Button>
+      <Button onClick={handleSelectedYum} className="set-button">
+        설정하기
+      </Button>
     </React.Fragment>
   );
 };

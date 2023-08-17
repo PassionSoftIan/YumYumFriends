@@ -13,6 +13,8 @@
   background-size: cover;
 }
 .like {
-  font-size: 2rem;
-  padding: 1.5rem 2rem;
+  font-size: 1.5rem;
+  /* padding: 1.5rem 2rem; */
+  width: 55%;
+  color: #fff2db;
 }

@@ -1,9 +1,9 @@
 // MainPage.js
 import React, { useState } from "react";
-import Cloud from "../components/Animation/Cloud";
 import useColorConfetti from "../hooks/Animations/useColorConfetti";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Common/Button";
+// import Button from "../components/Common/Button";
+import MainButton from "../components/MainPage/MainButton";
 import RemainMeal from "../components/RemainMeal/RemainMeal";
 
 import Setting from "../assets/Buttons/setting.png";
@@ -24,7 +24,6 @@ const MainPage: React.FC = () => {
 
   const handleNavigaton = (path: string) => {
     if (Meal === 0) {
-      // alert("오늘 밥을 다 먹었어요!");
       setShowModal(true);
     } else {
       handleAction(() => navigate(path));
@@ -61,7 +60,6 @@ const MainPage: React.FC = () => {
           onConfirm={() => setShowModal(false)}
         />
       )}
-      <Cloud />
       <div className="RemainMeal">
         <RemainMeal Meal={Meal} setMeal={setMeal} />
       </div>
@@ -69,21 +67,21 @@ const MainPage: React.FC = () => {
       <div>
         <div className="button-container">
           <span className="button-wrapper">
-            <Button
+            <MainButton
               onClick={() => handleNavigaton("/multichoice")}
               className="game-button"
             >
               <img src={asd} alt="" className="btnicon" />
-              같이 먹자
-            </Button>
+              같이
+            </MainButton>
           </span>
           <span className="button-wrapper">
-            <Button
+            <MainButton
               onClick={() => handleNavigaton("/single")}
               className="game-button"
             >
-              <img src={e} alt="" className="btnicon" />밥 먹자
-            </Button>
+              <img src={e} alt="" className="btnicon" />혼자
+            </MainButton>
             <div className="settings-container">
               <img
                 src={Setting}
@@ -94,13 +92,13 @@ const MainPage: React.FC = () => {
             </div>
           </span>
           <span className="button-wrapper">
-            <Button
+            <MainButton
               onClick={() => handleAction(() => navigate("/select"))}
               className="game-button"
             >
               <img src={asd} alt="" className="btnicon" />
-              냠냠이들
-            </Button>
+              냠냠
+            </MainButton>
           </span>
         </div>
       </div>

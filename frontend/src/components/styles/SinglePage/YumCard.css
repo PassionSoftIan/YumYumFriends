@@ -54,10 +54,17 @@
 }
 
 .card .back {
-  width: 75%;
-  height: 85%;
+  width: 80%;
+  height: 88%;
   border: 2px solid #f6a61a;
+  /* width: 75%;
+  height: 85%;
+  border: 2px solid #f6a61a; */
   transform: rotateY(180deg);
+  /* background-image: url('../../../assets/veggies.png'); */
+  background-image: url('../../../assets/fruits.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .description {

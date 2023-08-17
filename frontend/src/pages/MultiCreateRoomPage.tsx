@@ -90,7 +90,7 @@ const MultiCreateRoomPage: React.FC = () => {
           showWarning ? styles["disabled"] : ""
         }`}
       >
-        <span>방 만들기</span>
+        <span style={{fontSize:"1.5rem", padding: "0.5rem 1rem"}}>방 만들기</span>
       </Button>
     </div>
   );

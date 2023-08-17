@@ -55,9 +55,6 @@ const YumCard: React.FC<Props> = ({ yum }) => {
         </div>
 
         <div className="back" onClick={() => setFlip(!flip)}>
-          {/* <p>뒷면</p>
-          <br />
-          <p>패턴이나 게임 로고</p> */}
         </div>
       </div>
     </Bounce>

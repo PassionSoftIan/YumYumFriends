@@ -27,7 +27,7 @@
 .RemainMeal {
   position: absolute;
   top: 2%; /* 상단 위치 설정 */
-  right: 2%; /* 우측 위치 설정 */
+  right: 22%; /* 우측 위치 설정 */
   color: #000;
   z-index: 100; /* 다른 요소들 위에 위치시키기 위한 z-index 값 */
 }
@@ -54,7 +54,7 @@
 }
 
 .game-button.hide {
-  transform: translateX(250%);
+  transform: translateY(200%);
 }
 
 .ani1 {

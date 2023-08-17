@@ -25,7 +25,7 @@ const RoomList: React.FC = () => {
   
   return (
     <div className={styles['list-container']}>
-      <p className={styles['list-title']}>친구의 냠냠과 함께 놀자</p>
+      <p className={styles['list-title']}>친구와 냠냠</p>
       {sessionList.length === 0 ? (
       <div>입장 가능한 방이 없어요...</div>
     ) : (

@@ -1,31 +1,30 @@
 .item {
-  color: #fff2db;
   margin: 10px 5px;
   padding: 20px;
+  width: 280px;
+  height: 70px;
 
   display: flex;
   align-items: center;
-  width: 280px;
-  height: 70px;
 
   background-image: url('../../../assets/banner.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
+
+  color: #fff2db;
+
+  transition: transform 0.3s ease;
 }
 
-.item-yum {
-  width: 40px;
-  height: 40px;
-  margin: 5px;
-  padding: 5px;
+.item:hover {
+  transform: rotate(5deg);
 }
 
 .item-name {
   width: 55%;
   text-align: start;
-  /* margin: 5px; */
   margin-left: 10%;
   font-size: 2rem;
   font-weight: bold;

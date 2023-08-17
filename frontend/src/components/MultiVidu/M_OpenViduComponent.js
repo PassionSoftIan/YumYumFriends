@@ -2,8 +2,9 @@ import { OpenVidu } from "openvidu-browser";
 import axios from "axios";
 import React, { Component } from "react";
 // import "./App.css";
+import Button from "../Common/Button";
 import M_UserVideoComponent from "./M_UserVideoComponent";
-
+import styles from './MVidu.module.css'
 import "./OpenViduComponent.css";
 
 const APPLICATION_SERVER_URL =
@@ -272,7 +273,7 @@ class M_OpenViduComponent extends Component {
         {this.state.session === undefined ? (
           <div id="join">
             <div id="join-dialog" className="jumbotron vertical-center">
-              <form className="form-group" onSubmit={this.joinSession}>
+              {/* <form className="form-group" onSubmit={this.joinSession}>
                 <p className="text-center">
                   <input
                     className="btn btn-lg btn-success"
@@ -281,7 +282,8 @@ class M_OpenViduComponent extends Component {
                     value="친구랑 냠냠!"
                   />
                 </p>
-              </form>
+              </form> */}
+              <Button onClick={this.joinSession} className={styles['with']}>친구랑 냠냠!</Button>
             </div>
           </div>
         ) : (

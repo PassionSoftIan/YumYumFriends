@@ -2,13 +2,11 @@
 import React, { useState } from "react";
 import useColorConfetti from "../hooks/Animations/useColorConfetti";
 import { useNavigate } from "react-router-dom";
-// import Button from "../components/Common/Button";
 import MainButton from "../components/MainPage/MainButton";
 import MessageModal from "../components/Common/MessageModal";
 
 import RemainMeal from "../components/RemainMeal/RemainMeal";
 
-import Setting from "../assets/Buttons/setting.png";
 import asd from "../assets/RunningYums/1.gif";
 import b from "../assets/float/07_egg_swim.gif";
 import c from "../assets/float/01_tofu_surf.gif";
@@ -87,14 +85,6 @@ const MainPage: React.FC = () => {
               <img src={e} alt="" className="btnicon" />
               혼자
             </MainButton>
-            {/* <div className="settings-container">
-              <img
-                src={Setting}
-                alt=""
-                className="game-button btnIcon"
-                onClick={() => handleNavigaton("/settings")}
-              />
-            </div> */}
           </span>
           <span className="button-wrapper">
             <MainButton

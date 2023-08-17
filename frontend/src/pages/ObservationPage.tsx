@@ -2,7 +2,7 @@
 // Session ID를 통해 입장
 // 내 화면이 아닌 Host Info 화면 띄우기
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import O_OpenViduComponent from "../components/ObservationVidu/O_OpenViduComponent";
 
 const ObservationPage: React.FC = () => {

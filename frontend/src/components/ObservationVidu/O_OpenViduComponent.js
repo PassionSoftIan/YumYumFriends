@@ -1,6 +1,6 @@
 import { OpenVidu } from 'openvidu-browser';
 import axios from 'axios';
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import O_UserVideoComponent from './O_UserVideoComponent';
 import Button from '../Common/Button'
 

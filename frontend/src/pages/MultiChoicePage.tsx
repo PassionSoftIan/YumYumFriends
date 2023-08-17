@@ -5,25 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 const MultiChoicePage: React.FC = () => {
   const navigate = useNavigate();
-  const handleSelectAction = (action: () => void) => {
-    action();
-  };
 
   return (
     <div className="multi-play-page">
-      <Button
-        onClick={(
-        ) => handleSelectAction(() => navigate('/multicreate'))}
-        className="game-button button-second"
-      >
-        <span style={{fontSize:"2rem", color:'#fff2db'}}>방 만들기</span>
+      <Button onClick={() => navigate("/multicreate")}>
+        <span style={{ fontSize: "2rem", color: "#fff2db" }}>방 만들기</span>
       </Button>
 
-      <Button
-        onClick={() => handleSelectAction(() => navigate("/multiroom"))}
-        className="game-button button-second"
-      >
-        <span style={{fontSize:"2rem", color:'#fff2db'}}>놀러가기</span>
+      <Button onClick={() => navigate("/multiroom")}>
+        <span style={{ fontSize: "2rem", color: "#fff2db" }}>놀러가기</span>
       </Button>
     </div>
   );

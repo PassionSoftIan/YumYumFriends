@@ -11,9 +11,7 @@ const RemainMeal: React.FC<RemainMealProps> = ({ Meal, setMeal }) => {
   const UserName =
     localStorage.getItem("nickname")?.replace(/['"]+/g, "") || "";
   const URL = "https://yumyumfriends.site";
-  //   const [data, setData] = useState(null);
 
-  // 컴포넌트 마운트 될 때 데이터를 가져옵니다.
   useEffect(() => {
     const fetchData = async () => {
       axios
@@ -21,7 +19,6 @@ const RemainMeal: React.FC<RemainMealProps> = ({ Meal, setMeal }) => {
           params: { id: UserID },
         })
         .then((response) => {
-          //   console.log(response.data.mealRemain);
           setMeal(response.data.mealRemain);
           localStorage.setItem("RemainMeal", response.data.mealRemain);
         })
@@ -36,7 +33,7 @@ const RemainMeal: React.FC<RemainMealProps> = ({ Meal, setMeal }) => {
       <div className="user-nickname">
         <div className="icon-and-nickname">
           <span className="nick">
-            <strong>{UserName}</strong>
+            <strong style={{fontSize: 'x-large'}}>{UserName}</strong>
           </span>
           {Meal !== null &&
             Array.from({ length: Meal }, (_, index) => (

@@ -79,15 +79,15 @@ const Carousel: React.FC<Props> = (props) => {
       currentName.current = props.allYumList[cur].name;
 
       if (personalityDivRef.current) {
-        personalityDivRef.current.innerHTML = `🌷: ${currentPersonality.current}`;
+        personalityDivRef.current.innerHTML = `🌊: ${currentPersonality.current}`;
       }
 
       if (strengthsDivRef.current) {
-        strengthsDivRef.current.innerHTML = `🌼: ${currentStrengths.current}`;
+        strengthsDivRef.current.innerHTML = `🚩: ${currentStrengths.current}`;
       }
 
       if (nameDivRef.current) {
-        nameDivRef.current.innerHTML = `🌻: ${currentName.current}`;
+        nameDivRef.current.innerHTML = `🌞: ${currentName.current}`;
       }
     }
   }, [props.myCurrentYum, props.allYumList]);
@@ -108,14 +108,14 @@ const Carousel: React.FC<Props> = (props) => {
     currentName.current = props.allYumList[newIndex].name;
 
     if (personalityDivRef.current) {
-      personalityDivRef.current.innerHTML = `🌷: ${currentPersonality.current}`;
+      personalityDivRef.current.innerHTML = `🌊: ${currentPersonality.current}`;
     }
 
     if (strengthsDivRef.current) {
-      strengthsDivRef.current.innerHTML = `🌼: ${currentStrengths.current}`;
+      strengthsDivRef.current.innerHTML = `🚩: ${currentStrengths.current}`;
     }
     if (nameDivRef.current) {
-      nameDivRef.current.innerHTML = `🌻: ${currentName.current}`;
+      nameDivRef.current.innerHTML = `🌞: ${currentName.current}`;
     }
   };
   return (

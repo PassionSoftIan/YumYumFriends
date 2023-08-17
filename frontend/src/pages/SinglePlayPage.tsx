@@ -192,7 +192,7 @@ const SinglePlayPage: React.FC = () => {
   return (
     <div className="single-play-page">
       <OpenViduComponent onObjectCreated={handleMySession} />
-      <div>
+      <div className="invitation">
         <InvitationYum />
       </div>
 

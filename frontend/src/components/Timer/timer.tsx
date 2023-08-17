@@ -44,7 +44,7 @@ const Timer: React.FC<TimerProps> = ({ initialTime }) => {
     };
   }, [timer]);
 
-  return <div className="timer">다음 <br />한입까지!!<br />{timer}</div>;
+  return <div className="timer">{timer}</div>;
 };
 
 export default Timer;

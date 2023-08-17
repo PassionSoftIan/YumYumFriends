@@ -12,3 +12,7 @@
   background-image: url("../../assets/gameclearback.gif");
   background-size: cover;
 }
+.like {
+  font-size: 2rem;
+  padding: 1.5rem 2rem;
+}

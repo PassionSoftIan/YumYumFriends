@@ -1,15 +1,18 @@
 .item {
-  color: black;
-  background: #eef3d0;
-  border: 2px solid #d8e548;
+  color: #fff2db;
   margin: 10px 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 10px;
-  padding: 10px;
+  padding: 20px;
 
   display: flex;
   align-items: center;
   width: 280px;
+  height: 70px;
+
+  background-image: url('../../../assets/banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
 }
 
 .item-yum {
@@ -24,7 +27,7 @@
   text-align: start;
   /* margin: 5px; */
   margin-left: 10%;
-  font-size: larger;
+  font-size: 2rem;
   font-weight: bold;
 }
 

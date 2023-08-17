@@ -47,14 +47,15 @@ const GetStandingYum: React.FC<Props> = ({ yum }) => {
 
   return (
     <React.Fragment>
-      <h3 style={{ fontSize: "2.5rem", marginBottom: "0" }}>안녕!</h3>
-      <h3 style={{ fontSize: "2.5rem" }}>반가워 친구야</h3>
+      {/* <h3 style={{ fontSize: "2.5rem", marginBottom: "0" }}>안녕!</h3>
+      <h3 style={{ fontSize: "2.5rem" }}>반가워 친구야</h3> */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          paddingTop: '80%'
         }}
       >
         <img

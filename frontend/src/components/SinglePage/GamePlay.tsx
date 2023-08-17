@@ -54,7 +54,9 @@ const GamePlay: React.FC = () => {
       console.log(eating);
       if (eating % 3 === 2) {
         setTimeout(() => {
-          chargeSound.play();
+          if (soundEffectOn) {
+            chargeSound.play();
+          }
         }, 1000);
       }
       setMyEnergy(eating % 3);
@@ -122,6 +124,9 @@ const GamePlay: React.FC = () => {
         </div>
         <div className="timer-container">
           <Timer initialTime={3} />
+          <p className={styles.eat}>
+            {eating}/{maxEating}
+          </p>
         </div>
         <div className={styles["interface-container"]}>
           <div className={styles["energy-container"]}>

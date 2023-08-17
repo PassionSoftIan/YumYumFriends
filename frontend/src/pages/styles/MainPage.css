@@ -14,7 +14,7 @@
   z-index: 10;
 }
 
-.main-container{
+.main-container {
   background-size: cover;
   background-image: url("../../assets/seaBack.jpg");
 }
@@ -57,40 +57,38 @@
   transform: translateX(250%);
 }
 
-.ani1{
+.ani1 {
   width: 20%;
   left: 70%;
   bottom: 44%;
 }
 .ani2 {
   width: 25%;
-  left: 15%;
-  bottom: 40%;
-  transform: scaleX(-1);
+  left: 10%;
+  top: 40%;
 }
 
-.ani3{
-  width: 30%;
-  left: 60%;
-  bottom: 40%;
-  transform: scaleX(-1);
+.ani3 {
+  width: 20%;
+  right: 1%;
+  top: 0%;
 }
-.ani4{
+.ani4 {
   width: 30%;
   left: 33%;
   bottom: 48%;
 }
-.ani5{
+.ani5 {
   width: 30%;
   left: 34%;
   bottom: 33%;
 }
-.ani6{
+.ani6 {
   width: 30%;
   left: 74%;
   bottom: 40%;
 }
-.ani7{
+.ani7 {
   width: 30%;
   left: 59%;
   bottom: 77%;
@@ -100,5 +98,4 @@
   left: 38%;
   bottom: 80%;
   transform: scaleX(-1);
-  
 }

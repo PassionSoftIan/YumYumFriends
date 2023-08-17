@@ -56,7 +56,6 @@ const GamePlay: React.FC = () => {
         setTimeout(() => {
           chargeSound.play();
         }, 1000);
-
       }
       setMyEnergy(eating % 3);
       dispatch(setEnemyEnergy(0));
@@ -71,9 +70,13 @@ const GamePlay: React.FC = () => {
     const interval = setInterval(() => {
       dispatch(setEnemyEnergy(enemyEnergy + 1)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 값 업데이트
       if (enemyEnergy === maxEnemyEnergy - 1) {
-        enemyAttackSound.play();
+        if (soundEffectOn) {
+          enemyAttackSound.play();
+          setTimeout(() => {
+            yumHitSound.play();
+          }, 500);
+        }
         setTimeout(() => {
-          yumHitSound.play();
           dispatch(setEnemyEnergy(0)); // setEnemyEnergy 액션을 사용하여 enemyEnergy 초기화
         }, 500);
       }
@@ -87,7 +90,7 @@ const GamePlay: React.FC = () => {
   const handleEnergyAttack = () => {
     if (soundEffectOn) {
       skillSound.play();
-    
+
       setTimeout(() => {
         hitSound.play();
       }, 800);
@@ -118,8 +121,8 @@ const GamePlay: React.FC = () => {
           </button>
         </div>
         <div className="timer-container">
-        <Timer initialTime={3} />
-      </div>
+          <Timer initialTime={3} />
+        </div>
         <div className={styles["interface-container"]}>
           <div className={styles["energy-container"]}>
             <p>⚡</p>

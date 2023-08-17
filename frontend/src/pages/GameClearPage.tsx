@@ -48,9 +48,9 @@ const GameClearPage: React.FC = () => {
         await axios.post(
           `${URL}/api/v1/collection/myyum?user=${userID}&yum=${randomID}`
         );
-        await axios.put(
-          `${URL}/api/v1/user?ID=${userID}&mealRemain=${Number(MealRemain) - 1}`
-        );
+        // await axios.put(
+        //   `${URL}/api/v1/user?ID=${userID}&mealRemain=${Number(MealRemain) - 1}`
+        // );
 
         setrandomYum(response1.data);
       } catch (err) {
@@ -58,7 +58,7 @@ const GameClearPage: React.FC = () => {
       }
     };
     RandomGetYum();
-    localStorage.setItem("RemainMeal", `${Number(MealRemain) - 1}`);
+    // localStorage.setItem("RemainMeal", `${Number(MealRemain) - 1}`);
     setTimeout(() => {
       setShowButton(true);
     }, 3000);

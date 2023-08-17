@@ -3,7 +3,7 @@
   display: inline-block;
   width: 60px;
   height: 30px;
-  margin: 20px;
+  margin: 5px;
 }
 
 .input {
@@ -37,7 +37,7 @@
 }
 
 .checked {
-  background-color: #80c38b;
+  background-color: #44984d;
 }
 
 .checked:before {

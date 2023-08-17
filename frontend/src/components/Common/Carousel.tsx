@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from '../../store/store';
+import { RootState } from "../../store/store";
 import CarouselItem from "./CarouselItem";
 import styles from "../styles/Common/Carousel.module.css";
 import useSoundEffect from "../../hooks/useSoundEffect";
@@ -132,7 +132,12 @@ const Carousel: React.FC<Props> = (props) => {
             className={styles.prevButton}
             style={{ position: "absolute", left: 0 }}
           >
-            <Button type="dashed" shape="circle" icon={<LeftOutlined />} onClick={handleClick}/>
+            <Button
+              type="dashed"
+              shape="circle"
+              icon={<LeftOutlined />}
+              onClick={handleClick}
+            />
           </div>
         )}
         renderNextButton={() => (
@@ -140,31 +145,16 @@ const Carousel: React.FC<Props> = (props) => {
             className={styles.nextButton}
             style={{ position: "absolute", right: 0 }}
           >
-            <Button type="dashed" shape="circle" icon={<RightOutlined />} onClick={handleClick}/>
+            <Button
+              type="dashed"
+              shape="circle"
+              icon={<RightOutlined />}
+              onClick={handleClick}
+            />
           </div>
         )}
       />
-      <div
-        style={{
-          backgroundColor: "rgba(255, 255, 240, 0.8)", // 조금 더 투명한 아이보리 색상
-          borderRadius: 5,
-          border: "3px solid #FFD700", // 경계선에 금색 선 효과
-          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // 그림자 효과 추가
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          zIndex: 999,
-          marginTop: 40,
-          padding: 20, // 안쪽 여백 추가
-          fontSize: "18px", // 폰트 크기 조정
-          lineHeight: "26px", // 줄 간격 조정
-          width: "100%", // 박스 너비 고정
-          height: 200, // 박스 높이 고정
-          boxSizing: "border-box",
-        }}
-      >
+      <div className={styles["yum-detail"]}>
         <div ref={nameDivRef} />
         <div ref={personalityDivRef} />
         <div ref={strengthsDivRef} />

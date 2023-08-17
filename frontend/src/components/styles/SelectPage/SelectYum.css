@@ -2,7 +2,7 @@
   margin: 0;
 }
 
-.select{
+.select {
   width: 100%;
 }
 
@@ -11,4 +11,9 @@
   font-size: 1.5rem;
   padding: 1.5rem 1rem;
   color: #fff2db;
+}
+
+.ment {
+  text-shadow: -1px 0 3px #000, 0 1px 3px #000, 1px 0 3px #000, 0 -1px 3px #000;
+  color: #d0e9d4;
 }

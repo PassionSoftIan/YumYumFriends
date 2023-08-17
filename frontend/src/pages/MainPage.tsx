@@ -12,7 +12,7 @@ import Setting from "../assets/Buttons/setting.png";
 import asd from "../assets/RunningYums/1.gif";
 import a from "../assets/RunningYums/2.gif";
 import b from "../assets/float/07_egg_swim.gif";
-import c from "../assets/myCharAttack/2.gif";
+import c from "../assets/float/01_tofu_surf.gif";
 import d from "../assets/myCharAttack/7.gif";
 import e from "../assets/10.gif";
 import f from "../assets/12.gif";
@@ -102,8 +102,8 @@ const MainPage: React.FC = () => {
         </div>
       </div>
       <img src={b} alt="" className="btnIcon ani1" />
-      {/* <img src={c} alt="" className="btnIcon ani2" />
-      <img src={d} alt="" className="btnIcon ani3" />
+      <img src={c} alt="" className="btnIcon ani2" />
+      {/* <img src={d} alt="" className="btnIcon ani3" />
       <img src={e} alt="" className="btnIcon ani4" />
       <img src={f} alt="" className="btnIcon ani5" />
       <img src={g} alt="" className="btnIcon ani6" />

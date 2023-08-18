@@ -1,0 +1,6 @@
+train: data/eating2/images/train  # train images (relative to 'path')
+val: data/eating2/images/validation  # val images (relative to 'path')
+
+# Classes
+nc: 1
+names: ['eat']

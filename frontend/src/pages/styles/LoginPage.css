@@ -33,6 +33,7 @@
   /* background-image: url("../../assets/Buttons/kakao_login_medium_narrow.png"); */
   position: relative;
   z-index: 5;
+  /* background-color: #fee500; */
 }
 
 @keyframes boatShake {

@@ -1,0 +1,42 @@
+.item {
+  margin: 10px 5px;
+  padding: 20px;
+  width: 280px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+
+  background-image: url('../../../assets/banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+
+  color: #fff2db;
+
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: rotate(5deg);
+}
+
+.item-name {
+  width: 55%;
+  text-align: start;
+  margin-left: 10%;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.item-name span {
+  font-size: small;
+  font-weight: normal;
+  margin-left: 1rem;
+}
+
+.lock-icon {
+  width: 30px;
+  margin-left: 15%;
+}

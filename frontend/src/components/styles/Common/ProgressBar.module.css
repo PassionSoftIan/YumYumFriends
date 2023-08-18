@@ -1,0 +1,21 @@
+.container {
+  height: 10px;
+  width: 100%;
+  background-color: #cacaca;
+  border-radius: 50px;
+  margin: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.filler {
+  height: 100%;
+  border-radius: inherit;
+  text-align: right;
+  transition: 1s ease-in-out;
+}
+
+.label {
+  padding: 5px;
+  color: white;
+  font-size: medium;
+}

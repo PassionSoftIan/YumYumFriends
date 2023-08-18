@@ -11,13 +11,15 @@ export default class UserVideoComponent extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.props.streamManager !== undefined ? (
           <div className="streamcomponent">
-            <OpenViduVideoComponent streamManager={this.props.streamManager} />
+            <OpenViduVideoComponent
+              streamManager={this.props.streamManager}
+            />
           </div>
         ) : null}
-      </div>
+      </React.Fragment>
     );
   }
 }

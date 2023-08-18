@@ -1,0 +1,51 @@
+.create-card {
+    width: 80%;
+    height: 37%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15%;
+    /* background-color: #F7F4D2;
+    border: 7px solid #A2DAE1; */
+    /* box-shadow: 0 5px 8px rgba(0, 0, 0, 0.26); */
+    z-index: 10;
+
+    background-image: url('../../assets/board.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+  
+  .create-input p {
+    margin: 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .create-input input {
+    height: 50%;
+    width: 100%;
+    border: none;
+    border-radius: 5%;
+    font-size: large;
+  }
+  
+  .create-button {
+    margin-top: 20%;
+    width: 50%;
+    padding: 10px;
+    color: #fff2db;
+  }
+  
+  .disabled {
+    cursor: not-allowed;
+    filter: grayscale(100%);
+    margin-top: 15%;
+  }
+  
+  .warning-text {
+    color: crimson;
+    font-style: italic;
+  }

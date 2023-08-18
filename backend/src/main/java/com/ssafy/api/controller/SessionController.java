@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.api.model.Session;
@@ -41,14 +42,14 @@ public class SessionController {
 	@Autowired
 	UserRepository userRepo;
 	
-	@GetMapping("/{id}")
+	@GetMapping("")
 	@ApiOperation(value = "세션 정보 조회", notes = "<strong>세션 ID</strong>를 통해 세션 정보를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공", response = User.class),
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Session> getSessionById(@PathVariable("id") String id) {
+	public ResponseEntity<Session> getSessionById(@RequestParam("session_id") String id) {
 		Optional<Session> session = sessionRepo.findById(id);
 		if(session.isPresent())
 			return ResponseEntity.status(HttpStatus.OK).body(session.get());
@@ -56,14 +57,14 @@ public class SessionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 
-	@GetMapping("/sessionid/{id}")
+	@GetMapping("/sessionid")
 	@ApiOperation(value = "세션 조회", notes = "<strong>사용자 ID</strong>를 통해 사용자가 접속 중인 세션 ID를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공", response = User.class),
         @ApiResponse(code = 404, message = "사용자 혹은 세션 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<String> getSessionIDById(@PathVariable("id") int id) {
+	public ResponseEntity<String> getSessionIDById(@RequestParam("user_id") long id) {
 		Optional<SessionInfo> sessionInfo = infoRepo.findByUserID(id);
 		if(sessionInfo.isPresent())
 			return ResponseEntity.status(HttpStatus.OK).body(sessionInfo.get().getSessionID());
@@ -71,7 +72,7 @@ public class SessionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 
-	@PostMapping("/")
+	@PostMapping("")
 	@ApiOperation(value = "세션 생성", notes = "<strong>세션 정보</strong>를 통해 세션을 생성한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "생성 성공"),
@@ -135,14 +136,14 @@ public class SessionController {
 	}
 	
 	@Transactional
-	@DeleteMapping("/exit/{user_id}")
+	@DeleteMapping("/exit")
 	@ApiOperation(value = "세션 퇴장", notes = "<strong>사용자 ID</strong>를 통해 입장한 세션을 퇴장한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 404, message = "사용자 혹은 세션 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<Void> exitSession(@PathVariable("user_id") int userID) {
+	public ResponseEntity<Void> exitSession(@RequestParam("user_id") long userID) {
 		//사용자가 존재하는지 확인
 		Optional<User> user = userRepo.findById(userID);
 		if(!user.isPresent())

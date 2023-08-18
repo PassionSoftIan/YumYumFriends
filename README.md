@@ -226,8 +226,8 @@ PWA를 사용해서 모바일로 웹 앱으로 게임을 진행 할 수 있습�
 
 - 노션
 
-- ![image (15).png](README_assets/9d36f12bbfa793320e7ae27ee8301b0cc8d1e9eb.png)
+ ![image (15).png](README_assets/9d36f12bbfa793320e7ae27ee8301b0cc8d1e9eb.png)
   
-  gitlab
+-  gitlab
 
 - mattermost

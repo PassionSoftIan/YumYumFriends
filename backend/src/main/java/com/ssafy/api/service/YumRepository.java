@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ssafy.api.model.Yum;
 
 @Repository
-public interface YumRepository extends JpaRepository<Yum, Integer> {
+public interface YumRepository extends JpaRepository<Yum, Long> {
 
 }

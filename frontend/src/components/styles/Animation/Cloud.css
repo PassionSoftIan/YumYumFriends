@@ -1,0 +1,70 @@
+.cloud {
+  position: absolute;
+  top: 20%;
+  left: 10px;
+  width: 150px;
+  height: auto;
+  animation: floatCloud 7s linear infinite;
+  z-index: 9;
+}
+.cloud_2 {
+  position: absolute;
+  top: 40%; /* Update the top value to place it slightly below the first cloud */
+  right: 10px; /* Start the second cloud from the right side */
+  width: 150px;
+  height: auto;
+  z-index: 9;
+}
+
+.cloud-container {
+  overflow: hidden;
+}
+
+/* 기본 애니메이션 설정 */
+@keyframes floatCloud {
+  0% {
+    transform: translateX(35%);
+  }
+  100% {
+    transform: translateX(calc(100vw - 150%)); /* 화면 너비 - 요소 너비만큼 오른쪽으로 이동 */
+  }
+}
+@media (max-width: 768px) {
+  @keyframes floatCloud {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  @keyframes floatCloud {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+
+
+
+
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 768px) {
+  .cloud {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cloud {
+    width: 60px;
+  }
+}

@@ -1,10 +1,44 @@
-.local-video {
-    width: 200px;
-    height: 150px;
-  }
-  
-  .remote-video {
-    width: 200px;
-    height: 150px;
-  }
-  
+/* ./styles/SinglePlayPage.css */
+
+/* 전체 프로필 페이지 컨테이너 */
+
+.myYum-image {
+  position: absolute;
+  z-index: 997;
+  width: 35%; /* 이미지 크기(너비)를 조정하려 이 값을 변경하세요. */
+  height: auto; /* 이미지 크기(높이)를 조정하려면 이 값을 변경하세요. */
+  object-fit: cover; /* 이미지를 크기와 비율에 맞게 조절합니다. */
+  top: 48%; /* 위치(상하)를 조정하려면 이 값을 변경하세요. */
+  left: 1%; /* 위치(좌우)를 조정하려면 이 값을 변경하세요. */
+}
+
+.friendYum-image {
+  position: absolute;
+  z-index: 998;
+  width: 35%; /* 이미지 크기(너비)를 조정하려 이 값을 변경하세요. */
+  height: auto; /* 이미지 크기(높이)를 조정하려면 이 값을 변경하세요. */
+  object-fit: cover; /* 이미지를 크기와 비율에 맞게 조절합니다. */
+  top: 57%; /* 위치(상하)를 조정하려면 이 값을 변경하세요. */
+  left: 22%; /* 위치(좌우)를 조정하려면 이 값을 변경하세요. */
+}
+
+.Virus-image {
+  position: absolute;
+  z-index: 999;
+  width: 35%; /* 이미지 크기(너비)를 조정하려 이 값을 변경하세요. */
+  height: auto; /* 이미지 크기(높이)를 조정하려면 이 값을 변경하세요. */
+  object-fit: cover; /* 이미지를 크기와 비율에 맞게 조절합니다. */
+  top: 53%; /* 위치(상하)를 조정하려면 이 값을 변경하세요. */
+  right: 1%; /* 위치(좌우)를 조정하려면 이 값을 변경하세요. */
+}
+
+.ProgressBar-image {
+  /* 기존 코드 유지 */
+  position: absolute;
+  z-index: 1000;
+
+  /* 위치 설정 추가 */
+  width: 40%; /* 원하는 너비로 ProgressBar 크기를 조절합니다. */
+  top: 40%; /* 상하 위치를 조정하려면 이 값을 변경하세요. 위치를 캐릭터 위로 옮깁니다. 적절한 값을 선택해주세요. */
+  left: 1%; /* 좌우 위치를 조절하려면 이 값을 변경하세요. 적절한 값을 선택해주세요. */
+}

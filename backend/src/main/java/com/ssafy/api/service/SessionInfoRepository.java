@@ -8,8 +8,8 @@ import com.ssafy.api.model.SessionInfo;
 
 public interface SessionInfoRepository extends JpaRepository<SessionInfo, String>{
 
-	Optional<SessionInfo> findByUserID(int id);
+	Optional<SessionInfo> findByUserID(long userID);
 
-	void deleteByUserID(int userID);
+	void deleteByUserID(long userID);
 
 }

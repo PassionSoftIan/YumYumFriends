@@ -1,3 +1,4 @@
+/* 기본 스타일 */
 .App {
   text-align: center;
 }
@@ -12,20 +13,34 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+body {
+  font-family: "Hi Melody", cursive;
+}
+/* 배경 이미지 화면에 꽉 차게 스타일 */
+/* 배경 이미지가 화면 상단부터 시작하도록 스타일 */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #ffffff;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
-  background-image: url("./assets/picnic\ back.png");
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
+  background-image: url("./assets/2020.jpg");
+  background-position: bottom center; /* 이미지를 화면 상단 중앙에 배치 */
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+
+
+/* App.css */
+.intro-page {
+  /* IntroPage 컴포넌트의 스타일 조정 */
+  backgroundImage: none; /* 배경 이미지를 없애줍니다 */
 }
 
 .App-link {
@@ -40,14 +55,14 @@
     transform: rotate(360deg);
   }
 }
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh; /* Set the minimum height to full viewport height */
 }
-/* App.css */
 
 /* 아래 부분을 추가합니다. */
 .navbar-container {
@@ -78,4 +93,19 @@
   color: #333;
 }
 
-/* 나머지 App.css 파일의 스타일들은 유지합니다. */
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .App-logo {
+    height: 20vmin;
+  }
+
+  .navbar-container,
+  .navbar {
+    overflow: hidden; /* 모바일에서 스크롤 없애기 */
+  }
+}
+
+#audio {
+  display: none;
+}
+

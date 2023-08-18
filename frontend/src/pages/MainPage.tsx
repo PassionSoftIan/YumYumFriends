@@ -76,6 +76,7 @@ const MainPage: React.FC = () => {
               className="game-button"
             >
               <img src={people} alt="" className="btnicon" />
+              <div className="icon-tag">같이 냠냠</div>
             </MainButton>
           </span>
           <span className="button-wrapper">
@@ -84,6 +85,7 @@ const MainPage: React.FC = () => {
               className="game-button"
             >
               <img src={e} alt="" className="btnicon" />
+              <div className="icon-tag">혼자 냠냠</div>
             </MainButton>
           </span>
           <span className="button-wrapper">
@@ -92,6 +94,7 @@ const MainPage: React.FC = () => {
               className="game-button"
             >
               <img src={every} alt="" className="btnicon" />
+              <div className="icon-tag">대장 냠냠</div>
             </MainButton>
           </span>
         </div>

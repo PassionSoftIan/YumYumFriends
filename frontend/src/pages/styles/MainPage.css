@@ -46,11 +46,14 @@
 
 .btnicon {
   width: 12vw;
+  position: relative;
+  left: -10%;
 }
 .game-button {
   transition: all 0.5s ease-out;
   opacity: 1;
   transform: translateX(0);
+  position: relative;
 }
 
 .game-button.hide {
@@ -98,4 +101,12 @@
   left: 38%;
   bottom: 80%;
   transform: scaleX(-1);
+}
+
+.icon-tag {
+  position: relative;
+  bottom: 1vh;
+  left: -45%;
+  color: #fff2db;
+  width: 200%;
 }

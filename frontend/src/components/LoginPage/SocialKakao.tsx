@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { setUserInfo } from "../../store/userSlice";
 import axios from "axios";
-import kakao from "../../assets/Buttons/kakao_login_medium_narrow.png";
+import kakao from "../../assets/Buttons/kakao_login.png";
 import "../styles/Kakao.css";
 
 interface SocialKakaoProps {
@@ -77,7 +77,7 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
           src={kakao}
           alt="Kakao Login"
           onClick={kakaoOnSuccess}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", width: "100%", }}
         />
       </KakaoLogin>
     </>

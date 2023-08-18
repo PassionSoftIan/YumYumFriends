@@ -55,6 +55,6 @@ if __name__ == '__main__':
     opt = parser.parse_args()
 
     for m in opt.model:
-        models[m] = torch.hub.load('C:/Users/SSAFY/Desktop/yolov5-master', 'custom', path = r'C:/Users/SSAFY/Desktop/yolov5-master/runs/train/eating2/weights/best.pt', source='local')
+        models[m] = torch.hub.load('C:/Users/SSAFY/Desktop/yolov5-master', 'custom', path = r'C:/Users/SSAFY/Desktop/yolov5-master/best.pt', source='local')
         # models[m] = torch.hub.load('ultralytics/yolov5', 'custom', './best.pt', force_reload=True, skip_validation=True)
     app.run(host='0.0.0.0', port=opt.port)  # debug=True causes Restarting with stat

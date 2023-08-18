@@ -22,3 +22,13 @@ Next 후 Finish
 Run As - 5 Spring Boot App 선택
 
 서버가 실행되면 [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)에서 API 문서 확인
+
+서버 배포
+backend root 경로에서 다음 명령어로 빌드
+```bash
+gradlew build
+```
+backend/build/libs에서 다음 명령어로 실행
+```bash
+java -jar backend-2.1.0.jar
+```

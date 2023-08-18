@@ -71,7 +71,18 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
         token={kakaoClientId}
         onSuccess={kakaoOnSuccess}
         onFail={kakaoOnFailure}
-        style={{backgroundColor: 'rgb(254, 229, 0)', border: 'none', borderRadius:'5px'}}
+        // style={{backgroundColor: 'rgb(254, 229, 0)', border: 'none', borderRadius:'5px'}}
+        style={  {display: "inline-block",
+        padding: "0px",
+        width: "222px",
+        height: "49px",
+        lineHeight: "49px",
+        color: "rgb(60, 30, 30)",
+        backgroundColor: "rgb(254, 229, 0)",
+        border: "1px solid transparent",
+        borderRadius: "3px",
+        fontSize: "16px",
+        textAlign: "center",}}
       >
         <img
           src={kakao}

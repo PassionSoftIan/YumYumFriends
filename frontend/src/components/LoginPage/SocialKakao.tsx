@@ -71,6 +71,7 @@ const SocialKakao: React.FC<SocialKakaoProps> = ({ onSuccess }) => {
         token={kakaoClientId}
         onSuccess={kakaoOnSuccess}
         onFail={kakaoOnFailure}
+        style={{backgroundColor: 'rgb(254, 229, 0)', border: 'none', borderRadius:'5px'}}
       >
         <img
           src={kakao}

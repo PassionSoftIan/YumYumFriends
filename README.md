@@ -24,6 +24,22 @@ PWA를 사용해서 모바일로 웹 앱으로 게임을 진행 할 수 있습�
 밥을 잘 먹지 않는 아이 때문에 걱정하는 부모를 생각하며 만들었습니다. 성장기에 끼니를 거르면 아이에게 많은 영향이 갈 수 있습니다. 이와 같은 이유로 아이 스스로 식사를 찾고 식사에 흥미를 유발할 수 있는 프로젝트를 생각하고 기획했습니다.
  해당 서비스를 통해서 아이의 건강을 챙기고 부모님의 수고를 덜 수 있습니다.
 
+
+
+### 💡 팀 소개
+
+---
+
+Frontend : 권인식, 김동현, 김은비, 성제현
+Backend : 라동엽, 이종윤, 권인식
+
+
+AI: 라동엽
+Server: 권인식, 이종윤
+CI/CD: 권인식
+Design: 성제현, 김은비, 김동현
+Unity: 이종윤
+
 ### 🗓️ 프로젝트 진행 기간
 
 ---
@@ -110,8 +126,6 @@ PWA를 사용해서 모바일로 웹 앱으로 게임을 진행 할 수 있습�
 
 - openVidu
 
-
-
 - **Back-End**
 
 - Java 17
@@ -132,8 +146,6 @@ PWA를 사용해서 모바일로 웹 앱으로 게임을 진행 할 수 있습�
 
 - tomcat
 
-
-
 - **AI**
 
 - Python 3.10.9
@@ -149,8 +161,6 @@ PWA를 사용해서 모바일로 웹 앱으로 게임을 진행 할 수 있습�
 - opencv-python 4.8.0
 
 - matplotlib 3.7.2
-
-
 
 - **Server**
 
@@ -180,16 +190,18 @@ PWA를 사용해서 모바일로 웹 앱으로 게임을 진행 할 수 있습�
 
 ---
 
- 
-
 1. requirements 다운로드
    pip install -r requirements.txt
+
 2. cuda 11.6 다운로드
+
 3. torch 다운로드
    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu116
+
 4. 플라스크 path 수정
    ./uitils/flask_rest_api/restapi_test.py의 58번 라인 본인 path로 수정
    models[m] = torch.hub.load('your project path', 'custom', path = 'your weights path', source='local')
+
 5. ./uitils/flask_rest_api/restapi_test.py 실행 (gtx 1060 6gb 이상의 사양 권장)
    
    ##### 실험환경
@@ -199,10 +211,15 @@ PWA를 사용해서 모바일로 웹 앱으로 게임을 진행 할 수 있습�
    GPU : NVIDIA GeForce RTX 3050 Ti Laptop GPU
    
    ##### 데이터 구축
+
 6. 유투브 프레임 추출
+   
    - 유투브 먹방 영상에서 캡처를 통해 500여장의 이미지 수집
+
 7. data annotation
+   
    - label-studio를 사용하여 데이터 라벨링 진행
+
 8. background image 
 - recall을 높이기 위해 데이터 셋에 background image 추가
   
@@ -225,9 +242,9 @@ PWA를 사용해서 모바일로 웹 앱으로 게임을 진행 할 수 있습�
   ![캡처.PNG](README_assets/8eb7fe9cc7d8ffcb7e8b8681e02db9e0e109896d.PNG)
 
 - 노션
-
- ![image (15).png](README_assets/9d36f12bbfa793320e7ae27ee8301b0cc8d1e9eb.png)
   
--  gitlab
+  ![image (15).png](README_assets/9d36f12bbfa793320e7ae27ee8301b0cc8d1e9eb.png)
+
+- gitlab
 
 - mattermost

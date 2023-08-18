@@ -145,7 +145,10 @@ const MultiPlayPage: React.FC = () => {
           sendMessage(false, "detectionChange");
 
           // inTimeout 상태를 비활성화합니다.
-          setInTimeout(false);
+
+          setTimeout(() => {
+            setInTimeout(false);
+          }, 2000);
         }, 5000);
       }
     }

@@ -147,78 +147,80 @@ AI: 라동엽
 ---
 
 - **Front-End**
-
-- JavaScript
-
-- TypeScript
-
-- ReactJs
-
-- Redux
-
-- TensorFlow
-
-- openVidu
+  
+  - JavaScript
+  
+  - TypeScript
+  
+  - React
+  
+  - Redux
+  
+  - TensorFlow
+  
+  - OpenVidu
 
 - **Back-End**
-
-- Java 17
-
-- Spring boot 4.19.0
-
-- Spring Web
-
-- Spring Data JPA
-
-- Lombok
-
-- Swagger 2
-
-- Openvidu 2.28.0
-
-- Mariadb
-
-- tomcat
+  
+  - Java 17
+  
+  - Spring boot 4.19.0
+  
+  - Spring Web
+  
+  - Spring Data JPA
+  
+  - Lombok
+  
+  - Swagger 2
+  
+  - Openvidu 2.28.0
+  
+  - Mariadb
+  
+  - Tomcat
 
 - **AI**
-
-- Python 3.10.9
-
-- Pycharm
-
-- Pytorch 1.13.1+cu116
-
-- Flask 2.3.2
-
-- numpy 1.24.3
-
-- opencv-python 4.8.0
-
-- matplotlib 3.7.2
+  
+  - Python 3.10.9
+  
+  - Pycharm
+  
+  - Pytorch 1.13.1+cu116
+  
+  - Flask 2.3.2
+  
+  - Numpy 1.24.3
+  
+  - Opencv-Python 4.8.0
+  
+  - Matplotlib 3.7.2
 
 - **Server**
-
-- nginx
-
-- docker
-
-- docker hub
-
-- Jenkins
-
-- putty
-
-- Certbot
-
-- Letsencrypt
-
-- filezilla
-
-- EC2
-
-- Ubuntu
-
-- AWS
+  
+  - AWS
+  
+  - EC2
+  
+  - Ubuntu
+  
+  - Linux
+  
+  - Nginx
+  
+  - Docker
+  
+  - Docker Hub
+  
+  - Jenkins
+  
+  - Putty
+  
+  - Certbot
+  
+  - Letsencrypt
+  
+  - FileZilla
 
 ### 😁 ai 실행방법
 

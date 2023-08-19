@@ -60,7 +60,7 @@ Server: 권인식, 이종윤
 
 CI/CD: 권인식
 
-Design: 성제현, 김은비, 김동현
+Mobile & Design: 성제현, 김은비, 김동현
 
 Unity: 이종윤
 

@@ -53,12 +53,15 @@
 PM : 권인식
 
 Frontend : 권인식, 김동현, 김은비, 성제현
-Backend : 라동엽, 이종윤, 권인식
 
-<br>Server: 권인식, 이종윤
+Backend : 이종윤, 권인식, 라동엽
+
+Server: 권인식, 이종윤
+
 CI/CD: 권인식
 
 Design: 성제현, 김은비, 김동현
+
 Unity: 이종윤
 
 AI: 라동엽
